@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="bea39e4f2db9405e84299f8110366e6b" Name="关系图1" DisplayType="true" ZoomLevel="55">
+        <EntityTypeShape EntityType="DBModel.Address" Width="3" PointX="4.5" PointY="0.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="DBModel.DesignWork" Width="3" PointX="8.875" PointY="6.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="DBModel.MaterialColor" Width="3" PointX="13.75" PointY="11.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="DBModel.MaterialPicture" Width="3" PointX="13.75" PointY="14.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="DBModel.MaterialPriceLog" Width="3" PointX="8.375" PointY="18.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="DBModel.Material" Width="3" PointX="8.5" PointY="13" IsExpanded="true" />
+        <EntityTypeShape EntityType="DBModel.MaterialSize" Width="3" PointX="2.875" PointY="16.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="DBModel.MaterialType" Width="3" PointX="2.875" PointY="13.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="DBModel.OrderDetail" Width="3" PointX="19.125" PointY="4.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="DBModel.Order" Width="3" PointX="14" PointY="3" IsExpanded="true" />
+        <EntityTypeShape EntityType="DBModel.SingleLogin" Width="3" PointX="4.25" PointY="9.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="DBModel.User" Width="3" PointX="4.5" PointY="5.125" IsExpanded="true" />
+        <AssociationConnector Association="DBModel.addresses_ibfk_1" ManuallyRouted="false" />
+        <AssociationConnector Association="DBModel.designworks_ibfk_1" ManuallyRouted="false" />
+        <AssociationConnector Association="DBModel.designworks_ibfk_2" ManuallyRouted="false" />
+        <AssociationConnector Association="DBModel.orders_ibfk_1" ManuallyRouted="false" />
+        <AssociationConnector Association="DBModel.materialcolors_ibfk_1" ManuallyRouted="false" />
+        <AssociationConnector Association="DBModel.materialpictures_ibfk_1" ManuallyRouted="false" />
+        <AssociationConnector Association="DBModel.materialpricelogs_ibfk_1" ManuallyRouted="false" />
+        <AssociationConnector Association="DBModel.materials_ibfk_1" ManuallyRouted="false" />
+        <AssociationConnector Association="DBModel.materialsizes_ibfk_1" ManuallyRouted="false" />
+        <AssociationConnector Association="DBModel.orderdetails_ibfk_1" ManuallyRouted="false" />
+        <AssociationConnector Association="DBModel.orders_ibfk_2" ManuallyRouted="false" />
+        <AssociationConnector Association="DBModel.singlelogin_ibfk_1" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

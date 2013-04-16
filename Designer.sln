@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "J.BusinessLogics", "J.Busin
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "J.MainWeb", "J.MainWeb\J.MainWeb.csproj", "{6AEFDC7F-BE14-4892-A50F-6D8B7A34C293}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "J.Utility", "J.Utility\J.Utility.csproj", "{A1C3CC75-74CD-4C9A-AB37-E35693B26F0E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -25,6 +27,10 @@ Global
 		{6AEFDC7F-BE14-4892-A50F-6D8B7A34C293}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6AEFDC7F-BE14-4892-A50F-6D8B7A34C293}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{6AEFDC7F-BE14-4892-A50F-6D8B7A34C293}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A1C3CC75-74CD-4C9A-AB37-E35693B26F0E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A1C3CC75-74CD-4C9A-AB37-E35693B26F0E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A1C3CC75-74CD-4C9A-AB37-E35693B26F0E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A1C3CC75-74CD-4C9A-AB37-E35693B26F0E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
