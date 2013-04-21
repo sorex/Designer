@@ -11,10 +11,15 @@ namespace J.MainWeb.Controllers
         //
         // GET: /Demo/
 
-        public ActionResult Index()
-        {
-            return View();
-        }
+		public ActionResult Index()
+		{
+			return View();
+		}
+
+		public ActionResult Home()
+		{
+			return View();
+		}
 
     }
 }

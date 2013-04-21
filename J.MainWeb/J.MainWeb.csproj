@@ -187,22 +187,23 @@
     <Content Include="Areas\HelpPage\Views\Help\DisplayTemplates\ApiGroup.cshtml" />
     <Content Include="Areas\HelpPage\Views\Help\Api.cshtml" />
     <Content Include="Static\Resources\extendjs\extendjs.js" />
-    <Content Include="Static\Resources\jquery-ui\freehand\freehand.css" />
-    <Content Include="Static\Resources\jquery-ui\freehand\images\animated-overlay.gif" />
-    <Content Include="Static\Resources\jquery-ui\freehand\images\ui-bg_diagonals-thick_70_d6cecc_40x40.png" />
-    <Content Include="Static\Resources\jquery-ui\freehand\images\ui-bg_flat_0_c1c1c1_40x100.png" />
-    <Content Include="Static\Resources\jquery-ui\freehand\images\ui-bg_flat_100_95bcf2_40x100.png" />
-    <Content Include="Static\Resources\jquery-ui\freehand\images\ui-bg_flat_100_cccccc_40x100.png" />
-    <Content Include="Static\Resources\jquery-ui\freehand\images\ui-bg_flat_100_ebf7fc_40x100.png" />
-    <Content Include="Static\Resources\jquery-ui\freehand\images\ui-bg_flat_100_fef1ec_40x100.png" />
-    <Content Include="Static\Resources\jquery-ui\freehand\images\ui-bg_flat_100_ffffff_40x100.png" />
-    <Content Include="Static\Resources\jquery-ui\freehand\images\ui-icons_000000_256x240.png" />
-    <Content Include="Static\Resources\jquery-ui\freehand\images\ui-icons_2e83ff_256x240.png" />
-    <Content Include="Static\Resources\jquery-ui\freehand\images\ui-icons_cd0a0a_256x240.png" />
-    <Content Include="Static\Resources\jquery-ui\freehand\jquery-ui-1.10.2.css" />
-    <Content Include="Static\Resources\jquery-ui\freehand\jquery-ui-1.10.2.min.css" />
+    <Content Include="Static\Resources\jquery-ui\freehand.css" />
+    <Content Include="Static\Resources\jquery-ui\images\animated-overlay.gif" />
+    <Content Include="Static\Resources\jquery-ui\images\ui-bg_diagonals-thick_70_d6cecc_40x40.png" />
+    <Content Include="Static\Resources\jquery-ui\images\ui-bg_flat_0_c1c1c1_40x100.png" />
+    <Content Include="Static\Resources\jquery-ui\images\ui-bg_flat_100_95bcf2_40x100.png" />
+    <Content Include="Static\Resources\jquery-ui\images\ui-bg_flat_100_cccccc_40x100.png" />
+    <Content Include="Static\Resources\jquery-ui\images\ui-bg_flat_100_ebf7fc_40x100.png" />
+    <Content Include="Static\Resources\jquery-ui\images\ui-bg_flat_100_fef1ec_40x100.png" />
+    <Content Include="Static\Resources\jquery-ui\images\ui-bg_flat_100_ffffff_40x100.png" />
+    <Content Include="Static\Resources\jquery-ui\images\ui-icons_000000_256x240.png" />
+    <Content Include="Static\Resources\jquery-ui\images\ui-icons_2e83ff_256x240.png" />
+    <Content Include="Static\Resources\jquery-ui\images\ui-icons_cd0a0a_256x240.png" />
+    <Content Include="Static\Resources\jquery-ui\jquery-ui-1.10.2.css" />
+    <Content Include="Static\Resources\jquery-ui\jquery-ui-1.10.2.min.css" />
     <Content Include="Static\Resources\jquery-ui\jquery-ui-1.10.2.js" />
     <Content Include="Static\Resources\jquery-ui\jquery-ui-1.10.2.min.js" />
+    <Content Include="Static\Resources\jquery-ui\jquery.ui.datepicker-zh-CN.js" />
     <Content Include="Static\Resources\jquery.layout\jquery.layout.js" />
     <Content Include="Static\Resources\jquery.layout\jquery.layout.min.js" />
     <Content Include="Static\Resources\jquery.layout\layout-default.css" />
@@ -213,7 +214,7 @@
     <Content Include="Static\Resources\json2\json2.js" />
     <Content Include="Static\Resources\modernizr\modernizr-2.6.2.js" />
     <Content Include="Static\Resources\site\reset.css" />
-    <Content Include="Static\Resources\site\Site.css" />
+    <Content Include="Static\Resources\site\site.css" />
     <Content Include="Static\Resources\site\divLayout.js" />
     <Content Include="Static\Resources\uploadify\jquery.uploadify.js" />
     <Content Include="Static\Resources\uploadify\jquery.uploadify.localization.js" />
@@ -230,7 +231,6 @@
       <DependentUpon>Web.config</DependentUpon>
     </Content>
     <Content Include="Areas\HelpPage\Views\_ViewStart.cshtml" />
-    <Content Include="Content\Site.css" />
     <Content Include="Images\accent.png" />
     <Content Include="Images\bullet.png" />
     <Content Include="Images\heroAccent.png" />
@@ -244,7 +244,6 @@
     <Content Include="Images\orderedList7.png" />
     <Content Include="Images\orderedList8.png" />
     <Content Include="Images\orderedList9.png" />
-    <Content Include="Scripts\_references.js" />
     <Content Include="Views\Web.config" />
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
@@ -262,6 +261,9 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Demo\Index.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Demo\Home.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
