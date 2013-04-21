@@ -1,168 +1,1444 @@
-CREATE TABLE `Users` (
-`GUID` varchar(200) NOT NULL,
-`LoginName` varchar(200) NOT NULL COMMENT 'ç™»å½•å',
-`Email` varchar(200) NOT NULL COMMENT 'é‚®ç®±ï¼Œæ”¯ä»˜å®å¸å·ï¼Œç”¨äºŽæ”¶æ¬¾',
-`Password` varchar(200) NOT NULL COMMENT 'å¯†ç ',
-`StageName` varchar(200) NOT NULL COMMENT 'è‰ºå',
-`CreateTime` datetime NOT NULL COMMENT 'ç”¨æˆ·æ³¨å†Œæ—¶é—´',
-`State` int NOT NULL COMMENT 'çŠ¶æ€\r\n0ï¼šç¦ç”¨\r\n1ï¼šæ­£å¸¸',
-PRIMARY KEY (`GUID`) ,
-UNIQUE INDEX (`GUID`)
-);
+ALTER TABLE [dbo].[Addresses] DROP CONSTRAINT []
+GO
+ALTER TABLE [dbo].[DesignWorks] DROP CONSTRAINT []
+GO
+ALTER TABLE [dbo].[MaterialPriceLogs] DROP CONSTRAINT []
+GO
+ALTER TABLE [dbo].[SingleLogin] DROP CONSTRAINT []
+GO
+ALTER TABLE [dbo].[Materials] DROP CONSTRAINT []
+GO
+ALTER TABLE [dbo].[DesignWorks] DROP CONSTRAINT []
+GO
+ALTER TABLE [dbo].[OrderDetails] DROP CONSTRAINT []
+GO
+ALTER TABLE [dbo].[Orders] DROP CONSTRAINT []
+GO
+ALTER TABLE [dbo].[MaterialColors] DROP CONSTRAINT []
+GO
+ALTER TABLE [dbo].[MaterialPictures] DROP CONSTRAINT []
+GO
+ALTER TABLE [dbo].[MaterialSizes] DROP CONSTRAINT []
+GO
+ALTER TABLE [dbo].[Orders] DROP CONSTRAINT []
+GO
 
-CREATE TABLE `Addresses` (
-`GUID` varchar(200) NOT NULL,
-`UserID` varchar(200) NOT NULL,
-`Consignee` varchar(200) NOT NULL COMMENT 'æ”¶è´§äºº',
-`Province` varchar(200) NOT NULL COMMENT 'çœ',
-`City` varchar(200) NOT NULL COMMENT 'å¸‚',
-`County` varchar(200) NOT NULL COMMENT 'åŒº/åŽ¿',
-`StreetAddress` varchar(200) NOT NULL COMMENT 'è¡—é“åœ°å€',
-`ZipCode` varchar(200) NOT NULL COMMENT 'é‚®ç¼–',
-`Mobile` varchar(200) NOT NULL COMMENT 'æ‰‹æœºå·ç ',
-`Phone` varchar(200) NOT NULL COMMENT 'ç”µè¯å·ç ',
-`IsDefault` bit(1) NOT NULL DEFAULT b'0' COMMENT 'æ˜¯å¦é»˜è®¤åœ°å€',
-PRIMARY KEY (`GUID`) 
-);
+DROP INDEX [] ON [dbo].[Users]
+GO
 
-CREATE TABLE `Orders` (
-`GUID` varchar(200) NOT NULL,
-`UserID` varchar(200) NOT NULL,
-`DesignWorkID` varchar(200) NOT NULL COMMENT 'è®¾è®¡ID',
-`State` int NOT NULL COMMENT 'çŠ¶æ€\r\n1ï¼šç­‰å¾…ä¹°å®¶ä»˜æ¬¾\r\n2ï¼šä¹°å®¶å·²ä»˜æ¬¾ï¼Œç­‰å¾…å–å®¶å‘è´§\r\n3ï¼šå–å®¶å·²å‘è´§ï¼Œç­‰å¾…ä¹°å®¶ç¡®è®¤\r\n4ï¼šäº¤æ˜“æˆåŠŸç»“æŸ\r\n5ï¼šäº¤æ˜“ä¸­é€”å…³é—­(å·²ç»“æŸï¼ŒæœªæˆåŠŸå®Œæˆ)',
-`RefundState` int NULL COMMENT 'é€€æ¬¾çŠ¶æ€\r\n0ï¼šæœªå‘ç”Ÿé€€æ¬¾\r\n1ï¼šé€€æ¬¾åè®®ç­‰å¾…å–å®¶ç¡®è®¤ä¸­\r\n2ï¼šå–å®¶ä¸åŒæ„åè®®ï¼Œç­‰å¾…ä¹°å®¶ä¿®æ”¹\r\n3ï¼šé€€æ¬¾æˆåŠŸ\r\n4ï¼šé€€æ¬¾å…³é—­',
-`WaitBuyerPayTime` datetime NULL COMMENT 'åˆ›å»ºæ—¶é—´/ç­‰å¾…ä¹°å®¶ä»˜æ¬¾æ—¶é—´',
-`WaitSellerSendGoodsTime` datetime NULL COMMENT 'ä»˜æ¬¾æ—¶é—´/ä¹°å®¶å·²ä»˜æ¬¾ï¼Œç­‰å¾…å–å®¶å‘è´§æ—¶é—´',
-`WaitBuyerConfirmGoodsTime` datetime NULL COMMENT 'å‘è´§æ—¶é—´/å–å®¶å·²å‘è´§ï¼Œç­‰å¾…ä¹°å®¶ç¡®è®¤æ—¶é—´',
-`TradeFinishedTime` datetime NULL COMMENT 'æ”¶æ¬¾æ—¶é—´/äº¤æ˜“æˆåŠŸç»“æŸæ—¶é—´',
-`TradeClosedTime` datetime NULL COMMENT 'äº¤æ˜“å…³é—­æ—¶é—´',
-`RefundWaitSellerAgreeTime` datetime NULL COMMENT 'ä¹°å®¶ç”³è¯·é€€æ¬¾æ—¶é—´/é€€æ¬¾åè®®ç­‰å¾…å–å®¶ç¡®è®¤æ—¶é—´',
-`RefundSellerFefuseBuyerTime` datetime NULL COMMENT 'å–å®¶æ‹’ç»é€€æ¬¾æ—¶é—´/ç­‰å¾…ä¹°å®¶ä¿®æ”¹æ—¶é—´',
-`RefundSuccessTime` datetime NULL COMMENT 'é€€æ¬¾æˆåŠŸæ—¶é—´',
-`RefundClosedTime` datetime NULL COMMENT 'é€€æ¬¾å…³é—­æ—¶é—´',
-`Subject` varchar(200) NOT NULL COMMENT 'å•†å“åç§°',
-`Price` decimal(18,8) NOT NULL COMMENT 'å•ä»·',
-`Quantity` int NULL COMMENT 'æ•°é‡',
-`Body` varchar(400) NULL COMMENT 'å•†å“æè¿°',
-`Consignee` varchar(200) NULL COMMENT 'æ”¶ä»¶äººå§“å',
-`Address` varchar(200) NULL COMMENT 'æ”¶ä»¶åœ°å€',
-`ZipCode` varchar(200) NULL COMMENT 'é‚®ç¼–',
-`Mobile` varchar(200) NULL COMMENT 'æ‰‹æœºå·',
-`Phone` varchar(200) NULL COMMENT 'åº§æœºå·',
-`PayType` int NULL COMMENT 'æ”¯ä»˜å¹³å°\r\n1ï¼šAlipay',
-`PayOrderNo` varchar(200) NULL COMMENT 'æ”¯ä»˜å¹³å°å†…æµæ°´å·',
-PRIMARY KEY (`GUID`) 
-);
+ALTER TABLE [dbo].[Users]DROP CONSTRAINT []
+GO
+ALTER TABLE [dbo].[Addresses]DROP CONSTRAINT []
+GO
+ALTER TABLE [dbo].[Orders]DROP CONSTRAINT []
+GO
+ALTER TABLE [dbo].[DesignWorks]DROP CONSTRAINT []
+GO
+ALTER TABLE [dbo].[Materials]DROP CONSTRAINT []
+GO
+ALTER TABLE [dbo].[MaterialPriceLogs]DROP CONSTRAINT []
+GO
+ALTER TABLE [dbo].[SingleLogin]DROP CONSTRAINT []
+GO
+ALTER TABLE [dbo].[MaterialTypes]DROP CONSTRAINT []
+GO
+ALTER TABLE [dbo].[OrderDetails]DROP CONSTRAINT []
+GO
+ALTER TABLE [dbo].[MaterialColors]DROP CONSTRAINT []
+GO
+ALTER TABLE [dbo].[MaterialPictures]DROP CONSTRAINT []
+GO
+ALTER TABLE [dbo].[MaterialSizes]DROP CONSTRAINT []
+GO
 
-CREATE TABLE `DesignWorks` (
-`GUID` varchar(200) NOT NULL,
-`DesignerID` varchar(200) NOT NULL COMMENT 'è®¾è®¡è€…ID',
-`MaterialID` varchar(200) NOT NULL COMMENT 'åŽŸæ–™ID',
-`SalesGoal` int NOT NULL COMMENT 'é”€å”®ç›®æ ‡',
-`BasePrice` decimal(18,8) NOT NULL COMMENT 'åº•ä»·/å•ä»¶',
-`SellingPrice` decimal(18,8) NOT NULL COMMENT 'å”®ä»·/å•ä»¶',
-`StartTime` datetime NOT NULL COMMENT 'åˆ›å»ºæ—¶é—´/æ´»åŠ¨å¼€å§‹æ—¶é—´',
-`EndTime` datetime NOT NULL COMMENT 'æ´»åŠ¨æˆªæ­¢æ—¶é—´',
-`Title` varchar(200) NOT NULL COMMENT 'æ´»åŠ¨æ ‡é¢˜',
-`Description` varchar(5000) NOT NULL COMMENT 'æ´»åŠ¨è¯´æ˜Ž',
-`Url` varchar(200) NULL COMMENT 'Url',
-`SalesVolume` int NULL COMMENT 'é”€å”®é‡/ç»Ÿè®¡å€¼',
-`State` int NOT NULL COMMENT 'çŠ¶æ€\r\n-1ï¼šé¢„å”®ä¸è¶³\r\n0ï¼šè®¾è®¡ä¸­\r\n1ï¼šé¢„å”®ä¸­\r\n2ï¼šç”Ÿäº§ä¸­\r\n3ï¼šå‘è´§ä¸­\r\n4ï¼šæ”¶æ¬¾ä¸­\r\n5ï¼šè¿”æ¬¾ä¸­\r\n6ï¼šå½’æ¡£',
-`ProcurementCost` decimal(18,8) NULL COMMENT 'é‡‡è´­æˆæœ¬',
-`ProductionCost` decimal(18,8) NULL COMMENT 'ç”Ÿäº§æˆæœ¬',
-`SendCost` decimal(18,8) NULL COMMENT 'å‘è´§æˆæœ¬',
-`CompletionTime` datetime NULL COMMENT 'æ‰€æœ‰äº¤æ˜“å®Œæˆæ—¶é—´',
-PRIMARY KEY (`GUID`) 
-);
+DROP TABLE [dbo].[Users]
+GO
+DROP TABLE [dbo].[Addresses]
+GO
+DROP TABLE [dbo].[Orders]
+GO
+DROP TABLE [dbo].[DesignWorks]
+GO
+DROP TABLE [dbo].[Materials]
+GO
+DROP TABLE [dbo].[MaterialPriceLogs]
+GO
+DROP TABLE [dbo].[SingleLogin]
+GO
+DROP TABLE [dbo].[MaterialTypes]
+GO
+DROP TABLE [dbo].[OrderDetails]
+GO
+DROP TABLE [dbo].[MaterialColors]
+GO
+DROP TABLE [dbo].[MaterialPictures]
+GO
+DROP TABLE [dbo].[MaterialSizes]
+GO
 
-CREATE TABLE `Materials` (
-`GUID` varchar(200) NOT NULL,
-`TypeID` varchar(200) NOT NULL COMMENT 'ç±»åž‹\r\n1ï¼šçŸ­è¢–Tæ¤\r\n2ï¼šé•¿è¢–Tæ¤\r\n3ï¼šèƒŒå¿ƒ\r\n4ï¼šè¿žå¸½è¡«',
-`Name` varchar(200) NOT NULL COMMENT 'åŽŸæ–™ç¼–å·',
-`Price` decimal(18,8) NOT NULL DEFAULT 0 COMMENT 'ç›®å‰å‡ä»·',
-`Description` varchar(5000) NOT NULL,
-`PictureNumber` int NOT NULL COMMENT 'éœ€è¦ä¸Šä¼ å›¾ç‰‡å¼ æ•°',
-`State` int NOT NULL COMMENT 'çŠ¶æ€\r\n0ï¼šåœäº§\r\n1ï¼šæ­£å¸¸\r\n2ï¼šç¼ºè´§\r\n3ï¼šåœç”¨/æœªå¯ç”¨',
-PRIMARY KEY (`GUID`) 
-);
+CREATE TABLE [dbo].[Users] (
+[GUID] nvarchar(200) NOT NULL,
+[LoginName] nvarchar(200) NOT NULL,
+[Email] nvarchar(200) NOT NULL,
+[Password] nvarchar(200) NOT NULL,
+[StageName] nvarchar(200) NOT NULL,
+[CreateTime] datetime2(7) NOT NULL,
+[State] int NOT NULL,
+PRIMARY KEY ([GUID]) 
+)
+GO
 
-CREATE TABLE `MaterialPriceLogs` (
-`GUID` varchar(200) NOT NULL,
-`MaterialID` varchar(200) NOT NULL,
-`Price` decimal(18,8) NOT NULL COMMENT 'ä»·æ ¼',
-`CreateTime` datetime NOT NULL COMMENT 'å½•å…¥æ—¶é—´',
-PRIMARY KEY (`GUID`) 
-);
+CREATE UNIQUE INDEX ON [dbo].[Users] ([GUID] )
+GO
+IF ((SELECT COUNT(*) from fn_listextendedproperty('MS_Description', 
+'SCHEMA', N'dbo', 
+'TABLE', N'Users', 
+'COLUMN', N'LoginName')) > 0) 
+EXEC sp_updateextendedproperty @name = N'MS_Description', @value = N'µÇÂ¼Ãû'
+, @level0type = 'SCHEMA', @level0name = N'dbo'
+, @level1type = 'TABLE', @level1name = N'Users'
+, @level2type = 'COLUMN', @level2name = N'LoginName'
+ELSE
+EXEC sp_addextendedproperty @name = N'MS_Description', @value = N'µÇÂ¼Ãû'
+, @level0type = 'SCHEMA', @level0name = N'dbo'
+, @level1type = 'TABLE', @level1name = N'Users'
+, @level2type = 'COLUMN', @level2name = N'LoginName'
+GO
+IF ((SELECT COUNT(*) from fn_listextendedproperty('MS_Description', 
+'SCHEMA', N'dbo', 
+'TABLE', N'Users', 
+'COLUMN', N'Email')) > 0) 
+EXEC sp_updateextendedproperty @name = N'MS_Description', @value = N'ÓÊÏä£¬Ö§¸¶±¦ÕÊºÅ£¬ÓÃÓÚÊÕ¿î'
+, @level0type = 'SCHEMA', @level0name = N'dbo'
+, @level1type = 'TABLE', @level1name = N'Users'
+, @level2type = 'COLUMN', @level2name = N'Email'
+ELSE
+EXEC sp_addextendedproperty @name = N'MS_Description', @value = N'ÓÊÏä£¬Ö§¸¶±¦ÕÊºÅ£¬ÓÃÓÚÊÕ¿î'
+, @level0type = 'SCHEMA', @level0name = N'dbo'
+, @level1type = 'TABLE', @level1name = N'Users'
+, @level2type = 'COLUMN', @level2name = N'Email'
+GO
+IF ((SELECT COUNT(*) from fn_listextendedproperty('MS_Description', 
+'SCHEMA', N'dbo', 
+'TABLE', N'Users', 
+'COLUMN', N'Password')) > 0) 
+EXEC sp_updateextendedproperty @name = N'MS_Description', @value = N'ÃÜÂë'
+, @level0type = 'SCHEMA', @level0name = N'dbo'
+, @level1type = 'TABLE', @level1name = N'Users'
+, @level2type = 'COLUMN', @level2name = N'Password'
+ELSE
+EXEC sp_addextendedproperty @name = N'MS_Description', @value = N'ÃÜÂë'
+, @level0type = 'SCHEMA', @level0name = N'dbo'
+, @level1type = 'TABLE', @level1name = N'Users'
+, @level2type = 'COLUMN', @level2name = N'Password'
+GO
+IF ((SELECT COUNT(*) from fn_listextendedproperty('MS_Description', 
+'SCHEMA', N'dbo', 
+'TABLE', N'Users', 
+'COLUMN', N'StageName')) > 0) 
+EXEC sp_updateextendedproperty @name = N'MS_Description', @value = N'ÒÕÃû'
+, @level0type = 'SCHEMA', @level0name = N'dbo'
+, @level1type = 'TABLE', @level1name = N'Users'
+, @level2type = 'COLUMN', @level2name = N'StageName'
+ELSE
+EXEC sp_addextendedproperty @name = N'MS_Description', @value = N'ÒÕÃû'
+, @level0type = 'SCHEMA', @level0name = N'dbo'
+, @level1type = 'TABLE', @level1name = N'Users'
+, @level2type = 'COLUMN', @level2name = N'StageName'
+GO
+IF ((SELECT COUNT(*) from fn_listextendedproperty('MS_Description', 
+'SCHEMA', N'dbo', 
+'TABLE', N'Users', 
+'COLUMN', N'CreateTime')) > 0) 
+EXEC sp_updateextendedproperty @name = N'MS_Description', @value = N'ÓÃ»§×¢²áÊ±¼ä'
+, @level0type = 'SCHEMA', @level0name = N'dbo'
+, @level1type = 'TABLE', @level1name = N'Users'
+, @level2type = 'COLUMN', @level2name = N'CreateTime'
+ELSE
+EXEC sp_addextendedproperty @name = N'MS_Description', @value = N'ÓÃ»§×¢²áÊ±¼ä'
+, @level0type = 'SCHEMA', @level0name = N'dbo'
+, @level1type = 'TABLE', @level1name = N'Users'
+, @level2type = 'COLUMN', @level2name = N'CreateTime'
+GO
+IF ((SELECT COUNT(*) from fn_listextendedproperty('MS_Description', 
+'SCHEMA', N'dbo', 
+'TABLE', N'Users', 
+'COLUMN', N'State')) > 0) 
+EXEC sp_updateextendedproperty @name = N'MS_Description', @value = N'×´Ì¬
+0£º½ûÓÃ
+1£ºÕý³£'
+, @level0type = 'SCHEMA', @level0name = N'dbo'
+, @level1type = 'TABLE', @level1name = N'Users'
+, @level2type = 'COLUMN', @level2name = N'State'
+ELSE
+EXEC sp_addextendedproperty @name = N'MS_Description', @value = N'×´Ì¬
+0£º½ûÓÃ
+1£ºÕý³£'
+, @level0type = 'SCHEMA', @level0name = N'dbo'
+, @level1type = 'TABLE', @level1name = N'Users'
+, @level2type = 'COLUMN', @level2name = N'State'
+GO
 
-CREATE TABLE `SingleLogin` (
-`GUID` varchar(200) NOT NULL,
-`UserID` varchar(200) NOT NULL,
-`LoginTime` datetime NOT NULL COMMENT 'ç™»é™†æ—¶é—´',
-PRIMARY KEY (`GUID`) 
-);
+CREATE TABLE [dbo].[Addresses] (
+[GUID] nvarchar(200) NOT NULL,
+[UserID] nvarchar(200) NOT NULL,
+[Consignee] nvarchar(200) NOT NULL,
+[Province] nvarchar(200) NOT NULL,
+[City] nvarchar(200) NOT NULL,
+[County] nvarchar(200) NOT NULL,
+[StreetAddress] nvarchar(1000) NOT NULL,
+[ZipCode] nvarchar(200) NOT NULL,
+[Mobile] nvarchar(200) NOT NULL,
+[Phone] nvarchar(200) NOT NULL,
+[IsDefault] bit NOT NULL DEFAULT 0,
+PRIMARY KEY ([GUID]) 
+)
+GO
 
-CREATE TABLE `MaterialTypes` (
-`GUID` varchar(200) NOT NULL,
-`ParentID` varchar(200) NULL,
-`Index` int NOT NULL,
-`Name` varchar(200) NOT NULL COMMENT 'ç±»åž‹åç§°',
-`IsLeafNode` bit NOT NULL DEFAULT b'1' COMMENT 'æ˜¯å¦æ˜¯å¶å­èŠ‚ç‚¹',
-`State` int NOT NULL COMMENT 'çŠ¶æ€\r\n0ï¼šåœç”¨\r\n1ï¼šæ­£å¸¸\r\n',
-PRIMARY KEY (`GUID`) 
-);
+IF ((SELECT COUNT(*) from fn_listextendedproperty('MS_Description', 
+'SCHEMA', N'dbo', 
+'TABLE', N'Addresses', 
+'COLUMN', N'Consignee')) > 0) 
+EXEC sp_updateextendedproperty @name = N'MS_Description', @value = N'ÊÕ»õÈË'
+, @level0type = 'SCHEMA', @level0name = N'dbo'
+, @level1type = 'TABLE', @level1name = N'Addresses'
+, @level2type = 'COLUMN', @level2name = N'Consignee'
+ELSE
+EXEC sp_addextendedproperty @name = N'MS_Description', @value = N'ÊÕ»õÈË'
+, @level0type = 'SCHEMA', @level0name = N'dbo'
+, @level1type = 'TABLE', @level1name = N'Addresses'
+, @level2type = 'COLUMN', @level2name = N'Consignee'
+GO
+IF ((SELECT COUNT(*) from fn_listextendedproperty('MS_Description', 
+'SCHEMA', N'dbo', 
+'TABLE', N'Addresses', 
+'COLUMN', N'Province')) > 0) 
+EXEC sp_updateextendedproperty @name = N'MS_Description', @value = N'Ê¡'
+, @level0type = 'SCHEMA', @level0name = N'dbo'
+, @level1type = 'TABLE', @level1name = N'Addresses'
+, @level2type = 'COLUMN', @level2name = N'Province'
+ELSE
+EXEC sp_addextendedproperty @name = N'MS_Description', @value = N'Ê¡'
+, @level0type = 'SCHEMA', @level0name = N'dbo'
+, @level1type = 'TABLE', @level1name = N'Addresses'
+, @level2type = 'COLUMN', @level2name = N'Province'
+GO
+IF ((SELECT COUNT(*) from fn_listextendedproperty('MS_Description', 
+'SCHEMA', N'dbo', 
+'TABLE', N'Addresses', 
+'COLUMN', N'City')) > 0) 
+EXEC sp_updateextendedproperty @name = N'MS_Description', @value = N'ÊÐ'
+, @level0type = 'SCHEMA', @level0name = N'dbo'
+, @level1type = 'TABLE', @level1name = N'Addresses'
+, @level2type = 'COLUMN', @level2name = N'City'
+ELSE
+EXEC sp_addextendedproperty @name = N'MS_Description', @value = N'ÊÐ'
+, @level0type = 'SCHEMA', @level0name = N'dbo'
+, @level1type = 'TABLE', @level1name = N'Addresses'
+, @level2type = 'COLUMN', @level2name = N'City'
+GO
+IF ((SELECT COUNT(*) from fn_listextendedproperty('MS_Description', 
+'SCHEMA', N'dbo', 
+'TABLE', N'Addresses', 
+'COLUMN', N'County')) > 0) 
+EXEC sp_updateextendedproperty @name = N'MS_Description', @value = N'Çø/ÏØ'
+, @level0type = 'SCHEMA', @level0name = N'dbo'
+, @level1type = 'TABLE', @level1name = N'Addresses'
+, @level2type = 'COLUMN', @level2name = N'County'
+ELSE
+EXEC sp_addextendedproperty @name = N'MS_Description', @value = N'Çø/ÏØ'
+, @level0type = 'SCHEMA', @level0name = N'dbo'
+, @level1type = 'TABLE', @level1name = N'Addresses'
+, @level2type = 'COLUMN', @level2name = N'County'
+GO
+IF ((SELECT COUNT(*) from fn_listextendedproperty('MS_Description', 
+'SCHEMA', N'dbo', 
+'TABLE', N'Addresses', 
+'COLUMN', N'StreetAddress')) > 0) 
+EXEC sp_updateextendedproperty @name = N'MS_Description', @value = N'½ÖµÀµØÖ·'
+, @level0type = 'SCHEMA', @level0name = N'dbo'
+, @level1type = 'TABLE', @level1name = N'Addresses'
+, @level2type = 'COLUMN', @level2name = N'StreetAddress'
+ELSE
+EXEC sp_addextendedproperty @name = N'MS_Description', @value = N'½ÖµÀµØÖ·'
+, @level0type = 'SCHEMA', @level0name = N'dbo'
+, @level1type = 'TABLE', @level1name = N'Addresses'
+, @level2type = 'COLUMN', @level2name = N'StreetAddress'
+GO
+IF ((SELECT COUNT(*) from fn_listextendedproperty('MS_Description', 
+'SCHEMA', N'dbo', 
+'TABLE', N'Addresses', 
+'COLUMN', N'ZipCode')) > 0) 
+EXEC sp_updateextendedproperty @name = N'MS_Description', @value = N'ÓÊ±à'
+, @level0type = 'SCHEMA', @level0name = N'dbo'
+, @level1type = 'TABLE', @level1name = N'Addresses'
+, @level2type = 'COLUMN', @level2name = N'ZipCode'
+ELSE
+EXEC sp_addextendedproperty @name = N'MS_Description', @value = N'ÓÊ±à'
+, @level0type = 'SCHEMA', @level0name = N'dbo'
+, @level1type = 'TABLE', @level1name = N'Addresses'
+, @level2type = 'COLUMN', @level2name = N'ZipCode'
+GO
+IF ((SELECT COUNT(*) from fn_listextendedproperty('MS_Description', 
+'SCHEMA', N'dbo', 
+'TABLE', N'Addresses', 
+'COLUMN', N'Mobile')) > 0) 
+EXEC sp_updateextendedproperty @name = N'MS_Description', @value = N'ÊÖ»úºÅÂë'
+, @level0type = 'SCHEMA', @level0name = N'dbo'
+, @level1type = 'TABLE', @level1name = N'Addresses'
+, @level2type = 'COLUMN', @level2name = N'Mobile'
+ELSE
+EXEC sp_addextendedproperty @name = N'MS_Description', @value = N'ÊÖ»úºÅÂë'
+, @level0type = 'SCHEMA', @level0name = N'dbo'
+, @level1type = 'TABLE', @level1name = N'Addresses'
+, @level2type = 'COLUMN', @level2name = N'Mobile'
+GO
+IF ((SELECT COUNT(*) from fn_listextendedproperty('MS_Description', 
+'SCHEMA', N'dbo', 
+'TABLE', N'Addresses', 
+'COLUMN', N'Phone')) > 0) 
+EXEC sp_updateextendedproperty @name = N'MS_Description', @value = N'µç»°ºÅÂë'
+, @level0type = 'SCHEMA', @level0name = N'dbo'
+, @level1type = 'TABLE', @level1name = N'Addresses'
+, @level2type = 'COLUMN', @level2name = N'Phone'
+ELSE
+EXEC sp_addextendedproperty @name = N'MS_Description', @value = N'µç»°ºÅÂë'
+, @level0type = 'SCHEMA', @level0name = N'dbo'
+, @level1type = 'TABLE', @level1name = N'Addresses'
+, @level2type = 'COLUMN', @level2name = N'Phone'
+GO
+IF ((SELECT COUNT(*) from fn_listextendedproperty('MS_Description', 
+'SCHEMA', N'dbo', 
+'TABLE', N'Addresses', 
+'COLUMN', N'IsDefault')) > 0) 
+EXEC sp_updateextendedproperty @name = N'MS_Description', @value = N'ÊÇ·ñÄ¬ÈÏµØÖ·'
+, @level0type = 'SCHEMA', @level0name = N'dbo'
+, @level1type = 'TABLE', @level1name = N'Addresses'
+, @level2type = 'COLUMN', @level2name = N'IsDefault'
+ELSE
+EXEC sp_addextendedproperty @name = N'MS_Description', @value = N'ÊÇ·ñÄ¬ÈÏµØÖ·'
+, @level0type = 'SCHEMA', @level0name = N'dbo'
+, @level1type = 'TABLE', @level1name = N'Addresses'
+, @level2type = 'COLUMN', @level2name = N'IsDefault'
+GO
 
-CREATE TABLE `OrderDetails` (
-`GUID` varchar(200) NOT NULL,
-`OrderID` varchar(200) NOT NULL,
-`Size` varchar(200) NULL COMMENT 'å°ºç ',
-`Number` int NOT NULL COMMENT 'è´­ä¹°æ•°é‡',
-PRIMARY KEY (`GUID`) 
-);
+CREATE TABLE [dbo].[Orders] (
+[GUID] nvarchar(200) NOT NULL,
+[UserID] nvarchar(200) NOT NULL,
+[DesignWorkID] nvarchar(200) NOT NULL,
+[State] int NOT NULL,
+[RefundState] int NULL,
+[WaitBuyerPayTime] datetime2(7) NULL,
+[WaitSellerSendGoodsTime] datetime2(7) NULL,
+[WaitBuyerConfirmGoodsTime] datetime2(7) NULL,
+[TradeFinishedTime] datetime2(7) NULL,
+[TradeClosedTime] datetime2(7) NULL,
+[RefundWaitSellerAgreeTime] datetime2(7) NULL,
+[RefundSellerFefuseBuyerTime] datetime2(7) NULL,
+[RefundSuccessTime] datetime2(7) NULL,
+[RefundClosedTime] datetime2(7) NULL,
+[Subject] nvarchar(200) NOT NULL,
+[Price] decimal(18,8) NOT NULL,
+[Quantity] int NULL,
+[Body] nvarchar(MAX) NULL,
+[Consignee] nvarchar(200) NULL,
+[Address] nvarchar(200) NULL,
+[ZipCode] nvarchar(200) NULL,
+[Mobile] nvarchar(200) NULL,
+[Phone] nvarchar(200) NULL,
+[PayType] int NULL,
+[PayOrderNo] nvarchar(200) NULL,
+PRIMARY KEY ([GUID]) 
+)
+GO
 
-CREATE TABLE `MaterialColors` (
-`GUID` varchar(200) NOT NULL,
-`MaterialID` varchar(200) NOT NULL,
-`ColorName` varchar(200) NOT NULL,
-`ColorCode` varchar(200) NOT NULL,
-`IsDefault` bit NOT NULL DEFAULT b'0' COMMENT 'æ˜¯å¦æ˜¯é»˜è®¤é¢œè‰²',
-`State` int NOT NULL COMMENT 'çŠ¶æ€\r\n0ï¼šåœäº§\r\n1ï¼šæ­£å¸¸\r\n2ï¼šç¼ºè´§',
-PRIMARY KEY (`GUID`) 
-);
+IF ((SELECT COUNT(*) from fn_listextendedproperty('MS_Description', 
+'SCHEMA', N'dbo', 
+'TABLE', N'Orders', 
+'COLUMN', N'DesignWorkID')) > 0) 
+EXEC sp_updateextendedproperty @name = N'MS_Description', @value = N'Éè¼ÆID'
+, @level0type = 'SCHEMA', @level0name = N'dbo'
+, @level1type = 'TABLE', @level1name = N'Orders'
+, @level2type = 'COLUMN', @level2name = N'DesignWorkID'
+ELSE
+EXEC sp_addextendedproperty @name = N'MS_Description', @value = N'Éè¼ÆID'
+, @level0type = 'SCHEMA', @level0name = N'dbo'
+, @level1type = 'TABLE', @level1name = N'Orders'
+, @level2type = 'COLUMN', @level2name = N'DesignWorkID'
+GO
+IF ((SELECT COUNT(*) from fn_listextendedproperty('MS_Description', 
+'SCHEMA', N'dbo', 
+'TABLE', N'Orders', 
+'COLUMN', N'State')) > 0) 
+EXEC sp_updateextendedproperty @name = N'MS_Description', @value = N'×´Ì¬
+1£ºµÈ´ýÂò¼Ò¸¶¿î
+2£ºÂò¼ÒÒÑ¸¶¿î£¬µÈ´ýÂô¼Ò·¢»õ
+3£ºÂô¼ÒÒÑ·¢»õ£¬µÈ´ýÂò¼ÒÈ·ÈÏ
+4£º½»Ò×³É¹¦½áÊø
+5£º½»Ò×ÖÐÍ¾¹Ø±Õ(ÒÑ½áÊø£¬Î´³É¹¦Íê³É)'
+, @level0type = 'SCHEMA', @level0name = N'dbo'
+, @level1type = 'TABLE', @level1name = N'Orders'
+, @level2type = 'COLUMN', @level2name = N'State'
+ELSE
+EXEC sp_addextendedproperty @name = N'MS_Description', @value = N'×´Ì¬
+1£ºµÈ´ýÂò¼Ò¸¶¿î
+2£ºÂò¼ÒÒÑ¸¶¿î£¬µÈ´ýÂô¼Ò·¢»õ
+3£ºÂô¼ÒÒÑ·¢»õ£¬µÈ´ýÂò¼ÒÈ·ÈÏ
+4£º½»Ò×³É¹¦½áÊø
+5£º½»Ò×ÖÐÍ¾¹Ø±Õ(ÒÑ½áÊø£¬Î´³É¹¦Íê³É)'
+, @level0type = 'SCHEMA', @level0name = N'dbo'
+, @level1type = 'TABLE', @level1name = N'Orders'
+, @level2type = 'COLUMN', @level2name = N'State'
+GO
+IF ((SELECT COUNT(*) from fn_listextendedproperty('MS_Description', 
+'SCHEMA', N'dbo', 
+'TABLE', N'Orders', 
+'COLUMN', N'RefundState')) > 0) 
+EXEC sp_updateextendedproperty @name = N'MS_Description', @value = N'ÍË¿î×´Ì¬
+0£ºÎ´·¢ÉúÍË¿î
+1£ºÍË¿îÐ­ÒéµÈ´ýÂô¼ÒÈ·ÈÏÖÐ
+2£ºÂô¼Ò²»Í¬ÒâÐ­Òé£¬µÈ´ýÂò¼ÒÐÞ¸Ä
+3£ºÍË¿î³É¹¦
+4£ºÍË¿î¹Ø±Õ'
+, @level0type = 'SCHEMA', @level0name = N'dbo'
+, @level1type = 'TABLE', @level1name = N'Orders'
+, @level2type = 'COLUMN', @level2name = N'RefundState'
+ELSE
+EXEC sp_addextendedproperty @name = N'MS_Description', @value = N'ÍË¿î×´Ì¬
+0£ºÎ´·¢ÉúÍË¿î
+1£ºÍË¿îÐ­ÒéµÈ´ýÂô¼ÒÈ·ÈÏÖÐ
+2£ºÂô¼Ò²»Í¬ÒâÐ­Òé£¬µÈ´ýÂò¼ÒÐÞ¸Ä
+3£ºÍË¿î³É¹¦
+4£ºÍË¿î¹Ø±Õ'
+, @level0type = 'SCHEMA', @level0name = N'dbo'
+, @level1type = 'TABLE', @level1name = N'Orders'
+, @level2type = 'COLUMN', @level2name = N'RefundState'
+GO
+IF ((SELECT COUNT(*) from fn_listextendedproperty('MS_Description', 
+'SCHEMA', N'dbo', 
+'TABLE', N'Orders', 
+'COLUMN', N'WaitBuyerPayTime')) > 0) 
+EXEC sp_updateextendedproperty @name = N'MS_Description', @value = N'´´½¨Ê±¼ä/µÈ´ýÂò¼Ò¸¶¿îÊ±¼ä'
+, @level0type = 'SCHEMA', @level0name = N'dbo'
+, @level1type = 'TABLE', @level1name = N'Orders'
+, @level2type = 'COLUMN', @level2name = N'WaitBuyerPayTime'
+ELSE
+EXEC sp_addextendedproperty @name = N'MS_Description', @value = N'´´½¨Ê±¼ä/µÈ´ýÂò¼Ò¸¶¿îÊ±¼ä'
+, @level0type = 'SCHEMA', @level0name = N'dbo'
+, @level1type = 'TABLE', @level1name = N'Orders'
+, @level2type = 'COLUMN', @level2name = N'WaitBuyerPayTime'
+GO
+IF ((SELECT COUNT(*) from fn_listextendedproperty('MS_Description', 
+'SCHEMA', N'dbo', 
+'TABLE', N'Orders', 
+'COLUMN', N'WaitSellerSendGoodsTime')) > 0) 
+EXEC sp_updateextendedproperty @name = N'MS_Description', @value = N'¸¶¿îÊ±¼ä/Âò¼ÒÒÑ¸¶¿î£¬µÈ´ýÂô¼Ò·¢»õÊ±¼ä'
+, @level0type = 'SCHEMA', @level0name = N'dbo'
+, @level1type = 'TABLE', @level1name = N'Orders'
+, @level2type = 'COLUMN', @level2name = N'WaitSellerSendGoodsTime'
+ELSE
+EXEC sp_addextendedproperty @name = N'MS_Description', @value = N'¸¶¿îÊ±¼ä/Âò¼ÒÒÑ¸¶¿î£¬µÈ´ýÂô¼Ò·¢»õÊ±¼ä'
+, @level0type = 'SCHEMA', @level0name = N'dbo'
+, @level1type = 'TABLE', @level1name = N'Orders'
+, @level2type = 'COLUMN', @level2name = N'WaitSellerSendGoodsTime'
+GO
+IF ((SELECT COUNT(*) from fn_listextendedproperty('MS_Description', 
+'SCHEMA', N'dbo', 
+'TABLE', N'Orders', 
+'COLUMN', N'WaitBuyerConfirmGoodsTime')) > 0) 
+EXEC sp_updateextendedproperty @name = N'MS_Description', @value = N'·¢»õÊ±¼ä/Âô¼ÒÒÑ·¢»õ£¬µÈ´ýÂò¼ÒÈ·ÈÏÊ±¼ä'
+, @level0type = 'SCHEMA', @level0name = N'dbo'
+, @level1type = 'TABLE', @level1name = N'Orders'
+, @level2type = 'COLUMN', @level2name = N'WaitBuyerConfirmGoodsTime'
+ELSE
+EXEC sp_addextendedproperty @name = N'MS_Description', @value = N'·¢»õÊ±¼ä/Âô¼ÒÒÑ·¢»õ£¬µÈ´ýÂò¼ÒÈ·ÈÏÊ±¼ä'
+, @level0type = 'SCHEMA', @level0name = N'dbo'
+, @level1type = 'TABLE', @level1name = N'Orders'
+, @level2type = 'COLUMN', @level2name = N'WaitBuyerConfirmGoodsTime'
+GO
+IF ((SELECT COUNT(*) from fn_listextendedproperty('MS_Description', 
+'SCHEMA', N'dbo', 
+'TABLE', N'Orders', 
+'COLUMN', N'TradeFinishedTime')) > 0) 
+EXEC sp_updateextendedproperty @name = N'MS_Description', @value = N'ÊÕ¿îÊ±¼ä/½»Ò×³É¹¦½áÊøÊ±¼ä'
+, @level0type = 'SCHEMA', @level0name = N'dbo'
+, @level1type = 'TABLE', @level1name = N'Orders'
+, @level2type = 'COLUMN', @level2name = N'TradeFinishedTime'
+ELSE
+EXEC sp_addextendedproperty @name = N'MS_Description', @value = N'ÊÕ¿îÊ±¼ä/½»Ò×³É¹¦½áÊøÊ±¼ä'
+, @level0type = 'SCHEMA', @level0name = N'dbo'
+, @level1type = 'TABLE', @level1name = N'Orders'
+, @level2type = 'COLUMN', @level2name = N'TradeFinishedTime'
+GO
+IF ((SELECT COUNT(*) from fn_listextendedproperty('MS_Description', 
+'SCHEMA', N'dbo', 
+'TABLE', N'Orders', 
+'COLUMN', N'TradeClosedTime')) > 0) 
+EXEC sp_updateextendedproperty @name = N'MS_Description', @value = N'½»Ò×¹Ø±ÕÊ±¼ä'
+, @level0type = 'SCHEMA', @level0name = N'dbo'
+, @level1type = 'TABLE', @level1name = N'Orders'
+, @level2type = 'COLUMN', @level2name = N'TradeClosedTime'
+ELSE
+EXEC sp_addextendedproperty @name = N'MS_Description', @value = N'½»Ò×¹Ø±ÕÊ±¼ä'
+, @level0type = 'SCHEMA', @level0name = N'dbo'
+, @level1type = 'TABLE', @level1name = N'Orders'
+, @level2type = 'COLUMN', @level2name = N'TradeClosedTime'
+GO
+IF ((SELECT COUNT(*) from fn_listextendedproperty('MS_Description', 
+'SCHEMA', N'dbo', 
+'TABLE', N'Orders', 
+'COLUMN', N'RefundWaitSellerAgreeTime')) > 0) 
+EXEC sp_updateextendedproperty @name = N'MS_Description', @value = N'Âò¼ÒÉêÇëÍË¿îÊ±¼ä/ÍË¿îÐ­ÒéµÈ´ýÂô¼ÒÈ·ÈÏÊ±¼ä'
+, @level0type = 'SCHEMA', @level0name = N'dbo'
+, @level1type = 'TABLE', @level1name = N'Orders'
+, @level2type = 'COLUMN', @level2name = N'RefundWaitSellerAgreeTime'
+ELSE
+EXEC sp_addextendedproperty @name = N'MS_Description', @value = N'Âò¼ÒÉêÇëÍË¿îÊ±¼ä/ÍË¿îÐ­ÒéµÈ´ýÂô¼ÒÈ·ÈÏÊ±¼ä'
+, @level0type = 'SCHEMA', @level0name = N'dbo'
+, @level1type = 'TABLE', @level1name = N'Orders'
+, @level2type = 'COLUMN', @level2name = N'RefundWaitSellerAgreeTime'
+GO
+IF ((SELECT COUNT(*) from fn_listextendedproperty('MS_Description', 
+'SCHEMA', N'dbo', 
+'TABLE', N'Orders', 
+'COLUMN', N'RefundSellerFefuseBuyerTime')) > 0) 
+EXEC sp_updateextendedproperty @name = N'MS_Description', @value = N'Âô¼Ò¾Ü¾øÍË¿îÊ±¼ä/µÈ´ýÂò¼ÒÐÞ¸ÄÊ±¼ä'
+, @level0type = 'SCHEMA', @level0name = N'dbo'
+, @level1type = 'TABLE', @level1name = N'Orders'
+, @level2type = 'COLUMN', @level2name = N'RefundSellerFefuseBuyerTime'
+ELSE
+EXEC sp_addextendedproperty @name = N'MS_Description', @value = N'Âô¼Ò¾Ü¾øÍË¿îÊ±¼ä/µÈ´ýÂò¼ÒÐÞ¸ÄÊ±¼ä'
+, @level0type = 'SCHEMA', @level0name = N'dbo'
+, @level1type = 'TABLE', @level1name = N'Orders'
+, @level2type = 'COLUMN', @level2name = N'RefundSellerFefuseBuyerTime'
+GO
+IF ((SELECT COUNT(*) from fn_listextendedproperty('MS_Description', 
+'SCHEMA', N'dbo', 
+'TABLE', N'Orders', 
+'COLUMN', N'RefundSuccessTime')) > 0) 
+EXEC sp_updateextendedproperty @name = N'MS_Description', @value = N'ÍË¿î³É¹¦Ê±¼ä'
+, @level0type = 'SCHEMA', @level0name = N'dbo'
+, @level1type = 'TABLE', @level1name = N'Orders'
+, @level2type = 'COLUMN', @level2name = N'RefundSuccessTime'
+ELSE
+EXEC sp_addextendedproperty @name = N'MS_Description', @value = N'ÍË¿î³É¹¦Ê±¼ä'
+, @level0type = 'SCHEMA', @level0name = N'dbo'
+, @level1type = 'TABLE', @level1name = N'Orders'
+, @level2type = 'COLUMN', @level2name = N'RefundSuccessTime'
+GO
+IF ((SELECT COUNT(*) from fn_listextendedproperty('MS_Description', 
+'SCHEMA', N'dbo', 
+'TABLE', N'Orders', 
+'COLUMN', N'RefundClosedTime')) > 0) 
+EXEC sp_updateextendedproperty @name = N'MS_Description', @value = N'ÍË¿î¹Ø±ÕÊ±¼ä'
+, @level0type = 'SCHEMA', @level0name = N'dbo'
+, @level1type = 'TABLE', @level1name = N'Orders'
+, @level2type = 'COLUMN', @level2name = N'RefundClosedTime'
+ELSE
+EXEC sp_addextendedproperty @name = N'MS_Description', @value = N'ÍË¿î¹Ø±ÕÊ±¼ä'
+, @level0type = 'SCHEMA', @level0name = N'dbo'
+, @level1type = 'TABLE', @level1name = N'Orders'
+, @level2type = 'COLUMN', @level2name = N'RefundClosedTime'
+GO
+IF ((SELECT COUNT(*) from fn_listextendedproperty('MS_Description', 
+'SCHEMA', N'dbo', 
+'TABLE', N'Orders', 
+'COLUMN', N'Subject')) > 0) 
+EXEC sp_updateextendedproperty @name = N'MS_Description', @value = N'ÉÌÆ·Ãû³Æ'
+, @level0type = 'SCHEMA', @level0name = N'dbo'
+, @level1type = 'TABLE', @level1name = N'Orders'
+, @level2type = 'COLUMN', @level2name = N'Subject'
+ELSE
+EXEC sp_addextendedproperty @name = N'MS_Description', @value = N'ÉÌÆ·Ãû³Æ'
+, @level0type = 'SCHEMA', @level0name = N'dbo'
+, @level1type = 'TABLE', @level1name = N'Orders'
+, @level2type = 'COLUMN', @level2name = N'Subject'
+GO
+IF ((SELECT COUNT(*) from fn_listextendedproperty('MS_Description', 
+'SCHEMA', N'dbo', 
+'TABLE', N'Orders', 
+'COLUMN', N'Price')) > 0) 
+EXEC sp_updateextendedproperty @name = N'MS_Description', @value = N'µ¥¼Û'
+, @level0type = 'SCHEMA', @level0name = N'dbo'
+, @level1type = 'TABLE', @level1name = N'Orders'
+, @level2type = 'COLUMN', @level2name = N'Price'
+ELSE
+EXEC sp_addextendedproperty @name = N'MS_Description', @value = N'µ¥¼Û'
+, @level0type = 'SCHEMA', @level0name = N'dbo'
+, @level1type = 'TABLE', @level1name = N'Orders'
+, @level2type = 'COLUMN', @level2name = N'Price'
+GO
+IF ((SELECT COUNT(*) from fn_listextendedproperty('MS_Description', 
+'SCHEMA', N'dbo', 
+'TABLE', N'Orders', 
+'COLUMN', N'Quantity')) > 0) 
+EXEC sp_updateextendedproperty @name = N'MS_Description', @value = N'ÊýÁ¿'
+, @level0type = 'SCHEMA', @level0name = N'dbo'
+, @level1type = 'TABLE', @level1name = N'Orders'
+, @level2type = 'COLUMN', @level2name = N'Quantity'
+ELSE
+EXEC sp_addextendedproperty @name = N'MS_Description', @value = N'ÊýÁ¿'
+, @level0type = 'SCHEMA', @level0name = N'dbo'
+, @level1type = 'TABLE', @level1name = N'Orders'
+, @level2type = 'COLUMN', @level2name = N'Quantity'
+GO
+IF ((SELECT COUNT(*) from fn_listextendedproperty('MS_Description', 
+'SCHEMA', N'dbo', 
+'TABLE', N'Orders', 
+'COLUMN', N'Body')) > 0) 
+EXEC sp_updateextendedproperty @name = N'MS_Description', @value = N'ÉÌÆ·ÃèÊö'
+, @level0type = 'SCHEMA', @level0name = N'dbo'
+, @level1type = 'TABLE', @level1name = N'Orders'
+, @level2type = 'COLUMN', @level2name = N'Body'
+ELSE
+EXEC sp_addextendedproperty @name = N'MS_Description', @value = N'ÉÌÆ·ÃèÊö'
+, @level0type = 'SCHEMA', @level0name = N'dbo'
+, @level1type = 'TABLE', @level1name = N'Orders'
+, @level2type = 'COLUMN', @level2name = N'Body'
+GO
+IF ((SELECT COUNT(*) from fn_listextendedproperty('MS_Description', 
+'SCHEMA', N'dbo', 
+'TABLE', N'Orders', 
+'COLUMN', N'Consignee')) > 0) 
+EXEC sp_updateextendedproperty @name = N'MS_Description', @value = N'ÊÕ¼þÈËÐÕÃû'
+, @level0type = 'SCHEMA', @level0name = N'dbo'
+, @level1type = 'TABLE', @level1name = N'Orders'
+, @level2type = 'COLUMN', @level2name = N'Consignee'
+ELSE
+EXEC sp_addextendedproperty @name = N'MS_Description', @value = N'ÊÕ¼þÈËÐÕÃû'
+, @level0type = 'SCHEMA', @level0name = N'dbo'
+, @level1type = 'TABLE', @level1name = N'Orders'
+, @level2type = 'COLUMN', @level2name = N'Consignee'
+GO
+IF ((SELECT COUNT(*) from fn_listextendedproperty('MS_Description', 
+'SCHEMA', N'dbo', 
+'TABLE', N'Orders', 
+'COLUMN', N'Address')) > 0) 
+EXEC sp_updateextendedproperty @name = N'MS_Description', @value = N'ÊÕ¼þµØÖ·'
+, @level0type = 'SCHEMA', @level0name = N'dbo'
+, @level1type = 'TABLE', @level1name = N'Orders'
+, @level2type = 'COLUMN', @level2name = N'Address'
+ELSE
+EXEC sp_addextendedproperty @name = N'MS_Description', @value = N'ÊÕ¼þµØÖ·'
+, @level0type = 'SCHEMA', @level0name = N'dbo'
+, @level1type = 'TABLE', @level1name = N'Orders'
+, @level2type = 'COLUMN', @level2name = N'Address'
+GO
+IF ((SELECT COUNT(*) from fn_listextendedproperty('MS_Description', 
+'SCHEMA', N'dbo', 
+'TABLE', N'Orders', 
+'COLUMN', N'ZipCode')) > 0) 
+EXEC sp_updateextendedproperty @name = N'MS_Description', @value = N'ÓÊ±à'
+, @level0type = 'SCHEMA', @level0name = N'dbo'
+, @level1type = 'TABLE', @level1name = N'Orders'
+, @level2type = 'COLUMN', @level2name = N'ZipCode'
+ELSE
+EXEC sp_addextendedproperty @name = N'MS_Description', @value = N'ÓÊ±à'
+, @level0type = 'SCHEMA', @level0name = N'dbo'
+, @level1type = 'TABLE', @level1name = N'Orders'
+, @level2type = 'COLUMN', @level2name = N'ZipCode'
+GO
+IF ((SELECT COUNT(*) from fn_listextendedproperty('MS_Description', 
+'SCHEMA', N'dbo', 
+'TABLE', N'Orders', 
+'COLUMN', N'Mobile')) > 0) 
+EXEC sp_updateextendedproperty @name = N'MS_Description', @value = N'ÊÖ»úºÅ'
+, @level0type = 'SCHEMA', @level0name = N'dbo'
+, @level1type = 'TABLE', @level1name = N'Orders'
+, @level2type = 'COLUMN', @level2name = N'Mobile'
+ELSE
+EXEC sp_addextendedproperty @name = N'MS_Description', @value = N'ÊÖ»úºÅ'
+, @level0type = 'SCHEMA', @level0name = N'dbo'
+, @level1type = 'TABLE', @level1name = N'Orders'
+, @level2type = 'COLUMN', @level2name = N'Mobile'
+GO
+IF ((SELECT COUNT(*) from fn_listextendedproperty('MS_Description', 
+'SCHEMA', N'dbo', 
+'TABLE', N'Orders', 
+'COLUMN', N'Phone')) > 0) 
+EXEC sp_updateextendedproperty @name = N'MS_Description', @value = N'×ù»úºÅ'
+, @level0type = 'SCHEMA', @level0name = N'dbo'
+, @level1type = 'TABLE', @level1name = N'Orders'
+, @level2type = 'COLUMN', @level2name = N'Phone'
+ELSE
+EXEC sp_addextendedproperty @name = N'MS_Description', @value = N'×ù»úºÅ'
+, @level0type = 'SCHEMA', @level0name = N'dbo'
+, @level1type = 'TABLE', @level1name = N'Orders'
+, @level2type = 'COLUMN', @level2name = N'Phone'
+GO
+IF ((SELECT COUNT(*) from fn_listextendedproperty('MS_Description', 
+'SCHEMA', N'dbo', 
+'TABLE', N'Orders', 
+'COLUMN', N'PayType')) > 0) 
+EXEC sp_updateextendedproperty @name = N'MS_Description', @value = N'Ö§¸¶Æ½Ì¨
+1£ºAlipay'
+, @level0type = 'SCHEMA', @level0name = N'dbo'
+, @level1type = 'TABLE', @level1name = N'Orders'
+, @level2type = 'COLUMN', @level2name = N'PayType'
+ELSE
+EXEC sp_addextendedproperty @name = N'MS_Description', @value = N'Ö§¸¶Æ½Ì¨
+1£ºAlipay'
+, @level0type = 'SCHEMA', @level0name = N'dbo'
+, @level1type = 'TABLE', @level1name = N'Orders'
+, @level2type = 'COLUMN', @level2name = N'PayType'
+GO
+IF ((SELECT COUNT(*) from fn_listextendedproperty('MS_Description', 
+'SCHEMA', N'dbo', 
+'TABLE', N'Orders', 
+'COLUMN', N'PayOrderNo')) > 0) 
+EXEC sp_updateextendedproperty @name = N'MS_Description', @value = N'Ö§¸¶Æ½Ì¨ÄÚÁ÷Ë®ºÅ'
+, @level0type = 'SCHEMA', @level0name = N'dbo'
+, @level1type = 'TABLE', @level1name = N'Orders'
+, @level2type = 'COLUMN', @level2name = N'PayOrderNo'
+ELSE
+EXEC sp_addextendedproperty @name = N'MS_Description', @value = N'Ö§¸¶Æ½Ì¨ÄÚÁ÷Ë®ºÅ'
+, @level0type = 'SCHEMA', @level0name = N'dbo'
+, @level1type = 'TABLE', @level1name = N'Orders'
+, @level2type = 'COLUMN', @level2name = N'PayOrderNo'
+GO
 
-CREATE TABLE `MaterialPictures` (
-`GUID` varchar(200) NOT NULL,
-`MaterialID` varchar(200) NOT NULL,
-`Name` varchar(200) NOT NULL COMMENT 'å›¾ç‰‡åç§°(ä¾‹ï¼šæ­£é¢ï¼ŒèƒŒé¢)',
-`Index` int NOT NULL COMMENT 'æŽ’åˆ—åºå·',
-`FileName` varchar(200) NOT NULL COMMENT 'åº•å›¾æ–‡ä»¶å',
-`Width` int NOT NULL COMMENT 'å›¾ç‰‡å®½åº¦',
-`Height` int NOT NULL COMMENT 'å›¾ç‰‡é«˜åº¦',
-`Top` int NOT NULL COMMENT 'ä¸Šä¼ å›¾ç‰‡è·ç¦»ä¸Šè¾¹ç•Œè·ç¦»',
-`Left` int NOT NULL COMMENT 'ä¸Šä¼ å›¾ç‰‡è·ç¦»å·¦è¾¹ç•Œè·ç¦»',
-`UploadWidth` int NOT NULL COMMENT 'ä¸Šä¼ å›¾ç‰‡å®½åº¦',
-`UploadHeight` int NOT NULL COMMENT 'ä¸Šä¼ å›¾ç‰‡é«˜åº¦',
-PRIMARY KEY (`GUID`) 
-);
+CREATE TABLE [dbo].[DesignWorks] (
+[GUID] nvarchar(200) NOT NULL,
+[DesignerID] nvarchar(200) NOT NULL,
+[MaterialID] nvarchar(200) NOT NULL,
+[SalesGoal] int NOT NULL,
+[BasePrice] decimal(18,8) NOT NULL,
+[SellingPrice] decimal(18,8) NOT NULL,
+[StartTime] datetime2(7) NOT NULL,
+[EndTime] datetime2(7) NOT NULL,
+[Title] nvarchar(200) NOT NULL,
+[Description] nvarchar(MAX) NOT NULL,
+[Url] nvarchar(200) NULL,
+[SalesVolume] int NULL,
+[State] int NOT NULL,
+[ProcurementCost] decimal(18,8) NULL,
+[ProductionCost] decimal(18,8) NULL,
+[SendCost] decimal(18,8) NULL,
+[CompletionTime] datetime2(7) NULL,
+PRIMARY KEY ([GUID]) 
+)
+GO
 
-CREATE TABLE `MaterialSizes` (
-`GUID` varchar(200) NOT NULL,
-`MaterialID` varchar(200) NOT NULL,
-`SizeName` varchar(200) NOT NULL,
-`IsDefault` bit NOT NULL,
-PRIMARY KEY (`GUID`) 
-);
+IF ((SELECT COUNT(*) from fn_listextendedproperty('MS_Description', 
+'SCHEMA', N'dbo', 
+'TABLE', N'DesignWorks', 
+'COLUMN', N'DesignerID')) > 0) 
+EXEC sp_updateextendedproperty @name = N'MS_Description', @value = N'Éè¼ÆÕßID'
+, @level0type = 'SCHEMA', @level0name = N'dbo'
+, @level1type = 'TABLE', @level1name = N'DesignWorks'
+, @level2type = 'COLUMN', @level2name = N'DesignerID'
+ELSE
+EXEC sp_addextendedproperty @name = N'MS_Description', @value = N'Éè¼ÆÕßID'
+, @level0type = 'SCHEMA', @level0name = N'dbo'
+, @level1type = 'TABLE', @level1name = N'DesignWorks'
+, @level2type = 'COLUMN', @level2name = N'DesignerID'
+GO
+IF ((SELECT COUNT(*) from fn_listextendedproperty('MS_Description', 
+'SCHEMA', N'dbo', 
+'TABLE', N'DesignWorks', 
+'COLUMN', N'MaterialID')) > 0) 
+EXEC sp_updateextendedproperty @name = N'MS_Description', @value = N'Ô­ÁÏID'
+, @level0type = 'SCHEMA', @level0name = N'dbo'
+, @level1type = 'TABLE', @level1name = N'DesignWorks'
+, @level2type = 'COLUMN', @level2name = N'MaterialID'
+ELSE
+EXEC sp_addextendedproperty @name = N'MS_Description', @value = N'Ô­ÁÏID'
+, @level0type = 'SCHEMA', @level0name = N'dbo'
+, @level1type = 'TABLE', @level1name = N'DesignWorks'
+, @level2type = 'COLUMN', @level2name = N'MaterialID'
+GO
+IF ((SELECT COUNT(*) from fn_listextendedproperty('MS_Description', 
+'SCHEMA', N'dbo', 
+'TABLE', N'DesignWorks', 
+'COLUMN', N'SalesGoal')) > 0) 
+EXEC sp_updateextendedproperty @name = N'MS_Description', @value = N'ÏúÊÛÄ¿±ê'
+, @level0type = 'SCHEMA', @level0name = N'dbo'
+, @level1type = 'TABLE', @level1name = N'DesignWorks'
+, @level2type = 'COLUMN', @level2name = N'SalesGoal'
+ELSE
+EXEC sp_addextendedproperty @name = N'MS_Description', @value = N'ÏúÊÛÄ¿±ê'
+, @level0type = 'SCHEMA', @level0name = N'dbo'
+, @level1type = 'TABLE', @level1name = N'DesignWorks'
+, @level2type = 'COLUMN', @level2name = N'SalesGoal'
+GO
+IF ((SELECT COUNT(*) from fn_listextendedproperty('MS_Description', 
+'SCHEMA', N'dbo', 
+'TABLE', N'DesignWorks', 
+'COLUMN', N'BasePrice')) > 0) 
+EXEC sp_updateextendedproperty @name = N'MS_Description', @value = N'µ×¼Û/µ¥¼þ'
+, @level0type = 'SCHEMA', @level0name = N'dbo'
+, @level1type = 'TABLE', @level1name = N'DesignWorks'
+, @level2type = 'COLUMN', @level2name = N'BasePrice'
+ELSE
+EXEC sp_addextendedproperty @name = N'MS_Description', @value = N'µ×¼Û/µ¥¼þ'
+, @level0type = 'SCHEMA', @level0name = N'dbo'
+, @level1type = 'TABLE', @level1name = N'DesignWorks'
+, @level2type = 'COLUMN', @level2name = N'BasePrice'
+GO
+IF ((SELECT COUNT(*) from fn_listextendedproperty('MS_Description', 
+'SCHEMA', N'dbo', 
+'TABLE', N'DesignWorks', 
+'COLUMN', N'SellingPrice')) > 0) 
+EXEC sp_updateextendedproperty @name = N'MS_Description', @value = N'ÊÛ¼Û/µ¥¼þ'
+, @level0type = 'SCHEMA', @level0name = N'dbo'
+, @level1type = 'TABLE', @level1name = N'DesignWorks'
+, @level2type = 'COLUMN', @level2name = N'SellingPrice'
+ELSE
+EXEC sp_addextendedproperty @name = N'MS_Description', @value = N'ÊÛ¼Û/µ¥¼þ'
+, @level0type = 'SCHEMA', @level0name = N'dbo'
+, @level1type = 'TABLE', @level1name = N'DesignWorks'
+, @level2type = 'COLUMN', @level2name = N'SellingPrice'
+GO
+IF ((SELECT COUNT(*) from fn_listextendedproperty('MS_Description', 
+'SCHEMA', N'dbo', 
+'TABLE', N'DesignWorks', 
+'COLUMN', N'StartTime')) > 0) 
+EXEC sp_updateextendedproperty @name = N'MS_Description', @value = N'´´½¨Ê±¼ä/»î¶¯¿ªÊ¼Ê±¼ä'
+, @level0type = 'SCHEMA', @level0name = N'dbo'
+, @level1type = 'TABLE', @level1name = N'DesignWorks'
+, @level2type = 'COLUMN', @level2name = N'StartTime'
+ELSE
+EXEC sp_addextendedproperty @name = N'MS_Description', @value = N'´´½¨Ê±¼ä/»î¶¯¿ªÊ¼Ê±¼ä'
+, @level0type = 'SCHEMA', @level0name = N'dbo'
+, @level1type = 'TABLE', @level1name = N'DesignWorks'
+, @level2type = 'COLUMN', @level2name = N'StartTime'
+GO
+IF ((SELECT COUNT(*) from fn_listextendedproperty('MS_Description', 
+'SCHEMA', N'dbo', 
+'TABLE', N'DesignWorks', 
+'COLUMN', N'EndTime')) > 0) 
+EXEC sp_updateextendedproperty @name = N'MS_Description', @value = N'»î¶¯½ØÖ¹Ê±¼ä'
+, @level0type = 'SCHEMA', @level0name = N'dbo'
+, @level1type = 'TABLE', @level1name = N'DesignWorks'
+, @level2type = 'COLUMN', @level2name = N'EndTime'
+ELSE
+EXEC sp_addextendedproperty @name = N'MS_Description', @value = N'»î¶¯½ØÖ¹Ê±¼ä'
+, @level0type = 'SCHEMA', @level0name = N'dbo'
+, @level1type = 'TABLE', @level1name = N'DesignWorks'
+, @level2type = 'COLUMN', @level2name = N'EndTime'
+GO
+IF ((SELECT COUNT(*) from fn_listextendedproperty('MS_Description', 
+'SCHEMA', N'dbo', 
+'TABLE', N'DesignWorks', 
+'COLUMN', N'Title')) > 0) 
+EXEC sp_updateextendedproperty @name = N'MS_Description', @value = N'»î¶¯±êÌâ'
+, @level0type = 'SCHEMA', @level0name = N'dbo'
+, @level1type = 'TABLE', @level1name = N'DesignWorks'
+, @level2type = 'COLUMN', @level2name = N'Title'
+ELSE
+EXEC sp_addextendedproperty @name = N'MS_Description', @value = N'»î¶¯±êÌâ'
+, @level0type = 'SCHEMA', @level0name = N'dbo'
+, @level1type = 'TABLE', @level1name = N'DesignWorks'
+, @level2type = 'COLUMN', @level2name = N'Title'
+GO
+IF ((SELECT COUNT(*) from fn_listextendedproperty('MS_Description', 
+'SCHEMA', N'dbo', 
+'TABLE', N'DesignWorks', 
+'COLUMN', N'Description')) > 0) 
+EXEC sp_updateextendedproperty @name = N'MS_Description', @value = N'»î¶¯ËµÃ÷'
+, @level0type = 'SCHEMA', @level0name = N'dbo'
+, @level1type = 'TABLE', @level1name = N'DesignWorks'
+, @level2type = 'COLUMN', @level2name = N'Description'
+ELSE
+EXEC sp_addextendedproperty @name = N'MS_Description', @value = N'»î¶¯ËµÃ÷'
+, @level0type = 'SCHEMA', @level0name = N'dbo'
+, @level1type = 'TABLE', @level1name = N'DesignWorks'
+, @level2type = 'COLUMN', @level2name = N'Description'
+GO
+IF ((SELECT COUNT(*) from fn_listextendedproperty('MS_Description', 
+'SCHEMA', N'dbo', 
+'TABLE', N'DesignWorks', 
+'COLUMN', N'Url')) > 0) 
+EXEC sp_updateextendedproperty @name = N'MS_Description', @value = N'Url'
+, @level0type = 'SCHEMA', @level0name = N'dbo'
+, @level1type = 'TABLE', @level1name = N'DesignWorks'
+, @level2type = 'COLUMN', @level2name = N'Url'
+ELSE
+EXEC sp_addextendedproperty @name = N'MS_Description', @value = N'Url'
+, @level0type = 'SCHEMA', @level0name = N'dbo'
+, @level1type = 'TABLE', @level1name = N'DesignWorks'
+, @level2type = 'COLUMN', @level2name = N'Url'
+GO
+IF ((SELECT COUNT(*) from fn_listextendedproperty('MS_Description', 
+'SCHEMA', N'dbo', 
+'TABLE', N'DesignWorks', 
+'COLUMN', N'SalesVolume')) > 0) 
+EXEC sp_updateextendedproperty @name = N'MS_Description', @value = N'ÏúÊÛÁ¿/Í³¼ÆÖµ'
+, @level0type = 'SCHEMA', @level0name = N'dbo'
+, @level1type = 'TABLE', @level1name = N'DesignWorks'
+, @level2type = 'COLUMN', @level2name = N'SalesVolume'
+ELSE
+EXEC sp_addextendedproperty @name = N'MS_Description', @value = N'ÏúÊÛÁ¿/Í³¼ÆÖµ'
+, @level0type = 'SCHEMA', @level0name = N'dbo'
+, @level1type = 'TABLE', @level1name = N'DesignWorks'
+, @level2type = 'COLUMN', @level2name = N'SalesVolume'
+GO
+IF ((SELECT COUNT(*) from fn_listextendedproperty('MS_Description', 
+'SCHEMA', N'dbo', 
+'TABLE', N'DesignWorks', 
+'COLUMN', N'State')) > 0) 
+EXEC sp_updateextendedproperty @name = N'MS_Description', @value = N'×´Ì¬
+-1£ºÔ¤ÊÛ²»×ã
+0£ºÉè¼ÆÖÐ
+1£ºÔ¤ÊÛÖÐ
+2£ºÉú²úÖÐ
+3£º·¢»õÖÐ
+4£ºÊÕ¿îÖÐ
+5£º·µ¿îÖÐ
+6£º¹éµµ'
+, @level0type = 'SCHEMA', @level0name = N'dbo'
+, @level1type = 'TABLE', @level1name = N'DesignWorks'
+, @level2type = 'COLUMN', @level2name = N'State'
+ELSE
+EXEC sp_addextendedproperty @name = N'MS_Description', @value = N'×´Ì¬
+-1£ºÔ¤ÊÛ²»×ã
+0£ºÉè¼ÆÖÐ
+1£ºÔ¤ÊÛÖÐ
+2£ºÉú²úÖÐ
+3£º·¢»õÖÐ
+4£ºÊÕ¿îÖÐ
+5£º·µ¿îÖÐ
+6£º¹éµµ'
+, @level0type = 'SCHEMA', @level0name = N'dbo'
+, @level1type = 'TABLE', @level1name = N'DesignWorks'
+, @level2type = 'COLUMN', @level2name = N'State'
+GO
+IF ((SELECT COUNT(*) from fn_listextendedproperty('MS_Description', 
+'SCHEMA', N'dbo', 
+'TABLE', N'DesignWorks', 
+'COLUMN', N'ProcurementCost')) > 0) 
+EXEC sp_updateextendedproperty @name = N'MS_Description', @value = N'²É¹º³É±¾'
+, @level0type = 'SCHEMA', @level0name = N'dbo'
+, @level1type = 'TABLE', @level1name = N'DesignWorks'
+, @level2type = 'COLUMN', @level2name = N'ProcurementCost'
+ELSE
+EXEC sp_addextendedproperty @name = N'MS_Description', @value = N'²É¹º³É±¾'
+, @level0type = 'SCHEMA', @level0name = N'dbo'
+, @level1type = 'TABLE', @level1name = N'DesignWorks'
+, @level2type = 'COLUMN', @level2name = N'ProcurementCost'
+GO
+IF ((SELECT COUNT(*) from fn_listextendedproperty('MS_Description', 
+'SCHEMA', N'dbo', 
+'TABLE', N'DesignWorks', 
+'COLUMN', N'ProductionCost')) > 0) 
+EXEC sp_updateextendedproperty @name = N'MS_Description', @value = N'Éú²ú³É±¾'
+, @level0type = 'SCHEMA', @level0name = N'dbo'
+, @level1type = 'TABLE', @level1name = N'DesignWorks'
+, @level2type = 'COLUMN', @level2name = N'ProductionCost'
+ELSE
+EXEC sp_addextendedproperty @name = N'MS_Description', @value = N'Éú²ú³É±¾'
+, @level0type = 'SCHEMA', @level0name = N'dbo'
+, @level1type = 'TABLE', @level1name = N'DesignWorks'
+, @level2type = 'COLUMN', @level2name = N'ProductionCost'
+GO
+IF ((SELECT COUNT(*) from fn_listextendedproperty('MS_Description', 
+'SCHEMA', N'dbo', 
+'TABLE', N'DesignWorks', 
+'COLUMN', N'SendCost')) > 0) 
+EXEC sp_updateextendedproperty @name = N'MS_Description', @value = N'·¢»õ³É±¾'
+, @level0type = 'SCHEMA', @level0name = N'dbo'
+, @level1type = 'TABLE', @level1name = N'DesignWorks'
+, @level2type = 'COLUMN', @level2name = N'SendCost'
+ELSE
+EXEC sp_addextendedproperty @name = N'MS_Description', @value = N'·¢»õ³É±¾'
+, @level0type = 'SCHEMA', @level0name = N'dbo'
+, @level1type = 'TABLE', @level1name = N'DesignWorks'
+, @level2type = 'COLUMN', @level2name = N'SendCost'
+GO
+IF ((SELECT COUNT(*) from fn_listextendedproperty('MS_Description', 
+'SCHEMA', N'dbo', 
+'TABLE', N'DesignWorks', 
+'COLUMN', N'CompletionTime')) > 0) 
+EXEC sp_updateextendedproperty @name = N'MS_Description', @value = N'ËùÓÐ½»Ò×Íê³ÉÊ±¼ä'
+, @level0type = 'SCHEMA', @level0name = N'dbo'
+, @level1type = 'TABLE', @level1name = N'DesignWorks'
+, @level2type = 'COLUMN', @level2name = N'CompletionTime'
+ELSE
+EXEC sp_addextendedproperty @name = N'MS_Description', @value = N'ËùÓÐ½»Ò×Íê³ÉÊ±¼ä'
+, @level0type = 'SCHEMA', @level0name = N'dbo'
+, @level1type = 'TABLE', @level1name = N'DesignWorks'
+, @level2type = 'COLUMN', @level2name = N'CompletionTime'
+GO
+
+CREATE TABLE [dbo].[Materials] (
+[GUID] nvarchar(200) NOT NULL,
+[TypeID] nvarchar(200) NOT NULL,
+[Name] nvarchar(200) NOT NULL,
+[Price] decimal(18,8) NOT NULL DEFAULT 0,
+[Description] nvarchar(MAX) NOT NULL,
+[PictureNumber] int NOT NULL,
+[State] int NOT NULL,
+PRIMARY KEY ([GUID]) 
+)
+GO
+
+IF ((SELECT COUNT(*) from fn_listextendedproperty('MS_Description', 
+'SCHEMA', N'dbo', 
+'TABLE', N'Materials', 
+'COLUMN', N'TypeID')) > 0) 
+EXEC sp_updateextendedproperty @name = N'MS_Description', @value = N'ÀàÐÍ
+1£º¶ÌÐäTÐô
+2£º³¤ÐäTÐô
+3£º±³ÐÄ
+4£ºÁ¬Ã±ÉÀ'
+, @level0type = 'SCHEMA', @level0name = N'dbo'
+, @level1type = 'TABLE', @level1name = N'Materials'
+, @level2type = 'COLUMN', @level2name = N'TypeID'
+ELSE
+EXEC sp_addextendedproperty @name = N'MS_Description', @value = N'ÀàÐÍ
+1£º¶ÌÐäTÐô
+2£º³¤ÐäTÐô
+3£º±³ÐÄ
+4£ºÁ¬Ã±ÉÀ'
+, @level0type = 'SCHEMA', @level0name = N'dbo'
+, @level1type = 'TABLE', @level1name = N'Materials'
+, @level2type = 'COLUMN', @level2name = N'TypeID'
+GO
+IF ((SELECT COUNT(*) from fn_listextendedproperty('MS_Description', 
+'SCHEMA', N'dbo', 
+'TABLE', N'Materials', 
+'COLUMN', N'Name')) > 0) 
+EXEC sp_updateextendedproperty @name = N'MS_Description', @value = N'Ô­ÁÏ±àºÅ'
+, @level0type = 'SCHEMA', @level0name = N'dbo'
+, @level1type = 'TABLE', @level1name = N'Materials'
+, @level2type = 'COLUMN', @level2name = N'Name'
+ELSE
+EXEC sp_addextendedproperty @name = N'MS_Description', @value = N'Ô­ÁÏ±àºÅ'
+, @level0type = 'SCHEMA', @level0name = N'dbo'
+, @level1type = 'TABLE', @level1name = N'Materials'
+, @level2type = 'COLUMN', @level2name = N'Name'
+GO
+IF ((SELECT COUNT(*) from fn_listextendedproperty('MS_Description', 
+'SCHEMA', N'dbo', 
+'TABLE', N'Materials', 
+'COLUMN', N'Price')) > 0) 
+EXEC sp_updateextendedproperty @name = N'MS_Description', @value = N'Ä¿Ç°¾ù¼Û'
+, @level0type = 'SCHEMA', @level0name = N'dbo'
+, @level1type = 'TABLE', @level1name = N'Materials'
+, @level2type = 'COLUMN', @level2name = N'Price'
+ELSE
+EXEC sp_addextendedproperty @name = N'MS_Description', @value = N'Ä¿Ç°¾ù¼Û'
+, @level0type = 'SCHEMA', @level0name = N'dbo'
+, @level1type = 'TABLE', @level1name = N'Materials'
+, @level2type = 'COLUMN', @level2name = N'Price'
+GO
+IF ((SELECT COUNT(*) from fn_listextendedproperty('MS_Description', 
+'SCHEMA', N'dbo', 
+'TABLE', N'Materials', 
+'COLUMN', N'PictureNumber')) > 0) 
+EXEC sp_updateextendedproperty @name = N'MS_Description', @value = N'ÐèÒªÉÏ´«Í¼Æ¬ÕÅÊý'
+, @level0type = 'SCHEMA', @level0name = N'dbo'
+, @level1type = 'TABLE', @level1name = N'Materials'
+, @level2type = 'COLUMN', @level2name = N'PictureNumber'
+ELSE
+EXEC sp_addextendedproperty @name = N'MS_Description', @value = N'ÐèÒªÉÏ´«Í¼Æ¬ÕÅÊý'
+, @level0type = 'SCHEMA', @level0name = N'dbo'
+, @level1type = 'TABLE', @level1name = N'Materials'
+, @level2type = 'COLUMN', @level2name = N'PictureNumber'
+GO
+IF ((SELECT COUNT(*) from fn_listextendedproperty('MS_Description', 
+'SCHEMA', N'dbo', 
+'TABLE', N'Materials', 
+'COLUMN', N'State')) > 0) 
+EXEC sp_updateextendedproperty @name = N'MS_Description', @value = N'×´Ì¬
+0£ºÍ£²ú
+1£ºÕý³£
+2£ºÈ±»õ
+3£ºÍ£ÓÃ/Î´ÆôÓÃ'
+, @level0type = 'SCHEMA', @level0name = N'dbo'
+, @level1type = 'TABLE', @level1name = N'Materials'
+, @level2type = 'COLUMN', @level2name = N'State'
+ELSE
+EXEC sp_addextendedproperty @name = N'MS_Description', @value = N'×´Ì¬
+0£ºÍ£²ú
+1£ºÕý³£
+2£ºÈ±»õ
+3£ºÍ£ÓÃ/Î´ÆôÓÃ'
+, @level0type = 'SCHEMA', @level0name = N'dbo'
+, @level1type = 'TABLE', @level1name = N'Materials'
+, @level2type = 'COLUMN', @level2name = N'State'
+GO
+
+CREATE TABLE [dbo].[MaterialPriceLogs] (
+[GUID] nvarchar(200) NOT NULL,
+[MaterialID] nvarchar(200) NOT NULL,
+[Price] decimal(18,8) NOT NULL,
+[CreateTime] datetime2(7) NOT NULL,
+PRIMARY KEY ([GUID]) 
+)
+GO
+
+IF ((SELECT COUNT(*) from fn_listextendedproperty('MS_Description', 
+'SCHEMA', N'dbo', 
+'TABLE', N'MaterialPriceLogs', 
+'COLUMN', N'Price')) > 0) 
+EXEC sp_updateextendedproperty @name = N'MS_Description', @value = N'¼Û¸ñ'
+, @level0type = 'SCHEMA', @level0name = N'dbo'
+, @level1type = 'TABLE', @level1name = N'MaterialPriceLogs'
+, @level2type = 'COLUMN', @level2name = N'Price'
+ELSE
+EXEC sp_addextendedproperty @name = N'MS_Description', @value = N'¼Û¸ñ'
+, @level0type = 'SCHEMA', @level0name = N'dbo'
+, @level1type = 'TABLE', @level1name = N'MaterialPriceLogs'
+, @level2type = 'COLUMN', @level2name = N'Price'
+GO
+IF ((SELECT COUNT(*) from fn_listextendedproperty('MS_Description', 
+'SCHEMA', N'dbo', 
+'TABLE', N'MaterialPriceLogs', 
+'COLUMN', N'CreateTime')) > 0) 
+EXEC sp_updateextendedproperty @name = N'MS_Description', @value = N'Â¼ÈëÊ±¼ä'
+, @level0type = 'SCHEMA', @level0name = N'dbo'
+, @level1type = 'TABLE', @level1name = N'MaterialPriceLogs'
+, @level2type = 'COLUMN', @level2name = N'CreateTime'
+ELSE
+EXEC sp_addextendedproperty @name = N'MS_Description', @value = N'Â¼ÈëÊ±¼ä'
+, @level0type = 'SCHEMA', @level0name = N'dbo'
+, @level1type = 'TABLE', @level1name = N'MaterialPriceLogs'
+, @level2type = 'COLUMN', @level2name = N'CreateTime'
+GO
+
+CREATE TABLE [dbo].[SingleLogin] (
+[GUID] nvarchar(200) NOT NULL,
+[UserID] nvarchar(200) NOT NULL,
+[LoginTime] datetime2(7) NOT NULL,
+PRIMARY KEY ([GUID]) 
+)
+GO
+
+IF ((SELECT COUNT(*) from fn_listextendedproperty('MS_Description', 
+'SCHEMA', N'dbo', 
+'TABLE', N'SingleLogin', 
+'COLUMN', N'LoginTime')) > 0) 
+EXEC sp_updateextendedproperty @name = N'MS_Description', @value = N'µÇÂ½Ê±¼ä'
+, @level0type = 'SCHEMA', @level0name = N'dbo'
+, @level1type = 'TABLE', @level1name = N'SingleLogin'
+, @level2type = 'COLUMN', @level2name = N'LoginTime'
+ELSE
+EXEC sp_addextendedproperty @name = N'MS_Description', @value = N'µÇÂ½Ê±¼ä'
+, @level0type = 'SCHEMA', @level0name = N'dbo'
+, @level1type = 'TABLE', @level1name = N'SingleLogin'
+, @level2type = 'COLUMN', @level2name = N'LoginTime'
+GO
+
+CREATE TABLE [dbo].[MaterialTypes] (
+[GUID] nvarchar(200) NOT NULL,
+[ParentID] nvarchar(200) NULL,
+[Index] int NOT NULL,
+[Name] nvarchar(200) NOT NULL,
+[IsLeafNode] bit NOT NULL DEFAULT 1,
+[State] int NOT NULL,
+PRIMARY KEY ([GUID]) 
+)
+GO
+
+IF ((SELECT COUNT(*) from fn_listextendedproperty('MS_Description', 
+'SCHEMA', N'dbo', 
+'TABLE', N'MaterialTypes', 
+'COLUMN', N'Name')) > 0) 
+EXEC sp_updateextendedproperty @name = N'MS_Description', @value = N'ÀàÐÍÃû³Æ'
+, @level0type = 'SCHEMA', @level0name = N'dbo'
+, @level1type = 'TABLE', @level1name = N'MaterialTypes'
+, @level2type = 'COLUMN', @level2name = N'Name'
+ELSE
+EXEC sp_addextendedproperty @name = N'MS_Description', @value = N'ÀàÐÍÃû³Æ'
+, @level0type = 'SCHEMA', @level0name = N'dbo'
+, @level1type = 'TABLE', @level1name = N'MaterialTypes'
+, @level2type = 'COLUMN', @level2name = N'Name'
+GO
+IF ((SELECT COUNT(*) from fn_listextendedproperty('MS_Description', 
+'SCHEMA', N'dbo', 
+'TABLE', N'MaterialTypes', 
+'COLUMN', N'IsLeafNode')) > 0) 
+EXEC sp_updateextendedproperty @name = N'MS_Description', @value = N'ÊÇ·ñÊÇÒ¶×Ó½Úµã'
+, @level0type = 'SCHEMA', @level0name = N'dbo'
+, @level1type = 'TABLE', @level1name = N'MaterialTypes'
+, @level2type = 'COLUMN', @level2name = N'IsLeafNode'
+ELSE
+EXEC sp_addextendedproperty @name = N'MS_Description', @value = N'ÊÇ·ñÊÇÒ¶×Ó½Úµã'
+, @level0type = 'SCHEMA', @level0name = N'dbo'
+, @level1type = 'TABLE', @level1name = N'MaterialTypes'
+, @level2type = 'COLUMN', @level2name = N'IsLeafNode'
+GO
+IF ((SELECT COUNT(*) from fn_listextendedproperty('MS_Description', 
+'SCHEMA', N'dbo', 
+'TABLE', N'MaterialTypes', 
+'COLUMN', N'State')) > 0) 
+EXEC sp_updateextendedproperty @name = N'MS_Description', @value = N'×´Ì¬
+0£ºÍ£ÓÃ
+1£ºÕý³£
+'
+, @level0type = 'SCHEMA', @level0name = N'dbo'
+, @level1type = 'TABLE', @level1name = N'MaterialTypes'
+, @level2type = 'COLUMN', @level2name = N'State'
+ELSE
+EXEC sp_addextendedproperty @name = N'MS_Description', @value = N'×´Ì¬
+0£ºÍ£ÓÃ
+1£ºÕý³£
+'
+, @level0type = 'SCHEMA', @level0name = N'dbo'
+, @level1type = 'TABLE', @level1name = N'MaterialTypes'
+, @level2type = 'COLUMN', @level2name = N'State'
+GO
+
+CREATE TABLE [dbo].[OrderDetails] (
+[GUID] nvarchar(200) NOT NULL,
+[OrderID] nvarchar(200) NOT NULL,
+[Size] nvarchar(200) NULL,
+[Number] int NOT NULL,
+PRIMARY KEY ([GUID]) 
+)
+GO
+
+IF ((SELECT COUNT(*) from fn_listextendedproperty('MS_Description', 
+'SCHEMA', N'dbo', 
+'TABLE', N'OrderDetails', 
+'COLUMN', N'Size')) > 0) 
+EXEC sp_updateextendedproperty @name = N'MS_Description', @value = N'³ßÂë'
+, @level0type = 'SCHEMA', @level0name = N'dbo'
+, @level1type = 'TABLE', @level1name = N'OrderDetails'
+, @level2type = 'COLUMN', @level2name = N'Size'
+ELSE
+EXEC sp_addextendedproperty @name = N'MS_Description', @value = N'³ßÂë'
+, @level0type = 'SCHEMA', @level0name = N'dbo'
+, @level1type = 'TABLE', @level1name = N'OrderDetails'
+, @level2type = 'COLUMN', @level2name = N'Size'
+GO
+IF ((SELECT COUNT(*) from fn_listextendedproperty('MS_Description', 
+'SCHEMA', N'dbo', 
+'TABLE', N'OrderDetails', 
+'COLUMN', N'Number')) > 0) 
+EXEC sp_updateextendedproperty @name = N'MS_Description', @value = N'¹ºÂòÊýÁ¿'
+, @level0type = 'SCHEMA', @level0name = N'dbo'
+, @level1type = 'TABLE', @level1name = N'OrderDetails'
+, @level2type = 'COLUMN', @level2name = N'Number'
+ELSE
+EXEC sp_addextendedproperty @name = N'MS_Description', @value = N'¹ºÂòÊýÁ¿'
+, @level0type = 'SCHEMA', @level0name = N'dbo'
+, @level1type = 'TABLE', @level1name = N'OrderDetails'
+, @level2type = 'COLUMN', @level2name = N'Number'
+GO
+
+CREATE TABLE [dbo].[MaterialColors] (
+[GUID] nvarchar(200) NOT NULL,
+[MaterialID] nvarchar(200) NOT NULL,
+[ColorName] nvarchar(200) NOT NULL,
+[ColorCode] nvarchar(200) NOT NULL,
+[IsDefault] bit NOT NULL DEFAULT 0,
+[State] int NOT NULL,
+PRIMARY KEY ([GUID]) 
+)
+GO
+
+IF ((SELECT COUNT(*) from fn_listextendedproperty('MS_Description', 
+'SCHEMA', N'dbo', 
+'TABLE', N'MaterialColors', 
+'COLUMN', N'IsDefault')) > 0) 
+EXEC sp_updateextendedproperty @name = N'MS_Description', @value = N'ÊÇ·ñÊÇÄ¬ÈÏÑÕÉ«'
+, @level0type = 'SCHEMA', @level0name = N'dbo'
+, @level1type = 'TABLE', @level1name = N'MaterialColors'
+, @level2type = 'COLUMN', @level2name = N'IsDefault'
+ELSE
+EXEC sp_addextendedproperty @name = N'MS_Description', @value = N'ÊÇ·ñÊÇÄ¬ÈÏÑÕÉ«'
+, @level0type = 'SCHEMA', @level0name = N'dbo'
+, @level1type = 'TABLE', @level1name = N'MaterialColors'
+, @level2type = 'COLUMN', @level2name = N'IsDefault'
+GO
+IF ((SELECT COUNT(*) from fn_listextendedproperty('MS_Description', 
+'SCHEMA', N'dbo', 
+'TABLE', N'MaterialColors', 
+'COLUMN', N'State')) > 0) 
+EXEC sp_updateextendedproperty @name = N'MS_Description', @value = N'×´Ì¬
+0£ºÍ£²ú
+1£ºÕý³£
+2£ºÈ±»õ'
+, @level0type = 'SCHEMA', @level0name = N'dbo'
+, @level1type = 'TABLE', @level1name = N'MaterialColors'
+, @level2type = 'COLUMN', @level2name = N'State'
+ELSE
+EXEC sp_addextendedproperty @name = N'MS_Description', @value = N'×´Ì¬
+0£ºÍ£²ú
+1£ºÕý³£
+2£ºÈ±»õ'
+, @level0type = 'SCHEMA', @level0name = N'dbo'
+, @level1type = 'TABLE', @level1name = N'MaterialColors'
+, @level2type = 'COLUMN', @level2name = N'State'
+GO
+
+CREATE TABLE [dbo].[MaterialPictures] (
+[GUID] nvarchar(200) NOT NULL,
+[MaterialID] nvarchar(200) NOT NULL,
+[Name] nvarchar(200) NOT NULL,
+[Index] int NOT NULL,
+[FileName] nvarchar(200) NOT NULL,
+[Width] int NOT NULL,
+[Height] int NOT NULL,
+[Top] int NOT NULL,
+[Left] int NOT NULL,
+[UploadWidth] int NOT NULL,
+[UploadHeight] int NOT NULL,
+PRIMARY KEY ([GUID]) 
+)
+GO
+
+IF ((SELECT COUNT(*) from fn_listextendedproperty('MS_Description', 
+'SCHEMA', N'dbo', 
+'TABLE', N'MaterialPictures', 
+'COLUMN', N'Name')) > 0) 
+EXEC sp_updateextendedproperty @name = N'MS_Description', @value = N'Í¼Æ¬Ãû³Æ(Àý£ºÕýÃæ£¬±³Ãæ)'
+, @level0type = 'SCHEMA', @level0name = N'dbo'
+, @level1type = 'TABLE', @level1name = N'MaterialPictures'
+, @level2type = 'COLUMN', @level2name = N'Name'
+ELSE
+EXEC sp_addextendedproperty @name = N'MS_Description', @value = N'Í¼Æ¬Ãû³Æ(Àý£ºÕýÃæ£¬±³Ãæ)'
+, @level0type = 'SCHEMA', @level0name = N'dbo'
+, @level1type = 'TABLE', @level1name = N'MaterialPictures'
+, @level2type = 'COLUMN', @level2name = N'Name'
+GO
+IF ((SELECT COUNT(*) from fn_listextendedproperty('MS_Description', 
+'SCHEMA', N'dbo', 
+'TABLE', N'MaterialPictures', 
+'COLUMN', N'Index')) > 0) 
+EXEC sp_updateextendedproperty @name = N'MS_Description', @value = N'ÅÅÁÐÐòºÅ'
+, @level0type = 'SCHEMA', @level0name = N'dbo'
+, @level1type = 'TABLE', @level1name = N'MaterialPictures'
+, @level2type = 'COLUMN', @level2name = N'Index'
+ELSE
+EXEC sp_addextendedproperty @name = N'MS_Description', @value = N'ÅÅÁÐÐòºÅ'
+, @level0type = 'SCHEMA', @level0name = N'dbo'
+, @level1type = 'TABLE', @level1name = N'MaterialPictures'
+, @level2type = 'COLUMN', @level2name = N'Index'
+GO
+IF ((SELECT COUNT(*) from fn_listextendedproperty('MS_Description', 
+'SCHEMA', N'dbo', 
+'TABLE', N'MaterialPictures', 
+'COLUMN', N'FileName')) > 0) 
+EXEC sp_updateextendedproperty @name = N'MS_Description', @value = N'µ×Í¼ÎÄ¼þÃû'
+, @level0type = 'SCHEMA', @level0name = N'dbo'
+, @level1type = 'TABLE', @level1name = N'MaterialPictures'
+, @level2type = 'COLUMN', @level2name = N'FileName'
+ELSE
+EXEC sp_addextendedproperty @name = N'MS_Description', @value = N'µ×Í¼ÎÄ¼þÃû'
+, @level0type = 'SCHEMA', @level0name = N'dbo'
+, @level1type = 'TABLE', @level1name = N'MaterialPictures'
+, @level2type = 'COLUMN', @level2name = N'FileName'
+GO
+IF ((SELECT COUNT(*) from fn_listextendedproperty('MS_Description', 
+'SCHEMA', N'dbo', 
+'TABLE', N'MaterialPictures', 
+'COLUMN', N'Width')) > 0) 
+EXEC sp_updateextendedproperty @name = N'MS_Description', @value = N'Í¼Æ¬¿í¶È'
+, @level0type = 'SCHEMA', @level0name = N'dbo'
+, @level1type = 'TABLE', @level1name = N'MaterialPictures'
+, @level2type = 'COLUMN', @level2name = N'Width'
+ELSE
+EXEC sp_addextendedproperty @name = N'MS_Description', @value = N'Í¼Æ¬¿í¶È'
+, @level0type = 'SCHEMA', @level0name = N'dbo'
+, @level1type = 'TABLE', @level1name = N'MaterialPictures'
+, @level2type = 'COLUMN', @level2name = N'Width'
+GO
+IF ((SELECT COUNT(*) from fn_listextendedproperty('MS_Description', 
+'SCHEMA', N'dbo', 
+'TABLE', N'MaterialPictures', 
+'COLUMN', N'Height')) > 0) 
+EXEC sp_updateextendedproperty @name = N'MS_Description', @value = N'Í¼Æ¬¸ß¶È'
+, @level0type = 'SCHEMA', @level0name = N'dbo'
+, @level1type = 'TABLE', @level1name = N'MaterialPictures'
+, @level2type = 'COLUMN', @level2name = N'Height'
+ELSE
+EXEC sp_addextendedproperty @name = N'MS_Description', @value = N'Í¼Æ¬¸ß¶È'
+, @level0type = 'SCHEMA', @level0name = N'dbo'
+, @level1type = 'TABLE', @level1name = N'MaterialPictures'
+, @level2type = 'COLUMN', @level2name = N'Height'
+GO
+IF ((SELECT COUNT(*) from fn_listextendedproperty('MS_Description', 
+'SCHEMA', N'dbo', 
+'TABLE', N'MaterialPictures', 
+'COLUMN', N'Top')) > 0) 
+EXEC sp_updateextendedproperty @name = N'MS_Description', @value = N'ÉÏ´«Í¼Æ¬¾àÀëÉÏ±ß½ç¾àÀë'
+, @level0type = 'SCHEMA', @level0name = N'dbo'
+, @level1type = 'TABLE', @level1name = N'MaterialPictures'
+, @level2type = 'COLUMN', @level2name = N'Top'
+ELSE
+EXEC sp_addextendedproperty @name = N'MS_Description', @value = N'ÉÏ´«Í¼Æ¬¾àÀëÉÏ±ß½ç¾àÀë'
+, @level0type = 'SCHEMA', @level0name = N'dbo'
+, @level1type = 'TABLE', @level1name = N'MaterialPictures'
+, @level2type = 'COLUMN', @level2name = N'Top'
+GO
+IF ((SELECT COUNT(*) from fn_listextendedproperty('MS_Description', 
+'SCHEMA', N'dbo', 
+'TABLE', N'MaterialPictures', 
+'COLUMN', N'Left')) > 0) 
+EXEC sp_updateextendedproperty @name = N'MS_Description', @value = N'ÉÏ´«Í¼Æ¬¾àÀë×ó±ß½ç¾àÀë'
+, @level0type = 'SCHEMA', @level0name = N'dbo'
+, @level1type = 'TABLE', @level1name = N'MaterialPictures'
+, @level2type = 'COLUMN', @level2name = N'Left'
+ELSE
+EXEC sp_addextendedproperty @name = N'MS_Description', @value = N'ÉÏ´«Í¼Æ¬¾àÀë×ó±ß½ç¾àÀë'
+, @level0type = 'SCHEMA', @level0name = N'dbo'
+, @level1type = 'TABLE', @level1name = N'MaterialPictures'
+, @level2type = 'COLUMN', @level2name = N'Left'
+GO
+IF ((SELECT COUNT(*) from fn_listextendedproperty('MS_Description', 
+'SCHEMA', N'dbo', 
+'TABLE', N'MaterialPictures', 
+'COLUMN', N'UploadWidth')) > 0) 
+EXEC sp_updateextendedproperty @name = N'MS_Description', @value = N'ÉÏ´«Í¼Æ¬¿í¶È'
+, @level0type = 'SCHEMA', @level0name = N'dbo'
+, @level1type = 'TABLE', @level1name = N'MaterialPictures'
+, @level2type = 'COLUMN', @level2name = N'UploadWidth'
+ELSE
+EXEC sp_addextendedproperty @name = N'MS_Description', @value = N'ÉÏ´«Í¼Æ¬¿í¶È'
+, @level0type = 'SCHEMA', @level0name = N'dbo'
+, @level1type = 'TABLE', @level1name = N'MaterialPictures'
+, @level2type = 'COLUMN', @level2name = N'UploadWidth'
+GO
+IF ((SELECT COUNT(*) from fn_listextendedproperty('MS_Description', 
+'SCHEMA', N'dbo', 
+'TABLE', N'MaterialPictures', 
+'COLUMN', N'UploadHeight')) > 0) 
+EXEC sp_updateextendedproperty @name = N'MS_Description', @value = N'ÉÏ´«Í¼Æ¬¸ß¶È'
+, @level0type = 'SCHEMA', @level0name = N'dbo'
+, @level1type = 'TABLE', @level1name = N'MaterialPictures'
+, @level2type = 'COLUMN', @level2name = N'UploadHeight'
+ELSE
+EXEC sp_addextendedproperty @name = N'MS_Description', @value = N'ÉÏ´«Í¼Æ¬¸ß¶È'
+, @level0type = 'SCHEMA', @level0name = N'dbo'
+, @level1type = 'TABLE', @level1name = N'MaterialPictures'
+, @level2type = 'COLUMN', @level2name = N'UploadHeight'
+GO
+
+CREATE TABLE [dbo].[MaterialSizes] (
+[GUID] nvarchar(200) NOT NULL,
+[MaterialID] nvarchar(200) NOT NULL,
+[SizeName] nvarchar(200) NOT NULL,
+[IsDefault] bit NOT NULL,
+PRIMARY KEY ([GUID]) 
+)
+GO
 
 
-ALTER TABLE `Addresses` ADD FOREIGN KEY (`UserID`) REFERENCES `Users` (`GUID`);
-ALTER TABLE `DesignWorks` ADD FOREIGN KEY (`DesignerID`) REFERENCES `Users` (`GUID`);
-ALTER TABLE `MaterialPriceLogs` ADD FOREIGN KEY (`MaterialID`) REFERENCES `Materials` (`GUID`);
-ALTER TABLE `SingleLogin` ADD FOREIGN KEY (`UserID`) REFERENCES `Users` (`GUID`);
-ALTER TABLE `Materials` ADD FOREIGN KEY (`TypeID`) REFERENCES `MaterialTypes` (`GUID`);
-ALTER TABLE `DesignWorks` ADD FOREIGN KEY (`MaterialID`) REFERENCES `Materials` (`GUID`);
-ALTER TABLE `OrderDetails` ADD FOREIGN KEY (`OrderID`) REFERENCES `Orders` (`GUID`);
-ALTER TABLE `Orders` ADD FOREIGN KEY (`DesignWorkID`) REFERENCES `DesignWorks` (`GUID`);
-ALTER TABLE `MaterialColors` ADD FOREIGN KEY (`MaterialID`) REFERENCES `Materials` (`GUID`);
-ALTER TABLE `MaterialPictures` ADD FOREIGN KEY (`MaterialID`) REFERENCES `Materials` (`GUID`);
-ALTER TABLE `MaterialSizes` ADD FOREIGN KEY (`MaterialID`) REFERENCES `Materials` (`GUID`);
-ALTER TABLE `Orders` ADD FOREIGN KEY (`UserID`) REFERENCES `Users` (`GUID`);
+ALTER TABLE [dbo].[Addresses] ADD FOREIGN KEY ([UserID]) REFERENCES [dbo].[Users] ([GUID])
+GO
+ALTER TABLE [dbo].[DesignWorks] ADD FOREIGN KEY ([DesignerID]) REFERENCES [dbo].[Users] ([GUID])
+GO
+ALTER TABLE [dbo].[MaterialPriceLogs] ADD FOREIGN KEY ([MaterialID]) REFERENCES [dbo].[Materials] ([GUID])
+GO
+ALTER TABLE [dbo].[SingleLogin] ADD FOREIGN KEY ([UserID]) REFERENCES [dbo].[Users] ([GUID])
+GO
+ALTER TABLE [dbo].[Materials] ADD FOREIGN KEY ([TypeID]) REFERENCES [dbo].[MaterialTypes] ([GUID])
+GO
+ALTER TABLE [dbo].[DesignWorks] ADD FOREIGN KEY ([MaterialID]) REFERENCES [dbo].[Materials] ([GUID])
+GO
+ALTER TABLE [dbo].[OrderDetails] ADD FOREIGN KEY ([OrderID]) REFERENCES [dbo].[Orders] ([GUID])
+GO
+ALTER TABLE [dbo].[Orders] ADD FOREIGN KEY ([DesignWorkID]) REFERENCES [dbo].[DesignWorks] ([GUID])
+GO
+ALTER TABLE [dbo].[MaterialColors] ADD FOREIGN KEY ([MaterialID]) REFERENCES [dbo].[Materials] ([GUID])
+GO
+ALTER TABLE [dbo].[MaterialPictures] ADD FOREIGN KEY ([MaterialID]) REFERENCES [dbo].[Materials] ([GUID])
+GO
+ALTER TABLE [dbo].[MaterialSizes] ADD FOREIGN KEY ([MaterialID]) REFERENCES [dbo].[Materials] ([GUID])
+GO
+ALTER TABLE [dbo].[Orders] ADD FOREIGN KEY ([UserID]) REFERENCES [dbo].[Users] ([GUID])
+GO
 

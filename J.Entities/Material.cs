@@ -35,7 +35,7 @@ namespace J.Entities
         public virtual ICollection<MaterialColor> MaterialColors { get; set; }
         public virtual ICollection<MaterialPicture> MaterialPictures { get; set; }
         public virtual ICollection<MaterialPriceLog> MaterialPriceLogs { get; set; }
-        public virtual MaterialType MaterialType { get; set; }
         public virtual ICollection<MaterialSize> MaterialSizes { get; set; }
+        public virtual MaterialType MaterialType { get; set; }
     }
 }
