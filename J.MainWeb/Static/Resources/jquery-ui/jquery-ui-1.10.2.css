@@ -502,7 +502,7 @@ button.ui-button::-moz-focus-inner {
 }
 .ui-dialog .ui-dialog-buttonpane {
 	text-align: left;
-	border-width: 2px 0 0 0;
+	border-width: 1px 0 0 0;
 	background-image: none;
 	margin-top: .5em;
 	padding: .3em 1em .5em .4em;
@@ -545,7 +545,7 @@ button.ui-button::-moz-focus-inner {
 	height: 0;
 	font-size: 0;
 	line-height: 0;
-	border-width: 2px 0 0 0;
+	border-width: 1px 0 0 0;
 }
 .ui-menu .ui-menu-item a {
 	text-decoration: none;
@@ -784,7 +784,7 @@ body .ui-tooltip {
 /* Component containers
 ----------------------------------*/
 .ui-widget {
-	font-family: Verdana,Arial,sans-serif;
+	font-family: "Microsoft Yahei",Verdana,Simsun,"Segoe UI","Segoe UI Web Regular","Segoe UI Symbol","Helvetica Neue","BBAlpha Sans","S60 Sans",Arial,"sans-serif";
 	font-size: 1.4em;
 }
 .ui-widget .ui-widget {
@@ -794,7 +794,7 @@ body .ui-tooltip {
 .ui-widget select,
 .ui-widget textarea,
 .ui-widget button {
-	font-family: Verdana,Arial,sans-serif;
+	font-family: "Microsoft Yahei",Verdana,Simsun,"Segoe UI","Segoe UI Web Regular","Segoe UI Symbol","Helvetica Neue","BBAlpha Sans","S60 Sans",Arial,"sans-serif";
 	font-size: 1em;
 }
 .ui-widget-content {

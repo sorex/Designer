@@ -9,9 +9,13 @@ namespace J.MainWeb
 		public static void RegisterBundles(BundleCollection bundles)
 		{
 			#region CSS
+			#region reset CSS
+			bundles.Add(new StyleBundle("~/Static/Resources/reset/css").Include(
+						"~/Static/Resources/reset/reset.css"));
+			#endregion
+
 			#region Site CSS
 			bundles.Add(new StyleBundle("~/Static/Resources/site/css").Include(
-						"~/Static/Resources/site/reset.css",
 						"~/Static/Resources/site/site.css"));
 			#endregion
 

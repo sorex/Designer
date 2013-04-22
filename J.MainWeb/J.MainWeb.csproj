@@ -213,7 +213,9 @@
     <Content Include="Static\Resources\jquery\jquery-migrate-1.1.1.min.js" />
     <Content Include="Static\Resources\json2\json2.js" />
     <Content Include="Static\Resources\modernizr\modernizr-2.6.2.js" />
-    <Content Include="Static\Resources\site\reset.css" />
+    <Content Include="Static\Resources\site\images\horizontal_line.png" />
+    <Content Include="Static\Resources\site\images\Logo_150x40.png" />
+    <Content Include="Static\Resources\reset\reset.css" />
     <Content Include="Static\Resources\site\site.css" />
     <Content Include="Static\Resources\site\divLayout.js" />
     <Content Include="Static\Resources\uploadify\jquery.uploadify.js" />
@@ -231,19 +233,6 @@
       <DependentUpon>Web.config</DependentUpon>
     </Content>
     <Content Include="Areas\HelpPage\Views\_ViewStart.cshtml" />
-    <Content Include="Images\accent.png" />
-    <Content Include="Images\bullet.png" />
-    <Content Include="Images\heroAccent.png" />
-    <Content Include="Images\orderedList0.png" />
-    <Content Include="Images\orderedList1.png" />
-    <Content Include="Images\orderedList2.png" />
-    <Content Include="Images\orderedList3.png" />
-    <Content Include="Images\orderedList4.png" />
-    <Content Include="Images\orderedList5.png" />
-    <Content Include="Images\orderedList6.png" />
-    <Content Include="Images\orderedList7.png" />
-    <Content Include="Images\orderedList8.png" />
-    <Content Include="Images\orderedList9.png" />
     <Content Include="Views\Web.config" />
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
@@ -253,7 +242,6 @@
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Models\" />
-    <Folder Include="Static\Resources\site\images\" />
     <Folder Include="Static\UserFiles\" />
   </ItemGroup>
   <ItemGroup>
