@@ -20,10 +20,11 @@
 
 	@Scripts.Render("~/Static/extendjs/js")
 
+	@RenderSection("head", required: false)
 </head>
 <body>
 	<header>
-		<div class="body main_header">
+		<div class="main_header ui-helper-clearfix">
 			<div class="logo_150x40">
 			</div>
 			<nav class="main_nav">
@@ -34,10 +35,14 @@
 				</ul>
 			</nav>
 		</div>
+		<div class="hl"></div>
 	</header>
 	<div class="body">
 		@RenderBody()
 	</div>
+	<footer>
+
+	</footer>
 	@RenderSection("scripts", required: false)
 </body>
 </html>

@@ -1,0 +1,41 @@
+﻿.body .line1
+{
+}
+
+.body .imageDiv
+{
+	float: left;
+	width: 480px;
+	height: 320px;
+	background: transparent url("images/home_main_image_480x320.png") center center no-repeat;
+}
+
+.body .mainDiv
+{
+	float: right;
+	width: 500px;
+	height: 320px;
+	margin-left: 20px;
+}
+
+	.body .mainDiv h1
+	{
+		font-size: 24px;
+	}
+
+	.body .mainDiv h2
+	{
+		font-size: 18px;
+	}
+
+	.body .mainDiv ul
+	{
+			margin-top: 10px;
+	}
+
+		.body .mainDiv ul li
+		{
+			background: url("images/No0_44x44.png") no-repeat 0px 0px;
+			margin-bottom: 10px;
+			padding-left:50px;
+		}

@@ -43,38 +43,6 @@ h6
 	font-size: 14px;
 }
 
-.main_header
-{
-	height: 45px;
-	line-height: 40px;
-	background: transparent url("images/horizontal_line.png") center bottom no-repeat;
-	margin-bottom: 8px;
-}
-
-.logo_150x40
-{
-	float: left;
-	width: 150px;
-	height: 40px;
-	background: transparent url("images/Logo_150x40.png") center center no-repeat;
-}
-
-.main_nav
-{
-	float: right;
-}
-
-	.main_nav ul
-	{
-		list-style-type: none;
-	}
-
-		.main_nav ul li
-		{
-			float: left;
-			margin-left: 10px;
-		}
-
 a
 {
 	font-weight: bold;
@@ -106,4 +74,44 @@ a
 	margin-right: auto;
 	margin-left: auto;
 	position: relative;
+}
+
+.main_header
+{
+	height: 40px;
+	line-height: 40px;
+	width: 1000px;
+	margin-right: auto;
+	margin-left: auto;
+	position: relative;
+}
+
+.logo_150x40
+{
+	float: left;
+	width: 150px;
+	height: 40px;
+	background: transparent url("images/Logo_150x40.png") center center no-repeat;
+}
+
+.main_nav
+{
+	float: right;
+}
+
+	.main_nav ul
+	{
+		list-style-type: none;
+	}
+
+		.main_nav ul li
+		{
+			float: left;
+			margin-left: 10px;
+		}
+
+.hl
+{
+	height:20px;
+	background: transparent url("images/horizontal_line.png") center center no-repeat;
 }
