@@ -189,6 +189,9 @@
     <Content Include="Static\Resources\extendjs\extendjs.js" />
     <Content Include="Static\Resources\jquery-ui\freehand.css" />
     <Content Include="Static\Resources\jquery-ui\images\animated-overlay.gif" />
+    <Content Include="Static\Resources\site\images\big_button_200x75_active.png" />
+    <Content Include="Static\Resources\site\images\big_button_200x75_default.png" />
+    <Content Include="Static\Resources\site\images\big_button_200x75_hover.png" />
     <Content Include="Static\Resources\site\images\home_main_image_480x320.png" />
     <Content Include="Static\Resources\jquery-ui\images\ui-bg_diagonals-thick_70_d6cecc_40x40.png" />
     <Content Include="Static\Resources\jquery-ui\images\ui-bg_flat_0_c1c1c1_40x100.png" />
