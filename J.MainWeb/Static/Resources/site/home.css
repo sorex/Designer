@@ -2,40 +2,174 @@
 {
 }
 
-.body .imageDiv
-{
-	float: left;
-	width: 480px;
-	height: 320px;
-	background: transparent url("images/home_main_image_480x320.png") center center no-repeat;
-}
-
-.body .mainDiv
-{
-	float: right;
-	width: 500px;
-	height: 320px;
-	margin-left: 20px;
-}
-
-	.body .mainDiv h1
+	.body .line1 .imageDiv
 	{
-		font-size: 24px;
+		float: left;
+		width: 480px;
+		height: 320px;
+		background: transparent url("images/home/main_image_480x320.png") center center no-repeat;
 	}
 
-	.body .mainDiv h2
+	.body .line1 .mainDiv
+	{
+		float: right;
+		width: 500px;
+		height: 320px;
+		margin-left: 20px;
+	}
+
+		.body .line1 .mainDiv h1
+		{
+			font-size: 24px;
+		}
+
+		.body .line1 .mainDiv h2
+		{
+			font-size: 18px;
+		}
+
+		.body .line1 .mainDiv ul
+		{
+			margin-top: 10px;
+		}
+
+			.body .line1 .mainDiv ul li
+			{
+				background: url("images/No0_44x44.png") no-repeat 0px 0px;
+				margin-bottom: 10px;
+				padding-left: 50px;
+			}
+
+.HomeButton
+{
+	display: inline-block;
+	width: 200px;
+	height: 75px;
+	line-height: 75px;
+	text-align: center;
+	font-size: 24px;
+	font-weight: bold;
+}
+
+	.HomeButton:link
+	{
+		text-decoration: none;
+		color: #000000;
+		background: transparent url("images/home/button_200x75_default.png") center center no-repeat;
+	}
+
+	.HomeButton:visited
+	{
+		text-decoration: none;
+		color: #000000;
+		background: transparent url("images/home/button_200x75_default.png") center center no-repeat;
+	}
+
+	.HomeButton:hover
+	{
+		text-decoration: none;
+		color: #000000;
+		background: transparent url("images/home/button_200x75_hover.png") center center no-repeat;
+	}
+
+	.HomeButton:active
+	{
+		text-decoration: none;
+		color: #000000;
+		background: transparent url("images/home/button_200x75_active.png") center center no-repeat;
+	}
+
+.body .line2
+{
+	height: 150px;
+	border: 2px solid #000000;
+}
+
+	.body .line2 h1
 	{
 		font-size: 18px;
 	}
 
-	.body .mainDiv ul
+	.body .line2 > div
 	{
-			margin-top: 10px;
+		float: left;
+		height: 80px;
+		margin-top: 35px;
+		margin-left: 5px;
 	}
 
-		.body .mainDiv ul li
-		{
-			background: url("images/No0_44x44.png") no-repeat 0px 0px;
-			margin-bottom: 10px;
-			padding-left:50px;
-		}
+	.body .line2 .imageDiv
+	{
+		width: 80px;
+		background: transparent url("images/home/image1_80x80.png") center center no-repeat;
+	}
+
+	.body .line2 .imageDiv1
+	{
+		width: 80px;
+		background-image: url("images/home/image1_80x80.png");
+	}
+
+	.body .line2 .imageDiv2
+	{
+		width: 80px;
+		background-image: url("images/home/image2_80x80.png");
+	}
+
+	.body .line2 .imageDiv3
+	{
+		width: 80px;
+		background-image: url("images/home/image3_80x80.png");
+	}
+
+	.body .line2 .contentDiv
+	{
+		width: 200px;
+	}
+
+	.body .line2 .spaceDiv
+	{
+		width: 50px;
+		background: transparent url("images/home/space_50x18.png") center center no-repeat;
+	}
+
+
+.body .line3
+{
+	height: 500px;
+	border: 2px solid #000000;
+	margin-top: 15px;
+}
+
+.body .line2 > div
+{
+	float: left;
+}
+
+.body .line3 .leftButton
+{
+	display: inline-block;
+	width: 44px;
+	height: 100%;
+	background: transparent url("images/home/left_button_44x44_default.png") center center no-repeat;
+}
+
+	.body .line3 .leftButton:hover
+	{
+		background-image: url("images/home/left_button_44x44_hover.png");
+		background-color: #eeeeee;
+	}
+
+.body .line3 .rightButton
+{
+	display: inline-block;
+	width: 44px;
+	height: 100%;
+	background: transparent url("images/home/right_button_44x44_default.png") center center no-repeat;
+}
+
+	.body .line3 .rightButton:hover
+	{
+		background-image: url("images/home/right_button_44x44_hover.png");
+		background-color: #eeeeee;
+	}

@@ -189,10 +189,13 @@
     <Content Include="Static\Resources\extendjs\extendjs.js" />
     <Content Include="Static\Resources\jquery-ui\freehand.css" />
     <Content Include="Static\Resources\jquery-ui\images\animated-overlay.gif" />
-    <Content Include="Static\Resources\site\images\big_button_200x75_active.png" />
-    <Content Include="Static\Resources\site\images\big_button_200x75_default.png" />
-    <Content Include="Static\Resources\site\images\big_button_200x75_hover.png" />
-    <Content Include="Static\Resources\site\images\home_main_image_480x320.png" />
+    <Content Include="Static\Resources\site\images\home\button_200x75_active.png" />
+    <Content Include="Static\Resources\site\images\home\button_200x75_default.png" />
+    <Content Include="Static\Resources\site\images\home\button_200x75_hover.png" />
+    <Content Include="Static\Resources\site\images\home\image1_80x80.png" />
+    <Content Include="Static\Resources\site\images\home\image2_80x80.png" />
+    <Content Include="Static\Resources\site\images\home\image3_80x80.png" />
+    <Content Include="Static\Resources\site\images\home\main_image_480x320.png" />
     <Content Include="Static\Resources\jquery-ui\images\ui-bg_diagonals-thick_70_d6cecc_40x40.png" />
     <Content Include="Static\Resources\jquery-ui\images\ui-bg_flat_0_c1c1c1_40x100.png" />
     <Content Include="Static\Resources\jquery-ui\images\ui-bg_flat_100_95bcf2_40x100.png" />
@@ -218,7 +221,10 @@
     <Content Include="Static\Resources\json2\json2.js" />
     <Content Include="Static\Resources\modernizr\modernizr-2.6.2.js" />
     <Content Include="Static\Resources\site\home.css" />
+    <Content Include="Static\Resources\site\images\home\space_50x18.png" />
     <Content Include="Static\Resources\site\images\horizontal_line.png" />
+    <Content Include="Static\Resources\site\images\home\left_button_44x44_default.png" />
+    <Content Include="Static\Resources\site\images\home\left_button_44x44_hover.png" />
     <Content Include="Static\Resources\site\images\Logo_150x40.png" />
     <Content Include="Static\Resources\reset\reset.css" />
     <Content Include="Static\Resources\site\images\No0_44x44.png" />
@@ -232,6 +238,8 @@
     <Content Include="Static\Resources\site\images\No7_44x44.png" />
     <Content Include="Static\Resources\site\images\No8_44x44.png" />
     <Content Include="Static\Resources\site\images\No9_44x44.png" />
+    <Content Include="Static\Resources\site\images\home\right_button_44x44_default.png" />
+    <Content Include="Static\Resources\site\images\home\right_button_44x44_hover.png" />
     <Content Include="Static\Resources\site\site.css" />
     <Content Include="Static\Resources\site\divLayout.js" />
     <Content Include="Static\Resources\uploadify\jquery.uploadify.js" />
