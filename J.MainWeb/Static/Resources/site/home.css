@@ -141,35 +141,57 @@
 	margin-top: 15px;
 }
 
-.body .line2 > div
-{
-	float: left;
-}
-
-.body .line3 .leftButton
-{
-	display: inline-block;
-	width: 44px;
-	height: 100%;
-	background: transparent url("images/home/left_button_44x44_default.png") center center no-repeat;
-}
-
-	.body .line3 .leftButton:hover
+	.body .line3 .leftButton
 	{
-		background-image: url("images/home/left_button_44x44_hover.png");
-		background-color: #eeeeee;
+		display: inline-block;
+		float: left;
+		width: 44px;
+		height: 100%;
+		background: transparent url("images/home/left_button_44x44_default.png") center center no-repeat;
 	}
 
-.body .line3 .rightButton
-{
-	display: inline-block;
-	width: 44px;
-	height: 100%;
-	background: transparent url("images/home/right_button_44x44_default.png") center center no-repeat;
-}
+		.body .line3 .leftButton:hover
+		{
+			background-image: url("images/home/left_button_44x44_hover.png");
+			background-color: #eeeeee;
+		}
 
-	.body .line3 .rightButton:hover
+	.body .line3 .rightButton
 	{
-		background-image: url("images/home/right_button_44x44_hover.png");
-		background-color: #eeeeee;
+		display: inline-block;
+		float: right;
+		width: 44px;
+		height: 100%;
+		background: transparent url("images/home/right_button_44x44_default.png") center center no-repeat;
 	}
+
+		.body .line3 .rightButton:hover
+		{
+			background-image: url("images/home/right_button_44x44_hover.png");
+			background-color: #eeeeee;
+		}
+
+	.body .line3 .listDiv
+	{
+		width: 908px;
+		height: 100%;
+		margin-left: auto;
+		margin-right: auto;
+		overflow-x: hidden;
+	}
+
+	.body .line3 .listDiv .listContainDiv
+	{
+		height: 100%;
+		width:3632px;
+	}
+
+		.body .line3 .listDiv .listContainDiv .itemDiv
+		{
+			display:inline-block;
+			float:left;
+			width:904px;
+			height:100%;
+			border-left: 2px solid #000000;
+			border-right: 2px solid #000000;
+		}

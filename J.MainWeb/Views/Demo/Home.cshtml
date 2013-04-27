@@ -48,4 +48,33 @@
 </div>
 <div class="line3 ui-helper-clearfix">
 	<a href="javascript:void(0);" onclick="return false;" class="leftButton"></a>
+	<a href="javascript:void(0);" onclick="return false;" class="rightButton"></a>
+	<div class="listDiv">
+		<div class="listContainDiv">
+			<div class="itemDiv">A</div>
+			<div class="itemDiv">B</div>
+			<div class="itemDiv">C</div>
+			<div class="itemDiv">D</div>
+		</div>
+	</div>
 </div>
+<div class="hl"></div>
+
+@section scripts{
+	<script type="text/javascript">
+		$(function ()
+		{
+			$(".leftButton").click(function ()
+			{
+				$(".listDiv").animate({ scrollLeft: '-908px' }, "slow");
+			});
+
+			$(".rightButton").click(function ()
+			{
+				$(".listDiv").animate({ scrollLeft: '+908px' }, "slow");
+				//var now = $(".listDiv").scrollLeft() + 908;
+				//$(".listDiv").scrollLeft(now);
+			});
+		});
+	</script>
+}
