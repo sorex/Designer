@@ -136,7 +136,7 @@
 
 .body .line3
 {
-	height: 500px;
+	height: 480px;
 	border: 2px solid #000000;
 	margin-top: 15px;
 }
@@ -180,18 +180,38 @@
 		overflow-x: hidden;
 	}
 
-	.body .line3 .listDiv .listContainDiv
-	{
-		height: 100%;
-		width:3632px;
-	}
-
-		.body .line3 .listDiv .listContainDiv .itemDiv
+		.body .line3 .listDiv .listContainDiv
 		{
-			display:inline-block;
-			float:left;
-			width:904px;
-			height:100%;
-			border-left: 2px solid #000000;
-			border-right: 2px solid #000000;
+			height: 100%;
+			width: 3632px;
 		}
+
+			.body .line3 .listDiv .listContainDiv .itemDiv
+			{
+				display: inline-block;
+				float: left;
+				width: 904px;
+				height: 100%;
+				border-left: 2px solid #000000;
+				border-right: 2px solid #000000;
+			}
+
+				.body .line3 .listDiv .listContainDiv .itemDiv .imageDiv
+				{
+					display: inline-block;
+					float: left;
+					width: 640px;
+					height: 480px;
+					background-color: red;
+				}
+
+				.body .line3 .listDiv .listContainDiv .itemDiv .infoDiv
+				{
+					display: inline-block;
+					float: left;
+					width: 262px;
+					height: 480px;
+					border-left: 2px solid #000000;
+					/*border-right: 2px solid #000000;*/
+					background-color: blue;
+				}

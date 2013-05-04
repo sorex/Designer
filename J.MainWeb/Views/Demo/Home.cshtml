@@ -51,7 +51,12 @@
 	<a href="javascript:void(0);" onclick="return false;" class="rightButton"></a>
 	<div class="listDiv">
 		<div class="listContainDiv">
-			<div class="itemDiv">A</div>
+			<div class="itemDiv">
+				<a href="">
+					<div class="imageDiv"></div>
+					<div class="infoDiv"></div>
+				</a>
+			</div>
 			<div class="itemDiv">B</div>
 			<div class="itemDiv">C</div>
 			<div class="itemDiv">D</div>
@@ -66,14 +71,14 @@
 		{
 			$(".leftButton").click(function ()
 			{
-				$(".listDiv").animate({ scrollLeft: '-908px' }, "slow");
+				var now = $(".listDiv").scrollLeft() - 908;
+				$(".listDiv").animate({ scrollLeft: now }, "slow");
 			});
 
 			$(".rightButton").click(function ()
 			{
-				$(".listDiv").animate({ scrollLeft: '+908px' }, "slow");
-				//var now = $(".listDiv").scrollLeft() + 908;
-				//$(".listDiv").scrollLeft(now);
+				var now = $(".listDiv").scrollLeft() + 908;
+				$(".listDiv").animate({ scrollLeft: now }, "slow");
 			});
 		});
 	</script>
