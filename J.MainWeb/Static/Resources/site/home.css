@@ -136,7 +136,7 @@
 
 .body .line3
 {
-	height: 480px;
+	height: 360px;
 	border: 2px solid #000000;
 	margin-top: 15px;
 }
@@ -173,7 +173,7 @@
 
 	.body .line3 .listDiv
 	{
-		width: 908px;
+		width: 908px;/* 1000 - 2*2（边框） - 44*2（左右按钮） */
 		height: 100%;
 		margin-left: auto;
 		margin-right: auto;
@@ -190,7 +190,7 @@
 			{
 				display: inline-block;
 				float: left;
-				width: 904px;
+				width: 904px;/* 908- 2*2（自身边框） */
 				height: 100%;
 				border-left: 2px solid #000000;
 				border-right: 2px solid #000000;
@@ -200,18 +200,42 @@
 				{
 					display: inline-block;
 					float: left;
-					width: 640px;
-					height: 480px;
-					background-color: red;
+					width: 480px;
+					height: 100%;
 				}
 
 				.body .line3 .listDiv .listContainDiv .itemDiv .infoDiv
 				{
 					display: inline-block;
 					float: left;
-					width: 262px;
-					height: 480px;
+					width: 414px; /* 904 - 480（图片宽度） - 2（自身边框） - 4*2（自身padding） */
+					height: 100%;
 					border-left: 2px solid #000000;
-					/*border-right: 2px solid #000000;*/
-					background-color: blue;
+					padding-left: 4px;
+					padding-right: 4px;
 				}
+
+					.body .line3 .listDiv .listContainDiv .itemDiv .infoDiv h1
+					{
+						height: 31px;
+						font-size: 24px;
+						overflow: hidden;
+					}
+
+					.body .line3 .listDiv .listContainDiv .itemDiv .infoDiv h2
+					{
+						height: 20px;
+						font-size: 14px;
+						overflow: hidden;
+					}
+
+					.body .line3 .listDiv .listContainDiv .itemDiv .infoDiv .DescriptionDiv
+					{
+						height: 150px;
+						overflow-y: auto;
+					}
+
+					.body .line3 .listDiv .listContainDiv .itemDiv .infoDiv .OtherDiv
+					{
+						border-top: 2px solid #000000;
+					}
