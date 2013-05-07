@@ -62,10 +62,17 @@
 						<p>这里都是描述。这里都是描述。这里都是描述。这里都是描述。这里都是描述。这里都是描述。</p>
 					</div>
 					<div class="OtherDiv">
-						<p>
+						<div>
 							<span style="font-size: 16px;">售价：￥60.00</span>
-							<span style="float: right;">售价：￥60.00</span>
-						</p>
+							<span style="float: right;">35/50 预售目标</span>
+						</div>
+						<div id="progressbar1" style="height: 15px;"></div>
+						<div>
+							活动剩余10小时/活动结束于1天前
+						</div>
+					</div>
+					<div>
+						查看这个活动 »
 					</div>
 				</div>
 			</div>
@@ -92,6 +99,15 @@
 				var now = $(".listDiv").scrollLeft() + 908;
 				$(".listDiv").animate({ scrollLeft: now }, "slow");
 			});
+		});
+	</script>
+	<script type="text/javascript">
+		$(function ()
+		{
+			$("#progressbar1").progressbar({ value: 70 });
+			progressbar = $("#progressbar1"),
+			progressbarValue = progressbar.find(".ui-progressbar-value");
+			progressbarValue.css({ "background": '#00FF00' });
 		});
 	</script>
 }
