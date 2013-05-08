@@ -21,5 +21,10 @@ namespace J.MainWeb.Controllers
 			return View();
 		}
 
+		public ActionResult Login()
+		{
+			return View();
+		}
+
     }
 }

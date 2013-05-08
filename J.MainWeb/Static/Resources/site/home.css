@@ -173,7 +173,7 @@
 
 	.body .line3 .listDiv
 	{
-		width: 908px;/* 1000 - 2*2（边框） - 44*2（左右按钮） */
+		width: 908px; /* 1000 - 2*2（边框） - 44*2（左右按钮） */
 		height: 100%;
 		margin-left: auto;
 		margin-right: auto;
@@ -190,7 +190,7 @@
 			{
 				display: inline-block;
 				float: left;
-				width: 904px;/* 908- 2*2（自身边框） */
+				width: 904px; /* 908- 2*2（自身边框） */
 				height: 100%;
 				border-left: 2px solid #000000;
 				border-right: 2px solid #000000;
@@ -231,7 +231,7 @@
 
 					.body .line3 .listDiv .listContainDiv .itemDiv .infoDiv .DescriptionDiv
 					{
-						height: 150px;
+						height: 215px;
 						overflow-y: auto;
 					}
 
@@ -239,3 +239,38 @@
 					{
 						border-top: 2px solid #000000;
 					}
+
+					.body .line3 .listDiv .listContainDiv .itemDiv .infoDiv .LinkDiv
+					{
+					}
+
+						.body .line3 .listDiv .listContainDiv .itemDiv .infoDiv .LinkDiv a
+						{
+							display: inline-block;
+							font-size: 24px;
+							font-weight: bold;
+						}
+
+							.body .line3 .listDiv .listContainDiv .itemDiv .infoDiv .LinkDiv a:link
+							{
+								text-decoration: none;
+								color: #3772b8;
+							}
+
+							.body .line3 .listDiv .listContainDiv .itemDiv .infoDiv .LinkDiv a:visited
+							{
+								text-decoration: none;
+								color: #3772b8;
+							}
+
+							.body .line3 .listDiv .listContainDiv .itemDiv .infoDiv .LinkDiv a:hover
+							{
+								text-decoration: underline;
+								color: #365d93;
+							}
+
+							.body .line3 .listDiv .listContainDiv .itemDiv .infoDiv .LinkDiv a:active
+							{
+								text-decoration: underline;
+								color: #365d93;
+							}
