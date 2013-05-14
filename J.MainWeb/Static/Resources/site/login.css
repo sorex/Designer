@@ -1,2 +1,32 @@
-﻿.body {
+﻿.body
+{
 }
+
+.loginImage
+{
+	float: left;
+	height: 300px;
+	width: 695px;
+	border: 1px solid #000000;
+}
+
+.login
+{
+	float: right;
+	height: 300px;
+	width: 300px;
+	border: 1px solid #000000;
+}
+
+	.login > div
+	{
+		width: 200px;
+		margin-top: 50px;
+		margin-left: auto;
+		margin-right: auto;
+	}
+
+	.login input[type="text"], .login input[type="password"]
+	{
+		width: 200px;
+	}
