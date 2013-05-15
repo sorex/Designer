@@ -21,12 +21,60 @@
 	.login > div
 	{
 		width: 200px;
-		margin-top: 50px;
+		margin-top: 40px;
 		margin-left: auto;
 		margin-right: auto;
+	}
+
+	.login > div > div
+	{
+		margin-top: 10px;
 	}
 
 	.login input[type="text"], .login input[type="password"]
 	{
 		width: 200px;
+	}
+
+.LoginButton
+{
+	display: inline-block;
+	width: 202px;
+	height: 32px;
+	line-height: 32px;
+	text-align: center;
+	font-size: 16px;
+	font-weight: bold;
+}
+
+	.LoginButton:link
+	{
+		text-decoration: none;
+		color: #ffffff;
+		background-color:#ff7a01;
+		border:1px solid #f15c00;
+	}
+
+	.LoginButton:visited
+	{
+		text-decoration: none;
+		color: #ffffff;
+		background-color:#ff7a01;
+		border:1px solid #f15c00;
+	}
+
+	.LoginButton:hover
+	{
+		text-decoration: none;
+		color: #ffffff;
+		background-color:#fe920c;
+		border:1px solid #f4770d;
+	}
+
+	.LoginButton:active
+	{
+		text-decoration: none;
+		color: #ffffff;
+		background-color:#fe920c;
+		border:1px solid #f4770d;
 	}

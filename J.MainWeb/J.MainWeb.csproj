@@ -189,6 +189,8 @@
     <Content Include="Static\Resources\extendjs\extendjs.js" />
     <Content Include="Static\Resources\jquery-ui\freehand.css" />
     <Content Include="Static\Resources\jquery-ui\images\animated-overlay.gif" />
+    <Content Include="Static\Resources\jquery.base64\jquery.base64.js" />
+    <Content Include="Static\Resources\jquery.base64\jquery.base64.min.js" />
     <Content Include="Static\Resources\site\images\home\button_200x75_active.png" />
     <Content Include="Static\Resources\site\images\home\button_200x75_default.png" />
     <Content Include="Static\Resources\site\images\home\button_200x75_hover.png" />
@@ -242,6 +244,7 @@
     <Content Include="Static\Resources\site\images\home\right_button_44x44_default.png" />
     <Content Include="Static\Resources\site\images\home\right_button_44x44_hover.png" />
     <Content Include="Static\Resources\site\login.css" />
+    <Content Include="Static\Resources\site\register.css" />
     <Content Include="Static\Resources\site\site.css" />
     <Content Include="Static\Resources\site\divLayout.js" />
     <Content Include="Static\Resources\uploadify\jquery.uploadify.js" />
@@ -281,6 +284,12 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Views\Demo\Login.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Demo\Register.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Shared\_Space.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

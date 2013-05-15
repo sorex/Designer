@@ -26,5 +26,9 @@ namespace J.MainWeb.Controllers
 			return View();
 		}
 
-    }
+		public ActionResult Register()
+		{
+			return View();
+		}
+   }
 }

@@ -1,56 +1,39 @@
 ﻿@{
-	Layout = null;
+	Layout = "~/Views/Shared/_Space.cshtml";
 	ViewBag.Title = "登录";
 }
-<!DOCTYPE html>
-<html class="no-js">
-<head>
-	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-	<meta charset="utf-8" />
-	<meta name="viewport" content="width=device-width" />
-	<title>@ViewBag.Title</title>
-	@Styles.Render("~/Static/Resources/reset/css")
-	@Styles.Render("~/Static/Resources/jquery-ui/css")
-	@Styles.Render("~/Static/Resources/jquery.layout/css")
-	@Styles.Render("~/Static/Resources/uploadify/css")
-	@Styles.Render("~/Static/Resources/site/css")
 
-	@Scripts.Render("~/Static/Resources/modernizr/js")
-	@Scripts.Render("~/Static/Resources/jquery/js")
-	@Scripts.Render("~/Static/Resources/jquery-ui/js")
-	@Scripts.Render("~/Static/Resources/jquery.layout/js")
-	@Scripts.Render("~/Static/Resources/json2/js")
-	@Scripts.Render("~/Static/Resources/uploadify/js")
-
-	@Scripts.Render("~/Static/extendjs/js")
-
-	<link href="~/Static/Resources/site/login.css" rel="stylesheet" />
-</head>
-<body>
-	<header></header>
-	<div class="body">
-		<div></div>
+@section head{
+	<link rel="stylesheet" href="~/Static/Resources/site/login.css" />
+	<script type="text/javascript" src="~/Static/Resources/jquery.base64/jquery.base64.min.js"></script>
+}
+<div class="loginImage">
+	695x300图片
+</div>
+<div class="login">
+	<div>
 		<div>
-			<div class="loginImage"></div>
-			<div class="login">
-				<div>
-					<div>登录名：</div>
-					<div>
-						<input type="text" />
-					</div>
-					<div>登录密码：<a href="" style="float: right;">忘记密码</a></div>
-					<div>
-						<input type="password" />
-					</div>
-					<div>
-						<a href="">登录</a>
-						<a href="" style="float: right;">注册</a>
-					</div>
-				</div>
-			</div>
+			登录名：<br />
+			<input id="loginName" type="text" />
+		</div>
+		<div>
+			登录密码：<a id="forget" style="float: right;" href="javascript:void(0);" onclick="return false;">忘记密码</a><br />
+			<input id="loginPassword" type="password" />
+		</div>
+		<div>
+			<a id="login" class="LoginButton" href="javascript:void(0);" onclick="return false;">登录</a>
+			<a id="register" style="float: right;" href="~/Demo/Register" >注册</a>
 		</div>
 	</div>
-	<footer>
-	</footer>
-</body>
-</html>
+</div>
+@section scripts{
+	<script type="text/ecmascript">
+		$(function ()
+		{
+			$("#login").click(function ()
+			{
+				var urlarg = "?N=" + $.base64.encode($("#loginName").val()) + "&P=" + $.base64.encode($("#loginPassword").val());
+			});
+		});
+	</script>
+}

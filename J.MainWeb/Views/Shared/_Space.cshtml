@@ -1,0 +1,36 @@
+﻿<!DOCTYPE html>
+<html class="no-js">
+<head>
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+	<meta charset="utf-8" />
+	<meta name="viewport" content="width=device-width" />
+	<title>@ViewBag.Title</title>
+	@Styles.Render("~/Static/Resources/reset/css")
+	@Styles.Render("~/Static/Resources/jquery-ui/css")
+	@Styles.Render("~/Static/Resources/jquery.layout/css")
+	@Styles.Render("~/Static/Resources/uploadify/css")
+	@Styles.Render("~/Static/Resources/site/css")
+
+	@Scripts.Render("~/Static/Resources/modernizr/js")
+	@Scripts.Render("~/Static/Resources/jquery/js")
+	@Scripts.Render("~/Static/Resources/jquery-ui/js")
+	@Scripts.Render("~/Static/Resources/jquery.layout/js")
+	@Scripts.Render("~/Static/Resources/json2/js")
+	@Scripts.Render("~/Static/Resources/uploadify/js")
+
+	@Scripts.Render("~/Static/extendjs/js")
+
+	@RenderSection("head", required: false)
+</head>
+<body>
+	<header>
+	</header>
+	<div class="body">
+		@RenderBody()
+	</div>
+	<footer>
+
+	</footer>
+	@RenderSection("scripts", required: false)
+</body>
+</html>

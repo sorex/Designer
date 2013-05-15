@@ -1,0 +1,39 @@
+﻿.body {
+}
+
+.register
+{
+	float: left;
+	width:350px;
+}
+
+.register .field
+{
+	width:28%;
+	text-align:right;
+	font-size:18px;
+}
+
+.register .value
+{
+	width:72%;
+}
+
+.register .value input
+{
+	width:250px;
+}
+
+.register .description
+{
+	width:72%;
+	font-size:14px;
+}
+
+.registerImage
+{
+	float: right;
+	height: 300px;
+	width: 645px;
+	border: 1px solid #000000;
+}
