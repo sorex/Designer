@@ -1,45 +1,114 @@
-﻿<div id="body">
-    <section class="featured">
-        <div class="content-wrapper">
-            <hgroup class="title">
-                <h1>Welcome to ASP.NET Web API!</h1>
-                <h2>Modify the code in this template to jump-start your ASP.NET Web API development.</h2>
-            </hgroup>
-            <p>
-                ASP.NET Web API allows you to expose your applications, data and services to the
-                web directly over HTTP.
-            </p>
-            <p>
-                To learn more about ASP.NET Web API visit the
-                <a href="http://go.microsoft.com/fwlink/?LinkID=238195" title="ASP.NET Web API Website">ASP.NET Web API Website</a>.
-                The page features <mark>videos, tutorials, and samples</mark> to help you get the most from ASP.NET Web API.
-                If you have any questions about ASP.NET Web API, visit
-                <a href="http://go.microsoft.com/fwlink/?LinkID=238196" title="ASP.NET Web API Forum">our forums</a>.
-            </p>
-        </div>
-    </section>
-    <section class="content-wrapper main-content clear-fix">
-        <h3>We suggest the following steps:</h3>
-        <ol class="round">
-            <li class="one">
-                <h5>Getting Started</h5>
-                ASP.NET Web API is a framework that makes it easy to build HTTP services that reach
-                a broad range of clients, including browsers and mobile devices. ASP.NET Web API
-                is an ideal platform for building RESTful applications on the .NET Framework.
-                <a href="http://go.microsoft.com/fwlink/?LinkId=245160">Learn more…</a>
-            </li>
-
-            <li class="two">
-                <h5>Add NuGet packages and jump-start your coding</h5>
-                NuGet makes it easy to install and update free libraries and tools.
-                <a href="http://go.microsoft.com/fwlink/?LinkId=245161">Learn more…</a>
-            </li>
-            <li class="three">
-                <h5>Find Web Hosting</h5>
-                You can easily find a web hosting company that offers the right mix of features
-                and price for your applications.
-                <a href="http://go.microsoft.com/fwlink/?LinkId=245164">Learn more…</a>
-            </li>
-        </ol>
-    </section>
+﻿@{
+	ViewBag.Title = "首页";
+}
+@section head{
+	<link rel="stylesheet" href="~/Static/Resources/site/home.css" />
+}
+<div class="line1 ui-helper-clearfix">
+	<div class="imageDiv "></div>
+	<div class="mainDiv">
+		<h1>设计和出售定制T恤</h1>
+		<h1>无需任何成本投入</h1>
+		<ul>
+			<li style="background-image: url('/Static/Resources/site/images/No1_44x44.png')">
+				<h2>不需要任何前期成本，零风险。</h2>
+				<span>设计和上传您的设计，向您的好友推广您的设计，后续工作交给我们。</span>
+			</li>
+			<li style="background-image: url('/Static/Resources/site/images/No2_44x44.png')">
+				<h2>高质量的T恤。</h2>
+				<span>我们采用高质量的T恤和印刷技术进行生产，保障产品质量的优越。</span>
+			</li>
+			<li style="background-image: url('/Static/Resources/site/images/No3_44x44.png')">
+				<h2>后期回报丰厚</h2>
+				<span>您的艺术品，价值由您定，我们只扣除生产成本和打款必须的手续费。</span>
+			</li>
+		</ul>
+		<a class="HomeButton" href="~/Demo/DesignClothes">开始设计</a>
+	</div>
 </div>
+<div class="hl"></div>
+<div class="line2 ui-helper-clearfix">
+	<div class="imageDiv imageDiv1"></div>
+	<div class="contentDiv">
+		<h1>发起一个预购活动</h1>
+		<p>上传您的设计，并定好活动时长，售价等信息。</p>
+	</div>
+	<div class="spaceDiv"></div>
+	<div class="imageDiv imageDiv2"></div>
+	<div class="contentDiv">
+		<h1>推广您的设计</h1>
+		<p>宣传您的设计作品。将预购地址发给有意向的人。</p>
+	</div>
+	<div class="spaceDiv"></div>
+	<div class="imageDiv imageDiv3"></div>
+	<div class="contentDiv">
+		<h1>获得收益</h1>
+		<p>我们来处理生产、运输、收款。您只需要等待收款即可。</p>
+	</div>
+</div>
+<div class="line3 ui-helper-clearfix">
+	<a href="javascript:void(0);" onclick="return false;" class="leftButton"></a>
+	<a href="javascript:void(0);" onclick="return false;" class="rightButton"></a>
+	<div class="listDiv">
+		<div class="listContainDiv">
+			<div class="itemDiv">
+				<div class="imageDiv" style="background-image:url('/Static/Resources/site/images/home/image1_480x360.png')"></div>
+				<div class="infoDiv">
+					<h1>预售标题</h1>
+					<h2>设计师：小A</h2>
+					<div class="DescriptionDiv">
+						<p>这里都是描述。这里都是描述。这里都是描述。这里都是描述。这里都是描述。这里都是描述。</p>
+						<p>这里都是描述。这里都是描述。这里都是描述。这里都是描述。这里都是描述。这里都是描述。</p>
+						<p>这里都是描述。这里都是描述。这里都是描述。这里都是描述。这里都是描述。这里都是描述。</p>
+						<p>这里都是描述。这里都是描述。这里都是描述。这里都是描述。这里都是描述。这里都是描述。</p>
+					</div>
+					<div class="OtherDiv">
+						<div>
+							<span style="font-size: 16px;">售价：￥60.00</span>
+							<span style="float: right;">已销售/预计目标 35/50</span>
+						</div>
+						<div id="progressbar1" style="height: 15px;"></div>
+						<div>
+							活动剩余10小时/活动结束于1天前
+						</div>
+					</div>
+					<div class="LinkDiv">
+						<a href="">查看这个活动 »</a>
+					</div>
+				</div>
+			</div>
+			<div class="itemDiv">B</div>
+			<div class="itemDiv">C</div>
+			<div class="itemDiv">D</div>
+		</div>
+	</div>
+</div>
+<div class="hl"></div>
+
+@section scripts{
+	<script type="text/javascript">
+		$(function ()
+		{
+			$(".leftButton").click(function ()
+			{
+				var now = $(".listDiv").scrollLeft() - 908;
+				$(".listDiv").animate({ scrollLeft: now }, "slow");
+			});
+
+			$(".rightButton").click(function ()
+			{
+				var now = $(".listDiv").scrollLeft() + 908;
+				$(".listDiv").animate({ scrollLeft: now }, "slow");
+			});
+		});
+	</script>
+	<script type="text/javascript">
+		$(function ()
+		{
+			$("#progressbar1").progressbar({ value: 70 });
+			progressbar = $("#progressbar1"),
+			progressbarValue = progressbar.find(".ui-progressbar-value");
+			progressbarValue.css({ "background": '#00FF00' });
+		});
+	</script>
+}

@@ -29,9 +29,16 @@
 			</div>
 			<nav class="main_nav">
 				<ul>
-					<li><a href="javascript:void(0);">登陆</a></li>
-					<li><a href="javascript:void(0);">我的订单</a></li>
-					<li><a href="javascript:void(0);">我的设计</a></li>
+					@if (Session[J.BusinessLogics.Basic.SessionConfig.CurrentUser] == null)
+	 { 
+						<li><a href="javascript:void(0);">登陆</a></li>
+	 }
+	 else
+	 { 
+						<li><a href="javascript:void(0);">我的订单</a></li>
+						<li><a href="javascript:void(0);">我的设计</a></li>
+	 }
+					<li><a href="javascript:void(0);">帮助</a></li>
 				</ul>
 			</nav>
 		</div>
@@ -41,7 +48,6 @@
 		@RenderBody()
 	</div>
 	<footer>
-
 	</footer>
 	@RenderSection("scripts", required: false)
 </body>
