@@ -12,5 +12,10 @@ namespace J.BusinessLogics.Basic
 		/// 当前用户
 		/// </summary>
 		public const string CurrentUser = "CurrentUser";
+
+		/// <summary>
+		/// 验证码
+		/// </summary>
+		public const string SecurityCode = "SecurityCode";
 	}
 }

@@ -243,6 +243,9 @@
     <Content Include="Static\Resources\site\images\No9_44x44.png" />
     <Content Include="Static\Resources\site\images\home\right_button_44x44_default.png" />
     <Content Include="Static\Resources\site\images\home\right_button_44x44_hover.png" />
+    <Content Include="Static\Resources\site\images\register\button_200x75_active.png" />
+    <Content Include="Static\Resources\site\images\register\button_200x75_default.png" />
+    <Content Include="Static\Resources\site\images\register\button_200x75_hover.png" />
     <Content Include="Static\Resources\site\login.css" />
     <Content Include="Static\Resources\site\register.css" />
     <Content Include="Static\Resources\site\site.css" />
@@ -304,6 +307,9 @@
       <Project>{a1c3cc75-74cd-4c9a-ab37-e35693b26f0e}</Project>
       <Name>J.Utility</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Views\Home\Register.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

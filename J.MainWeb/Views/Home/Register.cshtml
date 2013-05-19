@@ -1,0 +1,257 @@
+﻿@{
+	Layout = "~/Views/Shared/_Space.cshtml";
+	ViewBag.Title = "注册";
+}
+
+@section head{
+	<script type="text/javascript" src="~/Static/Resources/_references.js"></script>
+	<link rel="stylesheet" href="~/Static/Resources/site/register.css" />
+	<script type="text/javascript" src="~/Static/Resources/jquery.base64/jquery.base64.min.js"></script>
+}
+<div class="register">
+	<table width="100%">
+		<tr>
+			<td class="field">邮箱：</td>
+			<td class="value">
+				<input id="LoginName" type="text" placeholder="请输入支付宝帐户邮箱" value="" /></td>
+		</tr>
+		<tr>
+			<td></td>
+			<td class="description">请使用<span style="color: #ff0000;">支付宝帐号</span>，我们<span style="color: #ff0000;">给您打款时将使用它</span>。它也是您在本网站的<span style="color: #ff0000;">登录帐户</span>。不可修改，请谨慎填写。</td>
+		</tr>
+		<tr>
+			<td class="field">密码：</td>
+			<td class="value">
+				<input id="Password" type="password" placeholder="请输入本网站的登录密码" value="" /></td>
+		</tr>
+		<tr>
+			<td></td>
+			<td class="description">网站的<span style="color: #ff0000;">登陆密码</span>，<span style="color: #ff0000;">不要使用</span>支付宝密码。
+			</td>
+		</tr>
+		<tr>
+			<td class="field">确认密码：</td>
+			<td class="value">
+				<input id="REPassword" type="password" placeholder="请再次输入本网站的登录密码" value="" />
+			</td>
+		</tr>
+		<tr>
+			<td class="field">昵称：</td>
+			<td class="value">
+				<input id="StageName" type="text" placeholder="您希望在网站内显示的名称" value="" />
+			</td>
+		</tr>
+		<tr>
+			<td></td>
+			<td class="description">请用您常用名称，注册后<span style="color: #ff0000;">暂时不可修改</span>。</td>
+		</tr>
+		<tr>
+			<td class="field">验证码：</td>
+			<td class="value">
+				<input id="SecurityCode" type="text" style="width: 120px;" placeholder="输入验证码" value="" />
+				<img id="SecurityCodeImage" alt="看不清楚，点击更换。" src="~/Home/SecurityCode" style="vertical-align: middle;" />
+			</td>
+		</tr>
+		<tr>
+			<td colspan="2">
+				<a id="Submit" class="RegisterButton" href="javascript:void(0);" onclick="return false;">同意并注册</a></td>
+		</tr>
+	</table>
+</div>
+<div class="errorInfo">
+	<ul>
+		<li id="NotInput" style="display: none;">请输入注册信息。</li>
+		<li id="LoginNameNotEmail" style="display: none;">用户名必须使用Email。</li>
+		<li id="LoginNameUsed" style="display: none;">该用户名已被注册。</li>
+		<li id="PasswordISNull" style="display: none;">请输入密码。</li>
+		<li id="PasswordNotEqual" style="display: none;">两次输入密码不相同。</li>
+		<li id="StageNameUsed" style="display: none;">该昵称已被注册。</li>
+		<li id="SecurityCodeError" style="display: none;">验证码错误。</li>
+	</ul>
+</div>
+<div class="registerImage">
+</div>
+@section scripts{
+	<script type="text/ecmascript">
+		var SecurityCodeNum = 0;
+		var SecurityCodeImageUrl = "@Url.Action("SecurityCode", "Home")";
+		$(function ()
+		{
+			$("#LoginName").blur(function ()
+			{
+				var reg = /^([a-zA-Z0-9]+[_|\_|\.]?)*[a-zA-Z0-9]+@@([a-zA-Z0-9]+[_|\_|\.]?)*[a-zA-Z0-9]+\.[a-zA-Z]{2,3}$/;
+				if (reg.test($("#LoginName").val()))
+				{
+					$("#LoginNameNotEmail").css("display", "none");
+					$.ajax({
+						type: "get",
+						cache: false,
+						url: "@Url.Action("CheckLoginName", "Home")",
+						data: { LoginName: $("#LoginName").val() },
+						success: function (data)
+						{
+							var dataobj = JSON.parse(data);
+							if (dataobj.code > 0)
+							{
+								$("#LoginNameUsed").css("display", "none");
+							}
+							else
+							{
+								$("#LoginNameUsed").css("display", "block");
+							}
+						},
+						error: function (XMLHttpRequest, textStatus, errorThrown)
+						{
+
+						}
+					});
+				}
+				else
+				{
+					$("#LoginNameNotEmail").css("display", "block");
+				}
+			});
+
+			$("#StageName").blur(function ()
+			{
+				$.ajax({
+					type: "get",
+					cache: false,
+					url: "@Url.Action("CheckStageName", "Home")",
+					data: { StageName: $("#StageName").val() },
+					success: function (data)
+					{
+						var dataobj = JSON.parse(data);
+						if (dataobj.code > 0)
+						{
+							$("#StageNameUsed").css("display", "none");
+						}
+						else
+						{
+							$("#StageNameUsed").css("display", "block");
+						}
+					},
+					error: function (XMLHttpRequest, textStatus, errorThrown)
+					{
+
+					}
+				});
+			});
+
+			$("#SecurityCode").blur(function ()
+			{
+				$.ajax({
+					type: "get",
+					cache: false,
+					url: "@Url.Action("CheckSecurityCode", "Home")",
+					data: { SecurityCode: $("#SecurityCode").val() },
+					success: function (data)
+					{
+						var dataobj = JSON.parse(data);
+						if (dataobj.code > 0)
+						{
+							$("#SecurityCodeError").css("display", "none");
+						}
+						else
+						{
+							$("#SecurityCodeError").css("display", "block");
+						}
+					},
+					error: function (XMLHttpRequest, textStatus, errorThrown)
+					{
+
+					}
+				});
+			});
+
+			$(":password").blur(function ()
+			{
+				if ($("#Password").val().length > 0)
+				{
+					$("#PasswordISNull").css("display", "none");
+				}
+				else
+				{
+					$("#PasswordISNull").css("display", "block");
+				}
+
+				if ($("#REPassword").val() == $("#Password").val())
+				{
+					$("#PasswordNotEqual").css("display", "none");
+				}
+				else
+				{
+					$("#PasswordNotEqual").css("display", "block");
+				}
+			});
+
+			$("#SecurityCodeImage").click(function ()
+			{
+				$("#SecurityCodeImage").attr("src", SecurityCodeImageUrl + "?" + (SecurityCodeNum++));
+			});
+
+			$("#Submit").click(function ()
+			{
+				if ($("#LoginName").val().length > 0 && $("#Password").val().length > 0 && $("#StageName").val().length > 0 && $("#SecurityCode").val().length > 0)
+				{
+					$("#NotInput").css("display", "none");
+				}
+				else
+				{
+					$("#NotInput").css("display", "block");
+				}
+
+				if ($(".errorInfo li[display='block']").length == 0)
+				{
+					$.ajax({
+						type: "post",
+						cache: false,
+						url: "@Url.Action("Register", "Home")",
+						data:
+							{
+								LoginName: $.base64.encode($("#LoginName").val()),
+								Password: $.base64.encode($("#Password").val()),
+								StageName: $.base64.encode($("#StageName").val()),
+								SecurityCode: $("#SecurityCode").val()
+							},
+						success: function (data)
+						{
+							var dataobj = JSON.parse(data);
+							if (dataobj.code > 0)
+							{
+								$('<div title="提示"><p>注册成功！关闭窗口后返回首页。</p></div>').dialog({
+									height: 140,
+									resizable: false,
+									modal: true,
+									autoOpen: true,
+									buttons:
+										[
+											{
+												text: "关闭",
+												click: function ()
+												{
+													$(this).dialog("close");
+												}
+											}
+										],
+									close: function (event, ui)
+									{
+										location.href = "~/Home/Index";
+									}
+								});
+							}
+							else
+							{
+								alert("未知错误，请重试！");
+							}
+						},
+						error: function (XMLHttpRequest, textStatus, errorThrown)
+						{
+							alert("服务器连接失败，请重试！");
+						}
+					});
+				}
+			});
+		});
+	</script>
+}
