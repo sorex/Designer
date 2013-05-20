@@ -11,8 +11,8 @@ namespace J.BusinessLogics.Basic
 {
 	public class SecurityCode
 	{
-		private const int CodeLenght = 6;
-		private const int ImageWidth = CodeLenght * 14;
+		private const int CodeLenght = 4;
+		private const int ImageWidth = CodeLenght * 15;
 		private const int ImageHeight = 24;
 
 		public string Code { get; private set; }
