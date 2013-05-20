@@ -64,12 +64,12 @@
 		<li id="NotInput" style="display: none;">请输入注册信息。</li>
 		<li id="LoginNameNotEmail" style="display: none;">用户名必须使用Email。</li>
 		<li id="LoginNameUsed" style="display: none;">该用户名已被注册。</li>
-		<li id="LoginNameLenght" style="display: none;">邮箱不得超过50字节。</li>
+		<li id="LoginNameLenght" style="display: none;">邮箱不得超过50字符。</li>
 		<li id="PasswordISNull" style="display: none;">请输入密码。</li>
 		<li id="PasswordNotEqual" style="display: none;">两次输入密码不相同。</li>
-		<li id="PasswordLenght" style="display: none;">密码必须为4~30字节。</li>
+		<li id="PasswordLenght" style="display: none;">密码必须为4~30字符。</li>
 		<li id="StageNameUsed" style="display: none;">该昵称已被注册。</li>
-		<li id="StageNameLenght" style="display: none;">昵称必须为4~30字节。</li>
+		<li id="StageNameLenght" style="display: none;">昵称必须为4~30字符。</li>
 		<li id="SecurityCodeError" style="display: none;">验证码错误。</li>
 	</ul>
 </div>
@@ -162,28 +162,35 @@
 
 			$("#SecurityCode").blur(function ()
 			{
-				$.ajax({
-					type: "get",
-					cache: false,
-					url: "@Url.Action("CheckSecurityCode", "Home")",
-					data: { SecurityCode: $("#SecurityCode").val() },
-					success: function (data)
-					{
-						var dataobj = JSON.parse(data);
-						if (dataobj.code > 0)
+				if ($("#SecurityCode").val().length == 4)
+				{
+					$.ajax({
+						type: "get",
+						cache: false,
+						url: "@Url.Action("CheckSecurityCode", "Home")",
+						data: { SecurityCode: $("#SecurityCode").val() },
+						success: function (data)
 						{
-							$("#SecurityCodeError").css("display", "none");
-						}
-						else
+							var dataobj = JSON.parse(data);
+							if (dataobj.code > 0)
+							{
+								$("#SecurityCodeError").css("display", "none");
+							}
+							else
+							{
+								$("#SecurityCodeError").css("display", "block");
+							}
+						},
+						error: function (XMLHttpRequest, textStatus, errorThrown)
 						{
-							$("#SecurityCodeError").css("display", "block");
-						}
-					},
-					error: function (XMLHttpRequest, textStatus, errorThrown)
-					{
 
-					}
-				});
+						}
+					});
+				}
+				else
+				{
+					$("#SecurityCodeError").css("display", "block");
+				}
 			});
 
 			$(":password").blur(function ()

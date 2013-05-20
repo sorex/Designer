@@ -4,6 +4,7 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using Newtonsoft.Json;
+using NLog;
 
 using J.Entities;
 using J.BusinessLogics.Basic;
@@ -14,6 +15,8 @@ namespace J.MainWeb.Controllers
 {
 	public class HomeController : Controller
 	{
+		private static Logger logger = LogManager.GetCurrentClassLogger();
+
 		public ActionResult Index()
 		{
 			return View();
@@ -88,16 +91,25 @@ namespace J.MainWeb.Controllers
 			if(!CheckData.IsEmail(Password))
 				return Content(JsonConvert.SerializeObject(new { code = -1, msg = "帐号必须使用邮箱！" }));
 
+			if (Password.Length > 50)
+				return Content(JsonConvert.SerializeObject(new { code = -1, msg = "帐号邮箱不能超过50个字符！" }));
+
+			if (Password.Length > 30 || Password.Length < 4)
+				return Content(JsonConvert.SerializeObject(new { code = -1, msg = "密码必须在4~30个字符！" }));
+
+			if (StageName.Length > 30 || StageName.Length < 4)
+				return Content(JsonConvert.SerializeObject(new { code = -1, msg = "昵称必须在4~30个字符！" }));
+
 			if (!(Session[SessionConfig.SecurityCode] != null && Session[SessionConfig.SecurityCode].ToString() == SecurityCode.Trim().ToLower()))
-				return Content(JsonConvert.SerializeObject(new { code = -2, msg = "验证码输入错误！" }));
+				return Content(JsonConvert.SerializeObject(new { code = -1, msg = "验证码输入错误！" }));
 
 			using (DBEntities db = new DBEntities())
 			{
 				if (db.Users.Count(p => p.LoginName == LoginName.ToLower()) > 0)
-					return Content(JsonConvert.SerializeObject(new { code = -3, msg = "该账户已被注册。" }));
+					return Content(JsonConvert.SerializeObject(new { code = -1, msg = "该账户已被注册。请重试！" }));
 
 				if (db.Users.Count(p => p.StageName == StageName) > 0)
-					return Content(JsonConvert.SerializeObject(new { code = -4, msg = "该昵称已被注册。" }));
+					return Content(JsonConvert.SerializeObject(new { code = -1, msg = "该昵称已被注册。请重试！" }));
 
 				User user = new User() 
 				{ 
@@ -114,10 +126,12 @@ namespace J.MainWeb.Controllers
 				try
 				{
 					db.SaveChanges();
+					Session[SessionConfig.CurrentUser] = user;
 				}
 				catch (Exception e)
 				{
-
+					logger.Debug(e.Message);
+					return Content(JsonConvert.SerializeObject(new { code = -1, msg = "未知错误。请重试！" }));
 				}
 			}
 
