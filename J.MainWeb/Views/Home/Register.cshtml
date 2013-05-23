@@ -1,6 +1,6 @@
 ﻿@{
-	Layout = "~/Views/Shared/_Space.cshtml";
 	ViewBag.Title = "注册";
+	Layout = "~/Views/Shared/_Space.cshtml";
 }
 
 @section head{
@@ -286,7 +286,7 @@
 							}
 							else
 							{
-								alert("未知错误，请重试！");
+								alert(dataobj.msg);
 							}
 						},
 						error: function (XMLHttpRequest, textStatus, errorThrown)

@@ -54,7 +54,7 @@ namespace J.MainWeb.Controllers
 		{
 			using (DBEntities db = new DBEntities())
 			{
-				if(db.Users.Count(p=>p.LoginName == LoginName.ToLower()) == 0)
+				if (db.Users.Count(p => p.LoginName == LoginName.ToLower()) == 0)
 					return Content(JsonConvert.SerializeObject(new { code = 1, msg = "该账户可注册。" }));
 				else
 					return Content(JsonConvert.SerializeObject(new { code = -1, msg = "该账户已被注册。" }));
@@ -80,15 +80,14 @@ namespace J.MainWeb.Controllers
 				return Content(JsonConvert.SerializeObject(new { code = -1, msg = "验证码输入错误。" }));
 		}
 
-
 		[HttpPost]
 		public ActionResult Register(string LoginName, string Password, string StageName, string SecurityCode)
 		{
-			LoginName = Encoding.UTF8.GetString(Convert.FromBase64String(LoginName)).Trim();
+			LoginName = Encoding.UTF8.GetString(Convert.FromBase64String(LoginName)).Trim().ToLower();
 			Password = Encoding.UTF8.GetString(Convert.FromBase64String(Password));
 			StageName = Encoding.UTF8.GetString(Convert.FromBase64String(StageName));
 
-			if(!CheckData.IsEmail(Password))
+			if (!CheckData.IsEmail(Password))
 				return Content(JsonConvert.SerializeObject(new { code = -1, msg = "帐号必须使用邮箱！" }));
 
 			if (Password.Length > 50)
@@ -111,8 +110,8 @@ namespace J.MainWeb.Controllers
 				if (db.Users.Count(p => p.StageName == StageName) > 0)
 					return Content(JsonConvert.SerializeObject(new { code = -1, msg = "该昵称已被注册。请重试！" }));
 
-				User user = new User() 
-				{ 
+				User user = new User()
+				{
 					GUID = Guid.NewGuid().ToString(),
 					LoginName = LoginName,
 					Email = LoginName,
@@ -136,6 +135,37 @@ namespace J.MainWeb.Controllers
 			}
 
 			return Content(JsonConvert.SerializeObject(new { code = 1, msg = "注册成功。" }));
+		}
+		#endregion
+
+		#region 登录
+		public ActionResult Login()
+		{
+			return View();
+		}
+
+		[HttpPost]
+		public ActionResult Login(string LoginName, string Password, string SecurityCode)
+		{
+			LoginName = Encoding.UTF8.GetString(Convert.FromBase64String(LoginName)).Trim().ToLower();
+			Password = Encoding.UTF8.GetString(Convert.FromBase64String(Password));
+
+			if (!(Session[SessionConfig.SecurityCode] != null && Session[SessionConfig.SecurityCode].ToString() == SecurityCode.Trim().ToLower()))
+				return Content(JsonConvert.SerializeObject(new { code = -1, msg = "验证码输入错误！" }));
+
+			Password = new DESEncrypt().DecryptString(Password);
+
+			using (DBEntities db = new DBEntities())
+			{
+				var user = (from u in db.Users
+							where u.LoginName == LoginName && u.Password == Password
+							select u).FirstOrDefault();
+
+				if(user == null)
+					return Content(JsonConvert.SerializeObject(new { code = -1, msg = "帐号或密码错误！" }));
+				else
+					return Content(JsonConvert.SerializeObject(new { code = 1, msg = "登录成功。" }));
+			}
 		}
 		#endregion
 	}
