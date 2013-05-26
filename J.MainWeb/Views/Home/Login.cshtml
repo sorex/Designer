@@ -1,10 +1,110 @@
 ﻿@{
-    ViewBag.Title = "登录";
-    Layout = "~/Views/Shared/_Space.cshtml";
+	ViewBag.Title = "登录";
+	Layout = "~/Views/Shared/_Space.cshtml";
 }
 
 @section head{
 	<script type="text/javascript" src="~/Static/Resources/_references.js"></script>
 	<link rel="stylesheet" href="~/Static/Resources/site/login.css" />
 	<script type="text/javascript" src="~/Static/Resources/jquery.base64/jquery.base64.min.js"></script>
+}
+<div class="loginImage">
+	695x300图片
+</div>
+<div class="login">
+	<div>
+		<div>
+			登录名：<br />
+			<input id="LoginName" type="text" />
+		</div>
+		<div>
+			登录密码：<a id="forget" style="float: right;" href="javascript:void(0);" onclick="return false;">忘记密码</a><br />
+			<input id="Password" type="password" />
+		</div>
+		<div>
+			验证码：<br />
+			<input id="SecurityCode" type="text" style="width: 85px;" placeholder="输入验证码" value="" />
+			<img id="SecurityCodeImage" alt="看不清楚，点击更换。" src="~/Home/SecurityCode" style="vertical-align: middle;" />
+			<a id="ChangeSecurityCodeImage" href="javascript:void(0);" onclick="return false;">换一张</a><br />
+			<div id="SecurityCodeError" style="display: none;">验证码错误。</div>
+		</div>
+		<div>
+			<a id="login" class="LoginButton" href="javascript:void(0);" onclick="return false;">登录</a>
+			<a id="register" style="float: right;" href="~/Home/Register">注册</a>
+		</div>
+	</div>
+</div>
+@section scripts{
+	<script type="text/ecmascript">
+		var SecurityCodeNum = 0;
+		var SecurityCodeImageUrl = "@Url.Action("SecurityCode", "Home")";
+
+		$(function ()
+		{
+			$("#SecurityCode").blur(function ()
+			{
+				if ($("#SecurityCode").val().length == 4)
+				{
+					$.ajax({
+						type: "get",
+						cache: false,
+						url: "@Url.Action("CheckSecurityCode", "Home")",
+						data: { SecurityCode: $("#SecurityCode").val() },
+						success: function (data)
+						{
+							var dataobj = JSON.parse(data);
+							if (dataobj.code > 0)
+							{
+								$("#SecurityCodeError").css("display", "none");
+							}
+							else
+							{
+								$("#SecurityCodeError").css("display", "block");
+							}
+						},
+						error: function (XMLHttpRequest, textStatus, errorThrown)
+						{
+
+						}
+					});
+				}
+				else
+				{
+					$("#SecurityCodeError").css("display", "block");
+				}
+			});
+
+			$("#login").click(function ()
+			{
+				$.ajax({
+					type: "post",
+					cache: false,
+					url: "@Url.Action("Login", "Home")",
+					data:
+						{
+							LoginName: $.base64.encode($("#LoginName").val()),
+							Password: $.base64.encode($("#Password").val()),
+							SecurityCode: $("#SecurityCode").val()
+						},
+					success: function (data)
+					{
+						var dataobj = JSON.parse(data);
+						if (dataobj.code > 0)
+						{
+							$("#LoginNameUsed").css("display", "none");
+							location.href = "@Url.Action("Index", "Home")";
+						}
+						else
+						{
+							$("#LoginNameUsed").css("display", "block");
+						}
+					},
+					error: function (XMLHttpRequest, textStatus, errorThrown)
+					{
+
+					}
+				});
+			});
+		});
+	</script>
 }

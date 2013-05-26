@@ -1,0 +1,22 @@
+﻿.body
+{
+}
+
+	.body .myInfoSide
+	{
+		float: left;
+		width: 80px;
+	}
+
+		.body .myInfoSide .myInfoSideActive
+		{
+			color: #ff4f00;
+		}
+
+	.body .myInfoMain
+	{
+		float: left;
+		min-height: 300px;
+		border-left: 2px solid #000000;
+		padding-left: 12px;
+	}

@@ -171,6 +171,7 @@
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
     <Compile Include="Controllers\DemoController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\MyInfoController.cs" />
     <Compile Include="Controllers\ValuesController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -253,6 +254,7 @@
     <Content Include="Static\Resources\site\images\register\button_200x75_default.png" />
     <Content Include="Static\Resources\site\images\register\button_200x75_hover.png" />
     <Content Include="Static\Resources\site\login.css" />
+    <Content Include="Static\Resources\site\myInfo.css" />
     <Content Include="Static\Resources\site\register.css" />
     <Content Include="Static\Resources\site\site.css" />
     <Content Include="Static\Resources\site\divLayout.js" />
@@ -326,6 +328,7 @@
       <SubType>Designer</SubType>
     </None>
     <Content Include="Views\Home\Login.cshtml" />
+    <Content Include="Views\MyInfo\MyOrders.cshtml" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

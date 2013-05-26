@@ -22,12 +22,7 @@ namespace J.MainWeb.Controllers
 			return View();
 		}
 
-		#region 注册
-		public ActionResult Register()
-		{
-			return View();
-		}
-
+		#region 验证码
 		public ActionResult SecurityCode()
 		{
 			SecurityCode sc = new SecurityCode();
@@ -48,6 +43,21 @@ namespace J.MainWeb.Controllers
 				}
 			}
 			return Content("Error");
+		}
+
+		public ActionResult CheckSecurityCode(string SecurityCode)
+		{
+			if (Session[SessionConfig.SecurityCode] != null && Session[SessionConfig.SecurityCode].ToString() == SecurityCode.Trim().ToLower())
+				return Content(JsonConvert.SerializeObject(new { code = 1, msg = "验证码输入正确。" }));
+			else
+				return Content(JsonConvert.SerializeObject(new { code = -1, msg = "验证码输入错误。" }));
+		}
+		#endregion
+
+		#region 注册
+		public ActionResult Register()
+		{
+			return View();
 		}
 
 		public ActionResult CheckLoginName(string LoginName)
@@ -72,25 +82,16 @@ namespace J.MainWeb.Controllers
 			}
 		}
 
-		public ActionResult CheckSecurityCode(string SecurityCode)
-		{
-			if (Session[SessionConfig.SecurityCode] != null && Session[SessionConfig.SecurityCode].ToString() == SecurityCode.Trim().ToLower())
-				return Content(JsonConvert.SerializeObject(new { code = 1, msg = "验证码输入正确。" }));
-			else
-				return Content(JsonConvert.SerializeObject(new { code = -1, msg = "验证码输入错误。" }));
-		}
-
 		[HttpPost]
 		public ActionResult Register(string LoginName, string Password, string StageName, string SecurityCode)
 		{
 			LoginName = Encoding.UTF8.GetString(Convert.FromBase64String(LoginName)).Trim().ToLower();
 			Password = Encoding.UTF8.GetString(Convert.FromBase64String(Password));
-			StageName = Encoding.UTF8.GetString(Convert.FromBase64String(StageName));
 
-			if (!CheckData.IsEmail(Password))
+			if (!CheckData.IsEmail(LoginName))
 				return Content(JsonConvert.SerializeObject(new { code = -1, msg = "帐号必须使用邮箱！" }));
 
-			if (Password.Length > 50)
+			if (LoginName.Length > 50)
 				return Content(JsonConvert.SerializeObject(new { code = -1, msg = "帐号邮箱不能超过50个字符！" }));
 
 			if (Password.Length > 30 || Password.Length < 4)
@@ -153,7 +154,7 @@ namespace J.MainWeb.Controllers
 			if (!(Session[SessionConfig.SecurityCode] != null && Session[SessionConfig.SecurityCode].ToString() == SecurityCode.Trim().ToLower()))
 				return Content(JsonConvert.SerializeObject(new { code = -1, msg = "验证码输入错误！" }));
 
-			Password = new DESEncrypt().DecryptString(Password);
+			Password = new DESEncrypt().EncryptString(Password);
 
 			using (DBEntities db = new DBEntities())
 			{
@@ -161,10 +162,13 @@ namespace J.MainWeb.Controllers
 							where u.LoginName == LoginName && u.Password == Password
 							select u).FirstOrDefault();
 
-				if(user == null)
+				if (user == null)
 					return Content(JsonConvert.SerializeObject(new { code = -1, msg = "帐号或密码错误！" }));
 				else
+				{
+					Session[SessionConfig.CurrentUser] = user;
 					return Content(JsonConvert.SerializeObject(new { code = 1, msg = "登录成功。" }));
+				}
 			}
 		}
 		#endregion

@@ -50,7 +50,7 @@
 			<td class="value">
 				<input id="SecurityCode" type="text" style="width: 120px;" placeholder="输入验证码" value="" />
 				<img id="SecurityCodeImage" alt="看不清楚，点击更换。" src="~/Home/SecurityCode" style="vertical-align: middle;" />
-				<a id="ChangeSecurityCodeImage" href="javascript:void(0);" onclick="return false;">看不清</a>
+				<a id="ChangeSecurityCodeImage" href="javascript:void(0);" onclick="return false;">换一张</a>
 			</td>
 		</tr>
 		<tr>
@@ -255,7 +255,7 @@
 							{
 								LoginName: $.base64.encode($("#LoginName").val()),
 								Password: $.base64.encode($("#Password").val()),
-								StageName: $.base64.encode($("#StageName").val()),
+								StageName: $("#StageName").val(),
 								SecurityCode: $("#SecurityCode").val()
 							},
 						success: function (data)
@@ -264,7 +264,6 @@
 							if (dataobj.code > 0)
 							{
 								$('<div title="提示"><p>注册成功！关闭窗口后返回首页。</p></div>').dialog({
-									height: 140,
 									resizable: false,
 									modal: true,
 									autoOpen: true,
@@ -280,7 +279,7 @@
 										],
 									close: function (event, ui)
 									{
-										location.href = "~/Home/Index";
+										location.href = "@Url.Action("Index", "Home")";
 									}
 								});
 							}

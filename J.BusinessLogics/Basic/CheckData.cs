@@ -11,8 +11,9 @@ namespace J.BusinessLogics.Basic
 	{
 		public static bool IsEmail(string data)
 		{
-			Regex regex = new Regex("^[//w-]+(//.[//w-]+)*@[//w-]+(//.[//w-]+)+$");
-			return regex.IsMatch(data.Trim());
+			Regex r = new Regex(@"\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*");
+			Match m = r.Match(data);
+			return m.Success;
 		}
 	}
 }
