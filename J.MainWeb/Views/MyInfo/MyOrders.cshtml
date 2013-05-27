@@ -1,5 +1,5 @@
 ﻿@{
-    ViewBag.Title = "MyOrders";
+	ViewBag.Title = "MyOrders";
 }
 
 @section head{
@@ -18,6 +18,39 @@
 <div class="myInfoMain">
 	<div></div>
 	<div>
-		<table></table>
+		<table id="dataTable">
+			<tr class="sep-row">
+				<td colspan="8"></td>
+			</tr>
+			<tr class="item1">
+				<td colspan="8">
+					<input type="checkbox" />订单编号：XXXX-XXXX-XXXX-XXXX-XXXX<span style="margin-left:20px;">成交时间：2013-05-27 22:04</span>
+				</td>
+			</tr>
+			<tr class="item2">
+				<td class="image">
+					<img alt="查看详情" src="~/Static/Resources/site/images/Logo_150x40.png" />
+				</td>
+				<td class="subject">1</td>
+				<td class="price">2</td>
+				<td class="quantity">3</td>
+				<td class="totalPrice">4</td>
+				<td class="orderInfo">5</td>
+				<td class="state">6</td>
+				<td class="action">7</td>
+			</tr>
+		</table>
 	</div>
 </div>
+
+@section scripts{
+	<script type="text/javascript">
+		var Data = { @Html.Raw(ViewBag.Data) };
+
+		$(function ()
+		{
+
+		});
+
+	</script>
+}

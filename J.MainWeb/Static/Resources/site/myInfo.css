@@ -20,3 +20,95 @@
 		border-left: 2px solid #000000;
 		padding-left: 12px;
 	}
+
+		.body .myInfoMain #dataTable
+		{
+			width: 900px;
+		}
+
+			.body .myInfoMain #dataTable .sep-row
+			{
+				height: 7px;
+			}
+
+			.body .myInfoMain #dataTable .item1
+			{
+				border: 1px solid #d4e7ff;
+				background-color: #f3f3f3;
+				color: #404040;
+			}
+
+				.body .myInfoMain #dataTable .item1 td
+				{
+					vertical-align: middle;
+					height: 32px;
+				}
+
+			.body .myInfoMain #dataTable .item2
+			{
+				border: 1px solid #d4e7ff;
+			}
+
+				.body .myInfoMain #dataTable .item2 td
+				{
+					text-align: center;
+					vertical-align: top;
+					padding-bottom: 8px;
+					padding-left: 5px;
+					padding-right: 5px;
+					padding-top: 8px;
+				}
+
+				.body .myInfoMain #dataTable .item2 .image
+				{
+					text-align: left;
+					width: 94px;
+					border-left: 1px solid #d4e7ff;
+				}
+
+					.body .myInfoMain #dataTable .item2 .image img
+					{
+						width: 50px;
+						height: 50px;
+						margin-left: 8px;
+					}
+
+				.body .myInfoMain #dataTable .item2 .subject
+				{
+					text-align: left;
+					width: 336px;
+				}
+
+				.body .myInfoMain #dataTable .item2 .price
+				{
+					width: 80px;
+				}
+
+				.body .myInfoMain #dataTable .item2 .quantity
+				{
+					width: 50px;
+					border-right: 1px solid #d4e7ff;
+				}
+
+				.body .myInfoMain #dataTable .item2 .totalPrice
+				{
+					width: 120px;
+					border-right: 1px solid #d4e7ff;
+				}
+
+				.body .myInfoMain #dataTable .item2 .orderInfo
+				{
+					width: 120px;
+					border-right: 1px solid #d4e7ff;
+				}
+
+				.body .myInfoMain #dataTable .item2 .state
+				{
+					width: 120px;
+					border-right: 1px solid #d4e7ff;
+				}
+
+				.body .myInfoMain #dataTable .item2 .action
+				{
+					width: 100px;
+				}
