@@ -81,8 +81,6 @@ namespace J.MainWeb
 						"~/Static/Resources/extendjs/extendjs*"));
 			#endregion
 			#endregion
-
-
 		}
 	}
 }

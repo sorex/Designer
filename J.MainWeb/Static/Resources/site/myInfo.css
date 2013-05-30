@@ -26,6 +26,47 @@
 			width: 900px;
 		}
 
+		.body .myInfoMain #dataTable th
+		{
+			border-top: 1px solid #000000;
+			border-bottom: 1px solid #000000;
+		}
+
+		.body .myInfoMain #dataTable a,.body .myInfoMain #dataTable span
+		{
+			display: block;
+		}
+
+			.body .myInfoMain #dataTable a
+			{
+				color: #3366cc;
+				font-weight: normal;
+			}
+
+				.body .myInfoMain #dataTable a:link
+				{
+					color: #3366cc;
+					text-decoration: none;
+				}
+
+				.body .myInfoMain #dataTable a:visited
+				{
+					color: #3366cc;
+					text-decoration: underline;
+				}
+
+				.body .myInfoMain #dataTable a:hover
+				{
+					color: #ff6600;
+					text-decoration: underline;
+				}
+
+				.body .myInfoMain #dataTable a:active
+				{
+					color: #ff6600;
+					text-decoration: underline;
+				}
+
 			.body .myInfoMain #dataTable .sep-row
 			{
 				height: 7px;
@@ -76,6 +117,11 @@
 					width: 370px;
 				}
 
+					.body .myInfoMain #dataTable .item2 .subject .orderInfo
+					{
+						color: #808080;
+					}
+
 				.body .myInfoMain #dataTable .item2 .price
 				{
 					width: 80px;
@@ -83,25 +129,20 @@
 
 				.body .myInfoMain #dataTable .item2 .quantity
 				{
-					width: 50px;
+					width: 80px;
 					border-right: 1px solid #d4e7ff;
 				}
 
 				.body .myInfoMain #dataTable .item2 .totalPrice
 				{
-					width: 120px;
+					width: 100px;
 					border-right: 1px solid #d4e7ff;
-				}
-
-				.body .myInfoMain #dataTable .item2 .orderInfo
-				{
-					width: 120px;
-					border-right: 1px solid #d4e7ff;
+					font-weight:bold;
 				}
 
 				.body .myInfoMain #dataTable .item2 .state
 				{
-					width: 120px;
+					width: 100px;
 					border-right: 1px solid #d4e7ff;
 				}
 
