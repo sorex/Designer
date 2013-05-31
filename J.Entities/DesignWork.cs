@@ -12,11 +12,11 @@ namespace J.Entities
     using System;
     using System.Collections.Generic;
     
-    public partial class DesignWork
+    public partial class designwork
     {
-        public DesignWork()
+        public designwork()
         {
-            this.Orders = new HashSet<Order>();
+            this.orders = new HashSet<order>();
         }
     
         public string GUID { get; set; }
@@ -37,8 +37,8 @@ namespace J.Entities
         public Nullable<decimal> SendCost { get; set; }
         public Nullable<System.DateTime> CompletionTime { get; set; }
     
-        public virtual User User { get; set; }
-        public virtual Material Material { get; set; }
-        public virtual ICollection<Order> Orders { get; set; }
+        public virtual user user { get; set; }
+        public virtual material material { get; set; }
+        public virtual ICollection<order> orders { get; set; }
     }
 }

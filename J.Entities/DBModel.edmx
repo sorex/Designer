@@ -4,127 +4,127 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="DBModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2008" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+      <Schema Namespace="DBModel.Store" Alias="Self" Provider="MySql.Data.MySqlClient" ProviderManifestToken="5.1" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityContainer Name="DBModelStoreContainer">
-          <EntitySet Name="Addresses" EntityType="DBModel.Store.Addresses" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="DesignWorks" EntityType="DBModel.Store.DesignWorks" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="MaterialColors" EntityType="DBModel.Store.MaterialColors" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="MaterialPictures" EntityType="DBModel.Store.MaterialPictures" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="MaterialPriceLogs" EntityType="DBModel.Store.MaterialPriceLogs" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="Materials" EntityType="DBModel.Store.Materials" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="MaterialSizes" EntityType="DBModel.Store.MaterialSizes" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="MaterialTypes" EntityType="DBModel.Store.MaterialTypes" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="OrderDetails" EntityType="DBModel.Store.OrderDetails" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="Orders" EntityType="DBModel.Store.Orders" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="SingleLogin" EntityType="DBModel.Store.SingleLogin" store:Type="Tables" Schema="dbo" />
-          <EntitySet Name="Users" EntityType="DBModel.Store.Users" store:Type="Tables" Schema="dbo" />
-          <AssociationSet Name="FK__Addresses__UserI__6D0D32F4" Association="DBModel.Store.FK__Addresses__UserI__6D0D32F4">
-            <End Role="Users" EntitySet="Users" />
-            <End Role="Addresses" EntitySet="Addresses" />
+          <EntitySet Name="addresses" EntityType="DBModel.Store.addresses" store:Type="Tables" Schema="designerdb" />
+          <EntitySet Name="designworks" EntityType="DBModel.Store.designworks" store:Type="Tables" Schema="designerdb" />
+          <EntitySet Name="materialcolors" EntityType="DBModel.Store.materialcolors" store:Type="Tables" Schema="designerdb" />
+          <EntitySet Name="materialpictures" EntityType="DBModel.Store.materialpictures" store:Type="Tables" Schema="designerdb" />
+          <EntitySet Name="materialpricelogs" EntityType="DBModel.Store.materialpricelogs" store:Type="Tables" Schema="designerdb" />
+          <EntitySet Name="materials" EntityType="DBModel.Store.materials" store:Type="Tables" Schema="designerdb" />
+          <EntitySet Name="materialsizes" EntityType="DBModel.Store.materialsizes" store:Type="Tables" Schema="designerdb" />
+          <EntitySet Name="materialtypes" EntityType="DBModel.Store.materialtypes" store:Type="Tables" Schema="designerdb" />
+          <EntitySet Name="orderdetails" EntityType="DBModel.Store.orderdetails" store:Type="Tables" Schema="designerdb" />
+          <EntitySet Name="orders" EntityType="DBModel.Store.orders" store:Type="Tables" Schema="designerdb" />
+          <EntitySet Name="singlelogin" EntityType="DBModel.Store.singlelogin" store:Type="Tables" Schema="designerdb" />
+          <EntitySet Name="users" EntityType="DBModel.Store.users" store:Type="Tables" Schema="designerdb" />
+          <AssociationSet Name="addresses_ibfk_1" Association="DBModel.Store.addresses_ibfk_1">
+            <End Role="users" EntitySet="users" />
+            <End Role="addresses" EntitySet="addresses" />
           </AssociationSet>
-          <AssociationSet Name="FK__DesignWor__Desig__6E01572D" Association="DBModel.Store.FK__DesignWor__Desig__6E01572D">
-            <End Role="Users" EntitySet="Users" />
-            <End Role="DesignWorks" EntitySet="DesignWorks" />
+          <AssociationSet Name="designworks_ibfk_1" Association="DBModel.Store.designworks_ibfk_1">
+            <End Role="users" EntitySet="users" />
+            <End Role="designworks" EntitySet="designworks" />
           </AssociationSet>
-          <AssociationSet Name="FK__DesignWor__Mater__71D1E811" Association="DBModel.Store.FK__DesignWor__Mater__71D1E811">
-            <End Role="Materials" EntitySet="Materials" />
-            <End Role="DesignWorks" EntitySet="DesignWorks" />
+          <AssociationSet Name="designworks_ibfk_2" Association="DBModel.Store.designworks_ibfk_2">
+            <End Role="materials" EntitySet="materials" />
+            <End Role="designworks" EntitySet="designworks" />
           </AssociationSet>
-          <AssociationSet Name="FK__MaterialC__Mater__74AE54BC" Association="DBModel.Store.FK__MaterialC__Mater__74AE54BC">
-            <End Role="Materials" EntitySet="Materials" />
-            <End Role="MaterialColors" EntitySet="MaterialColors" />
+          <AssociationSet Name="materialcolors_ibfk_1" Association="DBModel.Store.materialcolors_ibfk_1">
+            <End Role="materials" EntitySet="materials" />
+            <End Role="materialcolors" EntitySet="materialcolors" />
           </AssociationSet>
-          <AssociationSet Name="FK__MaterialP__Mater__6EF57B66" Association="DBModel.Store.FK__MaterialP__Mater__6EF57B66">
-            <End Role="Materials" EntitySet="Materials" />
-            <End Role="MaterialPriceLogs" EntitySet="MaterialPriceLogs" />
+          <AssociationSet Name="materialpictures_ibfk_1" Association="DBModel.Store.materialpictures_ibfk_1">
+            <End Role="materials" EntitySet="materials" />
+            <End Role="materialpictures" EntitySet="materialpictures" />
           </AssociationSet>
-          <AssociationSet Name="FK__MaterialP__Mater__75A278F5" Association="DBModel.Store.FK__MaterialP__Mater__75A278F5">
-            <End Role="Materials" EntitySet="Materials" />
-            <End Role="MaterialPictures" EntitySet="MaterialPictures" />
+          <AssociationSet Name="materialpricelogs_ibfk_1" Association="DBModel.Store.materialpricelogs_ibfk_1">
+            <End Role="materials" EntitySet="materials" />
+            <End Role="materialpricelogs" EntitySet="materialpricelogs" />
           </AssociationSet>
-          <AssociationSet Name="FK__MaterialS__Mater__76969D2E" Association="DBModel.Store.FK__MaterialS__Mater__76969D2E">
-            <End Role="Materials" EntitySet="Materials" />
-            <End Role="MaterialSizes" EntitySet="MaterialSizes" />
+          <AssociationSet Name="materials_ibfk_1" Association="DBModel.Store.materials_ibfk_1">
+            <End Role="materialtypes" EntitySet="materialtypes" />
+            <End Role="materials" EntitySet="materials" />
           </AssociationSet>
-          <AssociationSet Name="FK__Materials__TypeI__70DDC3D8" Association="DBModel.Store.FK__Materials__TypeI__70DDC3D8">
-            <End Role="MaterialTypes" EntitySet="MaterialTypes" />
-            <End Role="Materials" EntitySet="Materials" />
+          <AssociationSet Name="materialsizes_ibfk_1" Association="DBModel.Store.materialsizes_ibfk_1">
+            <End Role="materials" EntitySet="materials" />
+            <End Role="materialsizes" EntitySet="materialsizes" />
           </AssociationSet>
-          <AssociationSet Name="FK__OrderDeta__Order__72C60C4A" Association="DBModel.Store.FK__OrderDeta__Order__72C60C4A">
-            <End Role="Orders" EntitySet="Orders" />
-            <End Role="OrderDetails" EntitySet="OrderDetails" />
+          <AssociationSet Name="orderdetails_ibfk_1" Association="DBModel.Store.orderdetails_ibfk_1">
+            <End Role="orders" EntitySet="orders" />
+            <End Role="orderdetails" EntitySet="orderdetails" />
           </AssociationSet>
-          <AssociationSet Name="FK__Orders__DesignWo__73BA3083" Association="DBModel.Store.FK__Orders__DesignWo__73BA3083">
-            <End Role="DesignWorks" EntitySet="DesignWorks" />
-            <End Role="Orders" EntitySet="Orders" />
+          <AssociationSet Name="orders_ibfk_1" Association="DBModel.Store.orders_ibfk_1">
+            <End Role="designworks" EntitySet="designworks" />
+            <End Role="orders" EntitySet="orders" />
           </AssociationSet>
-          <AssociationSet Name="FK__Orders__UserID__778AC167" Association="DBModel.Store.FK__Orders__UserID__778AC167">
-            <End Role="Users" EntitySet="Users" />
-            <End Role="Orders" EntitySet="Orders" />
+          <AssociationSet Name="orders_ibfk_2" Association="DBModel.Store.orders_ibfk_2">
+            <End Role="users" EntitySet="users" />
+            <End Role="orders" EntitySet="orders" />
           </AssociationSet>
-          <AssociationSet Name="FK__SingleLog__UserI__6FE99F9F" Association="DBModel.Store.FK__SingleLog__UserI__6FE99F9F">
-            <End Role="Users" EntitySet="Users" />
-            <End Role="SingleLogin" EntitySet="SingleLogin" />
+          <AssociationSet Name="singlelogin_ibfk_1" Association="DBModel.Store.singlelogin_ibfk_1">
+            <End Role="users" EntitySet="users" />
+            <End Role="singlelogin" EntitySet="singlelogin" />
           </AssociationSet>
         </EntityContainer>
-        <EntityType Name="Addresses">
+        <EntityType Name="addresses">
           <Key>
             <PropertyRef Name="GUID" />
           </Key>
-          <Property Name="GUID" Type="nvarchar" Nullable="false" MaxLength="200" />
-          <Property Name="UserID" Type="nvarchar" Nullable="false" MaxLength="200" />
-          <Property Name="Consignee" Type="nvarchar" Nullable="false" MaxLength="200" />
-          <Property Name="Province" Type="nvarchar" Nullable="false" MaxLength="200" />
-          <Property Name="City" Type="nvarchar" Nullable="false" MaxLength="200" />
-          <Property Name="County" Type="nvarchar" Nullable="false" MaxLength="200" />
-          <Property Name="StreetAddress" Type="nvarchar" Nullable="false" MaxLength="1000" />
-          <Property Name="ZipCode" Type="nvarchar" Nullable="false" MaxLength="200" />
-          <Property Name="Mobile" Type="nvarchar" Nullable="false" MaxLength="200" />
-          <Property Name="Phone" Type="nvarchar" Nullable="false" MaxLength="200" />
+          <Property Name="GUID" Type="varchar" Nullable="false" MaxLength="200" />
+          <Property Name="UserID" Type="varchar" Nullable="false" MaxLength="200" />
+          <Property Name="Consignee" Type="varchar" Nullable="false" MaxLength="200" />
+          <Property Name="Province" Type="varchar" Nullable="false" MaxLength="200" />
+          <Property Name="City" Type="varchar" Nullable="false" MaxLength="200" />
+          <Property Name="County" Type="varchar" Nullable="false" MaxLength="200" />
+          <Property Name="StreetAddress" Type="varchar" Nullable="false" />
+          <Property Name="ZipCode" Type="varchar" Nullable="false" MaxLength="200" />
+          <Property Name="Mobile" Type="varchar" Nullable="false" MaxLength="200" />
+          <Property Name="Phone" Type="varchar" Nullable="false" MaxLength="200" />
           <Property Name="IsDefault" Type="bit" Nullable="false" />
         </EntityType>
-        <EntityType Name="DesignWorks">
+        <EntityType Name="designworks">
           <Key>
             <PropertyRef Name="GUID" />
           </Key>
-          <Property Name="GUID" Type="nvarchar" Nullable="false" MaxLength="200" />
-          <Property Name="DesignerID" Type="nvarchar" Nullable="false" MaxLength="200" />
-          <Property Name="MaterialID" Type="nvarchar" Nullable="false" MaxLength="200" />
+          <Property Name="GUID" Type="varchar" Nullable="false" MaxLength="200" />
+          <Property Name="DesignerID" Type="varchar" Nullable="false" MaxLength="200" />
+          <Property Name="MaterialID" Type="varchar" Nullable="false" MaxLength="200" />
           <Property Name="SalesGoal" Type="int" Nullable="false" />
-          <Property Name="BasePrice" Type="decimal" Nullable="false" Scale="8" />
-          <Property Name="SellingPrice" Type="decimal" Nullable="false" Scale="8" />
-          <Property Name="StartTime" Type="datetime2" Nullable="false" />
-          <Property Name="EndTime" Type="datetime2" Nullable="false" />
-          <Property Name="Title" Type="nvarchar" Nullable="false" MaxLength="200" />
-          <Property Name="Description" Type="nvarchar(max)" Nullable="false" />
-          <Property Name="Url" Type="nvarchar" MaxLength="200" />
+          <Property Name="BasePrice" Type="decimal" Nullable="false" Precision="18" Scale="8" />
+          <Property Name="SellingPrice" Type="decimal" Nullable="false" Precision="18" Scale="8" />
+          <Property Name="StartTime" Type="datetime" Nullable="false" />
+          <Property Name="EndTime" Type="datetime" Nullable="false" />
+          <Property Name="Title" Type="varchar" Nullable="false" MaxLength="200" />
+          <Property Name="Description" Type="varchar" Nullable="false" MaxLength="4000" />
+          <Property Name="Url" Type="varchar" MaxLength="200" />
           <Property Name="SalesVolume" Type="int" />
           <Property Name="State" Type="int" Nullable="false" />
-          <Property Name="ProcurementCost" Type="decimal" Scale="8" />
-          <Property Name="ProductionCost" Type="decimal" Scale="8" />
-          <Property Name="SendCost" Type="decimal" Scale="8" />
-          <Property Name="CompletionTime" Type="datetime2" />
+          <Property Name="ProcurementCost" Type="decimal" Precision="18" Scale="8" />
+          <Property Name="ProductionCost" Type="decimal" Precision="18" Scale="8" />
+          <Property Name="SendCost" Type="decimal" Precision="18" Scale="8" />
+          <Property Name="CompletionTime" Type="datetime" />
         </EntityType>
-        <EntityType Name="MaterialColors">
+        <EntityType Name="materialcolors">
           <Key>
             <PropertyRef Name="GUID" />
           </Key>
-          <Property Name="GUID" Type="nvarchar" Nullable="false" MaxLength="200" />
-          <Property Name="MaterialID" Type="nvarchar" Nullable="false" MaxLength="200" />
-          <Property Name="ColorName" Type="nvarchar" Nullable="false" MaxLength="200" />
-          <Property Name="ColorCode" Type="nvarchar" Nullable="false" MaxLength="200" />
+          <Property Name="GUID" Type="varchar" Nullable="false" MaxLength="200" />
+          <Property Name="MaterialID" Type="varchar" Nullable="false" MaxLength="200" />
+          <Property Name="ColorName" Type="varchar" Nullable="false" MaxLength="200" />
+          <Property Name="ColorCode" Type="varchar" Nullable="false" MaxLength="200" />
           <Property Name="IsDefault" Type="bit" Nullable="false" />
           <Property Name="State" Type="int" Nullable="false" />
         </EntityType>
-        <EntityType Name="MaterialPictures">
+        <EntityType Name="materialpictures">
           <Key>
             <PropertyRef Name="GUID" />
           </Key>
-          <Property Name="GUID" Type="nvarchar" Nullable="false" MaxLength="200" />
-          <Property Name="MaterialID" Type="nvarchar" Nullable="false" MaxLength="200" />
-          <Property Name="Name" Type="nvarchar" Nullable="false" MaxLength="200" />
+          <Property Name="GUID" Type="varchar" Nullable="false" MaxLength="200" />
+          <Property Name="MaterialID" Type="varchar" Nullable="false" MaxLength="200" />
+          <Property Name="Name" Type="varchar" Nullable="false" MaxLength="200" />
           <Property Name="Index" Type="int" Nullable="false" />
-          <Property Name="FileName" Type="nvarchar" Nullable="false" MaxLength="200" />
+          <Property Name="FileName" Type="varchar" Nullable="false" MaxLength="200" />
           <Property Name="Width" Type="int" Nullable="false" />
           <Property Name="Height" Type="int" Nullable="false" />
           <Property Name="Top" Type="int" Nullable="false" />
@@ -132,246 +132,246 @@
           <Property Name="UploadWidth" Type="int" Nullable="false" />
           <Property Name="UploadHeight" Type="int" Nullable="false" />
         </EntityType>
-        <EntityType Name="MaterialPriceLogs">
+        <EntityType Name="materialpricelogs">
           <Key>
             <PropertyRef Name="GUID" />
           </Key>
-          <Property Name="GUID" Type="nvarchar" Nullable="false" MaxLength="200" />
-          <Property Name="MaterialID" Type="nvarchar" Nullable="false" MaxLength="200" />
-          <Property Name="Price" Type="decimal" Nullable="false" Scale="8" />
-          <Property Name="CreateTime" Type="datetime2" Nullable="false" />
+          <Property Name="GUID" Type="varchar" Nullable="false" MaxLength="200" />
+          <Property Name="MaterialID" Type="varchar" Nullable="false" MaxLength="200" />
+          <Property Name="Price" Type="decimal" Nullable="false" Precision="18" Scale="8" />
+          <Property Name="CreateTime" Type="datetime" Nullable="false" />
         </EntityType>
-        <EntityType Name="Materials">
+        <EntityType Name="materials">
           <Key>
             <PropertyRef Name="GUID" />
           </Key>
-          <Property Name="GUID" Type="nvarchar" Nullable="false" MaxLength="200" />
-          <Property Name="TypeID" Type="nvarchar" Nullable="false" MaxLength="200" />
-          <Property Name="Name" Type="nvarchar" Nullable="false" MaxLength="200" />
-          <Property Name="Price" Type="decimal" Nullable="false" Scale="8" />
-          <Property Name="Description" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="GUID" Type="varchar" Nullable="false" MaxLength="200" />
+          <Property Name="TypeID" Type="varchar" Nullable="false" MaxLength="200" />
+          <Property Name="Name" Type="varchar" Nullable="false" MaxLength="200" />
+          <Property Name="Price" Type="decimal" Nullable="false" Precision="18" Scale="8" />
+          <Property Name="Description" Type="varchar" Nullable="false" MaxLength="4000" />
           <Property Name="PictureNumber" Type="int" Nullable="false" />
           <Property Name="State" Type="int" Nullable="false" />
         </EntityType>
-        <EntityType Name="MaterialSizes">
+        <EntityType Name="materialsizes">
           <Key>
             <PropertyRef Name="GUID" />
           </Key>
-          <Property Name="GUID" Type="nvarchar" Nullable="false" MaxLength="200" />
-          <Property Name="MaterialID" Type="nvarchar" Nullable="false" MaxLength="200" />
-          <Property Name="SizeName" Type="nvarchar" Nullable="false" MaxLength="200" />
+          <Property Name="GUID" Type="varchar" Nullable="false" MaxLength="200" />
+          <Property Name="MaterialID" Type="varchar" Nullable="false" MaxLength="200" />
+          <Property Name="SizeName" Type="varchar" Nullable="false" MaxLength="200" />
           <Property Name="IsDefault" Type="bit" Nullable="false" />
         </EntityType>
-        <EntityType Name="MaterialTypes">
+        <EntityType Name="materialtypes">
           <Key>
             <PropertyRef Name="GUID" />
           </Key>
-          <Property Name="GUID" Type="nvarchar" Nullable="false" MaxLength="200" />
-          <Property Name="ParentID" Type="nvarchar" MaxLength="200" />
+          <Property Name="GUID" Type="varchar" Nullable="false" MaxLength="200" />
+          <Property Name="ParentID" Type="varchar" MaxLength="200" />
           <Property Name="Index" Type="int" Nullable="false" />
-          <Property Name="Name" Type="nvarchar" Nullable="false" MaxLength="200" />
+          <Property Name="Name" Type="varchar" Nullable="false" MaxLength="200" />
           <Property Name="IsLeafNode" Type="bit" Nullable="false" />
           <Property Name="State" Type="int" Nullable="false" />
         </EntityType>
-        <EntityType Name="OrderDetails">
+        <EntityType Name="orderdetails">
           <Key>
             <PropertyRef Name="GUID" />
           </Key>
-          <Property Name="GUID" Type="nvarchar" Nullable="false" MaxLength="200" />
-          <Property Name="OrderID" Type="nvarchar" Nullable="false" MaxLength="200" />
-          <Property Name="Size" Type="nvarchar" MaxLength="200" />
+          <Property Name="GUID" Type="varchar" Nullable="false" MaxLength="200" />
+          <Property Name="OrderID" Type="varchar" Nullable="false" MaxLength="200" />
+          <Property Name="Size" Type="varchar" MaxLength="200" />
           <Property Name="Number" Type="int" Nullable="false" />
         </EntityType>
-        <EntityType Name="Orders">
+        <EntityType Name="orders">
           <Key>
             <PropertyRef Name="GUID" />
           </Key>
-          <Property Name="GUID" Type="nvarchar" Nullable="false" MaxLength="200" />
-          <Property Name="UserID" Type="nvarchar" Nullable="false" MaxLength="200" />
-          <Property Name="DesignWorkID" Type="nvarchar" Nullable="false" MaxLength="200" />
+          <Property Name="GUID" Type="varchar" Nullable="false" MaxLength="200" />
+          <Property Name="UserID" Type="varchar" Nullable="false" MaxLength="200" />
+          <Property Name="DesignWorkID" Type="varchar" Nullable="false" MaxLength="200" />
           <Property Name="State" Type="int" Nullable="false" />
           <Property Name="RefundState" Type="int" />
-          <Property Name="WaitBuyerPayTime" Type="datetime2" />
-          <Property Name="WaitSellerSendGoodsTime" Type="datetime2" />
-          <Property Name="WaitBuyerConfirmGoodsTime" Type="datetime2" />
-          <Property Name="TradeFinishedTime" Type="datetime2" />
-          <Property Name="TradeClosedTime" Type="datetime2" />
-          <Property Name="RefundWaitSellerAgreeTime" Type="datetime2" />
-          <Property Name="RefundSellerFefuseBuyerTime" Type="datetime2" />
-          <Property Name="RefundSuccessTime" Type="datetime2" />
-          <Property Name="RefundClosedTime" Type="datetime2" />
-          <Property Name="Subject" Type="nvarchar" Nullable="false" MaxLength="200" />
-          <Property Name="Price" Type="decimal" Nullable="false" Scale="8" />
+          <Property Name="WaitBuyerPayTime" Type="datetime" />
+          <Property Name="WaitSellerSendGoodsTime" Type="datetime" />
+          <Property Name="WaitBuyerConfirmGoodsTime" Type="datetime" />
+          <Property Name="TradeFinishedTime" Type="datetime" />
+          <Property Name="TradeClosedTime" Type="datetime" />
+          <Property Name="RefundWaitSellerAgreeTime" Type="datetime" />
+          <Property Name="RefundSellerFefuseBuyerTime" Type="datetime" />
+          <Property Name="RefundSuccessTime" Type="datetime" />
+          <Property Name="RefundClosedTime" Type="datetime" />
+          <Property Name="Subject" Type="varchar" Nullable="false" MaxLength="200" />
+          <Property Name="Price" Type="decimal" Nullable="false" Precision="18" Scale="8" />
           <Property Name="Quantity" Type="int" />
-          <Property Name="Body" Type="nvarchar(max)" />
-          <Property Name="Consignee" Type="nvarchar" MaxLength="200" />
-          <Property Name="Address" Type="nvarchar" MaxLength="200" />
-          <Property Name="ZipCode" Type="nvarchar" MaxLength="200" />
-          <Property Name="Mobile" Type="nvarchar" MaxLength="200" />
-          <Property Name="Phone" Type="nvarchar" MaxLength="200" />
+          <Property Name="Body" Type="varchar" MaxLength="4000" />
+          <Property Name="Consignee" Type="varchar" MaxLength="200" />
+          <Property Name="Address" Type="varchar" MaxLength="200" />
+          <Property Name="ZipCode" Type="varchar" MaxLength="200" />
+          <Property Name="Mobile" Type="varchar" MaxLength="200" />
+          <Property Name="Phone" Type="varchar" MaxLength="200" />
           <Property Name="PayType" Type="int" />
-          <Property Name="PayOrderNo" Type="nvarchar" MaxLength="200" />
+          <Property Name="PayOrderNo" Type="varchar" MaxLength="200" />
         </EntityType>
-        <EntityType Name="SingleLogin">
+        <EntityType Name="singlelogin">
           <Key>
             <PropertyRef Name="GUID" />
           </Key>
-          <Property Name="GUID" Type="nvarchar" Nullable="false" MaxLength="200" />
-          <Property Name="UserID" Type="nvarchar" Nullable="false" MaxLength="200" />
-          <Property Name="LoginTime" Type="datetime2" Nullable="false" />
+          <Property Name="GUID" Type="varchar" Nullable="false" MaxLength="200" />
+          <Property Name="UserID" Type="varchar" Nullable="false" MaxLength="200" />
+          <Property Name="LoginTime" Type="datetime" Nullable="false" />
         </EntityType>
-        <EntityType Name="Users">
+        <EntityType Name="users">
           <Key>
             <PropertyRef Name="GUID" />
           </Key>
-          <Property Name="GUID" Type="nvarchar" Nullable="false" MaxLength="200" />
-          <Property Name="LoginName" Type="nvarchar" Nullable="false" MaxLength="200" />
-          <Property Name="Email" Type="nvarchar" Nullable="false" MaxLength="200" />
-          <Property Name="Password" Type="nvarchar" Nullable="false" MaxLength="200" />
-          <Property Name="StageName" Type="nvarchar" Nullable="false" MaxLength="200" />
-          <Property Name="CreateTime" Type="datetime2" Nullable="false" />
+          <Property Name="GUID" Type="varchar" Nullable="false" MaxLength="200" />
+          <Property Name="LoginName" Type="varchar" Nullable="false" MaxLength="200" />
+          <Property Name="Email" Type="varchar" Nullable="false" MaxLength="200" />
+          <Property Name="Password" Type="varchar" Nullable="false" MaxLength="200" />
+          <Property Name="StageName" Type="varchar" Nullable="false" MaxLength="200" />
+          <Property Name="CreateTime" Type="datetime" Nullable="false" />
           <Property Name="State" Type="int" Nullable="false" />
         </EntityType>
-        <Association Name="FK__Addresses__UserI__6D0D32F4">
-          <End Role="Users" Type="DBModel.Store.Users" Multiplicity="1" />
-          <End Role="Addresses" Type="DBModel.Store.Addresses" Multiplicity="*" />
+        <Association Name="addresses_ibfk_1">
+          <End Role="users" Type="DBModel.Store.users" Multiplicity="1" />
+          <End Role="addresses" Type="DBModel.Store.addresses" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Users">
+            <Principal Role="users">
               <PropertyRef Name="GUID" />
             </Principal>
-            <Dependent Role="Addresses">
+            <Dependent Role="addresses">
               <PropertyRef Name="UserID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__DesignWor__Desig__6E01572D">
-          <End Role="Users" Type="DBModel.Store.Users" Multiplicity="1" />
-          <End Role="DesignWorks" Type="DBModel.Store.DesignWorks" Multiplicity="*" />
+        <Association Name="designworks_ibfk_1">
+          <End Role="users" Type="DBModel.Store.users" Multiplicity="1" />
+          <End Role="designworks" Type="DBModel.Store.designworks" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Users">
+            <Principal Role="users">
               <PropertyRef Name="GUID" />
             </Principal>
-            <Dependent Role="DesignWorks">
+            <Dependent Role="designworks">
               <PropertyRef Name="DesignerID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__DesignWor__Mater__71D1E811">
-          <End Role="Materials" Type="DBModel.Store.Materials" Multiplicity="1" />
-          <End Role="DesignWorks" Type="DBModel.Store.DesignWorks" Multiplicity="*" />
+        <Association Name="designworks_ibfk_2">
+          <End Role="materials" Type="DBModel.Store.materials" Multiplicity="1" />
+          <End Role="designworks" Type="DBModel.Store.designworks" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Materials">
+            <Principal Role="materials">
               <PropertyRef Name="GUID" />
             </Principal>
-            <Dependent Role="DesignWorks">
+            <Dependent Role="designworks">
               <PropertyRef Name="MaterialID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__MaterialC__Mater__74AE54BC">
-          <End Role="Materials" Type="DBModel.Store.Materials" Multiplicity="1" />
-          <End Role="MaterialColors" Type="DBModel.Store.MaterialColors" Multiplicity="*" />
+        <Association Name="materialcolors_ibfk_1">
+          <End Role="materials" Type="DBModel.Store.materials" Multiplicity="1" />
+          <End Role="materialcolors" Type="DBModel.Store.materialcolors" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Materials">
+            <Principal Role="materials">
               <PropertyRef Name="GUID" />
             </Principal>
-            <Dependent Role="MaterialColors">
+            <Dependent Role="materialcolors">
               <PropertyRef Name="MaterialID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__MaterialP__Mater__6EF57B66">
-          <End Role="Materials" Type="DBModel.Store.Materials" Multiplicity="1" />
-          <End Role="MaterialPriceLogs" Type="DBModel.Store.MaterialPriceLogs" Multiplicity="*" />
+        <Association Name="materialpictures_ibfk_1">
+          <End Role="materials" Type="DBModel.Store.materials" Multiplicity="1" />
+          <End Role="materialpictures" Type="DBModel.Store.materialpictures" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Materials">
+            <Principal Role="materials">
               <PropertyRef Name="GUID" />
             </Principal>
-            <Dependent Role="MaterialPriceLogs">
+            <Dependent Role="materialpictures">
               <PropertyRef Name="MaterialID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__MaterialP__Mater__75A278F5">
-          <End Role="Materials" Type="DBModel.Store.Materials" Multiplicity="1" />
-          <End Role="MaterialPictures" Type="DBModel.Store.MaterialPictures" Multiplicity="*" />
+        <Association Name="materialpricelogs_ibfk_1">
+          <End Role="materials" Type="DBModel.Store.materials" Multiplicity="1" />
+          <End Role="materialpricelogs" Type="DBModel.Store.materialpricelogs" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Materials">
+            <Principal Role="materials">
               <PropertyRef Name="GUID" />
             </Principal>
-            <Dependent Role="MaterialPictures">
+            <Dependent Role="materialpricelogs">
               <PropertyRef Name="MaterialID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__MaterialS__Mater__76969D2E">
-          <End Role="Materials" Type="DBModel.Store.Materials" Multiplicity="1" />
-          <End Role="MaterialSizes" Type="DBModel.Store.MaterialSizes" Multiplicity="*" />
+        <Association Name="materials_ibfk_1">
+          <End Role="materialtypes" Type="DBModel.Store.materialtypes" Multiplicity="1" />
+          <End Role="materials" Type="DBModel.Store.materials" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Materials">
+            <Principal Role="materialtypes">
               <PropertyRef Name="GUID" />
             </Principal>
-            <Dependent Role="MaterialSizes">
-              <PropertyRef Name="MaterialID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__Materials__TypeI__70DDC3D8">
-          <End Role="MaterialTypes" Type="DBModel.Store.MaterialTypes" Multiplicity="1" />
-          <End Role="Materials" Type="DBModel.Store.Materials" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="MaterialTypes">
-              <PropertyRef Name="GUID" />
-            </Principal>
-            <Dependent Role="Materials">
+            <Dependent Role="materials">
               <PropertyRef Name="TypeID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__OrderDeta__Order__72C60C4A">
-          <End Role="Orders" Type="DBModel.Store.Orders" Multiplicity="1" />
-          <End Role="OrderDetails" Type="DBModel.Store.OrderDetails" Multiplicity="*" />
+        <Association Name="materialsizes_ibfk_1">
+          <End Role="materials" Type="DBModel.Store.materials" Multiplicity="1" />
+          <End Role="materialsizes" Type="DBModel.Store.materialsizes" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Orders">
+            <Principal Role="materials">
               <PropertyRef Name="GUID" />
             </Principal>
-            <Dependent Role="OrderDetails">
+            <Dependent Role="materialsizes">
+              <PropertyRef Name="MaterialID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="orderdetails_ibfk_1">
+          <End Role="orders" Type="DBModel.Store.orders" Multiplicity="1" />
+          <End Role="orderdetails" Type="DBModel.Store.orderdetails" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="orders">
+              <PropertyRef Name="GUID" />
+            </Principal>
+            <Dependent Role="orderdetails">
               <PropertyRef Name="OrderID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Orders__DesignWo__73BA3083">
-          <End Role="DesignWorks" Type="DBModel.Store.DesignWorks" Multiplicity="1" />
-          <End Role="Orders" Type="DBModel.Store.Orders" Multiplicity="*" />
+        <Association Name="orders_ibfk_1">
+          <End Role="designworks" Type="DBModel.Store.designworks" Multiplicity="1" />
+          <End Role="orders" Type="DBModel.Store.orders" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="DesignWorks">
+            <Principal Role="designworks">
               <PropertyRef Name="GUID" />
             </Principal>
-            <Dependent Role="Orders">
+            <Dependent Role="orders">
               <PropertyRef Name="DesignWorkID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Orders__UserID__778AC167">
-          <End Role="Users" Type="DBModel.Store.Users" Multiplicity="1" />
-          <End Role="Orders" Type="DBModel.Store.Orders" Multiplicity="*" />
+        <Association Name="orders_ibfk_2">
+          <End Role="users" Type="DBModel.Store.users" Multiplicity="1" />
+          <End Role="orders" Type="DBModel.Store.orders" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Users">
+            <Principal Role="users">
               <PropertyRef Name="GUID" />
             </Principal>
-            <Dependent Role="Orders">
+            <Dependent Role="orders">
               <PropertyRef Name="UserID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__SingleLog__UserI__6FE99F9F">
-          <End Role="Users" Type="DBModel.Store.Users" Multiplicity="1" />
-          <End Role="SingleLogin" Type="DBModel.Store.SingleLogin" Multiplicity="*" />
+        <Association Name="singlelogin_ibfk_1">
+          <End Role="users" Type="DBModel.Store.users" Multiplicity="1" />
+          <End Role="singlelogin" Type="DBModel.Store.singlelogin" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Users">
+            <Principal Role="users">
               <PropertyRef Name="GUID" />
             </Principal>
-            <Dependent Role="SingleLogin">
+            <Dependent Role="singlelogin">
               <PropertyRef Name="UserID" />
             </Dependent>
           </ReferentialConstraint>
@@ -382,396 +382,396 @@
     <edmx:ConceptualModels>
       <Schema Namespace="DBModel" Alias="Self" p1:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:p1="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
         <EntityContainer Name="DBEntities" p1:LazyLoadingEnabled="true">
-          <EntitySet Name="Addresses" EntityType="DBModel.Address" />
-          <EntitySet Name="DesignWorks" EntityType="DBModel.DesignWork" />
-          <EntitySet Name="MaterialColors" EntityType="DBModel.MaterialColor" />
-          <EntitySet Name="MaterialPictures" EntityType="DBModel.MaterialPicture" />
-          <EntitySet Name="MaterialPriceLogs" EntityType="DBModel.MaterialPriceLog" />
-          <EntitySet Name="Materials" EntityType="DBModel.Material" />
-          <EntitySet Name="MaterialSizes" EntityType="DBModel.MaterialSize" />
-          <EntitySet Name="MaterialTypes" EntityType="DBModel.MaterialType" />
-          <EntitySet Name="OrderDetails" EntityType="DBModel.OrderDetail" />
-          <EntitySet Name="Orders" EntityType="DBModel.Order" />
-          <EntitySet Name="SingleLogins" EntityType="DBModel.SingleLogin" />
-          <EntitySet Name="Users" EntityType="DBModel.User" />
-          <AssociationSet Name="FK__Addresses__UserI__6D0D32F4" Association="DBModel.FK__Addresses__UserI__6D0D32F4">
-            <End Role="Users" EntitySet="Users" />
-            <End Role="Addresses" EntitySet="Addresses" />
+          <EntitySet Name="addresses" EntityType="DBModel.address" />
+          <EntitySet Name="designworks" EntityType="DBModel.designwork" />
+          <EntitySet Name="materialcolors" EntityType="DBModel.materialcolor" />
+          <EntitySet Name="materialpictures" EntityType="DBModel.materialpicture" />
+          <EntitySet Name="materialpricelogs" EntityType="DBModel.materialpricelog" />
+          <EntitySet Name="materials" EntityType="DBModel.material" />
+          <EntitySet Name="materialsizes" EntityType="DBModel.materialsize" />
+          <EntitySet Name="materialtypes" EntityType="DBModel.materialtype" />
+          <EntitySet Name="orderdetails" EntityType="DBModel.orderdetail" />
+          <EntitySet Name="orders" EntityType="DBModel.order" />
+          <EntitySet Name="singlelogins" EntityType="DBModel.singlelogin" />
+          <EntitySet Name="users" EntityType="DBModel.user" />
+          <AssociationSet Name="addresses_ibfk_1" Association="DBModel.addresses_ibfk_1">
+            <End Role="users" EntitySet="users" />
+            <End Role="addresses" EntitySet="addresses" />
           </AssociationSet>
-          <AssociationSet Name="FK__DesignWor__Desig__6E01572D" Association="DBModel.FK__DesignWor__Desig__6E01572D">
-            <End Role="Users" EntitySet="Users" />
-            <End Role="DesignWorks" EntitySet="DesignWorks" />
+          <AssociationSet Name="designworks_ibfk_1" Association="DBModel.designworks_ibfk_1">
+            <End Role="users" EntitySet="users" />
+            <End Role="designworks" EntitySet="designworks" />
           </AssociationSet>
-          <AssociationSet Name="FK__DesignWor__Mater__71D1E811" Association="DBModel.FK__DesignWor__Mater__71D1E811">
-            <End Role="Materials" EntitySet="Materials" />
-            <End Role="DesignWorks" EntitySet="DesignWorks" />
+          <AssociationSet Name="designworks_ibfk_2" Association="DBModel.designworks_ibfk_2">
+            <End Role="materials" EntitySet="materials" />
+            <End Role="designworks" EntitySet="designworks" />
           </AssociationSet>
-          <AssociationSet Name="FK__Orders__DesignWo__73BA3083" Association="DBModel.FK__Orders__DesignWo__73BA3083">
-            <End Role="DesignWorks" EntitySet="DesignWorks" />
-            <End Role="Orders" EntitySet="Orders" />
+          <AssociationSet Name="orders_ibfk_1" Association="DBModel.orders_ibfk_1">
+            <End Role="designworks" EntitySet="designworks" />
+            <End Role="orders" EntitySet="orders" />
           </AssociationSet>
-          <AssociationSet Name="FK__MaterialC__Mater__74AE54BC" Association="DBModel.FK__MaterialC__Mater__74AE54BC">
-            <End Role="Materials" EntitySet="Materials" />
-            <End Role="MaterialColors" EntitySet="MaterialColors" />
+          <AssociationSet Name="materialcolors_ibfk_1" Association="DBModel.materialcolors_ibfk_1">
+            <End Role="materials" EntitySet="materials" />
+            <End Role="materialcolors" EntitySet="materialcolors" />
           </AssociationSet>
-          <AssociationSet Name="FK__MaterialP__Mater__75A278F5" Association="DBModel.FK__MaterialP__Mater__75A278F5">
-            <End Role="Materials" EntitySet="Materials" />
-            <End Role="MaterialPictures" EntitySet="MaterialPictures" />
+          <AssociationSet Name="materialpictures_ibfk_1" Association="DBModel.materialpictures_ibfk_1">
+            <End Role="materials" EntitySet="materials" />
+            <End Role="materialpictures" EntitySet="materialpictures" />
           </AssociationSet>
-          <AssociationSet Name="FK__MaterialP__Mater__6EF57B66" Association="DBModel.FK__MaterialP__Mater__6EF57B66">
-            <End Role="Materials" EntitySet="Materials" />
-            <End Role="MaterialPriceLogs" EntitySet="MaterialPriceLogs" />
+          <AssociationSet Name="materialpricelogs_ibfk_1" Association="DBModel.materialpricelogs_ibfk_1">
+            <End Role="materials" EntitySet="materials" />
+            <End Role="materialpricelogs" EntitySet="materialpricelogs" />
           </AssociationSet>
-          <AssociationSet Name="FK__MaterialS__Mater__76969D2E" Association="DBModel.FK__MaterialS__Mater__76969D2E">
-            <End Role="Materials" EntitySet="Materials" />
-            <End Role="MaterialSizes" EntitySet="MaterialSizes" />
+          <AssociationSet Name="materials_ibfk_1" Association="DBModel.materials_ibfk_1">
+            <End Role="materialtypes" EntitySet="materialtypes" />
+            <End Role="materials" EntitySet="materials" />
           </AssociationSet>
-          <AssociationSet Name="FK__Materials__TypeI__70DDC3D8" Association="DBModel.FK__Materials__TypeI__70DDC3D8">
-            <End Role="MaterialTypes" EntitySet="MaterialTypes" />
-            <End Role="Materials" EntitySet="Materials" />
+          <AssociationSet Name="materialsizes_ibfk_1" Association="DBModel.materialsizes_ibfk_1">
+            <End Role="materials" EntitySet="materials" />
+            <End Role="materialsizes" EntitySet="materialsizes" />
           </AssociationSet>
-          <AssociationSet Name="FK__OrderDeta__Order__72C60C4A" Association="DBModel.FK__OrderDeta__Order__72C60C4A">
-            <End Role="Orders" EntitySet="Orders" />
-            <End Role="OrderDetails" EntitySet="OrderDetails" />
+          <AssociationSet Name="orderdetails_ibfk_1" Association="DBModel.orderdetails_ibfk_1">
+            <End Role="orders" EntitySet="orders" />
+            <End Role="orderdetails" EntitySet="orderdetails" />
           </AssociationSet>
-          <AssociationSet Name="FK__Orders__UserID__778AC167" Association="DBModel.FK__Orders__UserID__778AC167">
-            <End Role="Users" EntitySet="Users" />
-            <End Role="Orders" EntitySet="Orders" />
+          <AssociationSet Name="orders_ibfk_2" Association="DBModel.orders_ibfk_2">
+            <End Role="users" EntitySet="users" />
+            <End Role="orders" EntitySet="orders" />
           </AssociationSet>
-          <AssociationSet Name="FK__SingleLog__UserI__6FE99F9F" Association="DBModel.FK__SingleLog__UserI__6FE99F9F">
-            <End Role="Users" EntitySet="Users" />
-            <End Role="SingleLogin" EntitySet="SingleLogins" />
+          <AssociationSet Name="singlelogin_ibfk_1" Association="DBModel.singlelogin_ibfk_1">
+            <End Role="users" EntitySet="users" />
+            <End Role="singlelogin" EntitySet="singlelogins" />
           </AssociationSet>
         </EntityContainer>
-        <EntityType Name="Address">
+        <EntityType Name="address">
           <Key>
             <PropertyRef Name="GUID" />
           </Key>
-          <Property Name="GUID" Type="String" Nullable="false" MaxLength="200" Unicode="true" FixedLength="false" />
-          <Property Name="UserID" Type="String" Nullable="false" MaxLength="200" Unicode="true" FixedLength="false" />
-          <Property Name="Consignee" Type="String" Nullable="false" MaxLength="200" Unicode="true" FixedLength="false" />
-          <Property Name="Province" Type="String" Nullable="false" MaxLength="200" Unicode="true" FixedLength="false" />
-          <Property Name="City" Type="String" Nullable="false" MaxLength="200" Unicode="true" FixedLength="false" />
-          <Property Name="County" Type="String" Nullable="false" MaxLength="200" Unicode="true" FixedLength="false" />
-          <Property Name="StreetAddress" Type="String" Nullable="false" MaxLength="1000" Unicode="true" FixedLength="false" />
-          <Property Name="ZipCode" Type="String" Nullable="false" MaxLength="200" Unicode="true" FixedLength="false" />
-          <Property Name="Mobile" Type="String" Nullable="false" MaxLength="200" Unicode="true" FixedLength="false" />
-          <Property Name="Phone" Type="String" Nullable="false" MaxLength="200" Unicode="true" FixedLength="false" />
+          <Property Name="GUID" Type="String" Nullable="false" MaxLength="200" Unicode="false" FixedLength="false" />
+          <Property Name="UserID" Type="String" Nullable="false" MaxLength="200" Unicode="false" FixedLength="false" />
+          <Property Name="Consignee" Type="String" Nullable="false" MaxLength="200" Unicode="false" FixedLength="false" />
+          <Property Name="Province" Type="String" Nullable="false" MaxLength="200" Unicode="false" FixedLength="false" />
+          <Property Name="City" Type="String" Nullable="false" MaxLength="200" Unicode="false" FixedLength="false" />
+          <Property Name="County" Type="String" Nullable="false" MaxLength="200" Unicode="false" FixedLength="false" />
+          <Property Name="StreetAddress" Type="String" Nullable="false" MaxLength="1000" Unicode="false" FixedLength="false" />
+          <Property Name="ZipCode" Type="String" Nullable="false" MaxLength="200" Unicode="false" FixedLength="false" />
+          <Property Name="Mobile" Type="String" Nullable="false" MaxLength="200" Unicode="false" FixedLength="false" />
+          <Property Name="Phone" Type="String" Nullable="false" MaxLength="200" Unicode="false" FixedLength="false" />
           <Property Name="IsDefault" Type="Boolean" Nullable="false" />
-          <NavigationProperty Name="User" Relationship="DBModel.FK__Addresses__UserI__6D0D32F4" FromRole="Addresses" ToRole="Users" />
+          <NavigationProperty Name="user" Relationship="DBModel.addresses_ibfk_1" FromRole="addresses" ToRole="users" />
         </EntityType>
-        <EntityType Name="DesignWork">
+        <EntityType Name="designwork">
           <Key>
             <PropertyRef Name="GUID" />
           </Key>
-          <Property Name="GUID" Type="String" Nullable="false" MaxLength="200" Unicode="true" FixedLength="false" />
-          <Property Name="DesignerID" Type="String" Nullable="false" MaxLength="200" Unicode="true" FixedLength="false" />
-          <Property Name="MaterialID" Type="String" Nullable="false" MaxLength="200" Unicode="true" FixedLength="false" />
+          <Property Name="GUID" Type="String" Nullable="false" MaxLength="200" Unicode="false" FixedLength="false" />
+          <Property Name="DesignerID" Type="String" Nullable="false" MaxLength="200" Unicode="false" FixedLength="false" />
+          <Property Name="MaterialID" Type="String" Nullable="false" MaxLength="200" Unicode="false" FixedLength="false" />
           <Property Name="SalesGoal" Type="Int32" Nullable="false" />
-          <Property Name="BasePrice" Type="Decimal" Nullable="false" Precision="18" Scale="8" />
-          <Property Name="SellingPrice" Type="Decimal" Nullable="false" Precision="18" Scale="8" />
-          <Property Name="StartTime" Type="DateTime" Nullable="false" Precision="7" />
-          <Property Name="EndTime" Type="DateTime" Nullable="false" Precision="7" />
-          <Property Name="Title" Type="String" Nullable="false" MaxLength="200" Unicode="true" FixedLength="false" />
-          <Property Name="Description" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
-          <Property Name="Url" Type="String" MaxLength="200" Unicode="true" FixedLength="false" />
+          <Property Name="BasePrice" Type="Decimal" Nullable="false" />
+          <Property Name="SellingPrice" Type="Decimal" Nullable="false" />
+          <Property Name="StartTime" Type="DateTime" Nullable="false" />
+          <Property Name="EndTime" Type="DateTime" Nullable="false" />
+          <Property Name="Title" Type="String" Nullable="false" MaxLength="200" Unicode="false" FixedLength="false" />
+          <Property Name="Description" Type="String" Nullable="false" MaxLength="4000" Unicode="false" FixedLength="false" />
+          <Property Name="Url" Type="String" MaxLength="200" Unicode="false" FixedLength="false" />
           <Property Name="SalesVolume" Type="Int32" />
           <Property Name="State" Type="Int32" Nullable="false" />
-          <Property Name="ProcurementCost" Type="Decimal" Precision="18" Scale="8" />
-          <Property Name="ProductionCost" Type="Decimal" Precision="18" Scale="8" />
-          <Property Name="SendCost" Type="Decimal" Precision="18" Scale="8" />
-          <Property Name="CompletionTime" Type="DateTime" Precision="7" />
-          <NavigationProperty Name="User" Relationship="DBModel.FK__DesignWor__Desig__6E01572D" FromRole="DesignWorks" ToRole="Users" />
-          <NavigationProperty Name="Material" Relationship="DBModel.FK__DesignWor__Mater__71D1E811" FromRole="DesignWorks" ToRole="Materials" />
-          <NavigationProperty Name="Orders" Relationship="DBModel.FK__Orders__DesignWo__73BA3083" FromRole="DesignWorks" ToRole="Orders" />
+          <Property Name="ProcurementCost" Type="Decimal" />
+          <Property Name="ProductionCost" Type="Decimal" />
+          <Property Name="SendCost" Type="Decimal" />
+          <Property Name="CompletionTime" Type="DateTime" />
+          <NavigationProperty Name="user" Relationship="DBModel.designworks_ibfk_1" FromRole="designworks" ToRole="users" />
+          <NavigationProperty Name="material" Relationship="DBModel.designworks_ibfk_2" FromRole="designworks" ToRole="materials" />
+          <NavigationProperty Name="orders" Relationship="DBModel.orders_ibfk_1" FromRole="designworks" ToRole="orders" />
         </EntityType>
-        <EntityType Name="MaterialColor">
+        <EntityType Name="materialcolor">
           <Key>
             <PropertyRef Name="GUID" />
           </Key>
-          <Property Name="GUID" Type="String" Nullable="false" MaxLength="200" Unicode="true" FixedLength="false" />
-          <Property Name="MaterialID" Type="String" Nullable="false" MaxLength="200" Unicode="true" FixedLength="false" />
-          <Property Name="ColorName" Type="String" Nullable="false" MaxLength="200" Unicode="true" FixedLength="false" />
-          <Property Name="ColorCode" Type="String" Nullable="false" MaxLength="200" Unicode="true" FixedLength="false" />
+          <Property Name="GUID" Type="String" Nullable="false" MaxLength="200" Unicode="false" FixedLength="false" />
+          <Property Name="MaterialID" Type="String" Nullable="false" MaxLength="200" Unicode="false" FixedLength="false" />
+          <Property Name="ColorName" Type="String" Nullable="false" MaxLength="200" Unicode="false" FixedLength="false" />
+          <Property Name="ColorCode" Type="String" Nullable="false" MaxLength="200" Unicode="false" FixedLength="false" />
           <Property Name="IsDefault" Type="Boolean" Nullable="false" />
           <Property Name="State" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Material" Relationship="DBModel.FK__MaterialC__Mater__74AE54BC" FromRole="MaterialColors" ToRole="Materials" />
+          <NavigationProperty Name="material" Relationship="DBModel.materialcolors_ibfk_1" FromRole="materialcolors" ToRole="materials" />
         </EntityType>
-        <EntityType Name="MaterialPicture">
+        <EntityType Name="materialpicture">
           <Key>
             <PropertyRef Name="GUID" />
           </Key>
-          <Property Name="GUID" Type="String" Nullable="false" MaxLength="200" Unicode="true" FixedLength="false" />
-          <Property Name="MaterialID" Type="String" Nullable="false" MaxLength="200" Unicode="true" FixedLength="false" />
-          <Property Name="Name" Type="String" Nullable="false" MaxLength="200" Unicode="true" FixedLength="false" />
+          <Property Name="GUID" Type="String" Nullable="false" MaxLength="200" Unicode="false" FixedLength="false" />
+          <Property Name="MaterialID" Type="String" Nullable="false" MaxLength="200" Unicode="false" FixedLength="false" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="200" Unicode="false" FixedLength="false" />
           <Property Name="Index" Type="Int32" Nullable="false" />
-          <Property Name="FileName" Type="String" Nullable="false" MaxLength="200" Unicode="true" FixedLength="false" />
+          <Property Name="FileName" Type="String" Nullable="false" MaxLength="200" Unicode="false" FixedLength="false" />
           <Property Name="Width" Type="Int32" Nullable="false" />
           <Property Name="Height" Type="Int32" Nullable="false" />
           <Property Name="Top" Type="Int32" Nullable="false" />
           <Property Name="Left" Type="Int32" Nullable="false" />
           <Property Name="UploadWidth" Type="Int32" Nullable="false" />
           <Property Name="UploadHeight" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Material" Relationship="DBModel.FK__MaterialP__Mater__75A278F5" FromRole="MaterialPictures" ToRole="Materials" />
+          <NavigationProperty Name="material" Relationship="DBModel.materialpictures_ibfk_1" FromRole="materialpictures" ToRole="materials" />
         </EntityType>
-        <EntityType Name="MaterialPriceLog">
+        <EntityType Name="materialpricelog">
           <Key>
             <PropertyRef Name="GUID" />
           </Key>
-          <Property Name="GUID" Type="String" Nullable="false" MaxLength="200" Unicode="true" FixedLength="false" />
-          <Property Name="MaterialID" Type="String" Nullable="false" MaxLength="200" Unicode="true" FixedLength="false" />
-          <Property Name="Price" Type="Decimal" Nullable="false" Precision="18" Scale="8" />
-          <Property Name="CreateTime" Type="DateTime" Nullable="false" Precision="7" />
-          <NavigationProperty Name="Material" Relationship="DBModel.FK__MaterialP__Mater__6EF57B66" FromRole="MaterialPriceLogs" ToRole="Materials" />
+          <Property Name="GUID" Type="String" Nullable="false" MaxLength="200" Unicode="false" FixedLength="false" />
+          <Property Name="MaterialID" Type="String" Nullable="false" MaxLength="200" Unicode="false" FixedLength="false" />
+          <Property Name="Price" Type="Decimal" Nullable="false" />
+          <Property Name="CreateTime" Type="DateTime" Nullable="false" />
+          <NavigationProperty Name="material" Relationship="DBModel.materialpricelogs_ibfk_1" FromRole="materialpricelogs" ToRole="materials" />
         </EntityType>
-        <EntityType Name="Material">
+        <EntityType Name="material">
           <Key>
             <PropertyRef Name="GUID" />
           </Key>
-          <Property Name="GUID" Type="String" Nullable="false" MaxLength="200" Unicode="true" FixedLength="false" />
-          <Property Name="TypeID" Type="String" Nullable="false" MaxLength="200" Unicode="true" FixedLength="false" />
-          <Property Name="Name" Type="String" Nullable="false" MaxLength="200" Unicode="true" FixedLength="false" />
-          <Property Name="Price" Type="Decimal" Nullable="false" Precision="18" Scale="8" />
-          <Property Name="Description" Type="String" Nullable="false" MaxLength="Max" Unicode="true" FixedLength="false" />
+          <Property Name="GUID" Type="String" Nullable="false" MaxLength="200" Unicode="false" FixedLength="false" />
+          <Property Name="TypeID" Type="String" Nullable="false" MaxLength="200" Unicode="false" FixedLength="false" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="200" Unicode="false" FixedLength="false" />
+          <Property Name="Price" Type="Decimal" Nullable="false" />
+          <Property Name="Description" Type="String" Nullable="false" MaxLength="4000" Unicode="false" FixedLength="false" />
           <Property Name="PictureNumber" Type="Int32" Nullable="false" />
           <Property Name="State" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="DesignWorks" Relationship="DBModel.FK__DesignWor__Mater__71D1E811" FromRole="Materials" ToRole="DesignWorks" />
-          <NavigationProperty Name="MaterialColors" Relationship="DBModel.FK__MaterialC__Mater__74AE54BC" FromRole="Materials" ToRole="MaterialColors" />
-          <NavigationProperty Name="MaterialPictures" Relationship="DBModel.FK__MaterialP__Mater__75A278F5" FromRole="Materials" ToRole="MaterialPictures" />
-          <NavigationProperty Name="MaterialPriceLogs" Relationship="DBModel.FK__MaterialP__Mater__6EF57B66" FromRole="Materials" ToRole="MaterialPriceLogs" />
-          <NavigationProperty Name="MaterialSizes" Relationship="DBModel.FK__MaterialS__Mater__76969D2E" FromRole="Materials" ToRole="MaterialSizes" />
-          <NavigationProperty Name="MaterialType" Relationship="DBModel.FK__Materials__TypeI__70DDC3D8" FromRole="Materials" ToRole="MaterialTypes" />
+          <NavigationProperty Name="designworks" Relationship="DBModel.designworks_ibfk_2" FromRole="materials" ToRole="designworks" />
+          <NavigationProperty Name="materialcolors" Relationship="DBModel.materialcolors_ibfk_1" FromRole="materials" ToRole="materialcolors" />
+          <NavigationProperty Name="materialpictures" Relationship="DBModel.materialpictures_ibfk_1" FromRole="materials" ToRole="materialpictures" />
+          <NavigationProperty Name="materialpricelogs" Relationship="DBModel.materialpricelogs_ibfk_1" FromRole="materials" ToRole="materialpricelogs" />
+          <NavigationProperty Name="materialtype" Relationship="DBModel.materials_ibfk_1" FromRole="materials" ToRole="materialtypes" />
+          <NavigationProperty Name="materialsizes" Relationship="DBModel.materialsizes_ibfk_1" FromRole="materials" ToRole="materialsizes" />
         </EntityType>
-        <EntityType Name="MaterialSize">
+        <EntityType Name="materialsize">
           <Key>
             <PropertyRef Name="GUID" />
           </Key>
-          <Property Name="GUID" Type="String" Nullable="false" MaxLength="200" Unicode="true" FixedLength="false" />
-          <Property Name="MaterialID" Type="String" Nullable="false" MaxLength="200" Unicode="true" FixedLength="false" />
-          <Property Name="SizeName" Type="String" Nullable="false" MaxLength="200" Unicode="true" FixedLength="false" />
+          <Property Name="GUID" Type="String" Nullable="false" MaxLength="200" Unicode="false" FixedLength="false" />
+          <Property Name="MaterialID" Type="String" Nullable="false" MaxLength="200" Unicode="false" FixedLength="false" />
+          <Property Name="SizeName" Type="String" Nullable="false" MaxLength="200" Unicode="false" FixedLength="false" />
           <Property Name="IsDefault" Type="Boolean" Nullable="false" />
-          <NavigationProperty Name="Material" Relationship="DBModel.FK__MaterialS__Mater__76969D2E" FromRole="MaterialSizes" ToRole="Materials" />
+          <NavigationProperty Name="material" Relationship="DBModel.materialsizes_ibfk_1" FromRole="materialsizes" ToRole="materials" />
         </EntityType>
-        <EntityType Name="MaterialType">
+        <EntityType Name="materialtype">
           <Key>
             <PropertyRef Name="GUID" />
           </Key>
-          <Property Name="GUID" Type="String" Nullable="false" MaxLength="200" Unicode="true" FixedLength="false" />
-          <Property Name="ParentID" Type="String" MaxLength="200" Unicode="true" FixedLength="false" />
+          <Property Name="GUID" Type="String" Nullable="false" MaxLength="200" Unicode="false" FixedLength="false" />
+          <Property Name="ParentID" Type="String" MaxLength="200" Unicode="false" FixedLength="false" />
           <Property Name="Index" Type="Int32" Nullable="false" />
-          <Property Name="Name" Type="String" Nullable="false" MaxLength="200" Unicode="true" FixedLength="false" />
+          <Property Name="Name" Type="String" Nullable="false" MaxLength="200" Unicode="false" FixedLength="false" />
           <Property Name="IsLeafNode" Type="Boolean" Nullable="false" />
           <Property Name="State" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Materials" Relationship="DBModel.FK__Materials__TypeI__70DDC3D8" FromRole="MaterialTypes" ToRole="Materials" />
+          <NavigationProperty Name="materials" Relationship="DBModel.materials_ibfk_1" FromRole="materialtypes" ToRole="materials" />
         </EntityType>
-        <EntityType Name="OrderDetail">
+        <EntityType Name="orderdetail">
           <Key>
             <PropertyRef Name="GUID" />
           </Key>
-          <Property Name="GUID" Type="String" Nullable="false" MaxLength="200" Unicode="true" FixedLength="false" />
-          <Property Name="OrderID" Type="String" Nullable="false" MaxLength="200" Unicode="true" FixedLength="false" />
-          <Property Name="Size" Type="String" MaxLength="200" Unicode="true" FixedLength="false" />
+          <Property Name="GUID" Type="String" Nullable="false" MaxLength="200" Unicode="false" FixedLength="false" />
+          <Property Name="OrderID" Type="String" Nullable="false" MaxLength="200" Unicode="false" FixedLength="false" />
+          <Property Name="Size" Type="String" MaxLength="200" Unicode="false" FixedLength="false" />
           <Property Name="Number" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Order" Relationship="DBModel.FK__OrderDeta__Order__72C60C4A" FromRole="OrderDetails" ToRole="Orders" />
+          <NavigationProperty Name="order" Relationship="DBModel.orderdetails_ibfk_1" FromRole="orderdetails" ToRole="orders" />
         </EntityType>
-        <EntityType Name="Order">
+        <EntityType Name="order">
           <Key>
             <PropertyRef Name="GUID" />
           </Key>
-          <Property Name="GUID" Type="String" Nullable="false" MaxLength="200" Unicode="true" FixedLength="false" />
-          <Property Name="UserID" Type="String" Nullable="false" MaxLength="200" Unicode="true" FixedLength="false" />
-          <Property Name="DesignWorkID" Type="String" Nullable="false" MaxLength="200" Unicode="true" FixedLength="false" />
+          <Property Name="GUID" Type="String" Nullable="false" MaxLength="200" Unicode="false" FixedLength="false" />
+          <Property Name="UserID" Type="String" Nullable="false" MaxLength="200" Unicode="false" FixedLength="false" />
+          <Property Name="DesignWorkID" Type="String" Nullable="false" MaxLength="200" Unicode="false" FixedLength="false" />
           <Property Name="State" Type="Int32" Nullable="false" />
           <Property Name="RefundState" Type="Int32" />
-          <Property Name="WaitBuyerPayTime" Type="DateTime" Precision="7" />
-          <Property Name="WaitSellerSendGoodsTime" Type="DateTime" Precision="7" />
-          <Property Name="WaitBuyerConfirmGoodsTime" Type="DateTime" Precision="7" />
-          <Property Name="TradeFinishedTime" Type="DateTime" Precision="7" />
-          <Property Name="TradeClosedTime" Type="DateTime" Precision="7" />
-          <Property Name="RefundWaitSellerAgreeTime" Type="DateTime" Precision="7" />
-          <Property Name="RefundSellerFefuseBuyerTime" Type="DateTime" Precision="7" />
-          <Property Name="RefundSuccessTime" Type="DateTime" Precision="7" />
-          <Property Name="RefundClosedTime" Type="DateTime" Precision="7" />
-          <Property Name="Subject" Type="String" Nullable="false" MaxLength="200" Unicode="true" FixedLength="false" />
-          <Property Name="Price" Type="Decimal" Nullable="false" Precision="18" Scale="8" />
+          <Property Name="WaitBuyerPayTime" Type="DateTime" />
+          <Property Name="WaitSellerSendGoodsTime" Type="DateTime" />
+          <Property Name="WaitBuyerConfirmGoodsTime" Type="DateTime" />
+          <Property Name="TradeFinishedTime" Type="DateTime" />
+          <Property Name="TradeClosedTime" Type="DateTime" />
+          <Property Name="RefundWaitSellerAgreeTime" Type="DateTime" />
+          <Property Name="RefundSellerFefuseBuyerTime" Type="DateTime" />
+          <Property Name="RefundSuccessTime" Type="DateTime" />
+          <Property Name="RefundClosedTime" Type="DateTime" />
+          <Property Name="Subject" Type="String" Nullable="false" MaxLength="200" Unicode="false" FixedLength="false" />
+          <Property Name="Price" Type="Decimal" Nullable="false" />
           <Property Name="Quantity" Type="Int32" />
-          <Property Name="Body" Type="String" MaxLength="Max" Unicode="true" FixedLength="false" />
-          <Property Name="Consignee" Type="String" MaxLength="200" Unicode="true" FixedLength="false" />
-          <Property Name="Address" Type="String" MaxLength="200" Unicode="true" FixedLength="false" />
-          <Property Name="ZipCode" Type="String" MaxLength="200" Unicode="true" FixedLength="false" />
-          <Property Name="Mobile" Type="String" MaxLength="200" Unicode="true" FixedLength="false" />
-          <Property Name="Phone" Type="String" MaxLength="200" Unicode="true" FixedLength="false" />
+          <Property Name="Body" Type="String" MaxLength="4000" Unicode="false" FixedLength="false" />
+          <Property Name="Consignee" Type="String" MaxLength="200" Unicode="false" FixedLength="false" />
+          <Property Name="Address" Type="String" MaxLength="200" Unicode="false" FixedLength="false" />
+          <Property Name="ZipCode" Type="String" MaxLength="200" Unicode="false" FixedLength="false" />
+          <Property Name="Mobile" Type="String" MaxLength="200" Unicode="false" FixedLength="false" />
+          <Property Name="Phone" Type="String" MaxLength="200" Unicode="false" FixedLength="false" />
           <Property Name="PayType" Type="Int32" />
-          <Property Name="PayOrderNo" Type="String" MaxLength="200" Unicode="true" FixedLength="false" />
-          <NavigationProperty Name="DesignWork" Relationship="DBModel.FK__Orders__DesignWo__73BA3083" FromRole="Orders" ToRole="DesignWorks" />
-          <NavigationProperty Name="OrderDetails" Relationship="DBModel.FK__OrderDeta__Order__72C60C4A" FromRole="Orders" ToRole="OrderDetails" />
-          <NavigationProperty Name="User" Relationship="DBModel.FK__Orders__UserID__778AC167" FromRole="Orders" ToRole="Users" />
+          <Property Name="PayOrderNo" Type="String" MaxLength="200" Unicode="false" FixedLength="false" />
+          <NavigationProperty Name="designwork" Relationship="DBModel.orders_ibfk_1" FromRole="orders" ToRole="designworks" />
+          <NavigationProperty Name="orderdetails" Relationship="DBModel.orderdetails_ibfk_1" FromRole="orders" ToRole="orderdetails" />
+          <NavigationProperty Name="user" Relationship="DBModel.orders_ibfk_2" FromRole="orders" ToRole="users" />
         </EntityType>
-        <EntityType Name="SingleLogin">
+        <EntityType Name="singlelogin">
           <Key>
             <PropertyRef Name="GUID" />
           </Key>
-          <Property Name="GUID" Type="String" Nullable="false" MaxLength="200" Unicode="true" FixedLength="false" />
-          <Property Name="UserID" Type="String" Nullable="false" MaxLength="200" Unicode="true" FixedLength="false" />
-          <Property Name="LoginTime" Type="DateTime" Nullable="false" Precision="7" />
-          <NavigationProperty Name="User" Relationship="DBModel.FK__SingleLog__UserI__6FE99F9F" FromRole="SingleLogin" ToRole="Users" />
+          <Property Name="GUID" Type="String" Nullable="false" MaxLength="200" Unicode="false" FixedLength="false" />
+          <Property Name="UserID" Type="String" Nullable="false" MaxLength="200" Unicode="false" FixedLength="false" />
+          <Property Name="LoginTime" Type="DateTime" Nullable="false" />
+          <NavigationProperty Name="user" Relationship="DBModel.singlelogin_ibfk_1" FromRole="singlelogin" ToRole="users" />
         </EntityType>
-        <EntityType Name="User">
+        <EntityType Name="user">
           <Key>
             <PropertyRef Name="GUID" />
           </Key>
-          <Property Name="GUID" Type="String" Nullable="false" MaxLength="200" Unicode="true" FixedLength="false" />
-          <Property Name="LoginName" Type="String" Nullable="false" MaxLength="200" Unicode="true" FixedLength="false" />
-          <Property Name="Email" Type="String" Nullable="false" MaxLength="200" Unicode="true" FixedLength="false" />
-          <Property Name="Password" Type="String" Nullable="false" MaxLength="200" Unicode="true" FixedLength="false" />
-          <Property Name="StageName" Type="String" Nullable="false" MaxLength="200" Unicode="true" FixedLength="false" />
-          <Property Name="CreateTime" Type="DateTime" Nullable="false" Precision="7" />
+          <Property Name="GUID" Type="String" Nullable="false" MaxLength="200" Unicode="false" FixedLength="false" />
+          <Property Name="LoginName" Type="String" Nullable="false" MaxLength="200" Unicode="false" FixedLength="false" />
+          <Property Name="Email" Type="String" Nullable="false" MaxLength="200" Unicode="false" FixedLength="false" />
+          <Property Name="Password" Type="String" Nullable="false" MaxLength="200" Unicode="false" FixedLength="false" />
+          <Property Name="StageName" Type="String" Nullable="false" MaxLength="200" Unicode="false" FixedLength="false" />
+          <Property Name="CreateTime" Type="DateTime" Nullable="false" />
           <Property Name="State" Type="Int32" Nullable="false" />
-          <NavigationProperty Name="Addresses" Relationship="DBModel.FK__Addresses__UserI__6D0D32F4" FromRole="Users" ToRole="Addresses" />
-          <NavigationProperty Name="DesignWorks" Relationship="DBModel.FK__DesignWor__Desig__6E01572D" FromRole="Users" ToRole="DesignWorks" />
-          <NavigationProperty Name="Orders" Relationship="DBModel.FK__Orders__UserID__778AC167" FromRole="Users" ToRole="Orders" />
-          <NavigationProperty Name="SingleLogins" Relationship="DBModel.FK__SingleLog__UserI__6FE99F9F" FromRole="Users" ToRole="SingleLogin" />
+          <NavigationProperty Name="addresses" Relationship="DBModel.addresses_ibfk_1" FromRole="users" ToRole="addresses" />
+          <NavigationProperty Name="designworks" Relationship="DBModel.designworks_ibfk_1" FromRole="users" ToRole="designworks" />
+          <NavigationProperty Name="orders" Relationship="DBModel.orders_ibfk_2" FromRole="users" ToRole="orders" />
+          <NavigationProperty Name="singlelogins" Relationship="DBModel.singlelogin_ibfk_1" FromRole="users" ToRole="singlelogin" />
         </EntityType>
-        <Association Name="FK__Addresses__UserI__6D0D32F4">
-          <End Role="Users" Type="DBModel.User" Multiplicity="1" />
-          <End Role="Addresses" Type="DBModel.Address" Multiplicity="*" />
+        <Association Name="addresses_ibfk_1">
+          <End Role="users" Type="DBModel.user" Multiplicity="1" />
+          <End Role="addresses" Type="DBModel.address" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Users">
+            <Principal Role="users">
               <PropertyRef Name="GUID" />
             </Principal>
-            <Dependent Role="Addresses">
+            <Dependent Role="addresses">
               <PropertyRef Name="UserID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__DesignWor__Desig__6E01572D">
-          <End Role="Users" Type="DBModel.User" Multiplicity="1" />
-          <End Role="DesignWorks" Type="DBModel.DesignWork" Multiplicity="*" />
+        <Association Name="designworks_ibfk_1">
+          <End Role="users" Type="DBModel.user" Multiplicity="1" />
+          <End Role="designworks" Type="DBModel.designwork" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Users">
+            <Principal Role="users">
               <PropertyRef Name="GUID" />
             </Principal>
-            <Dependent Role="DesignWorks">
+            <Dependent Role="designworks">
               <PropertyRef Name="DesignerID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__DesignWor__Mater__71D1E811">
-          <End Role="Materials" Type="DBModel.Material" Multiplicity="1" />
-          <End Role="DesignWorks" Type="DBModel.DesignWork" Multiplicity="*" />
+        <Association Name="designworks_ibfk_2">
+          <End Role="materials" Type="DBModel.material" Multiplicity="1" />
+          <End Role="designworks" Type="DBModel.designwork" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Materials">
+            <Principal Role="materials">
               <PropertyRef Name="GUID" />
             </Principal>
-            <Dependent Role="DesignWorks">
+            <Dependent Role="designworks">
               <PropertyRef Name="MaterialID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Orders__DesignWo__73BA3083">
-          <End Role="DesignWorks" Type="DBModel.DesignWork" Multiplicity="1" />
-          <End Role="Orders" Type="DBModel.Order" Multiplicity="*" />
+        <Association Name="orders_ibfk_1">
+          <End Role="designworks" Type="DBModel.designwork" Multiplicity="1" />
+          <End Role="orders" Type="DBModel.order" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="DesignWorks">
+            <Principal Role="designworks">
               <PropertyRef Name="GUID" />
             </Principal>
-            <Dependent Role="Orders">
+            <Dependent Role="orders">
               <PropertyRef Name="DesignWorkID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__MaterialC__Mater__74AE54BC">
-          <End Role="Materials" Type="DBModel.Material" Multiplicity="1" />
-          <End Role="MaterialColors" Type="DBModel.MaterialColor" Multiplicity="*" />
+        <Association Name="materialcolors_ibfk_1">
+          <End Role="materials" Type="DBModel.material" Multiplicity="1" />
+          <End Role="materialcolors" Type="DBModel.materialcolor" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Materials">
+            <Principal Role="materials">
               <PropertyRef Name="GUID" />
             </Principal>
-            <Dependent Role="MaterialColors">
+            <Dependent Role="materialcolors">
               <PropertyRef Name="MaterialID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__MaterialP__Mater__75A278F5">
-          <End Role="Materials" Type="DBModel.Material" Multiplicity="1" />
-          <End Role="MaterialPictures" Type="DBModel.MaterialPicture" Multiplicity="*" />
+        <Association Name="materialpictures_ibfk_1">
+          <End Role="materials" Type="DBModel.material" Multiplicity="1" />
+          <End Role="materialpictures" Type="DBModel.materialpicture" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Materials">
+            <Principal Role="materials">
               <PropertyRef Name="GUID" />
             </Principal>
-            <Dependent Role="MaterialPictures">
+            <Dependent Role="materialpictures">
               <PropertyRef Name="MaterialID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__MaterialP__Mater__6EF57B66">
-          <End Role="Materials" Type="DBModel.Material" Multiplicity="1" />
-          <End Role="MaterialPriceLogs" Type="DBModel.MaterialPriceLog" Multiplicity="*" />
+        <Association Name="materialpricelogs_ibfk_1">
+          <End Role="materials" Type="DBModel.material" Multiplicity="1" />
+          <End Role="materialpricelogs" Type="DBModel.materialpricelog" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Materials">
+            <Principal Role="materials">
               <PropertyRef Name="GUID" />
             </Principal>
-            <Dependent Role="MaterialPriceLogs">
+            <Dependent Role="materialpricelogs">
               <PropertyRef Name="MaterialID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__MaterialS__Mater__76969D2E">
-          <End Role="Materials" Type="DBModel.Material" Multiplicity="1" />
-          <End Role="MaterialSizes" Type="DBModel.MaterialSize" Multiplicity="*" />
+        <Association Name="materials_ibfk_1">
+          <End Role="materialtypes" Type="DBModel.materialtype" Multiplicity="1" />
+          <End Role="materials" Type="DBModel.material" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Materials">
+            <Principal Role="materialtypes">
               <PropertyRef Name="GUID" />
             </Principal>
-            <Dependent Role="MaterialSizes">
-              <PropertyRef Name="MaterialID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK__Materials__TypeI__70DDC3D8">
-          <End Role="MaterialTypes" Type="DBModel.MaterialType" Multiplicity="1" />
-          <End Role="Materials" Type="DBModel.Material" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="MaterialTypes">
-              <PropertyRef Name="GUID" />
-            </Principal>
-            <Dependent Role="Materials">
+            <Dependent Role="materials">
               <PropertyRef Name="TypeID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__OrderDeta__Order__72C60C4A">
-          <End Role="Orders" Type="DBModel.Order" Multiplicity="1" />
-          <End Role="OrderDetails" Type="DBModel.OrderDetail" Multiplicity="*" />
+        <Association Name="materialsizes_ibfk_1">
+          <End Role="materials" Type="DBModel.material" Multiplicity="1" />
+          <End Role="materialsizes" Type="DBModel.materialsize" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Orders">
+            <Principal Role="materials">
               <PropertyRef Name="GUID" />
             </Principal>
-            <Dependent Role="OrderDetails">
+            <Dependent Role="materialsizes">
+              <PropertyRef Name="MaterialID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="orderdetails_ibfk_1">
+          <End Role="orders" Type="DBModel.order" Multiplicity="1" />
+          <End Role="orderdetails" Type="DBModel.orderdetail" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="orders">
+              <PropertyRef Name="GUID" />
+            </Principal>
+            <Dependent Role="orderdetails">
               <PropertyRef Name="OrderID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__Orders__UserID__778AC167">
-          <End Role="Users" Type="DBModel.User" Multiplicity="1" />
-          <End Role="Orders" Type="DBModel.Order" Multiplicity="*" />
+        <Association Name="orders_ibfk_2">
+          <End Role="users" Type="DBModel.user" Multiplicity="1" />
+          <End Role="orders" Type="DBModel.order" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Users">
+            <Principal Role="users">
               <PropertyRef Name="GUID" />
             </Principal>
-            <Dependent Role="Orders">
+            <Dependent Role="orders">
               <PropertyRef Name="UserID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK__SingleLog__UserI__6FE99F9F">
-          <End Role="Users" Type="DBModel.User" Multiplicity="1" />
-          <End Role="SingleLogin" Type="DBModel.SingleLogin" Multiplicity="*" />
+        <Association Name="singlelogin_ibfk_1">
+          <End Role="users" Type="DBModel.user" Multiplicity="1" />
+          <End Role="singlelogin" Type="DBModel.singlelogin" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="Users">
+            <Principal Role="users">
               <PropertyRef Name="GUID" />
             </Principal>
-            <Dependent Role="SingleLogin">
+            <Dependent Role="singlelogin">
               <PropertyRef Name="UserID" />
             </Dependent>
           </ReferentialConstraint>
@@ -782,9 +782,9 @@
     <edmx:Mappings>
       <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
         <EntityContainerMapping StorageEntityContainer="DBModelStoreContainer" CdmEntityContainer="DBEntities">
-          <EntitySetMapping Name="Addresses">
-            <EntityTypeMapping TypeName="DBModel.Address">
-              <MappingFragment StoreEntitySet="Addresses">
+          <EntitySetMapping Name="addresses">
+            <EntityTypeMapping TypeName="DBModel.address">
+              <MappingFragment StoreEntitySet="addresses">
                 <ScalarProperty Name="GUID" ColumnName="GUID" />
                 <ScalarProperty Name="UserID" ColumnName="UserID" />
                 <ScalarProperty Name="Consignee" ColumnName="Consignee" />
@@ -799,9 +799,9 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="DesignWorks">
-            <EntityTypeMapping TypeName="DBModel.DesignWork">
-              <MappingFragment StoreEntitySet="DesignWorks">
+          <EntitySetMapping Name="designworks">
+            <EntityTypeMapping TypeName="DBModel.designwork">
+              <MappingFragment StoreEntitySet="designworks">
                 <ScalarProperty Name="GUID" ColumnName="GUID" />
                 <ScalarProperty Name="DesignerID" ColumnName="DesignerID" />
                 <ScalarProperty Name="MaterialID" ColumnName="MaterialID" />
@@ -822,9 +822,9 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="MaterialColors">
-            <EntityTypeMapping TypeName="DBModel.MaterialColor">
-              <MappingFragment StoreEntitySet="MaterialColors">
+          <EntitySetMapping Name="materialcolors">
+            <EntityTypeMapping TypeName="DBModel.materialcolor">
+              <MappingFragment StoreEntitySet="materialcolors">
                 <ScalarProperty Name="GUID" ColumnName="GUID" />
                 <ScalarProperty Name="MaterialID" ColumnName="MaterialID" />
                 <ScalarProperty Name="ColorName" ColumnName="ColorName" />
@@ -834,9 +834,9 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="MaterialPictures">
-            <EntityTypeMapping TypeName="DBModel.MaterialPicture">
-              <MappingFragment StoreEntitySet="MaterialPictures">
+          <EntitySetMapping Name="materialpictures">
+            <EntityTypeMapping TypeName="DBModel.materialpicture">
+              <MappingFragment StoreEntitySet="materialpictures">
                 <ScalarProperty Name="GUID" ColumnName="GUID" />
                 <ScalarProperty Name="MaterialID" ColumnName="MaterialID" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
@@ -851,9 +851,9 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="MaterialPriceLogs">
-            <EntityTypeMapping TypeName="DBModel.MaterialPriceLog">
-              <MappingFragment StoreEntitySet="MaterialPriceLogs">
+          <EntitySetMapping Name="materialpricelogs">
+            <EntityTypeMapping TypeName="DBModel.materialpricelog">
+              <MappingFragment StoreEntitySet="materialpricelogs">
                 <ScalarProperty Name="GUID" ColumnName="GUID" />
                 <ScalarProperty Name="MaterialID" ColumnName="MaterialID" />
                 <ScalarProperty Name="Price" ColumnName="Price" />
@@ -861,9 +861,9 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Materials">
-            <EntityTypeMapping TypeName="DBModel.Material">
-              <MappingFragment StoreEntitySet="Materials">
+          <EntitySetMapping Name="materials">
+            <EntityTypeMapping TypeName="DBModel.material">
+              <MappingFragment StoreEntitySet="materials">
                 <ScalarProperty Name="GUID" ColumnName="GUID" />
                 <ScalarProperty Name="TypeID" ColumnName="TypeID" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
@@ -874,9 +874,9 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="MaterialSizes">
-            <EntityTypeMapping TypeName="DBModel.MaterialSize">
-              <MappingFragment StoreEntitySet="MaterialSizes">
+          <EntitySetMapping Name="materialsizes">
+            <EntityTypeMapping TypeName="DBModel.materialsize">
+              <MappingFragment StoreEntitySet="materialsizes">
                 <ScalarProperty Name="GUID" ColumnName="GUID" />
                 <ScalarProperty Name="MaterialID" ColumnName="MaterialID" />
                 <ScalarProperty Name="SizeName" ColumnName="SizeName" />
@@ -884,9 +884,9 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="MaterialTypes">
-            <EntityTypeMapping TypeName="DBModel.MaterialType">
-              <MappingFragment StoreEntitySet="MaterialTypes">
+          <EntitySetMapping Name="materialtypes">
+            <EntityTypeMapping TypeName="DBModel.materialtype">
+              <MappingFragment StoreEntitySet="materialtypes">
                 <ScalarProperty Name="GUID" ColumnName="GUID" />
                 <ScalarProperty Name="ParentID" ColumnName="ParentID" />
                 <ScalarProperty Name="Index" ColumnName="Index" />
@@ -896,9 +896,9 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="OrderDetails">
-            <EntityTypeMapping TypeName="DBModel.OrderDetail">
-              <MappingFragment StoreEntitySet="OrderDetails">
+          <EntitySetMapping Name="orderdetails">
+            <EntityTypeMapping TypeName="DBModel.orderdetail">
+              <MappingFragment StoreEntitySet="orderdetails">
                 <ScalarProperty Name="GUID" ColumnName="GUID" />
                 <ScalarProperty Name="OrderID" ColumnName="OrderID" />
                 <ScalarProperty Name="Size" ColumnName="Size" />
@@ -906,9 +906,9 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Orders">
-            <EntityTypeMapping TypeName="DBModel.Order">
-              <MappingFragment StoreEntitySet="Orders">
+          <EntitySetMapping Name="orders">
+            <EntityTypeMapping TypeName="DBModel.order">
+              <MappingFragment StoreEntitySet="orders">
                 <ScalarProperty Name="GUID" ColumnName="GUID" />
                 <ScalarProperty Name="UserID" ColumnName="UserID" />
                 <ScalarProperty Name="DesignWorkID" ColumnName="DesignWorkID" />
@@ -937,18 +937,18 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="SingleLogins">
-            <EntityTypeMapping TypeName="DBModel.SingleLogin">
-              <MappingFragment StoreEntitySet="SingleLogin">
+          <EntitySetMapping Name="singlelogins">
+            <EntityTypeMapping TypeName="DBModel.singlelogin">
+              <MappingFragment StoreEntitySet="singlelogin">
                 <ScalarProperty Name="GUID" ColumnName="GUID" />
                 <ScalarProperty Name="UserID" ColumnName="UserID" />
                 <ScalarProperty Name="LoginTime" ColumnName="LoginTime" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="Users">
-            <EntityTypeMapping TypeName="DBModel.User">
-              <MappingFragment StoreEntitySet="Users">
+          <EntitySetMapping Name="users">
+            <EntityTypeMapping TypeName="DBModel.user">
+              <MappingFragment StoreEntitySet="users">
                 <ScalarProperty Name="GUID" ColumnName="GUID" />
                 <ScalarProperty Name="LoginName" ColumnName="LoginName" />
                 <ScalarProperty Name="Email" ColumnName="Email" />

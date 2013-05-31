@@ -12,15 +12,15 @@ namespace J.Entities
     using System;
     using System.Collections.Generic;
     
-    public partial class Material
+    public partial class material
     {
-        public Material()
+        public material()
         {
-            this.DesignWorks = new HashSet<DesignWork>();
-            this.MaterialColors = new HashSet<MaterialColor>();
-            this.MaterialPictures = new HashSet<MaterialPicture>();
-            this.MaterialPriceLogs = new HashSet<MaterialPriceLog>();
-            this.MaterialSizes = new HashSet<MaterialSize>();
+            this.designworks = new HashSet<designwork>();
+            this.materialcolors = new HashSet<materialcolor>();
+            this.materialpictures = new HashSet<materialpicture>();
+            this.materialpricelogs = new HashSet<materialpricelog>();
+            this.materialsizes = new HashSet<materialsize>();
         }
     
         public string GUID { get; set; }
@@ -31,11 +31,11 @@ namespace J.Entities
         public int PictureNumber { get; set; }
         public int State { get; set; }
     
-        public virtual ICollection<DesignWork> DesignWorks { get; set; }
-        public virtual ICollection<MaterialColor> MaterialColors { get; set; }
-        public virtual ICollection<MaterialPicture> MaterialPictures { get; set; }
-        public virtual ICollection<MaterialPriceLog> MaterialPriceLogs { get; set; }
-        public virtual ICollection<MaterialSize> MaterialSizes { get; set; }
-        public virtual MaterialType MaterialType { get; set; }
+        public virtual ICollection<designwork> designworks { get; set; }
+        public virtual ICollection<materialcolor> materialcolors { get; set; }
+        public virtual ICollection<materialpicture> materialpictures { get; set; }
+        public virtual ICollection<materialpricelog> materialpricelogs { get; set; }
+        public virtual materialtype materialtype { get; set; }
+        public virtual ICollection<materialsize> materialsizes { get; set; }
     }
 }

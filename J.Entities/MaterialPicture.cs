@@ -12,7 +12,7 @@ namespace J.Entities
     using System;
     using System.Collections.Generic;
     
-    public partial class MaterialPicture
+    public partial class materialpicture
     {
         public string GUID { get; set; }
         public string MaterialID { get; set; }
@@ -26,6 +26,6 @@ namespace J.Entities
         public int UploadWidth { get; set; }
         public int UploadHeight { get; set; }
     
-        public virtual Material Material { get; set; }
+        public virtual material material { get; set; }
     }
 }

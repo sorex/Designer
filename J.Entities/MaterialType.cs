@@ -12,11 +12,11 @@ namespace J.Entities
     using System;
     using System.Collections.Generic;
     
-    public partial class MaterialType
+    public partial class materialtype
     {
-        public MaterialType()
+        public materialtype()
         {
-            this.Materials = new HashSet<Material>();
+            this.materials = new HashSet<material>();
         }
     
         public string GUID { get; set; }
@@ -26,6 +26,6 @@ namespace J.Entities
         public bool IsLeafNode { get; set; }
         public int State { get; set; }
     
-        public virtual ICollection<Material> Materials { get; set; }
+        public virtual ICollection<material> materials { get; set; }
     }
 }

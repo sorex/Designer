@@ -12,14 +12,14 @@ namespace J.Entities
     using System;
     using System.Collections.Generic;
     
-    public partial class User
+    public partial class user
     {
-        public User()
+        public user()
         {
-            this.Addresses = new HashSet<Address>();
-            this.DesignWorks = new HashSet<DesignWork>();
-            this.Orders = new HashSet<Order>();
-            this.SingleLogins = new HashSet<SingleLogin>();
+            this.addresses = new HashSet<address>();
+            this.designworks = new HashSet<designwork>();
+            this.orders = new HashSet<order>();
+            this.singlelogins = new HashSet<singlelogin>();
         }
     
         public string GUID { get; set; }
@@ -30,9 +30,9 @@ namespace J.Entities
         public System.DateTime CreateTime { get; set; }
         public int State { get; set; }
     
-        public virtual ICollection<Address> Addresses { get; set; }
-        public virtual ICollection<DesignWork> DesignWorks { get; set; }
-        public virtual ICollection<Order> Orders { get; set; }
-        public virtual ICollection<SingleLogin> SingleLogins { get; set; }
+        public virtual ICollection<address> addresses { get; set; }
+        public virtual ICollection<designwork> designworks { get; set; }
+        public virtual ICollection<order> orders { get; set; }
+        public virtual ICollection<singlelogin> singlelogins { get; set; }
     }
 }

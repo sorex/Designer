@@ -64,7 +64,7 @@ namespace J.MainWeb.Controllers
 		{
 			using (DBEntities db = new DBEntities())
 			{
-				if (db.Users.Count(p => p.LoginName == LoginName.ToLower()) == 0)
+				if (db.users.Count(p => p.LoginName == LoginName.ToLower()) == 0)
 					return Content(JsonConvert.SerializeObject(new { code = 1, msg = "该账户可注册。" }));
 				else
 					return Content(JsonConvert.SerializeObject(new { code = -1, msg = "该账户已被注册。" }));
@@ -75,7 +75,7 @@ namespace J.MainWeb.Controllers
 		{
 			using (DBEntities db = new DBEntities())
 			{
-				if (db.Users.Count(p => p.StageName == StageName) == 0)
+				if (db.users.Count(p => p.StageName == StageName) == 0)
 					return Content(JsonConvert.SerializeObject(new { code = 1, msg = "该昵称可注册。" }));
 				else
 					return Content(JsonConvert.SerializeObject(new { code = -1, msg = "该昵称已被注册。" }));
@@ -105,13 +105,13 @@ namespace J.MainWeb.Controllers
 
 			using (DBEntities db = new DBEntities())
 			{
-				if (db.Users.Count(p => p.LoginName == LoginName.ToLower()) > 0)
+				if (db.users.Count(p => p.LoginName == LoginName.ToLower()) > 0)
 					return Content(JsonConvert.SerializeObject(new { code = -1, msg = "该账户已被注册。请重试！" }));
 
-				if (db.Users.Count(p => p.StageName == StageName) > 0)
+				if (db.users.Count(p => p.StageName == StageName) > 0)
 					return Content(JsonConvert.SerializeObject(new { code = -1, msg = "该昵称已被注册。请重试！" }));
 
-				User user = new User()
+				user User = new user()
 				{
 					GUID = Guid.NewGuid().ToString(),
 					LoginName = LoginName,
@@ -122,11 +122,11 @@ namespace J.MainWeb.Controllers
 					State = 0
 				};
 
-				db.Users.Add(user);
+				db.users.Add(User);
 				try
 				{
 					db.SaveChanges();
-					Session[SessionConfig.CurrentUser] = user;
+					Session[SessionConfig.CurrentUser] = User;
 				}
 				catch (Exception e)
 				{
@@ -158,15 +158,15 @@ namespace J.MainWeb.Controllers
 
 			using (DBEntities db = new DBEntities())
 			{
-				var user = (from u in db.Users
+				var User = (from u in db.users
 							where u.LoginName == LoginName && u.Password == Password
 							select u).FirstOrDefault();
 
-				if (user == null)
+				if (User == null)
 					return Content(JsonConvert.SerializeObject(new { code = -1, msg = "帐号或密码错误！" }));
 				else
 				{
-					Session[SessionConfig.CurrentUser] = user;
+					Session[SessionConfig.CurrentUser] = User;
 					return Content(JsonConvert.SerializeObject(new { code = 1, msg = "登录成功。" }));
 				}
 			}

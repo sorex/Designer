@@ -12,13 +12,13 @@ namespace J.Entities
     using System;
     using System.Collections.Generic;
     
-    public partial class OrderDetail
+    public partial class orderdetail
     {
         public string GUID { get; set; }
         public string OrderID { get; set; }
         public string Size { get; set; }
         public int Number { get; set; }
     
-        public virtual Order Order { get; set; }
+        public virtual order order { get; set; }
     }
 }

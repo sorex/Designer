@@ -12,7 +12,7 @@ namespace J.Entities
     using System;
     using System.Collections.Generic;
     
-    public partial class Address
+    public partial class address
     {
         public string GUID { get; set; }
         public string UserID { get; set; }
@@ -26,6 +26,6 @@ namespace J.Entities
         public string Phone { get; set; }
         public bool IsDefault { get; set; }
     
-        public virtual User User { get; set; }
+        public virtual user user { get; set; }
     }
 }

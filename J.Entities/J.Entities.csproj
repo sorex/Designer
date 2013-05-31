@@ -46,7 +46,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Address.cs">
+    <Compile Include="address.cs">
       <DependentUpon>DBModel.tt</DependentUpon>
     </Compile>
     <Compile Include="DBModel.Context.cs">
@@ -64,45 +64,46 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>DBModel.edmx</DependentUpon>
     </Compile>
-    <Compile Include="DesignWork.cs">
+    <Compile Include="designwork.cs">
       <DependentUpon>DBModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Material.cs">
+    <Compile Include="material.cs">
       <DependentUpon>DBModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="MaterialColor.cs">
+    <Compile Include="materialcolor.cs">
       <DependentUpon>DBModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="MaterialPicture.cs">
+    <Compile Include="materialpicture.cs">
       <DependentUpon>DBModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="MaterialPriceLog.cs">
+    <Compile Include="materialpricelog.cs">
       <DependentUpon>DBModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="MaterialSize.cs">
+    <Compile Include="materialsize.cs">
       <DependentUpon>DBModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="MaterialType.cs">
+    <Compile Include="materialtype.cs">
       <DependentUpon>DBModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="Order.cs">
+    <Compile Include="order.cs">
       <DependentUpon>DBModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="OrderDetail.cs">
+    <Compile Include="orderdetail.cs">
       <DependentUpon>DBModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="SingleLogin.cs">
+    <Compile Include="singlelogin.cs">
       <DependentUpon>DBModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="User.cs">
+    <Compile Include="user.cs">
       <DependentUpon>DBModel.tt</DependentUpon>
     </Compile>
   </ItemGroup>
-  <ItemGroup />
   <ItemGroup>
-    <Content Include="DBScripts\DesignerDB.sql" />
-    <Content Include="DBScripts\DesignerLogsDB.sql" />
+    <Content Include="DBScripts\MSSQL.DesignerDB.sql" />
+    <Content Include="DBScripts\MSSQL.DesignerLogsDB.sql" />
+    <Content Include="DBScripts\MySQL.DesignerDB.sql" />
+    <Content Include="DBScripts\MySQL.DesignerLogsDB.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.Config">
@@ -125,8 +126,10 @@
       <DependentUpon>DBModel.edmx</DependentUpon>
       <LastGenOutput>DBModel.cs</LastGenOutput>
     </None>
-    <None Include="DBScripts\DesignerDB.ndm" />
-    <None Include="DBScripts\DesignerLogsDB.ndm" />
+    <None Include="DBScripts\MSSQL.DesignerDB.ndm" />
+    <None Include="DBScripts\MSSQL.DesignerLogsDB.ndm" />
+    <None Include="DBScripts\MySQL.DesignerDB.ndm" />
+    <None Include="DBScripts\MySQL.DesignerLogsDB.ndm" />
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>

@@ -12,12 +12,12 @@ namespace J.Entities
     using System;
     using System.Collections.Generic;
     
-    public partial class SingleLogin
+    public partial class singlelogin
     {
         public string GUID { get; set; }
         public string UserID { get; set; }
         public System.DateTime LoginTime { get; set; }
     
-        public virtual User User { get; set; }
+        public virtual user user { get; set; }
     }
 }

@@ -12,13 +12,13 @@ namespace J.Entities
     using System;
     using System.Collections.Generic;
     
-    public partial class MaterialPriceLog
+    public partial class materialpricelog
     {
         public string GUID { get; set; }
         public string MaterialID { get; set; }
         public decimal Price { get; set; }
         public System.DateTime CreateTime { get; set; }
     
-        public virtual Material Material { get; set; }
+        public virtual material material { get; set; }
     }
 }

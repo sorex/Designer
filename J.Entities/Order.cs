@@ -12,11 +12,11 @@ namespace J.Entities
     using System;
     using System.Collections.Generic;
     
-    public partial class Order
+    public partial class order
     {
-        public Order()
+        public order()
         {
-            this.OrderDetails = new HashSet<OrderDetail>();
+            this.orderdetails = new HashSet<orderdetail>();
         }
     
         public string GUID { get; set; }
@@ -45,8 +45,8 @@ namespace J.Entities
         public Nullable<int> PayType { get; set; }
         public string PayOrderNo { get; set; }
     
-        public virtual DesignWork DesignWork { get; set; }
-        public virtual ICollection<OrderDetail> OrderDetails { get; set; }
-        public virtual User User { get; set; }
+        public virtual designwork designwork { get; set; }
+        public virtual ICollection<orderdetail> orderdetails { get; set; }
+        public virtual user user { get; set; }
     }
 }

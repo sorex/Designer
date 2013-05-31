@@ -12,7 +12,7 @@ namespace J.Entities
     using System;
     using System.Collections.Generic;
     
-    public partial class MaterialColor
+    public partial class materialcolor
     {
         public string GUID { get; set; }
         public string MaterialID { get; set; }
@@ -21,6 +21,6 @@ namespace J.Entities
         public bool IsDefault { get; set; }
         public int State { get; set; }
     
-        public virtual Material Material { get; set; }
+        public virtual material material { get; set; }
     }
 }

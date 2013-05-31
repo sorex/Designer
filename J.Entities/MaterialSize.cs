@@ -12,13 +12,13 @@ namespace J.Entities
     using System;
     using System.Collections.Generic;
     
-    public partial class MaterialSize
+    public partial class materialsize
     {
         public string GUID { get; set; }
         public string MaterialID { get; set; }
         public string SizeName { get; set; }
         public bool IsDefault { get; set; }
     
-        public virtual Material Material { get; set; }
+        public virtual material material { get; set; }
     }
 }

@@ -25,17 +25,17 @@ namespace J.Entities
             throw new UnintentionalCodeFirstException();
         }
     
-        public DbSet<Address> Addresses { get; set; }
-        public DbSet<DesignWork> DesignWorks { get; set; }
-        public DbSet<MaterialColor> MaterialColors { get; set; }
-        public DbSet<MaterialPicture> MaterialPictures { get; set; }
-        public DbSet<MaterialPriceLog> MaterialPriceLogs { get; set; }
-        public DbSet<Material> Materials { get; set; }
-        public DbSet<MaterialSize> MaterialSizes { get; set; }
-        public DbSet<MaterialType> MaterialTypes { get; set; }
-        public DbSet<OrderDetail> OrderDetails { get; set; }
-        public DbSet<Order> Orders { get; set; }
-        public DbSet<SingleLogin> SingleLogins { get; set; }
-        public DbSet<User> Users { get; set; }
+        public DbSet<address> addresses { get; set; }
+        public DbSet<designwork> designworks { get; set; }
+        public DbSet<materialcolor> materialcolors { get; set; }
+        public DbSet<materialpicture> materialpictures { get; set; }
+        public DbSet<materialpricelog> materialpricelogs { get; set; }
+        public DbSet<material> materials { get; set; }
+        public DbSet<materialsize> materialsizes { get; set; }
+        public DbSet<materialtype> materialtypes { get; set; }
+        public DbSet<orderdetail> orderdetails { get; set; }
+        public DbSet<order> orders { get; set; }
+        public DbSet<singlelogin> singlelogins { get; set; }
+        public DbSet<user> users { get; set; }
     }
 }
