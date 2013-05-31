@@ -202,6 +202,10 @@
     <Content Include="Static\Resources\jquery-ui\jquery-ui-1.10.3.min.css" />
     <Content Include="Static\Resources\jquery.base64\jquery.base64.js" />
     <Content Include="Static\Resources\jquery.base64\jquery.base64.min.js" />
+    <Content Include="Static\Resources\jquery\jquery-1.10.1.js" />
+    <Content Include="Static\Resources\jquery\jquery-1.10.1.min.js" />
+    <Content Include="Static\Resources\jquery\jquery-migrate-1.2.1.js" />
+    <Content Include="Static\Resources\jquery\jquery-migrate-1.2.1.min.js" />
     <Content Include="Static\Resources\site\images\home\button_200x75_active.png" />
     <Content Include="Static\Resources\site\images\home\button_200x75_default.png" />
     <Content Include="Static\Resources\site\images\home\button_200x75_hover.png" />
@@ -224,10 +228,6 @@
     <Content Include="Static\Resources\jquery.layout\jquery.layout.js" />
     <Content Include="Static\Resources\jquery.layout\jquery.layout.min.js" />
     <Content Include="Static\Resources\jquery.layout\layout-default.css" />
-    <Content Include="Static\Resources\jquery\jquery-1.9.1.js" />
-    <Content Include="Static\Resources\jquery\jquery-1.9.1.min.js" />
-    <Content Include="Static\Resources\jquery\jquery-migrate-1.1.1.js" />
-    <Content Include="Static\Resources\jquery\jquery-migrate-1.1.1.min.js" />
     <Content Include="Static\Resources\json2\json2.js" />
     <Content Include="Static\Resources\modernizr\modernizr-2.6.2.js" />
     <Content Include="Static\Resources\site\home.css" />
