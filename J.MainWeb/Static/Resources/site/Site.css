@@ -1,6 +1,7 @@
 ﻿html
 {
 	/*height: 100%;*/
+	font-size: 1.4em;
 	margin-top: 2px;
 }
 
@@ -9,6 +10,7 @@ body
 	background-color: #ffffff;
 	color: #000000;
 	font-family:"Microsoft Yahei",Verdana,Simsun,"Segoe UI","Segoe UI Web Regular","Segoe UI Symbol","Helvetica Neue","BBAlpha Sans","S60 Sans",Arial,"sans-serif";
+	font-size: 62.5%;
 	min-width: 1000px;
 }
 

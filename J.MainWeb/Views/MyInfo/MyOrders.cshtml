@@ -1,97 +1,110 @@
 ﻿@{
-	ViewBag.Title = "MyOrders";
+    ViewBag.Title = "MyOrders";
 }
 
 @section head{
-	<script type="text/javascript" src="~/Static/Resources/_references.js"></script>
-	<link rel="stylesheet" href="~/Static/Resources/site/myInfo.css" />
+    <script type="text/javascript" src="~/Static/Resources/_references.js"></script>
+    <link rel="stylesheet" href="~/Static/Resources/site/myInfo.css" />
 }
 
 <div class="myInfoSide">
-	<ul>
-		<li><a href="~/MyInfo/Index">我的资料</a></li>
-		<li><a href="~/MyInfo/Index">我的设计</a></li>
-		<li><span class="myInfoSideActive">我的订单</span></li>
-		<li><a href="~/MyInfo/Index">收货地址</a></li>
-	</ul>
+    <ul>
+        <li><a href="~/MyInfo/Index">我的资料</a></li>
+        <li><a href="~/MyInfo/Index">我的设计</a></li>
+        <li><span class="myInfoSideActive">我的订单</span></li>
+        <li><a href="~/MyInfo/Index">收货地址</a></li>
+    </ul>
 </div>
 <div class="myInfoMain">
-	<div></div>
-	<div>
-		<table id="dataTable">
-			<tr>
-				<th colspan="2">物品</th>
-				<th>单价(元)</th>
-				<th>数量</th>
-				<th>总价(元)</th>
-				<th>订单状态</th>
-				<th>其他操作</th>
-			</tr>
+    <div></div>
+    <div>
+        <table id="dataTable">
+            <tr>
+                <th style="width: 60px;"></th>
+                <th style="width: 370px;">物品</th>
+                <th style="width: 80px;">单价(元)</th>
+                <th style="width: 80px;">数量</th>
+                <th style="width: 100px;">总价(元)</th>
+                <th style="width: 100px;">订单状态</th>
+                <th style="width: 100px;">其他操作</th>
+            </tr>
 
-			<tr class="sep-row">
-				<td colspan="7"></td>
-			</tr>
-			<tr class="item1">
-				<td colspan="7">
-					<input type="checkbox" />订单编号：XXXX-XXXX-XXXX-XXXX-XXXX<span style="margin-left:20px; display:inline-block;">成交时间：2013-05-27 22:04</span>
-				</td>
-			</tr>
-			<tr class="item2">
-				<td class="image">
-					<img alt="查看详情" src="~/Static/Resources/site/images/Logo_150x40.png" />
-				</td>
-				<td class="subject">
-					<a href="">这里是产品的描述和链接</a>
-					<span class="orderInfo">S码1件, M码3件, S码1件, M码3件, S码1件, M码3件, S码1件, M码3件, S码1件, M码3件, S码1件, M码3件, </span>
-				</td>
-				<td class="price">50.00</td>
-				<td class="quantity">4</td>
-				<td class="totalPrice">200.00</td>
-				<td class="state">
-					<span>已发货</span>
-					<a href="">订单详情</a>
-				</td>
-				<td class="action">
-					<a id="test" href="javascript:void(0);" onclick="return false;">退款/退货</a>
-				</td>
-			</tr>
-		</table>
-	</div>
+            <tr class="sep-row">
+                <td colspan="7"></td>
+            </tr>
+            <tr class="item1">
+                <td colspan="7">
+                    <input type="checkbox" />订单编号：2d003b68-e1be-4bd0-8dd1-ec937acba83d<span style="margin-left: 20px; display: inline-block;">成交时间：2013-05-27 22:04</span>
+                </td>
+            </tr>
+            <tr class="item2">
+                <td>
+                    <img class="itemImage" alt="查看详情" src="~/Static/Resources/site/images/Logo_150x40.png" />
+                </td>
+                <td style="text-align: left;">
+                    <a href="">这里是产品的描述和链接</a>
+                    <span class="description">S码1件, M码3件, S码1件, M码3件, S码1件, M码3件, S码1件, M码3件, S码1件, M码3件, S码1件, M码3件, </span>
+                </td>
+                <td>50.00</td>
+                <td class="rightLine">4</td>
+                <td class="rightLine stress">200.00</td>
+                <td class="rightLine">
+                    <span>已发货</span>
+                    <a href="">订单详情</a>
+                </td>
+                <td>
+                    <a id="test" href="javascript:void(0);" onclick="return false;">退款/退货</a>
+                </td>
+            </tr>
+        </table>
+    </div>
 </div>
 
-<div id="show1" title="提示"><p>注册成功！关闭窗口后返回首页。</p></div>
-
 @section scripts{
-	<script type="text/javascript">
-		var Data = { @Html.Raw(ViewBag.Data) };
+    <script type="text/javascript">
+        var Data = { @Html.Raw(ViewBag.Data) };
 
-		$(function ()
-		{
-			$('#show1').dialog({
-				resizable: false,
-				modal: true,
-				autoOpen: false,
-				buttons:
-					[
-						{
-							text: "关闭",
-							click: function ()
-							{
-								$(this).dialog("close");
-							}
-						}
-					],
-				close: function (event, ui)
-				{
-			
-				}
-			});
+        function UpdataTable()
+        {
+            $("#dataTable").empty();
+            $("#dataTable").append('<tr><th style="width: 60px;"></th><th style="width: 370px;">物品</th><th style="width: 80px;">单价(元)</th><th style="width: 80px;">数量</th><th style="width: 100px;">总价(元)</th><th style="width: 100px;">订单状态</th><th style="width: 100px;">其他操作</th></tr>');
 
-			$("#test").click(function ()
-			{
-				$('#show1').dialog("open");
-			});
-		});
+            for (var i = 0; i < Data.length; i++)
+            {
+                var tempdata = Data[i];
+                $("#dataTable").append('<tr class="sep-row"><td colspan="7"></td></tr>');
+                $("#dataTable").append('<tr class="item1"><td colspan="7"><input type="checkbox" />订单编号：' + tempdata.GUID + '<span style="margin-left: 20px; display: inline-block;">成交时间：' + tempdata.WaitBuyerPayTime + '</span></td></tr>');
+                var item2 = '<tr class="item2">';
+                //加图片
+                item2 += '<td><img class="itemImage" alt="查看详情" src="/Static/Resources/site/images/Logo_150x40.png" /></td>';
+                //加标题
+                item2 += '<td style="text-align: left;"><a href="">' + tempdata.Subject + '</a>';
+                //加数量说明
+                item2 += '<span class="description">'+tempdata.OrderDescription+'</span></td>';
+                //加单价
+                item2 += '<td>' + tempdata.Price + '</td>';
+                //加数量
+                item2 += '<td class="rightLine">' + tempdata.Quantity + '</td>';
+                //加总价
+                item2 += '<td class="rightLine stress">' + tempdata.TotalPay + '</td>';
+                //加详情
+                item2 += '<td class="rightLine"><span>已发货</span><a href="">订单详情</a></td>';
+                //加其他操作
+                item2 += '<td><a id="test" href="javascript:void(0);" onclick="return false;">退款/退货</a></td>';
+                //加结束
+                item2 += '</tr>';
+                $("#dataTable").append(item2);
+            }
+        }
 
-	</script>
+        $(function ()
+        {
+            Data = [{ GUID: 'aaa&lt;;aa', WaitBuyerPayTime: '2013-05-17 18:08', Subject: '标题1', OrderDescription: '订单详细1', Price: '60.00', Quantity: '5', TotalPay: '300.00' },
+            { GUID: 'bbbbb', WaitBuyerPayTime: '2013-05-17 17:08', Subject: '标题2', OrderDescription: '订单详细2', Price: '50.00', Quantity: '5', TotalPay: '250.00' },
+            { GUID: 'ccccc', WaitBuyerPayTime: '2013-04-17 16:08', Subject: '标题3', OrderDescription: '订单详细3', Price: '40.00', Quantity: '4', TotalPay: '160.00' }];
+
+            UpdataTable();
+        });
+
+    </script>
 }

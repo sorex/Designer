@@ -202,6 +202,12 @@
     <Content Include="Static\Resources\jquery-ui\jquery-ui-1.10.3.min.css" />
     <Content Include="Static\Resources\jquery.base64\jquery.base64.js" />
     <Content Include="Static\Resources\jquery.base64\jquery.base64.min.js" />
+    <Content Include="Static\Resources\jquery.validate\additional-methods.js" />
+    <Content Include="Static\Resources\jquery.validate\additional-methods.min.js" />
+    <None Include="Static\Resources\jquery.validate\jquery.validate-vsdoc.js" />
+    <Content Include="Static\Resources\jquery.validate\jquery.validate.js" />
+    <Content Include="Static\Resources\jquery.validate\jquery.validate.min.js" />
+    <Content Include="Static\Resources\jquery.validate\messages_zh.js" />
     <Content Include="Static\Resources\jquery\jquery-1.10.1.js" />
     <Content Include="Static\Resources\jquery\jquery-1.10.1.min.js" />
     <Content Include="Static\Resources\jquery\jquery-migrate-1.2.1.js" />
