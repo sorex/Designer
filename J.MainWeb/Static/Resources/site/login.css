@@ -38,18 +38,14 @@
 
 .LoginButton
 {
-	display: inline-block;
 	width: 202px;
 	height: 32px;
 	line-height: 32px;
-	text-align: center;
 	font-size: 16px;
-	font-weight: bold;
 }
 
 	.LoginButton:link
 	{
-		text-decoration: none;
 		color: #ffffff;
 		background-color:#ff7a01;
 		border:1px solid #f15c00;
@@ -57,7 +53,6 @@
 
 	.LoginButton:visited
 	{
-		text-decoration: none;
 		color: #ffffff;
 		background-color:#ff7a01;
 		border:1px solid #f15c00;
@@ -65,7 +60,6 @@
 
 	.LoginButton:hover
 	{
-		text-decoration: none;
 		color: #ffffff;
 		background-color:#fe920c;
 		border:1px solid #f4770d;
@@ -73,7 +67,6 @@
 
 	.LoginButton:active
 	{
-		text-decoration: none;
 		color: #ffffff;
 		background-color:#fe920c;
 		border:1px solid #f4770d;

@@ -213,6 +213,7 @@
     <Content Include="Static\Resources\jquery\jquery-1.10.1.min.js" />
     <Content Include="Static\Resources\jquery\jquery-migrate-1.2.1.js" />
     <Content Include="Static\Resources\jquery\jquery-migrate-1.2.1.min.js" />
+    <Content Include="Static\Resources\site\DesignClothes_Create.css" />
     <Content Include="Static\Resources\site\images\home\button_200x75_active.png" />
     <Content Include="Static\Resources\site\images\home\button_200x75_default.png" />
     <Content Include="Static\Resources\site\images\home\button_200x75_hover.png" />
@@ -272,6 +273,10 @@
     <Content Include="Static\Resources\uploadify\uploadify.css" />
     <Content Include="Static\Resources\uploadify\uploadify.swf" />
     <Content Include="Static\Resources\_references.js" />
+    <Content Include="Static\SystemFiles\TShirt\LongRNeck\50x50.png" />
+    <Content Include="Static\SystemFiles\TShirt\LongVNeck\50x50.png" />
+    <Content Include="Static\SystemFiles\TShirt\ShortRNeck\50x50.png" />
+    <Content Include="Static\SystemFiles\TShirt\ShortVNeck\50x50.png" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -285,6 +290,8 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
+    <Content Include="Views\DesignClothes\Create.cshtml" />
+    <Content Include="Static\WorkFiles\TShirt.psd" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

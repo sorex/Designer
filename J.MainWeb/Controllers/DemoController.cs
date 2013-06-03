@@ -6,10 +6,10 @@ using System.Web.Mvc;
 
 namespace J.MainWeb.Controllers
 {
-    public class DemoController : Controller
-    {
-        //
-        // GET: /Demo/
+	public class DemoController : Controller
+	{
+		//
+		// GET: /Demo/
 
 		public ActionResult Index()
 		{

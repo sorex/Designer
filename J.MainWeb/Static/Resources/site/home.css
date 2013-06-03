@@ -42,40 +42,29 @@
 
 .HomeButton
 {
-	display: inline-block;
 	width: 200px;
 	height: 75px;
 	line-height: 75px;
-	text-align: center;
 	font-size: 24px;
-	font-weight: bold;
 }
 
 	.HomeButton:link
 	{
-		text-decoration: none;
-		color: #000000;
 		background: transparent url("images/home/button_200x75_default.png") center center no-repeat;
 	}
 
 	.HomeButton:visited
 	{
-		text-decoration: none;
-		color: #000000;
 		background: transparent url("images/home/button_200x75_default.png") center center no-repeat;
 	}
 
 	.HomeButton:hover
 	{
-		text-decoration: none;
-		color: #000000;
 		background: transparent url("images/home/button_200x75_hover.png") center center no-repeat;
 	}
 
 	.HomeButton:active
 	{
-		text-decoration: none;
-		color: #000000;
 		background: transparent url("images/home/button_200x75_active.png") center center no-repeat;
 	}
 

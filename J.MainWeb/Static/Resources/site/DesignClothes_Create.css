@@ -1,0 +1,51 @@
+﻿.body
+{
+}
+
+	.body .left
+	{
+		float: left;
+		width: 400px;
+	}
+
+	.body .main
+	{
+		float: left;
+		width: 590px;
+		margin-left: 8px;
+	}
+
+	.body .left .group
+	{
+		border: 5px solid #ccc;
+		border-radius: 5px;
+		padding: 5px;
+		margin-bottom: 5px;
+	}
+
+		.body .left .group #ClothesType a
+		{
+			width: 50px;
+			height: 50px;
+			line-height: 50px;
+		}
+
+			.body .left .group #ClothesType a:link
+			{
+				border:2px solid #ccc;
+			}
+
+			.body .left .group #ClothesType a:visited
+			{
+				border:2px solid #ccc;
+			}
+
+			.body .left .group #ClothesType a:hover
+			{
+				border:2px solid #ff6a00;
+			}
+
+			.body .left .group #ClothesType a:active
+			{
+				border:2px solid #ccc;
+			}
