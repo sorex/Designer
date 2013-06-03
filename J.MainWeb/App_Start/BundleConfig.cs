@@ -57,10 +57,10 @@ namespace J.MainWeb
 			#endregion
 
 			#region jquery validate
-            bundles.Add(new ScriptBundle("~/Static/Resources/jquery.validate/js").Include(
+			bundles.Add(new ScriptBundle("~/Static/Resources/jquery.validate/js").Include(
 						"~/Static/Resources/jquery.validate/jquery.validate.js",
-                        "~/Static/Resources/jquery.validate/additional-methods.js",
-                        "~/Static/Resources/jquery.validate/messages_zh.js"));
+						"~/Static/Resources/jquery.validate/additional-methods.js",
+						"~/Static/Resources/jquery.validate/messages_zh.js"));
 			#endregion
 
 			#region jquery layout
