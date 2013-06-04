@@ -9,6 +9,9 @@ using System.Threading.Tasks;
 
 namespace J.BusinessLogics.Basic
 {
+	/// <summary>
+	/// 验证码
+	/// </summary>
 	public class SecurityCode
 	{
 		private const int CodeLenght = 4;

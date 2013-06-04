@@ -39,6 +39,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Basic.cs" />
     <Compile Include="Cryptography\DESEncrypt.cs" />
     <Compile Include="Cryptography\MD5Encrypt.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

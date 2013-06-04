@@ -10,14 +10,21 @@
 <div class="left">
 	<div id="TShirtTypeAndColor" class="group">
 		<div id="TShirtType">
-			<span class="button active" id="ShortRNeck" style="background-image:url('/Static/SystemFiles/TShirt/ShortRNeck/50x50.png')" title="短袖圆领"></span>
-			<span class="button" id="ShortVNeck" style="background-image:url('/Static/SystemFiles/TShirt/ShortVNeck/50x50.png')" title="短袖V领"></span>
-			<span class="button" id="LongRNeck" style="background-image:url('/Static/SystemFiles/TShirt/LongRNeck/50x50.png')" title="长袖圆领"></span>
-			<span class="button" id="LongVNeck" style="background-image:url('/Static/SystemFiles/TShirt/LongVNeck/50x50.png')" title="长袖V领"></span>
-			@Html.Raw(ViewBag.DataClothesType)
+			<span id="_ShortRNeck" style="background-image: url('/Static/SystemFiles/TShirt/ShortRNeck/50x50.png')" title="短袖圆领" class="button active"></span>
+			<span id="_ShortVNeck" style="background-image: url('/Static/SystemFiles/TShirt/ShortVNeck/50x50.png')" title="短袖V领" class="button"></span>
+			<span id="_LongRNeck" style="background-image: url('/Static/SystemFiles/TShirt/LongRNeck/50x50.png')" title="长袖圆领" class="button"></span>
+			<span id="_LongVNeck" style="background-image: url('/Static/SystemFiles/TShirt/LongVNeck/50x50.png')" title="长袖V领" class="button"></span>
 		</div>
 		<div id="TShirtColor">
+			<span id="_ColorGUID1" style="background-color: #ffffff;" class="button active"></span>
+			<span id="_ColorGUID2" style="background-color: #000000;" class="button"></span>
+			<span id="_ColorGUID3" style="background-color: #ff0000;" class="button"></span>
+			<span id="_ColorGUID4" style="background-color: #00ff00;" class="button"></span>
+			<span id="_ColorGUID5" style="background-color: #0000ff;" class="button"></span>
 		</div>
+	</div>
+	<div id="UploadImage" class="group">
+
 	</div>
 </div>
 <div class="main"></div>
@@ -25,10 +32,14 @@
 @section scripts{
 	<script type="text/javascript">
 		var CurrentTShirtType = "ShortRNeck";
+		var CurrentTShirtColor = "ffffff";
+
+		var DataTShirtType = { @Html.Raw(ViewBag.DataTShirtType) };
 		var DataTShirtColor = { @Html.Raw(ViewBag.DataTShirtColor) };
 
 		$(function ()
 		{
+			//初始化单选事件
 			$("#TShirtType > span").each(function ()
 			{
 				$(this).mouseover(function () { $(this).addClass("hover") });
@@ -38,10 +49,61 @@
 				{
 					$("#TShirtType > span.active").removeClass("active");
 					$(this).addClass("active");
-					CurrentTShirtType = $(this).attr("id");
+					CurrentTShirtType = $(this).attr("id").substring(1);
 				});
 			});
+
+			$("#TShirtColor > span").each(function ()
+			{
+				$(this).mouseover(function () { $(this).addClass("hover") });
+				$(this).mouseout(function () { $(this).removeClass("hover") });
+
+				$(this).click(function ()
+				{
+					$("#TShirtColor > span.active").removeClass("active");
+					$(this).addClass("active");
+					CurrentTShirtType = $(this).attr("id").substring(1);
+				});
+			});
+
+			UpdateTShirtType();
+
+			UpdateTShirtColor();
 		});
+
+		function UpdateTShirtType()
+		{
+			$("#TShirtType").empty();
+			for (var i = 0; i < DataTShirtType.length; i++)
+			{
+				var activeClass = "";
+				if (i == 0)
+				{
+					activeClass = " active";
+					CurrentTShirtType = DataTShirtType.GUID;
+				}
+				var tempspan = String.format('<span id="_{0}" style="background-image: url(\'/Static/SystemFiles/{1}/{0}/50x50.png\')" title="{2}" class="button{3}"></span>',
+					DataTShirtType.GUID, DataTShirtType.TypeID, DataTShirtType.Name, activeClass);
+				$("#TShirtType").append(tempspan);
+			}
+		}
+
+		function UpdateTShirtColor()
+		{
+			$("#TShirtColor").empty();
+			for (var i = 0; i < DataTShirtColor.length; i++)
+			{
+				var activeClass = "";
+				if (DataTShirtColor.IsDefault)
+				{
+					activeClass = " active";
+					CurrentTShirtColor = DataTShirtColor.ColorCode;
+				}
+				var tempspan = String.format('<span id="_{0}" style="background-color:#{1};" title="{2}" class="button{3}"></span>',
+					DataTShirtColor.GUID, DataTShirtColor.ColorCode, DataTShirtColor.ColorName, activeClass);
+				$("#TShirtColor").append(tempspan);
+			}
+		}
 	</script>
 
 }

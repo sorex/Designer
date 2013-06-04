@@ -10,6 +10,7 @@ using J.Entities;
 using J.BusinessLogics.Basic;
 using System.Text;
 using J.Utility.Cryptography;
+using J.Utility;
 
 namespace J.MainWeb.Controllers
 {
@@ -113,7 +114,7 @@ namespace J.MainWeb.Controllers
 
 				user User = new user()
 				{
-					GUID = Guid.NewGuid().ToString(),
+					GUID = Basic.NewGuid(),
 					LoginName = LoginName,
 					Email = LoginName,
 					Password = new DESEncrypt().EncryptString(Password),

@@ -28,16 +28,27 @@
 		{
 			width: 50px;
 			height: 50px;
-			line-height: 50px;
 			border: 2px solid #ccc;
 		}
 
-			.body .left .group #TShirtType span.hover
+			.body .left .group #TShirtType span.hover, .body .left .group #TShirtColor span.hover
 			{
 				border-color: #ff6a00;
 			}
 
-			.body .left .group #TShirtType span.active
+			.body .left .group #TShirtType span.active, .body .left .group #TShirtColor span.active
 			{
 				border-color: #ff6a00;
 			}
+
+		.body .left .group #TShirtColor span
+		{
+			width: 30px;
+			height: 30px;
+			border: 2px solid #ccc;
+		}
+
+		.body .left #UploadImage
+		{
+			height: 150px;
+		}
