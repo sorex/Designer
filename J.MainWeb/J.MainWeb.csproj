@@ -170,7 +170,7 @@
     <Compile Include="Areas\HelpPage\SampleGeneration\TextSample.cs" />
     <Compile Include="Areas\HelpPage\XmlDocumentationProvider.cs" />
     <Compile Include="Controllers\DemoController.cs" />
-    <Compile Include="Controllers\DesignClothesController.cs" />
+    <Compile Include="Controllers\DesignTShirtController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\MyInfoController.cs" />
     <Compile Include="Controllers\ValuesController.cs" />
@@ -213,7 +213,7 @@
     <Content Include="Static\Resources\jquery\jquery-1.10.1.min.js" />
     <Content Include="Static\Resources\jquery\jquery-migrate-1.2.1.js" />
     <Content Include="Static\Resources\jquery\jquery-migrate-1.2.1.min.js" />
-    <Content Include="Static\Resources\site\DesignClothes_Create.css" />
+    <Content Include="Static\Resources\site\DesignTShirt_Create.css" />
     <Content Include="Static\Resources\site\images\home\button_200x75_active.png" />
     <Content Include="Static\Resources\site\images\home\button_200x75_default.png" />
     <Content Include="Static\Resources\site\images\home\button_200x75_hover.png" />
@@ -290,7 +290,7 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
-    <Content Include="Views\DesignClothes\Create.cshtml" />
+    <Content Include="Views\DesignTShirt\Create.cshtml" />
     <Content Include="Static\WorkFiles\TShirt.psd" />
   </ItemGroup>
   <ItemGroup>

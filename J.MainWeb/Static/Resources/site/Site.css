@@ -9,7 +9,7 @@ body
 {
 	background-color: #ffffff;
 	color: #000000;
-	font-family:"Microsoft Yahei",Verdana,Simsun,"Segoe UI","Segoe UI Web Regular","Segoe UI Symbol","Helvetica Neue","BBAlpha Sans","S60 Sans",Arial,"sans-serif";
+	font-family: "Microsoft Yahei",Verdana,Simsun,"Segoe UI","Segoe UI Web Regular","Segoe UI Symbol","Helvetica Neue","BBAlpha Sans","S60 Sans",Arial,"sans-serif";
 	font-size: 62.5%;
 	min-width: 1000px;
 }
@@ -81,7 +81,9 @@ a
 	text-align: center;
 	color: #000000;
 	text-decoration: none;
+	cursor: pointer;
 }
+
 	.button:link
 	{
 		color: #000000;

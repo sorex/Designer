@@ -1,0 +1,47 @@
+﻿@{
+	ViewBag.Title = "新建服装设计";
+}
+
+@section head{
+	<script type="text/javascript" src="~/Static/Resources/_references.js"></script>
+	<link rel="stylesheet" href="~/Static/Resources/site/DesignTShirt_Create.css" />
+}
+
+<div class="left">
+	<div id="TShirtTypeAndColor" class="group">
+		<div id="TShirtType">
+			<span class="button active" id="ShortRNeck" style="background-image:url('/Static/SystemFiles/TShirt/ShortRNeck/50x50.png')" title="短袖圆领"></span>
+			<span class="button" id="ShortVNeck" style="background-image:url('/Static/SystemFiles/TShirt/ShortVNeck/50x50.png')" title="短袖V领"></span>
+			<span class="button" id="LongRNeck" style="background-image:url('/Static/SystemFiles/TShirt/LongRNeck/50x50.png')" title="长袖圆领"></span>
+			<span class="button" id="LongVNeck" style="background-image:url('/Static/SystemFiles/TShirt/LongVNeck/50x50.png')" title="长袖V领"></span>
+			@Html.Raw(ViewBag.DataClothesType)
+		</div>
+		<div id="TShirtColor">
+		</div>
+	</div>
+</div>
+<div class="main"></div>
+
+@section scripts{
+	<script type="text/javascript">
+		var CurrentTShirtType = "ShortRNeck";
+		var DataTShirtColor = { @Html.Raw(ViewBag.DataTShirtColor) };
+
+		$(function ()
+		{
+			$("#TShirtType > span").each(function ()
+			{
+				$(this).mouseover(function () { $(this).addClass("hover") });
+				$(this).mouseout(function () { $(this).removeClass("hover") });
+
+				$(this).click(function ()
+				{
+					$("#TShirtType > span.active").removeClass("active");
+					$(this).addClass("active");
+					CurrentTShirtType = $(this).attr("id");
+				});
+			});
+		});
+	</script>
+
+}

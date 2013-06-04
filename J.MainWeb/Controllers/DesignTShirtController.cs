@@ -7,7 +7,7 @@ using System.Web.Mvc;
 
 namespace J.MainWeb.Controllers
 {
-	public class DesignClothesController : Controller
+	public class DesignTShirtController : Controller
 	{
 		private static Logger logger = LogManager.GetCurrentClassLogger();
 		
