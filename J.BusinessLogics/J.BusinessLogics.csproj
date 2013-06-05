@@ -48,12 +48,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Basic\CheckData.cs" />
+    <Compile Include="Basic\DynamicContractResolver.cs" />
     <Compile Include="Basic\SecurityCode.cs" />
     <Compile Include="Basic\SessionConfig.cs" />
     <Compile Include="DesignTShirt.cs" />
-    <Compile Include="Models\M_material.cs" />
-    <Compile Include="Models\M_materialcolor.cs" />
-    <Compile Include="Models\M_materialpicture.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

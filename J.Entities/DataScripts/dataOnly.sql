@@ -131,7 +131,7 @@ TRUNCATE TABLE `users`;
 --
 
 INSERT INTO `users` (`GUID`, `LoginName`, `Email`, `Password`, `StageName`, `CreateTime`, `State`) VALUES
-('9ece1f87-00bb-4dd3-8832-f14e4b480107', 'sorex@163.com', 'sorex@163.com', '8XGy06XKv+5g75/xEbvpwQ==', 'Jasper', '2013-05-31 16:48:35', 0);
+('9ece1f8700bb4dd38832f14e4b480107', 'sorex@163.com', 'sorex@163.com', '8XGy06XKv+5g75/xEbvpwQ==', 'Jasper', '2013-05-31 16:48:35', 0);
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;

@@ -80,7 +80,7 @@ namespace J.MainWeb
 
 			#region extendjs
 			bundles.Add(new ScriptBundle("~/Static/Resources/extendjs/js").Include(
-						"~/Static/Resources/extendjs/extendjs*"));
+						"~/Static/Resources/extendjs/extendjs.js"));
 			#endregion
 			#endregion
 		}

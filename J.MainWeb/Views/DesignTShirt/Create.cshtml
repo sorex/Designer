@@ -24,7 +24,6 @@
 		</div>
 	</div>
 	<div id="UploadImage" class="group">
-
 	</div>
 </div>
 <div class="main"></div>
@@ -35,35 +34,31 @@
 		var CurrentTShirtColor = "ffffff";
 
 		var DataTShirtType =  @Html.Raw(ViewBag.DataTShirtType) ;
-		var DataTShirtColor = { @Html.Raw(ViewBag.DataTShirtColor) };
+
+		var DataTShirtColor = [];
 
 		$(function ()
 		{
 			//初始化单选事件
-			$("#TShirtType > span").each(function ()
+			$("#TShirtType > span").live("mouseover", function () { $(this).addClass("hover") });
+			$("#TShirtType > span").live("mouseout", function () { $(this).removeClass("hover") });
+			$("#TShirtType > span").live("click", function ()
 			{
-				$(this).mouseover(function () { $(this).addClass("hover") });
-				$(this).mouseout(function () { $(this).removeClass("hover") });
+				$("#TShirtType > span.active").removeClass("active");
+				$(this).addClass("active");
+				DataTShirtColor =
+				CurrentTShirtType = $(this).attr("id").substring(1);
 
-				$(this).click(function ()
-				{
-					$("#TShirtType > span.active").removeClass("active");
-					$(this).addClass("active");
-					CurrentTShirtType = $(this).attr("id").substring(1);
-				});
+				UpdateTShirtColor();
 			});
 
-			$("#TShirtColor > span").each(function ()
+			$("#TShirtColor > span").live("mouseover", function () { $(this).addClass("hover") });
+			$("#TShirtColor > span").live("mouseout", function () { $(this).removeClass("hover") });
+			$("#TShirtColor > span").live("click", function ()
 			{
-				$(this).mouseover(function () { $(this).addClass("hover") });
-				$(this).mouseout(function () { $(this).removeClass("hover") });
-
-				$(this).click(function ()
-				{
-					$("#TShirtColor > span.active").removeClass("active");
-					$(this).addClass("active");
-					CurrentTShirtType = $(this).attr("id").substring(1);
-				});
+				$("#TShirtColor > span.active").removeClass("active");
+				$(this).addClass("active");
+				CurrentTShirtColor = $(this).attr("id").substring(1);
 			});
 
 			UpdateTShirtType();
@@ -80,10 +75,10 @@
 				if (i == 0)
 				{
 					activeClass = " active";
-					CurrentTShirtType = DataTShirtType.GUID;
+					CurrentTShirtType = DataTShirtType[i].GUID;
 				}
 				var tempspan = String.format('<span id="_{0}" style="background-image: url(\'/Static/SystemFiles/{1}/{0}/50x50.png\')" title="{2}" class="button{3}"></span>',
-					DataTShirtType.GUID, DataTShirtType.TypeID, DataTShirtType.Name, activeClass);
+					DataTShirtType[i].GUID, DataTShirtType[i].TypeID, DataTShirtType[i].Name, activeClass);
 				$("#TShirtType").append(tempspan);
 			}
 		}
@@ -91,19 +86,38 @@
 		function UpdateTShirtColor()
 		{
 			$("#TShirtColor").empty();
+			FindCurrentDataTShirtColor();
 			for (var i = 0; i < DataTShirtColor.length; i++)
 			{
-				var activeClass = "";
-				if (DataTShirtColor.IsDefault)
+				if (DataTShirtColor[i].State == 1)
 				{
-					activeClass = " active";
-					CurrentTShirtColor = DataTShirtColor.ColorCode;
+					var activeClass = "";
+					if (DataTShirtColor[i].IsDefault)
+					{
+						activeClass = " active";
+						CurrentTShirtColor = DataTShirtColor[i].ColorCode;
+					}
+					var tempspan = String.format('<span id="_{0}" style="background-color:#{1};" title="{2}" class="button{3}"></span>',
+						DataTShirtColor[i].GUID, DataTShirtColor[i].ColorCode, DataTShirtColor[i].ColorName, activeClass);
+					$("#TShirtColor").append(tempspan);
 				}
-				var tempspan = String.format('<span id="_{0}" style="background-color:#{1};" title="{2}" class="button{3}"></span>',
-					DataTShirtColor.GUID, DataTShirtColor.ColorCode, DataTShirtColor.ColorName, activeClass);
-				$("#TShirtColor").append(tempspan);
 			}
 		}
+
+		function FindCurrentDataTShirtColor()
+		{
+			for (var i = 0; i < DataTShirtType.length; i++)
+			{
+				if (DataTShirtType[i].GUID == CurrentTShirtType)
+				{
+					DataTShirtColor = DataTShirtType[i].materialcolors;
+					return;
+				}
+			}
+			DataTShirtColor = [];
+			return;
+		}
+
 	</script>
 
 }
