@@ -34,6 +34,9 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\EntityFramework.5.0.0\lib\net45\EntityFramework.dll</HintPath>
     </Reference>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\packages\Newtonsoft.Json.5.0.5\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Drawing" />
@@ -47,13 +50,26 @@
     <Compile Include="Basic\CheckData.cs" />
     <Compile Include="Basic\SecurityCode.cs" />
     <Compile Include="Basic\SessionConfig.cs" />
+    <Compile Include="DesignTShirt.cs" />
+    <Compile Include="Models\M_material.cs" />
+    <Compile Include="Models\M_materialcolor.cs" />
+    <Compile Include="Models\M_materialpicture.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\J.Entities\J.Entities.csproj">
+      <Project>{dc710555-d4e7-4738-9a29-d4a0e4d2b1c3}</Project>
+      <Name>J.Entities</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\J.Utility\J.Utility.csproj">
+      <Project>{a1c3cc75-74cd-4c9a-ab37-e35693b26f0e}</Project>
+      <Name>J.Utility</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

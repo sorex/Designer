@@ -8,12 +8,15 @@ using System.Web.Mvc;
 using Newtonsoft.Json;
 using System.Data.Entity;
 
+using J.BusinessLogics;
+using J.Utility;
+
 namespace J.MainWeb.Controllers
 {
 	public class DesignTShirtController : Controller
 	{
 		private static Logger logger = LogManager.GetCurrentClassLogger();
-		
+
 		public ActionResult Index()
 		{
 			return View();
@@ -21,31 +24,14 @@ namespace J.MainWeb.Controllers
 
 		public ActionResult Create()
 		{
-			List<material> Materials;
-			string a = String.Empty;
 			using (DBEntities db = new DBEntities())
 			{
-				Materials = (from m in db.materials
-							 where m.TypeID == "TShirt" && m.State == 1
-							 select m).ToList();
-				
-				if (Materials != null)
-				{
-					foreach (var m in Materials)
-					{
-						if (m.materialcolors.Count > 0)
-						{
-							foreach (var c in m.materialcolors)
-							{
-								a += c.ColorName + ":" + c.ColorCode + ",";
-							}
-						}
-					}
-				}
-			}
-			ViewBag.obj = JsonConvert.SerializeObject(Materials);
-			return View();
-		}
+				ViewBag.DataTShirtType = DesignTShirt.DB2Json(from m in db.materials.Include(p => p.materialpictures).Include(p => p.materialcolors)
+															  where m.TypeID == "TShirt" && m.State == 1
+															  select m, 1);
 
+				return View();
+			}
+		}
 	}
 }
