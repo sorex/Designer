@@ -21,6 +21,21 @@ namespace J.MainWeb.Controllers
 
 		public ActionResult Index()
 		{
+			//using (DBEntities db = new DBEntities())
+			//{
+			//	var Ms = from m in db.materials
+			//			 select m;
+			//
+			//	foreach (var m in Ms)
+			//	{
+			//		materialpicture mp1 = new materialpicture{
+			//			FileName = "01.png",
+			//			 GUID = Basic.NewGuid(),
+			//			  Height = 
+			//		};
+			//	}
+			//}
+
 			return View();
 		}
 
@@ -39,7 +54,6 @@ namespace J.MainWeb.Controllers
 
 				//Formatting.Indented
 				ViewBag.DataTShirtType = JsonConvert.SerializeObject(Materials, new JsonSerializerSettings { ContractResolver = new DynamicContractResolver(TypeAndProperties) });
-
 			}
 			
 			return View();

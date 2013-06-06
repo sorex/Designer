@@ -26,7 +26,16 @@
 	<div id="UploadImage" class="group">
 	</div>
 </div>
-<div class="main"></div>
+<div class="main">
+	<div id="ShowEffect" class="group">
+		<div id="_PictureGUID1" style="position: relative; width: 550px; height: 650px;">
+			<div id="_PictureGUID1_upload" class="uploadImage" style="width:320px; height:480px; left:115px; top:85px;"></div>
+		</div>
+		<div id="_PictureGUID2" style="position: relative; width: 550px; height: 650px;">
+			<div id="_PictureGUID2_upload" class="uploadImage" style="width:320px; height:480px; left:115px; top:85px;"></div>
+		</div>
+	</div>
+</div>
 
 @section scripts{
 	<script type="text/javascript">
@@ -40,8 +49,8 @@
 		$(function ()
 		{
 			//初始化单选事件
-			$("#TShirtType > span").live("mouseover", function () { $(this).addClass("hover") });
-			$("#TShirtType > span").live("mouseout", function () { $(this).removeClass("hover") });
+			$("#TShirtType > span").live("mouseover", function () { $(this).addClass("hover"); });
+			$("#TShirtType > span").live("mouseout", function () { $(this).removeClass("hover"); });
 			$("#TShirtType > span").live("click", function ()
 			{
 				$("#TShirtType > span.active").removeClass("active");
@@ -49,17 +58,23 @@
 				DataTShirtColor =
 				CurrentTShirtType = $(this).attr("id").substring(1);
 
-				UpdateTShirtColor();
+				OnTypeChange();
 			});
 
-			$("#TShirtColor > span").live("mouseover", function () { $(this).addClass("hover") });
-			$("#TShirtColor > span").live("mouseout", function () { $(this).removeClass("hover") });
+			$("#TShirtColor > span").live("mouseover", function () { $(this).addClass("hover"); });
+			$("#TShirtColor > span").live("mouseout", function () { $(this).removeClass("hover"); });
 			$("#TShirtColor > span").live("click", function ()
 			{
 				$("#TShirtColor > span.active").removeClass("active");
 				$(this).addClass("active");
 				CurrentTShirtColor = $(this).attr("id").substring(1);
+
+				OnColorChange();
 			});
+
+			$("#ShowEffect .uploadImage").live("mouseover", function () { $(this).css("border-color","#ccc"); });
+			$("#ShowEffect .uploadImage").live("mouseout", function () { $(this).css("border-color","transparent"); });
+
 
 			UpdateTShirtType();
 
@@ -116,6 +131,15 @@
 			}
 			DataTShirtColor = [];
 			return;
+		}
+
+		function OnTypeChange()
+		{
+			UpdateTShirtColor();
+		}
+
+		function OnColorChange()
+		{
 		}
 
 	</script>

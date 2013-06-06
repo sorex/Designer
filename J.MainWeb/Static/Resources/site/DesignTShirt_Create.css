@@ -29,7 +29,7 @@
 			width: 50px;
 			height: 50px;
 			border: 2px solid #ccc;
-			margin-right:4px;
+			margin-right: 4px;
 		}
 
 			.body .left .group #TShirtType span.hover, .body .left .group #TShirtColor span.hover
@@ -47,10 +47,29 @@
 			width: 30px;
 			height: 30px;
 			border: 2px solid #ccc;
-			margin-right:4px;
+			margin-right: 4px;
 		}
 
-		.body .left #UploadImage
-		{
-			height: 150px;
-		}
+	.body .left #UploadImage
+	{
+		height: 150px;
+	}
+
+
+
+
+
+	.body .main .group
+	{
+		border: 5px solid #ccc;
+		border-radius: 5px;
+		padding: 5px;
+	}
+
+	.body .main .group .uploadImage
+	{
+		position: relative;
+		border: 2px solid transparent;
+		border-radius: 5px;
+		
+	}
