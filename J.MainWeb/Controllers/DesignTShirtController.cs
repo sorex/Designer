@@ -43,9 +43,16 @@ namespace J.MainWeb.Controllers
 		{
 			using (DBEntities db = new DBEntities())
 			{
-				var Materials = (from m in db.materials.Include(p => p.materialpictures).Include(p => p.materialcolors)
+				//.Include(p => p.materialpictures).Include(p => p.materialcolors)
+				var Materials = (from m in db.materials
 								 where m.TypeID == "TShirt" && m.State == 1
 								 select m).ToList();
+
+				foreach (var m in Materials)
+				{
+					m.materialpictures = m.materialpictures.OrderBy(p => p.Index).ToList();
+					m.materialcolors = m.materialcolors.Where(p => p.State == 1).OrderBy(p => p.ColorName).OrderByDescending(p => p.IsDefault).ToList();
+				}
 
 				Dictionary<string, List<string>> TypeAndProperties = new Dictionary<string, List<string>>();
 				TypeAndProperties.Add("material", new List<string> { "GUID", "TypeID", "Name", "Price", "materialcolors", "materialpictures" });

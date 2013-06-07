@@ -29,10 +29,10 @@
 <div class="main">
 	<div id="ShowEffect" class="group">
 		<div id="_PictureGUID1" style="position: relative; width: 550px; height: 650px;">
-			<div id="_PictureGUID1_upload" class="uploadImage" style="width:320px; height:480px; left:115px; top:85px;"></div>
+			<div id="_PictureGUID1_upload" class="uploadImage" style="width:240px; height:320px; left:155px; top:165px;"></div>
 		</div>
 		<div id="_PictureGUID2" style="position: relative; width: 550px; height: 650px;">
-			<div id="_PictureGUID2_upload" class="uploadImage" style="width:320px; height:480px; left:115px; top:85px;"></div>
+			<div id="_PictureGUID2_upload" class="uploadImage" style="width:240px; height:320px; left:155px; top:165px;"></div>
 		</div>
 	</div>
 </div>
@@ -44,18 +44,15 @@
 
 		var DataTShirtType =  @Html.Raw(ViewBag.DataTShirtType) ;
 
-		var DataTShirtColor = [];
-
 		$(function ()
 		{
-			//初始化单选事件
+			//#region 初始化单选事件
 			$("#TShirtType > span").live("mouseover", function () { $(this).addClass("hover"); });
 			$("#TShirtType > span").live("mouseout", function () { $(this).removeClass("hover"); });
 			$("#TShirtType > span").live("click", function ()
 			{
 				$("#TShirtType > span.active").removeClass("active");
 				$(this).addClass("active");
-				DataTShirtColor =
 				CurrentTShirtType = $(this).attr("id").substring(1);
 
 				OnTypeChange();
@@ -74,7 +71,7 @@
 
 			$("#ShowEffect .uploadImage").live("mouseover", function () { $(this).css("border-color","#ccc"); });
 			$("#ShowEffect .uploadImage").live("mouseout", function () { $(this).css("border-color","transparent"); });
-
+			//#endregion
 
 			UpdateTShirtType();
 
@@ -101,41 +98,68 @@
 		function UpdateTShirtColor()
 		{
 			$("#TShirtColor").empty();
-			FindCurrentDataTShirtColor();
-			for (var i = 0; i < DataTShirtColor.length; i++)
-			{
-				if (DataTShirtColor[i].State == 1)
-				{
-					var activeClass = "";
-					if (DataTShirtColor[i].IsDefault)
-					{
-						activeClass = " active";
-						CurrentTShirtColor = DataTShirtColor[i].ColorCode;
-					}
-					var tempspan = String.format('<span id="_{0}" style="background-color:#{1};" title="{2}" class="button{3}"></span>',
-						DataTShirtColor[i].GUID, DataTShirtColor[i].ColorCode, DataTShirtColor[i].ColorName, activeClass);
-					$("#TShirtColor").append(tempspan);
-				}
-			}
-		}
+			var CurrentMaterialcolors = [];
 
-		function FindCurrentDataTShirtColor()
-		{
+			//#region 查找到当前的 CurrentMaterialcolors
 			for (var i = 0; i < DataTShirtType.length; i++)
 			{
 				if (DataTShirtType[i].GUID == CurrentTShirtType)
 				{
-					DataTShirtColor = DataTShirtType[i].materialcolors;
-					return;
+					CurrentMaterialcolors = DataTShirtType[i].materialcolors;
+					break;
 				}
 			}
-			DataTShirtColor = [];
-			return;
+			//#endregion
+
+			for (var i = 0; i < CurrentMaterialcolors.length; i++)
+			{
+				var activeClass = "";
+				if (CurrentMaterialcolors[i].IsDefault)
+				{
+					activeClass = " active";
+					CurrentTShirtColor = CurrentMaterialcolors[i].ColorCode;
+				}
+				var tempspan = String.format('<span id="_{0}" style="background-color:#{1};" title="{2}" class="button{3}"></span>',
+					CurrentMaterialcolors[i].GUID, CurrentMaterialcolors[i].ColorCode, CurrentMaterialcolors[i].ColorName, activeClass);
+				$("#TShirtColor").append(tempspan);
+			}
+		}
+
+		function UpdataShowEffect()
+		{
+			$("#ShowEffect").empty();
+			var CurrentMaterialpictures = [];
+
+			//#region 查找到当前的 CurrentMaterialpictures
+			for (var i = 0; i < DataTShirtType.length; i++)
+			{
+				if (DataTShirtType[i].GUID == CurrentTShirtType)
+				{
+					CurrentMaterialpictures = DataTShirtType[i].materialpictures;
+					break;
+				}
+			}
+			//#endregion
+
+			for (var i = 0; i < CurrentMaterialpictures.length; i++)
+			{
+				var activeClass = "";
+				if (CurrentMaterialcolors[i].IsDefault)
+				{
+					activeClass = " active";
+					CurrentTShirtColor = CurrentMaterialcolors[i].ColorCode;
+				}
+				var tempspan = String.format('<span id="_{0}" style="background-color:#{1};" title="{2}" class="button{3}"></span>',
+					CurrentMaterialcolors[i].GUID, CurrentMaterialcolors[i].ColorCode, CurrentMaterialcolors[i].ColorName, activeClass);
+				$("#TShirtColor").append(tempspan);
+			}
 		}
 
 		function OnTypeChange()
 		{
 			UpdateTShirtColor();
+
+			UpdataShowEffect();
 		}
 
 		function OnColorChange()
