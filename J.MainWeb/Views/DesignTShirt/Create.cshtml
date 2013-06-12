@@ -16,14 +16,15 @@
 			<span id="_LongVNeck" style="background-image: url('/Static/SystemFiles/TShirt/LongVNeck/50x50.png')" title="长袖V领" class="button"></span>
 		</div>
 		<div id="TShirtColor">
-			<span id="_ColorGUID1" style="background-color: #ffffff;" class="button active"></span>
-			<span id="_ColorGUID2" style="background-color: #000000;" class="button"></span>
-			<span id="_ColorGUID3" style="background-color: #ff0000;" class="button"></span>
-			<span id="_ColorGUID4" style="background-color: #00ff00;" class="button"></span>
-			<span id="_ColorGUID5" style="background-color: #0000ff;" class="button"></span>
+			<span id="_ColorGUID1" style="background-color: #ffffff;" data-colorCode="ffffff" class="button active"></span>
+			<span id="_ColorGUID2" style="background-color: #000000;" data-colorCode="000000" class="button"></span>
+			<span id="_ColorGUID3" style="background-color: #ff0000;" data-colorCode="ff0000" class="button"></span>
+			<span id="_ColorGUID4" style="background-color: #00ff00;" data-colorCode="00ff00" class="button"></span>
+			<span id="_ColorGUID5" style="background-color: #0000ff;" data-colorCode="0000ff" class="button"></span>
 		</div>
 	</div>
 	<div id="UploadImage" class="group">
+
 	</div>
 </div>
 <div class="main">
@@ -64,7 +65,7 @@
 			{
 				$("#TShirtColor > span.active").removeClass("active");
 				$(this).addClass("active");
-				CurrentTShirtColor = $(this).attr("id").substring(1);
+				CurrentTShirtColor = $(this).attr("data-colorCode");
 
 				OnColorChange();
 			});
@@ -76,6 +77,8 @@
 			UpdateTShirtType();
 
 			UpdateTShirtColor();
+
+			UpdataShowEffect();
 		});
 
 		function UpdateTShirtType()
@@ -89,9 +92,9 @@
 					activeClass = " active";
 					CurrentTShirtType = DataTShirtType[i].GUID;
 				}
-				var tempspan = String.format('<span id="_{0}" style="background-image: url(\'/Static/SystemFiles/{1}/{0}/50x50.png\')" title="{2}" class="button{3}"></span>',
+				var tempElement = String.format('<span id="_{0}" style="background-image: url(\'/Static/SystemFiles/{1}/{0}/50x50.png\')" title="{2}" class="button{3}"></span>',
 					DataTShirtType[i].GUID, DataTShirtType[i].TypeID, DataTShirtType[i].Name, activeClass);
-				$("#TShirtType").append(tempspan);
+				$("#TShirtType").append(tempElement);
 			}
 		}
 
@@ -119,9 +122,9 @@
 					activeClass = " active";
 					CurrentTShirtColor = CurrentMaterialcolors[i].ColorCode;
 				}
-				var tempspan = String.format('<span id="_{0}" style="background-color:#{1};" title="{2}" class="button{3}"></span>',
+				var tempElement = String.format('<span id="_{0}" style="background-color:#{1};" data-colorCode="{1}" title="{2}" class="button{3}"></span>',
 					CurrentMaterialcolors[i].GUID, CurrentMaterialcolors[i].ColorCode, CurrentMaterialcolors[i].ColorName, activeClass);
-				$("#TShirtColor").append(tempspan);
+				$("#TShirtColor").append(tempElement);
 			}
 		}
 
@@ -143,15 +146,9 @@
 
 			for (var i = 0; i < CurrentMaterialpictures.length; i++)
 			{
-				var activeClass = "";
-				if (CurrentMaterialcolors[i].IsDefault)
-				{
-					activeClass = " active";
-					CurrentTShirtColor = CurrentMaterialcolors[i].ColorCode;
-				}
-				var tempspan = String.format('<span id="_{0}" style="background-color:#{1};" title="{2}" class="button{3}"></span>',
-					CurrentMaterialcolors[i].GUID, CurrentMaterialcolors[i].ColorCode, CurrentMaterialcolors[i].ColorName, activeClass);
-				$("#TShirtColor").append(tempspan);
+				var tempElement = String.format('<div id="_{0}" style="position: relative; background-image: url(\'/Static/SystemFiles/TShirt/{1}/{2}/{3}\'); width: {4}px; height: {5}px;"><div id="_{0}_upload" class="uploadImage" style="width:{6}px; height:{7}px; left:{8}px; top:{9}px;"></div></div>',
+					CurrentMaterialpictures[i].GUID, CurrentTShirtType, CurrentTShirtColor, CurrentMaterialpictures[i].FileName, CurrentMaterialpictures[i].Width, CurrentMaterialpictures[i].Height, CurrentMaterialpictures[i].UploadWidth * CurrentMaterialpictures[i].ShowScale, CurrentMaterialpictures[i].UploadHeight * CurrentMaterialpictures[i].ShowScale, CurrentMaterialpictures[i].Left, CurrentMaterialpictures[i].Top);
+				$("#ShowEffect").append(tempElement);
 			}
 		}
 
@@ -164,6 +161,7 @@
 
 		function OnColorChange()
 		{
+			UpdataShowEffect();
 		}
 
 	</script>

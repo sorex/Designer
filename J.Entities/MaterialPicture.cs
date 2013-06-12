@@ -25,6 +25,7 @@ namespace J.Entities
         public int Left { get; set; }
         public int UploadWidth { get; set; }
         public int UploadHeight { get; set; }
+        public decimal ShowScale { get; set; }
     
         public virtual material material { get; set; }
     }

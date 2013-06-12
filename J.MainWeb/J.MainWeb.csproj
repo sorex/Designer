@@ -293,7 +293,7 @@
     <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\DesignTShirt\Create.cshtml" />
-    <Content Include="Static\WorkFiles\TShirt.psd" />
+    <Content Include="Static\WorkFiles\TShirt50x50.psd" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

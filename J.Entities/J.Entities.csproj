@@ -100,11 +100,8 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="DataScripts\dataOnly.sql" />
-    <Content Include="DBScripts\MSSQL.DesignerDB.sql" />
-    <Content Include="DBScripts\MSSQL.DesignerLogsDB.sql" />
-    <Content Include="DBScripts\MySQL.DesignerDB.sql" />
-    <Content Include="DBScripts\MySQL.DesignerLogsDB.sql" />
+    <Content Include="DataScripts\DesignerDB.sql" />
+    <Content Include="DataScripts\DesignerLogsDB.sql" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.Config">
@@ -127,8 +124,6 @@
       <DependentUpon>DBModel.edmx</DependentUpon>
       <LastGenOutput>DBModel.cs</LastGenOutput>
     </None>
-    <None Include="DBScripts\MSSQL.DesignerDB.ndm" />
-    <None Include="DBScripts\MSSQL.DesignerLogsDB.ndm" />
     <None Include="DBScripts\MySQL.DesignerDB.ndm" />
     <None Include="DBScripts\MySQL.DesignerLogsDB.ndm" />
     <None Include="packages.config" />

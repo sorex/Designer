@@ -21,21 +21,6 @@ namespace J.MainWeb.Controllers
 
 		public ActionResult Index()
 		{
-			//using (DBEntities db = new DBEntities())
-			//{
-			//	var Ms = from m in db.materials
-			//			 select m;
-			//
-			//	foreach (var m in Ms)
-			//	{
-			//		materialpicture mp1 = new materialpicture{
-			//			FileName = "01.png",
-			//			 GUID = Basic.NewGuid(),
-			//			  Height = 
-			//		};
-			//	}
-			//}
-
 			return View();
 		}
 
@@ -43,7 +28,6 @@ namespace J.MainWeb.Controllers
 		{
 			using (DBEntities db = new DBEntities())
 			{
-				//.Include(p => p.materialpictures).Include(p => p.materialcolors)
 				var Materials = (from m in db.materials
 								 where m.TypeID == "TShirt" && m.State == 1
 								 select m).ToList();
@@ -57,7 +41,7 @@ namespace J.MainWeb.Controllers
 				Dictionary<string, List<string>> TypeAndProperties = new Dictionary<string, List<string>>();
 				TypeAndProperties.Add("material", new List<string> { "GUID", "TypeID", "Name", "Price", "materialcolors", "materialpictures" });
 				TypeAndProperties.Add("materialcolor", new List<string> { "GUID", "MaterialID", "ColorName", "ColorCode", "IsDefault", "State" });
-				TypeAndProperties.Add("materialpicture", new List<string> { "GUID", "MaterialID", "Name", "Index", "FileName", "Width", "Height", "Top", "Left", "UploadWidth", "UploadHeight" });
+				TypeAndProperties.Add("materialpicture", new List<string> { "GUID", "MaterialID", "Name", "Index", "FileName", "Width", "Height", "Top", "Left", "UploadWidth", "UploadHeight", "ShowScale" });
 
 				//Formatting.Indented
 				ViewBag.DataTShirtType = JsonConvert.SerializeObject(Materials, new JsonSerializerSettings { ContractResolver = new DynamicContractResolver(TypeAndProperties) });

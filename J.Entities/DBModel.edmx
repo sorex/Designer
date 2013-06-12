@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="DBModel.Store" Alias="Self" Provider="MySql.Data.MySqlClient" ProviderManifestToken="5.1" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="DBModel.Store" Alias="Self" Provider="MySql.Data.MySqlClient" ProviderManifestToken="5.5" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityContainer Name="DBModelStoreContainer">
           <EntitySet Name="addresses" EntityType="DBModel.Store.addresses" store:Type="Tables" Schema="designerdb" />
           <EntitySet Name="designworks" EntityType="DBModel.Store.designworks" store:Type="Tables" Schema="designerdb" />
@@ -131,6 +131,7 @@
           <Property Name="Left" Type="int" Nullable="false" />
           <Property Name="UploadWidth" Type="int" Nullable="false" />
           <Property Name="UploadHeight" Type="int" Nullable="false" />
+          <Property Name="ShowScale" Type="decimal" Nullable="false" Precision="18" Scale="8" />
         </EntityType>
         <EntityType Name="materialpricelogs">
           <Key>
@@ -376,8 +377,7 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="DBModel" Alias="Self" p1:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:p1="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -513,6 +513,7 @@
           <Property Name="UploadWidth" Type="Int32" Nullable="false" />
           <Property Name="UploadHeight" Type="Int32" Nullable="false" />
           <NavigationProperty Name="material" Relationship="DBModel.materialpictures_ibfk_1" FromRole="materialpictures" ToRole="materials" />
+          <Property Type="Decimal" Name="ShowScale" Nullable="false" />
         </EntityType>
         <EntityType Name="materialpricelog">
           <Key>
@@ -837,6 +838,7 @@
           <EntitySetMapping Name="materialpictures">
             <EntityTypeMapping TypeName="DBModel.materialpicture">
               <MappingFragment StoreEntitySet="materialpictures">
+                <ScalarProperty Name="ShowScale" ColumnName="ShowScale" />
                 <ScalarProperty Name="GUID" ColumnName="GUID" />
                 <ScalarProperty Name="MaterialID" ColumnName="MaterialID" />
                 <ScalarProperty Name="Name" ColumnName="Name" />
