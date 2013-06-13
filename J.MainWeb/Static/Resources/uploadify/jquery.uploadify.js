@@ -96,7 +96,7 @@ Released under the MIT License <http://www.opensource.org/licenses/mit-license.p
 				var settings = $.extend({
 					// Required Settings
 					id       : $this.attr('id'), // The ID of the DOM object
-					swf      : 'uploadify.swf',  // The path to the uploadify SWF file
+					swf: '/Static/Resources/uploadify/uploadify.swf',  // The path to the uploadify SWF file
 					uploader : 'uploadify.php',  // The path to the server-side upload script
 					
 					// Options
@@ -815,7 +815,7 @@ Released under the MIT License <http://www.opensource.org/licenses/mit-license.p
 					errorString = 'Security Error';
 					break;
 				case SWFUpload.UPLOAD_ERROR.UPLOAD_LIMIT_EXCEEDED:
-					alert('The upload limit has been reached (' + errorMsg + ').');
+					//alert('The upload limit has been reached (' + errorMsg + ').');
 					errorString = 'Exceeds Upload Limit';
 					break;
 				case SWFUpload.UPLOAD_ERROR.UPLOAD_FAILED:

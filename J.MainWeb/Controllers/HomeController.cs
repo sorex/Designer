@@ -180,6 +180,8 @@ namespace J.MainWeb.Controllers
 		[HttpPost]
 		public ActionResult UploadDesignImage(string GUID, string UploadPath)
 		{
+			if(base.CurrentUser == null)
+				return Redirect("Home/Login");
 			HttpPostedFileBase file = Request.Files["Filedata"]; //获取单独文件的访问
 			var fileGuid = Guid.NewGuid().ToString();//生成随机的guid
 			try
@@ -208,7 +210,6 @@ namespace J.MainWeb.Controllers
 
 					file.SaveAs(UploadFullPath + "\\" + mp.FileName);
 					System.Drawing.Image img = System.Drawing.Image.FromFile(UploadFullPath + "\\" + mp.FileName);
-
 					//图片尺寸不正确则删除
 					if (img.Height != mp.UploadHeight || img.Width != mp.UploadWidth)
 					{
@@ -216,6 +217,7 @@ namespace J.MainWeb.Controllers
 						System.IO.File.Delete(UploadFullPath + "\\" + mp.FileName);
 						return Content(JsonConvert.SerializeObject(new { state = "error", msg = "图片尺寸不正确，必须上传 " + mp.UploadWidth + "x" + mp.UploadHeight + " 大小的图片。" }));
 					}
+					img.Dispose();
 
 					return Content(JsonConvert.SerializeObject(new { state = "success", msg = UploadPath, userID = base.CurrentUser.GUID }));
 				}

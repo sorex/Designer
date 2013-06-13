@@ -295,6 +295,9 @@
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\DesignTShirt\Create.cshtml" />
     <Content Include="Static\WorkFiles\TShirt50x50.psd" />
+    <Content Include="Static\Resources\uploadify\jquery.uploadify.min.js.map">
+      <DependentUpon>jquery.uploadify.js</DependentUpon>
+    </Content>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

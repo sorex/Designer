@@ -75,7 +75,7 @@ namespace J.MainWeb
 
 			#region uploadify
 			bundles.Add(new ScriptBundle("~/Static/Resources/uploadify/js").Include(
-						"~/Static/uploadify/Resources/jquery.uploadify.js"));
+						"~/Static/Resources/uploadify/jquery.uploadify.js"));
 			#endregion
 
 			#region extendjs

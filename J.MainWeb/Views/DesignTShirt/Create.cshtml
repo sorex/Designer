@@ -5,6 +5,8 @@
 @section head{
 	<script type="text/javascript" src="~/Static/Resources/_references.js"></script>
 	<link rel="stylesheet" href="~/Static/Resources/site/DesignTShirt_Create.css" />
+
+
 }
 
 <div class="left">
@@ -44,7 +46,7 @@
 		var CurrentTShirtType = "ShortRNeck";
 		var CurrentTShirtColor = "ffffff";
 
-		var DataTShirtType = { @Html.Raw(ViewBag.DataTShirtType) };
+		var DataTShirtType =  @Html.Raw(ViewBag.DataTShirtType) ;
 
 		$(function ()
 		{
@@ -159,20 +161,24 @@
 				$("#UploadImage").append(tempElementUpload);
 				(function ()
 				{
-					var index = tempdata.Index;
-
-					$("#Upload_" + index).uploadify({
-						'uploader': String.format('/Home/UploadDesignImage?GUID={0}&UploadPath={1}', CurrentMaterialpictures[i].GUID, $("#hiddenUploadPath").val()),
+					var tempGUID = CurrentMaterialpictures[i].GUID;
+					var tempFileName = CurrentMaterialpictures[i].FileName;
+					$("#_" + tempGUID + "_uploadFile").uploadify({
+						'width': 375,
+						'uploader': '/Home/UploadDesignImage',
 						'buttonText': String.format('上传【{0}】图片{1}x{2}', CurrentMaterialpictures[i].Name, CurrentMaterialpictures[i].UploadWidth, CurrentMaterialpictures[i].UploadHeight),
 						'fileTypeDesc': '图片文件',					//文件类型描述
 						'fileTypeExts': '*.png',					//文件类型后缀
+						'onUploadStart' : function(file) {
+							$("#_" + tempGUID + "_uploadFile").uploadify("settings", "formData", {'GUID' : tempGUID, 'UploadPath' : $("#hiddenUploadPath").val()});
+						},
 						'onUploadSuccess': function (file, data, response)
 						{
 							var dataobj = JSON.parse(data);
 							if (dataobj.state == 'success')
 							{
 								$("#hiddenUploadPath").val(dataobj.msg);
-								$("#ShowImage_" + index).css("background-image", "url('/Static/UserFiles/temp/" + dataobj.userID + "/" + dataobj.msg + "/" + CurrentMaterialpictures[i].FileName + "')");
+								$("#_" + tempGUID + "_uploadImage").css("background-image", "url('/Static/UserFiles/temp/" + dataobj.userID + "/" + dataobj.msg + "/" + tempFileName + "')");
 							}
 							else
 							{
