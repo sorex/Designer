@@ -16,24 +16,25 @@
 			<span id="_LongVNeck" style="background-image: url('/Static/SystemFiles/TShirt/LongVNeck/50x50.png')" title="长袖V领" class="button"></span>
 		</div>
 		<div id="TShirtColor">
-			<span id="_ColorGUID1" style="background-color: #ffffff;" data-colorCode="ffffff" class="button active"></span>
-			<span id="_ColorGUID2" style="background-color: #000000;" data-colorCode="000000" class="button"></span>
-			<span id="_ColorGUID3" style="background-color: #ff0000;" data-colorCode="ff0000" class="button"></span>
-			<span id="_ColorGUID4" style="background-color: #00ff00;" data-colorCode="00ff00" class="button"></span>
-			<span id="_ColorGUID5" style="background-color: #0000ff;" data-colorCode="0000ff" class="button"></span>
+			<span id="_ColorGUID1" style="background-color: #ffffff;" data-colorcode="ffffff" class="button active"></span>
+			<span id="_ColorGUID2" style="background-color: #000000;" data-colorcode="000000" class="button"></span>
+			<span id="_ColorGUID3" style="background-color: #ff0000;" data-colorcode="ff0000" class="button"></span>
+			<span id="_ColorGUID4" style="background-color: #00ff00;" data-colorcode="00ff00" class="button"></span>
+			<span id="_ColorGUID5" style="background-color: #0000ff;" data-colorcode="0000ff" class="button"></span>
 		</div>
 	</div>
 	<div id="UploadImage" class="group">
-
+		<input type="hidden" id="hiddenUploadPath" />
+		<input type="file" id="_PictureGUID1_uploadFile" name="_PictureGUID1_uploadFile" data-filename="" />
 	</div>
 </div>
 <div class="main">
 	<div id="ShowEffect" class="group">
-		<div id="_PictureGUID1" style="position: relative; width: 550px; height: 650px;">
-			<div id="_PictureGUID1_upload" class="uploadImage" style="width:240px; height:320px; left:155px; top:165px;"></div>
+		<div id="_PictureGUID1_backgroundImage" style="position: relative; width: 550px; height: 650px;">
+			<div id="_PictureGUID1_uploadImage" class="uploadImage" style="width: 240px; height: 320px; left: 155px; top: 165px;"></div>
 		</div>
-		<div id="_PictureGUID2" style="position: relative; width: 550px; height: 650px;">
-			<div id="_PictureGUID2_upload" class="uploadImage" style="width:240px; height:320px; left:155px; top:165px;"></div>
+		<div id="_PictureGUID2_background" style="position: relative; width: 550px; height: 650px;">
+			<div id="_PictureGUID2_upload" class="uploadImage" style="width: 240px; height: 320px; left: 155px; top: 165px;"></div>
 		</div>
 	</div>
 </div>
@@ -43,7 +44,7 @@
 		var CurrentTShirtType = "ShortRNeck";
 		var CurrentTShirtColor = "ffffff";
 
-		var DataTShirtType =  @Html.Raw(ViewBag.DataTShirtType) ;
+		var DataTShirtType = { @Html.Raw(ViewBag.DataTShirtType) };
 
 		$(function ()
 		{
@@ -70,8 +71,8 @@
 				OnColorChange();
 			});
 
-			$("#ShowEffect .uploadImage").live("mouseover", function () { $(this).css("border-color","#ccc"); });
-			$("#ShowEffect .uploadImage").live("mouseout", function () { $(this).css("border-color","transparent"); });
+			$("#ShowEffect .uploadImage").live("mouseover", function () { $(this).css("border-color", "#ccc"); });
+			$("#ShowEffect .uploadImage").live("mouseout", function () { $(this).css("border-color", "transparent"); });
 			//#endregion
 
 			UpdateTShirtType();
@@ -131,6 +132,8 @@
 		function UpdataShowEffect()
 		{
 			$("#ShowEffect").empty();
+			$("#UploadImage").empty();
+			$("#UploadImage").append('<input type="hidden" id="hiddenUploadPath" />');
 			var CurrentMaterialpictures = [];
 
 			//#region 查找到当前的 CurrentMaterialpictures
@@ -146,9 +149,52 @@
 
 			for (var i = 0; i < CurrentMaterialpictures.length; i++)
 			{
-				var tempElement = String.format('<div id="_{0}" style="position: relative; background-image: url(\'/Static/SystemFiles/TShirt/{1}/{2}/{3}\'); width: {4}px; height: {5}px;"><div id="_{0}_upload" class="uploadImage" style="width:{6}px; height:{7}px; left:{8}px; top:{9}px;"></div></div>',
+				var tempElement = String.format('<div id="_{0}_backgroundImage" style="position: relative; background-image: url(\'/Static/SystemFiles/TShirt/{1}/{2}/{3}\'); width: {4}px; height: {5}px;"><div id="_{0}_uploadImage" class="uploadImage" style="width:{6}px; height:{7}px; left:{8}px; top:{9}px;"></div></div>',
 					CurrentMaterialpictures[i].GUID, CurrentTShirtType, CurrentTShirtColor, CurrentMaterialpictures[i].FileName, CurrentMaterialpictures[i].Width, CurrentMaterialpictures[i].Height, CurrentMaterialpictures[i].UploadWidth * CurrentMaterialpictures[i].ShowScale, CurrentMaterialpictures[i].UploadHeight * CurrentMaterialpictures[i].ShowScale, CurrentMaterialpictures[i].Left, CurrentMaterialpictures[i].Top);
 				$("#ShowEffect").append(tempElement);
+
+
+				var tempElementUpload = String.format('<input type="file" id="_{0}_uploadFile" name="_{0}_uploadFile" data-fileName="{1}" />',
+					CurrentMaterialpictures[i].GUID, CurrentMaterialpictures[i].FileName);
+				$("#UploadImage").append(tempElementUpload);
+				(function ()
+				{
+					var index = tempdata.Index;
+
+					$("#Upload_" + index).uploadify({
+						'uploader': String.format('/Home/UploadDesignImage?GUID={0}&UploadPath={1}', CurrentMaterialpictures[i].GUID, $("#hiddenUploadPath").val()),
+						'buttonText': String.format('上传【{0}】图片{1}x{2}', CurrentMaterialpictures[i].Name, CurrentMaterialpictures[i].UploadWidth, CurrentMaterialpictures[i].UploadHeight),
+						'fileTypeDesc': '图片文件',					//文件类型描述
+						'fileTypeExts': '*.png',					//文件类型后缀
+						'onUploadSuccess': function (file, data, response)
+						{
+							var dataobj = JSON.parse(data);
+							if (dataobj.state == 'success')
+							{
+								$("#hiddenUploadPath").val(dataobj.msg);
+								$("#ShowImage_" + index).css("background-image", "url('/Static/UserFiles/temp/" + dataobj.userID + "/" + dataobj.msg + "/" + CurrentMaterialpictures[i].FileName + "')");
+							}
+							else
+							{
+								$('<div title="错误"><p>' + dataobj.msg + '</p></div>').dialog({
+									resizable: false,
+									modal: true,
+									autoOpen: true,
+									buttons:
+										[
+											{
+												text: "关闭",
+												click: function ()
+												{
+													$(this).dialog("close");
+												}
+											}
+										]
+								});
+							}
+						}
+					});
+				})();
 			}
 		}
 

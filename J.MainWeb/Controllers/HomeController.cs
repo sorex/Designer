@@ -12,10 +12,11 @@ using System.Text;
 using J.Utility.Cryptography;
 using J.Utility;
 using System.IO;
+using J.MainWeb.App_Code;
 
 namespace J.MainWeb.Controllers
 {
-	public class HomeController : Controller
+	public class HomeController : BaseController
 	{
 		private static Logger logger = LogManager.GetCurrentClassLogger();
 
@@ -177,7 +178,7 @@ namespace J.MainWeb.Controllers
 
 		#region API
 		[HttpPost]
-		public ActionResult UploadDesignImage(string GUID)
+		public ActionResult UploadDesignImage(string GUID, string UploadPath)
 		{
 			HttpPostedFileBase file = Request.Files["Filedata"]; //获取单独文件的访问
 			var fileGuid = Guid.NewGuid().ToString();//生成随机的guid
@@ -185,15 +186,38 @@ namespace J.MainWeb.Controllers
 			{
 				if (file != null)
 				{
-					var uploadPath = Server.MapPath("~/Static/UserFiles") + "/Temp/" + fileGuid;
-					if (!Directory.Exists(uploadPath))
-					{ //判断上传的文件夹是否存在 
-						Directory.CreateDirectory(uploadPath);
+					materialpicture mp;
+					using (DBEntities db = new DBEntities())
+					{
+						mp = db.materialpictures.FirstOrDefault(p => p.GUID == GUID);
 					}
-					file.SaveAs(uploadPath + '/' + file.FileName);
-					System.Drawing.Image img = System.Drawing.Image.FromFile(uploadPath + '/' + file.FileName);
+					if (mp == null)
+						return Content(JsonConvert.SerializeObject(new { state = "error", msg = "服务器禁止上传规定外的文件！" }));
+					if (String.IsNullOrWhiteSpace(UploadPath))
+						UploadPath = Basic.NewGuid();
 
-					return Content(JsonConvert.SerializeObject(new { state = "success", msg = fileGuid, width = img.Width, height = img.Height }));
+					var UploadFullPath = Server.MapPath("~/Static/UserFiles") + "\\temp\\" + base.CurrentUser.GUID + "\\" + UploadPath;
+
+					//上传路径不存在则创建路径
+					if (!Directory.Exists(UploadFullPath))
+						Directory.CreateDirectory(UploadFullPath);
+
+					//已存在文件则删除
+					if (System.IO.File.Exists(UploadFullPath + "\\" + mp.FileName))
+						System.IO.File.Delete(UploadFullPath + "\\" + mp.FileName);
+
+					file.SaveAs(UploadFullPath + "\\" + mp.FileName);
+					System.Drawing.Image img = System.Drawing.Image.FromFile(UploadFullPath + "\\" + mp.FileName);
+
+					//图片尺寸不正确则删除
+					if (img.Height != mp.UploadHeight || img.Width != mp.UploadWidth)
+					{
+						img.Dispose();
+						System.IO.File.Delete(UploadFullPath + "\\" + mp.FileName);
+						return Content(JsonConvert.SerializeObject(new { state = "error", msg = "图片尺寸不正确，必须上传 " + mp.UploadWidth + "x" + mp.UploadHeight + " 大小的图片。" }));
+					}
+
+					return Content(JsonConvert.SerializeObject(new { state = "success", msg = UploadPath, userID = base.CurrentUser.GUID }));
 				}
 				return Content(JsonConvert.SerializeObject(new { state = "error", msg = "文件不存在，请重新上传！" }));
 			}

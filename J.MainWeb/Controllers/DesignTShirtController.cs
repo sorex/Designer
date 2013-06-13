@@ -9,13 +9,14 @@ using Newtonsoft;
 using Newtonsoft.Json;
 using System.Data.Entity;
 
+using J.MainWeb.App_Code;
 using J.BusinessLogics;
 using J.Utility;
 using J.BusinessLogics.Basic;
 
 namespace J.MainWeb.Controllers
 {
-	public class DesignTShirtController : Controller
+	public class DesignTShirtController : BaseController
 	{
 		private static Logger logger = LogManager.GetCurrentClassLogger();
 
