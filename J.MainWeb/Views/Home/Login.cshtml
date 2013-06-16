@@ -91,17 +91,44 @@
 						var dataobj = JSON.parse(data);
 						if (dataobj.code > 0)
 						{
-							$("#LoginNameUsed").css("display", "none");
 							location.href = "@Url.Action("Index", "Home")";
 						}
 						else
 						{
-							$("#LoginNameUsed").css("display", "block");
+							$('<div title="提示"><p>' + dataobj.msg + '</p></div>').dialog({
+								resizable: false,
+								modal: true,
+								autoOpen: true,
+								buttons:
+									[
+										{
+											text: "关闭",
+											click: function ()
+											{
+												$(this).dialog("close");
+											}
+										}
+									]
+							});
 						}
 					},
 					error: function (XMLHttpRequest, textStatus, errorThrown)
 					{
-
+						$('<div title="提示"><p>网络错误，请重试！</p></div>').dialog({
+							resizable: false,
+							modal: true,
+							autoOpen: true,
+							buttons:
+								[
+									{
+										text: "关闭",
+										click: function ()
+										{
+											$(this).dialog("close");
+										}
+									}
+								]
+						});
 					}
 				});
 			});

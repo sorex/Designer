@@ -55,8 +55,15 @@
 		height: 150px;
 	}
 
+	.body .left #SalesInformation
+	{
+		height: 100px;
+	}
 
-
+	.body .left #DesignInformation
+	{
+		height: 420px;
+	}
 
 
 	.body .main .group

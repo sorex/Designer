@@ -29,6 +29,38 @@
 		<input type="hidden" id="hiddenUploadPath" />
 		<input type="file" id="_PictureGUID1_uploadFile" name="_PictureGUID1_uploadFile" data-filename="" />
 	</div>
+
+	<div id="SalesInformation" class="group">
+		<div id="salesGoalSlider"></div>
+		<div style="float: left; width: 170px;">
+			<span>销售目标：</span><span id="salesGoal">50</span><span>件</span><br />
+			<span>单件成本：</span><span id="basePrice">50.00</span><span>元/件</span><br />
+			<span>单件售价：</span><input type="text" id="sellingPrice" style="width: 60px" value="60.00" onchange="ComputerAnticipatedIncome();" /><span>元/件</span>
+		</div>
+		<div style="float: right; width: 210px; text-align: right;" title="显示的是总收益，需要扣除支付宝的手续费用，付款1.2%手续费，打款0.5%手续费（最低1元，最高25元）。">
+			<span>您的预计收益：</span><br />
+			<span id="anticipatedIncome" style="font: bold 48px arial;">461.68</span><span>元</span>
+		</div>
+	</div>
+
+	<div id="DesignInformation" class="group">
+		<div title="给您的活动取个好辨识的标题吧。">
+			<span>活动标题：</span><input type="text" id="title" style="width: 320px;" />
+			<input type="button" onclick="test();" value="test" />
+		</div>
+		<div style="margin-top: 5px;" title="您希望该活动的预售时长。">
+			<span>活动时长：</span>
+			<div id="longTime" style="display: inline-block;">
+				<input type="radio" id="time3" name="longTime" value="3" /><label for="time3">3天</label>
+				<input type="radio" id="time7" name="longTime" value="7" checked /><label for="time7">7天</label>
+				<input type="radio" id="time14" name="longTime" value="14" /><label for="time14">14天</label>
+				<input type="radio" id="time21" name="longTime" value="21" /><label for="time21">21天</label>
+			</div>
+		</div>
+		<div style="margin-top: 5px;" title="给您的写点什么吧。它会显示到购买页面的说。">
+			<span>活动说明：</span><textarea id="description" style="height: 200px;"></textarea>
+		</div>
+	</div>
 </div>
 <div class="main">
 	<div id="ShowEffect" class="group">
@@ -166,7 +198,7 @@
 					$("#_" + tempGUID + "_uploadFile").uploadify({
 						'width': 375,
 						'uploader': '/Home/UploadDesignImage',
-						'buttonText': String.format('上传【{0}】图片{1}x{2}', CurrentMaterialpictures[i].Name, CurrentMaterialpictures[i].UploadWidth, CurrentMaterialpictures[i].UploadHeight),
+						'buttonText': String.format('上传【{0}】图片（{1} x {2}）', CurrentMaterialpictures[i].Name, CurrentMaterialpictures[i].UploadWidth, CurrentMaterialpictures[i].UploadHeight),
 						'fileTypeDesc': '图片文件',					//文件类型描述
 						'fileTypeExts': '*.png',					//文件类型后缀
 						'onUploadStart' : function(file) {
