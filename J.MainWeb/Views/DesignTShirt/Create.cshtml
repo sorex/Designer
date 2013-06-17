@@ -107,6 +107,18 @@
 
 			$("#ShowEffect .uploadImage").live("mouseover", function () { $(this).css("border-color", "#ccc"); });
 			$("#ShowEffect .uploadImage").live("mouseout", function () { $(this).css("border-color", "transparent"); });
+			
+			$("#salesGoalSlider").slider({
+				value: 50,
+				min: 10,
+				max: 200,
+				step: 10,
+				slide: function (event, ui)
+				{
+					$("#salesGoal").text(ui.value);
+					ComputerAnticipatedIncome();
+				}
+			});
 			//#endregion
 
 			UpdateTShirtType();
@@ -246,6 +258,21 @@
 		function OnColorChange()
 		{
 			UpdataShowEffect();
+		}
+
+		function ComputerAnticipatedIncome()
+		{
+			var salesGoal = parseInt($("#salesGoal").text());
+			var sellingPrice = parseFloat($("#sellingPrice").val());
+			var basePrice = parseFloat($("#basePrice").text());
+			var anticipatedIncome = (salesGoal * (sellingPrice * 100000 * 0.988 - basePrice * 100000));
+			var tax = anticipatedIncome * 0.005;
+			if (tax < 1 * 100000)
+				tax = 1 * 00000;
+			else if (tax > 25 * 100000)
+				tax = 25 * 100000;
+			anticipatedIncome = (anticipatedIncome - tax) / 100000;
+			$("#anticipatedIncome").text(anticipatedIncome);
 		}
 
 	</script>

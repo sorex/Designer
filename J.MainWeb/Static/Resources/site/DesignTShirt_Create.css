@@ -23,6 +23,12 @@
 		margin-bottom: 5px;
 	}
 
+		.body .left .group input[type="text"]
+		{
+			font-size: 18px;
+			line-height: 25px;
+			height: 25px;
+		}
 
 		.body .left .group #TShirtType span
 		{

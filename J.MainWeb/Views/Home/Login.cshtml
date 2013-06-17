@@ -41,6 +41,49 @@
 
 		$(function ()
 		{
+			//#region 处理Tab和Shift+Tab以及Enter事件
+			$("#LoginName").keydown(function (event)
+			{
+				if (event.keyCode == 13 || event.keyCode == 9)
+				{
+					$("#Password").focus();
+					event.preventDefault();
+				}
+			});
+			$("#Password").keydown(function (event)
+			{
+				if (event.shiftKey && event.keyCode == 9)
+				{
+					$("#LoginName").focus();
+					event.preventDefault();
+				}
+				else if (event.keyCode == 13 || event.keyCode == 9)
+				{
+					$("#SecurityCode").focus();
+					event.preventDefault();
+				}
+			});
+			$("#SecurityCode").keydown(function (event)
+			{
+				if (event.shiftKey && event.keyCode == 9)
+				{
+					$("#Password").focus();
+					event.preventDefault();
+				}
+				else if (event.keyCode == 9)
+				{
+					$("#login").focus();
+					event.preventDefault();
+				}
+				else if (event.keyCode == 13)
+				{
+					$("#login").click();
+					event.preventDefault();
+				}
+			});
+			//#endregion
+
+			//#region 处理验证码
 			$("#SecurityCode").blur(function ()
 			{
 				if ($("#SecurityCode").val().length == 4)
@@ -73,6 +116,7 @@
 					$("#SecurityCodeError").css("display", "block");
 				}
 			});
+			//#endregion
 
 			$("#login").click(function ()
 			{
