@@ -52,7 +52,6 @@
 	<div id="DesignInformation" class="group">
 		<div title="给您的活动取个好辨识的标题吧。">
 			<span>活动标题：</span><input type="text" id="title" style="width: 320px;" />
-			<input type="button" onclick="test();" value="test" />
 		</div>
 		<div style="margin-top: 5px;" title="您希望该活动的预售时长。">
 			<span>活动时长：</span>
@@ -269,7 +268,7 @@
 				}
 			}
 			$("#basePrice").val(CurrentTShirtTypeObject.Price);
-			$("#sellingPrice").val(RetainDigits(CurrentTShirtTypeObject.Price + 5, 2));
+			$("#sellingPrice").val(RetainDigits(CurrentTShirtTypeObject.Price * 1.1, 2));
 			ComputerAnticipatedIncome();
 		}
 
@@ -332,7 +331,6 @@
 				sellingPrice = 9999.99;
 			}
 			$("#sellingPrice").val(RetainDigits(sellingPrice, 2));
-
 			$("#basePriceShow").text(RetainDigits(basePriceShow, 2));
 
 			//支付宝每笔收款收1.2%手续费，每笔收0.5%手续费（最低1元，最高25元）
