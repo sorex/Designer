@@ -114,3 +114,27 @@ String.prototype.decodeURI = function ()
 {
 	return unescape(this)
 }
+
+//┏━━━━━━━━━━━━━━━━┓
+//┃ float对象的扩展   ┃
+//┗━━━━━━━━━━━━━━━━┛
+RetainDigits = function (num, digits)
+{
+	/// <summary>
+	/// 将指定float数字保留几位小数
+	/// </summary>
+	/// <returns type="String" />
+
+	var result = num.toString();
+	var pos_decimal = result.indexOf('.');
+	if (pos_decimal < 0)
+	{
+		pos_decimal = result.length;
+		result += '.';
+	}
+	while (result.length <= pos_decimal + digits)
+	{
+		result += '0';
+	}
+	return result;
+};

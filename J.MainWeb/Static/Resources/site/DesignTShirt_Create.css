@@ -63,8 +63,18 @@
 
 	.body .left #SalesInformation
 	{
-		height: 100px;
+		height: 110px;
 	}
+
+		.body .left #SalesInformation #salesGoalSlider
+		{
+			margin-bottom: 4px;
+		}
+		.body .left #SalesInformation #anticipatedIncome
+		{
+			font: bold 42px arial;
+			color: #2eaa12;
+		}
 
 	.body .left #DesignInformation
 	{
