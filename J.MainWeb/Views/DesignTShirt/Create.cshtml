@@ -41,7 +41,7 @@
 		</div>
 		<div style="float: left; width: 110px;">
 			<span>单件售价：</span><br />
-			<input type="text" id="sellingPrice" style="width: 70px" value="60.00" onchange="ComputerAnticipatedIncome();" /><span>元/件</span>
+			<input type="text" id="sellingPrice" style="width: 70px" value="60.00" onchange="ComputerAnticipatedIncome();" title="最高定价9999.99元" /><span>元/件</span>
 		</div>
 		<div style="float: right; width: 270px; text-align: right;" title="显示的是总收益，需要扣除支付宝的手续费用，付款1.2%手续费，打款0.5%手续费（最低1元，最高25元）。">
 			<span>您的预计收益约为：</span><br />
@@ -51,7 +51,7 @@
 
 	<div id="DesignInformation" class="group">
 		<div title="给您的活动取个好辨识的标题吧。">
-			<span>活动标题：</span><input type="text" id="title" style="width: 320px;" />
+			<span>活动标题：</span><input type="text" id="title" style="width: 300px;" />
 		</div>
 		<div style="margin-top: 5px;" title="您希望该活动的预售时长。">
 			<span>活动时长：</span>
@@ -63,8 +63,11 @@
 			</div>
 		</div>
 		<div style="margin-top: 5px;" title="给您的写点什么吧。它会显示到购买页面的说。">
-			<span>活动说明：</span><textarea id="description" style="height: 200px;"></textarea>
+			<span>活动说明：</span><br /><textarea id="description" style=" width:375px; height: 280px;"></textarea>
 		</div>
+	</div>
+	<div id="Next" class="group">
+		<a id="submit" class="button submitButton" href="javascript:void(0);" onclick="return false;">发布</a>
 	</div>
 </div>
 <div class="main">
@@ -123,6 +126,12 @@
 					$("#salesGoal").text(ui.value);
 					ComputerAnticipatedIncome();
 				}
+			});
+
+			$("#longTime").buttonset();
+
+			$("#submit").click(function(){
+			
 			});
 			//#endregion
 

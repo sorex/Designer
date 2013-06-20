@@ -298,6 +298,7 @@
     <Content Include="Static\Resources\uploadify\jquery.uploadify.min.js.map">
       <DependentUpon>jquery.uploadify.js</DependentUpon>
     </Content>
+    <Content Include="Views\DesignTShirt\Preview.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

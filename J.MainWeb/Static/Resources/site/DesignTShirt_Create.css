@@ -58,7 +58,7 @@
 
 	.body .left #UploadImage
 	{
-		height: 150px;
+		/*height: 80px;*/
 	}
 
 	.body .left #SalesInformation
@@ -70,6 +70,12 @@
 		{
 			margin-bottom: 4px;
 		}
+
+		.body .left #SalesInformation #sellingPrice
+		{
+			text-align: right;
+		}
+
 		.body .left #SalesInformation #anticipatedIncome
 		{
 			font: bold 42px arial;
@@ -78,9 +84,44 @@
 
 	.body .left #DesignInformation
 	{
-		height: 420px;
+		height: 385px;
 	}
 
+	.body .left #Next .submitButton
+	{
+		width: 380px;
+		height: 45px;
+		line-height: 45px;
+		font-size: 24px;
+	}
+
+		.body .left #Next .submitButton:link
+		{
+			color: #ffffff;
+			background-color: #3db236;
+			border: 1px solid #128d27;
+		}
+
+		.body .left #Next .submitButton:visited
+		{
+			color: #ffffff;
+			background-color: #3db236;
+			border: 1px solid #128d27;
+		}
+
+		.body .left #Next .submitButton:hover
+		{
+			color: #ffffff;
+			background-color: #0f7621;
+			border: 1px solid #128d27;
+		}
+
+		.body .left #Next .submitButton:active
+		{
+			color: #ffffff;
+			background-color: #0c601a;
+			border: 1px solid #128d27;
+		}
 
 	.body .main .group
 	{

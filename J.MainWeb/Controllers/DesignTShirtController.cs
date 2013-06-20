@@ -50,5 +50,10 @@ namespace J.MainWeb.Controllers
 			
 			return View();
 		}
+
+		public ActionResult Preview()
+		{
+			return View();
+		}
 	}
 }
