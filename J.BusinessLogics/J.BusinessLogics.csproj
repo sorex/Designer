@@ -49,6 +49,7 @@
   <ItemGroup>
     <Compile Include="Basic\CheckData.cs" />
     <Compile Include="Basic\DynamicContractResolver.cs" />
+    <Compile Include="Basic\PriceCompute.cs" />
     <Compile Include="Basic\SecurityCode.cs" />
     <Compile Include="Basic\SessionConfig.cs" />
     <Compile Include="DesignTShirt.cs" />

@@ -51,6 +51,47 @@ namespace J.MainWeb.Controllers
 			return View();
 		}
 
+		[HttpPost]
+		public ActionResult Create(string materialGUID,string colorCode,string uploadPath,int salesGoal, decimal sellingPrice ,string title,int  time,string description)
+		{
+			var dwGUID = Basic.NewGuid();
+			var userGUID = base.CurrentUser.GUID;
+
+			using (DBEntities db = new DBEntities())
+			{
+				var material = db.materials.FirstOrDefault(p => p.GUID == materialGUID);
+				if(material == null)
+					return Content(JsonConvert.SerializeObject(new { code = -1, msg = "信息未找到，请刷新后重试！" }));
+				var LowBasePrice = material.Price;
+				var BasePrice = PriceCompute.ComputeBasePrice(LowBasePrice, salesGoal);
+				var AnticipatedIncome = PriceCompute.ComputeAnticipatedIncome(BasePrice, salesGoal, sellingPrice);
+				if(AnticipatedIncome <= 0)
+					return Content(JsonConvert.SerializeObject(new { code = -1, msg = "请提高售价，您的受益太少。" }));
+
+				designwork dw = new designwork
+				{
+					GUID = dwGUID,
+					DesignerID = userGUID,
+					MaterialID = materialGUID,
+					SalesGoal = salesGoal,
+					BasePrice = BasePrice,
+					SellingPrice = sellingPrice,
+					StartTime = DateTime.Now,
+					EndTime = DateTime.Now.AddDays(time),
+					Title = title,
+					Description = description,
+					Url = "",
+					SalesVolume = 0,
+					State = 0
+				};
+
+				db.designworks.Add(dw);
+				db.SaveChanges();
+			}
+
+			return Content(JsonConvert.SerializeObject(new { code = 0, msg = dwGUID }));
+		}
+
 		public ActionResult Preview()
 		{
 			return View();

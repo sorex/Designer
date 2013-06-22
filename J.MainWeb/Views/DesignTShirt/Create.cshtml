@@ -50,7 +50,7 @@
 	</div>
 
 	<div id="DesignInformation" class="group">
-		<div title="给您的活动取个好辨识的标题吧。">
+		<div title="给您的活动取个好辨识的标题吧。5~50个字。">
 			<span>活动标题：</span><input type="text" id="title" style="width: 300px;" />
 		</div>
 		<div style="margin-top: 5px;" title="您希望该活动的预售时长。">
@@ -62,8 +62,9 @@
 				<input type="radio" id="time21" name="longTime" value="21" /><label for="time21">21天</label>
 			</div>
 		</div>
-		<div style="margin-top: 5px;" title="给您的写点什么吧。它会显示到购买页面的说。">
-			<span>活动说明：</span><br /><textarea id="description" style=" width:375px; height: 280px;"></textarea>
+		<div style="margin-top: 5px;" title="给您的写点什么吧。它会显示到购买页面的说。0~2000个字。">
+			<span>活动说明：</span><br />
+			<textarea id="description" style="width: 375px; height: 280px;"></textarea>
 		</div>
 	</div>
 	<div id="Next" class="group">
@@ -130,8 +131,96 @@
 
 			$("#longTime").buttonset();
 
-			$("#submit").click(function(){
-			
+			$("#submit").click(function ()
+			{
+				var MaterialGUID = CurrentTShirtType;
+				var ColorCode = CurrentTShirtColor;
+				var UploadPath = $("#hiddenUploadPath").val();
+				if (UploadPath.length == 0)
+				{
+					$('<div title="提示"><p>上传图案后才可以发布哦！</p></div>').dialog({
+						resizable: false,
+						modal: true,
+						autoOpen: true,
+						buttons:
+							[
+								{
+									text: "关闭",
+									click: function ()
+									{
+										$(this).dialog("close");
+									}
+								}
+							]
+					});
+					return;
+				}
+
+				var salesGoal = parseInt($("#salesGoal").text());
+				var sellingPrice = parseFloat($("#sellingPrice").val());
+
+				var title = $("#title").val();
+				if (title.length == 0)
+					title = "这家伙懒的连标题都没写";
+				title = title.substring(0, 50);
+
+				var time = parseInt($('input[name="longTime"]:checked').val());
+
+				var description = $("#title").val();
+				if (description.length == 0)
+					description = "这家伙很懒，什么说明都没留下";
+				description = description.substring(0, 2000);
+
+				$.ajax({
+					type: "post",
+					cache: false,
+					url: "@Url.Action("Create", "DesignTShirt")",
+					data:
+						{
+							materialGUID: MaterialGUID,
+							colorCode: ColorCode,
+							uploadPath: UploadPath,
+							salesGoal: salesGoal,
+							sellingPrice: sellingPrice,
+							title: title,
+							time: time,
+							description: description
+						},
+					success: function (data)
+					{
+						var dataobj = JSON.parse(data);
+						if (dataobj.code > 0)
+						{
+							$('<div title="提示"><p>发布成功</p></div>').dialog({
+								resizable: false,
+								modal: true,
+								autoOpen: true,
+								buttons:
+									[
+										{
+											text: "关闭",
+											click: function ()
+											{
+												$(this).dialog("close");
+											}
+										}
+									],
+								close: function (event, ui)
+								{
+									location.href = "@Url.Action("Index", "Home")";
+								}
+							});
+							}
+							else
+							{
+								alert(dataobj.msg);
+							}
+					},
+					error: function (XMLHttpRequest, textStatus, errorThrown)
+					{
+						alert("服务器连接失败，请重试！");
+					}
+				});
 			});
 			//#endregion
 
@@ -144,215 +233,215 @@
 			UpdataMoney();
 		});
 
-		function UpdateTShirtType()
-		{
-			$("#TShirtType").empty();
-			for (var i = 0; i < DataTShirtType.length; i++)
+			function UpdateTShirtType()
 			{
-				var activeClass = "";
-				if (i == 0)
+				$("#TShirtType").empty();
+				for (var i = 0; i < DataTShirtType.length; i++)
 				{
-					activeClass = " active";
-					CurrentTShirtType = DataTShirtType[i].GUID;
-				}
-				var tempElement = String.format('<span id="_{0}" style="background-image: url(\'/Static/SystemFiles/{1}/{0}/50x50.png\')" title="{2}" class="button{3}"></span>',
-					DataTShirtType[i].GUID, DataTShirtType[i].TypeID, DataTShirtType[i].Name, activeClass);
-				$("#TShirtType").append(tempElement);
-			}
-		}
-
-		function UpdateTShirtColor()
-		{
-			$("#TShirtColor").empty();
-			var CurrentMaterialcolors = [];
-
-			//#region 查找到当前的 CurrentMaterialcolors
-			for (var i = 0; i < DataTShirtType.length; i++)
-			{
-				if (DataTShirtType[i].GUID == CurrentTShirtType)
-				{
-					CurrentMaterialcolors = DataTShirtType[i].materialcolors;
-					break;
+					var activeClass = "";
+					if (i == 0)
+					{
+						activeClass = " active";
+						CurrentTShirtType = DataTShirtType[i].GUID;
+					}
+					var tempElement = String.format('<span id="_{0}" style="background-image: url(\'/Static/SystemFiles/{1}/{0}/50x50.png\')" title="{2}" class="button{3}"></span>',
+						DataTShirtType[i].GUID, DataTShirtType[i].TypeID, DataTShirtType[i].Name, activeClass);
+					$("#TShirtType").append(tempElement);
 				}
 			}
-			//#endregion
 
-			for (var i = 0; i < CurrentMaterialcolors.length; i++)
+			function UpdateTShirtColor()
 			{
-				var activeClass = "";
-				if (CurrentMaterialcolors[i].IsDefault)
+				$("#TShirtColor").empty();
+				var CurrentMaterialcolors = [];
+
+				//#region 查找到当前的 CurrentMaterialcolors
+				for (var i = 0; i < DataTShirtType.length; i++)
 				{
-					activeClass = " active";
-					CurrentTShirtColor = CurrentMaterialcolors[i].ColorCode;
+					if (DataTShirtType[i].GUID == CurrentTShirtType)
+					{
+						CurrentMaterialcolors = DataTShirtType[i].materialcolors;
+						break;
+					}
 				}
-				var tempElement = String.format('<span id="_{0}" style="background-color:#{1};" data-colorCode="{1}" title="{2}" class="button{3}"></span>',
-					CurrentMaterialcolors[i].GUID, CurrentMaterialcolors[i].ColorCode, CurrentMaterialcolors[i].ColorName, activeClass);
-				$("#TShirtColor").append(tempElement);
-			}
-		}
+				//#endregion
 
-		function UpdataShowEffect()
-		{
-			$("#ShowEffect").empty();
-			$("#UploadImage").empty();
-			$("#UploadImage").append('<input type="hidden" id="hiddenUploadPath" />');
-			var CurrentMaterialpictures = [];
-
-			//#region 查找到当前的 CurrentMaterialpictures
-			for (var i = 0; i < DataTShirtType.length; i++)
-			{
-				if (DataTShirtType[i].GUID == CurrentTShirtType)
+				for (var i = 0; i < CurrentMaterialcolors.length; i++)
 				{
-					CurrentMaterialpictures = DataTShirtType[i].materialpictures;
-					break;
+					var activeClass = "";
+					if (CurrentMaterialcolors[i].IsDefault)
+					{
+						activeClass = " active";
+						CurrentTShirtColor = CurrentMaterialcolors[i].ColorCode;
+					}
+					var tempElement = String.format('<span id="_{0}" style="background-color:#{1};" data-colorCode="{1}" title="{2}" class="button{3}"></span>',
+						CurrentMaterialcolors[i].GUID, CurrentMaterialcolors[i].ColorCode, CurrentMaterialcolors[i].ColorName, activeClass);
+					$("#TShirtColor").append(tempElement);
 				}
 			}
-			//#endregion
 
-			for (var i = 0; i < CurrentMaterialpictures.length; i++)
+			function UpdataShowEffect()
 			{
-				var tempElement = String.format('<div id="_{0}_backgroundImage" style="position: relative; background-image: url(\'/Static/SystemFiles/TShirt/{1}/{2}/{3}\'); width: {4}px; height: {5}px;"><div id="_{0}_uploadImage" class="uploadImage" style="width:{6}px; height:{7}px; left:{8}px; top:{9}px;"></div></div>',
-					CurrentMaterialpictures[i].GUID, CurrentTShirtType, CurrentTShirtColor, CurrentMaterialpictures[i].FileName, CurrentMaterialpictures[i].Width, CurrentMaterialpictures[i].Height, CurrentMaterialpictures[i].UploadWidth * CurrentMaterialpictures[i].ShowScale, CurrentMaterialpictures[i].UploadHeight * CurrentMaterialpictures[i].ShowScale, CurrentMaterialpictures[i].Left, CurrentMaterialpictures[i].Top);
-				$("#ShowEffect").append(tempElement);
+				$("#ShowEffect").empty();
+				$("#UploadImage").empty();
+				$("#UploadImage").append('<input type="hidden" id="hiddenUploadPath" />');
+				var CurrentMaterialpictures = [];
 
-
-				var tempElementUpload = String.format('<input type="file" id="_{0}_uploadFile" name="_{0}_uploadFile" data-fileName="{1}" />',
-					CurrentMaterialpictures[i].GUID, CurrentMaterialpictures[i].FileName);
-				$("#UploadImage").append(tempElementUpload);
-				(function ()
+				//#region 查找到当前的 CurrentMaterialpictures
+				for (var i = 0; i < DataTShirtType.length; i++)
 				{
-					var tempGUID = CurrentMaterialpictures[i].GUID;
-					var tempFileName = CurrentMaterialpictures[i].FileName;
-					$("#_" + tempGUID + "_uploadFile").uploadify({
-						'width': 375,
-						'uploader': '/Home/UploadDesignImage',
-						'buttonText': String.format('上传【{0}】图片（{1} x {2}）', CurrentMaterialpictures[i].Name, CurrentMaterialpictures[i].UploadWidth, CurrentMaterialpictures[i].UploadHeight),
-						'fileTypeDesc': '图片文件',					//文件类型描述
-						'fileTypeExts': '*.png',					//文件类型后缀
-						'onUploadStart': function (file)
-						{
-							$("#_" + tempGUID + "_uploadFile").uploadify("settings", "formData", { 'GUID': tempGUID, 'UploadPath': $("#hiddenUploadPath").val() });
-						},
-						'onUploadSuccess': function (file, data, response)
-						{
-							var dataobj = JSON.parse(data);
-							if (dataobj.state == 'success')
+					if (DataTShirtType[i].GUID == CurrentTShirtType)
+					{
+						CurrentMaterialpictures = DataTShirtType[i].materialpictures;
+						break;
+					}
+				}
+				//#endregion
+
+				for (var i = 0; i < CurrentMaterialpictures.length; i++)
+				{
+					var tempElement = String.format('<div id="_{0}_backgroundImage" style="position: relative; background-image: url(\'/Static/SystemFiles/TShirt/{1}/{2}/{3}\'); width: {4}px; height: {5}px;"><div id="_{0}_uploadImage" class="uploadImage" style="width:{6}px; height:{7}px; left:{8}px; top:{9}px;"></div></div>',
+						CurrentMaterialpictures[i].GUID, CurrentTShirtType, CurrentTShirtColor, CurrentMaterialpictures[i].FileName, CurrentMaterialpictures[i].Width, CurrentMaterialpictures[i].Height, CurrentMaterialpictures[i].UploadWidth * CurrentMaterialpictures[i].ShowScale, CurrentMaterialpictures[i].UploadHeight * CurrentMaterialpictures[i].ShowScale, CurrentMaterialpictures[i].Left, CurrentMaterialpictures[i].Top);
+					$("#ShowEffect").append(tempElement);
+
+
+					var tempElementUpload = String.format('<input type="file" id="_{0}_uploadFile" name="_{0}_uploadFile" data-fileName="{1}" />',
+						CurrentMaterialpictures[i].GUID, CurrentMaterialpictures[i].FileName);
+					$("#UploadImage").append(tempElementUpload);
+					(function ()
+					{
+						var tempGUID = CurrentMaterialpictures[i].GUID;
+						var tempFileName = CurrentMaterialpictures[i].FileName;
+						$("#_" + tempGUID + "_uploadFile").uploadify({
+							'width': 375,
+							'uploader': '/Home/UploadDesignImage',
+							'buttonText': String.format('上传【{0}】图片（{1} x {2}）', CurrentMaterialpictures[i].Name, CurrentMaterialpictures[i].UploadWidth, CurrentMaterialpictures[i].UploadHeight),
+							'fileTypeDesc': '图片文件',					//文件类型描述
+							'fileTypeExts': '*.png',					//文件类型后缀
+							'onUploadStart': function (file)
 							{
-								$("#hiddenUploadPath").val(dataobj.msg);
-								$("#_" + tempGUID + "_uploadImage").css("background-image", "url('/Static/UserFiles/temp/" + dataobj.userID + "/" + dataobj.msg + "/" + tempFileName + "')");
-							}
-							else
+								$("#_" + tempGUID + "_uploadFile").uploadify("settings", "formData", { 'GUID': tempGUID, 'UploadPath': $("#hiddenUploadPath").val() });
+							},
+							'onUploadSuccess': function (file, data, response)
 							{
-								$('<div title="错误"><p>' + dataobj.msg + '</p></div>').dialog({
-									resizable: false,
-									modal: true,
-									autoOpen: true,
-									buttons:
-										[
-											{
-												text: "关闭",
-												click: function ()
+								var dataobj = JSON.parse(data);
+								if (dataobj.state == 'success')
+								{
+									$("#hiddenUploadPath").val(dataobj.msg);
+									$("#_" + tempGUID + "_uploadImage").css("background-image", "url('/Static/UserFiles/temp/" + dataobj.userID + "/" + dataobj.msg + "/" + tempFileName + "')");
+								}
+								else
+								{
+									$('<div title="错误"><p>' + dataobj.msg + '</p></div>').dialog({
+										resizable: false,
+										modal: true,
+										autoOpen: true,
+										buttons:
+											[
 												{
-													$(this).dialog("close");
+													text: "关闭",
+													click: function ()
+													{
+														$(this).dialog("close");
+													}
 												}
-											}
-										]
-								});
+											]
+									});
+								}
 							}
-						}
-					});
-				})();
-			}
-		}
-
-		function UpdataMoney()
-		{
-			var CurrentTShirtTypeObject = {};
-			for (var i = 0; i < DataTShirtType.length; i++)
-			{
-				if (DataTShirtType[i].GUID == CurrentTShirtType)
-				{
-					CurrentTShirtTypeObject = DataTShirtType[i];
-					break;
+						});
+					})();
 				}
 			}
-			$("#basePrice").val(CurrentTShirtTypeObject.Price);
-			$("#sellingPrice").val(RetainDigits(CurrentTShirtTypeObject.Price * 1.1, 2));
-			ComputerAnticipatedIncome();
-		}
 
-		function OnTypeChange()
-		{
-			UpdateTShirtColor();
-
-			UpdataShowEffect();
-
-			UpdataMoney();
-		}
-
-		function OnColorChange()
-		{
-			UpdataShowEffect();
-		}
-
-		function ComputerAnticipatedIncome()
-		{
-			//预计销售数量
-			var salesGoal = parseInt($("#salesGoal").text());
-			//销售价格 2位小数
-			var sellingPrice = Math.round(parseFloat($("#sellingPrice").val()) * 100) / 100;
-			//基础价格 2位小数
-			var basePrice = Math.round(parseFloat($("#basePrice").val()) * 100) / 100;
-			//基础价格 显示 2位小数
-			var basePriceShow = basePrice;
-			if (salesGoal <= 20)
+			function UpdataMoney()
 			{
-				//10件原价，20件减2元
-				basePriceShow = basePriceShow - (salesGoal / 10 - 1) * 2;
-			}
-			else if (salesGoal <= 50)
-			{
-				//20件以上，每多10件再减1元
-				basePriceShow = basePriceShow - 2 - (salesGoal / 10 - 2) * 1;
-			}
-			else if (salesGoal <= 100)
-			{
-				//50件以上，每多10件再减0.5元
-				basePriceShow = basePriceShow - 5 - (salesGoal / 10 - 5) * 0.5;
-			}
-			else if (salesGoal <= 200)
-			{
-				//100件以上，每多10件再减0.2元
-				basePriceShow = basePriceShow - 7.5 - (salesGoal / 10 - 10) * 0.2;
-			}
-			else if (salesGoal > 200)
-			{
-				//200件以上直接减10元
-				basePriceShow = basePriceShow - 10;
+				var CurrentTShirtTypeObject = {};
+				for (var i = 0; i < DataTShirtType.length; i++)
+				{
+					if (DataTShirtType[i].GUID == CurrentTShirtType)
+					{
+						CurrentTShirtTypeObject = DataTShirtType[i];
+						break;
+					}
+				}
+				$("#basePrice").val(CurrentTShirtTypeObject.Price);
+				$("#sellingPrice").val(RetainDigits(CurrentTShirtTypeObject.Price * 1.1, 2));
+				ComputerAnticipatedIncome();
 			}
 
-			if(isNaN(sellingPrice) || sellingPrice < basePrice + 1)
+			function OnTypeChange()
 			{
-				sellingPrice = basePrice + 1;
-			}
-			else if(sellingPrice > 9999.99)
-			{
-				sellingPrice = 9999.99;
-			}
-			$("#sellingPrice").val(RetainDigits(sellingPrice, 2));
-			$("#basePriceShow").text(RetainDigits(basePriceShow, 2));
+				UpdateTShirtColor();
 
-			//支付宝每笔收款收1.2%手续费，每笔收0.5%手续费（最低1元，最高25元）
-			var anticipatedIncome = (salesGoal * (sellingPrice - Math.round(sellingPrice * 0.012 * 100) / 100 - basePriceShow));
-			var tax = anticipatedIncome * 0.005;
-			if (tax < 1)
-				tax = 1;
-			else if (tax > 25)
-				tax = 25;
-			tax = Math.round(tax * 100) / 100;
-			anticipatedIncome = Math.round((anticipatedIncome - tax) * 100) / 100;
-			$("#anticipatedIncome").text(RetainDigits(anticipatedIncome, 2)+"元");
-		}
+				UpdataShowEffect();
+
+				UpdataMoney();
+			}
+
+			function OnColorChange()
+			{
+				UpdataShowEffect();
+			}
+
+			function ComputerAnticipatedIncome()
+			{
+				//预计销售数量
+				var salesGoal = parseInt($("#salesGoal").text());
+				//销售价格 2位小数
+				var sellingPrice = Math.round(parseFloat($("#sellingPrice").val()) * 100) / 100;
+				//基础价格 2位小数
+				var basePrice = Math.round(parseFloat($("#basePrice").val()) * 100) / 100;
+				//基础价格 显示 2位小数
+				var basePriceShow = basePrice;
+				if (salesGoal <= 20)
+				{
+					//10件原价，20件减2元
+					basePriceShow = basePriceShow - (salesGoal / 10 - 1) * 2;
+				}
+				else if (salesGoal <= 50)
+				{
+					//20件以上，每多10件再减1元
+					basePriceShow = basePriceShow - 2 - (salesGoal / 10 - 2) * 1;
+				}
+				else if (salesGoal <= 100)
+				{
+					//50件以上，每多10件再减0.5元
+					basePriceShow = basePriceShow - 5 - (salesGoal / 10 - 5) * 0.5;
+				}
+				else if (salesGoal <= 200)
+				{
+					//100件以上，每多10件再减0.2元
+					basePriceShow = basePriceShow - 7.5 - (salesGoal / 10 - 10) * 0.2;
+				}
+				else if (salesGoal > 200)
+				{
+					//200件以上直接减10元
+					basePriceShow = basePriceShow - 10;
+				}
+
+				if (isNaN(sellingPrice) || sellingPrice < basePrice + 1)
+				{
+					sellingPrice = basePrice + 1;
+				}
+				else if (sellingPrice > 9999.99)
+				{
+					sellingPrice = 9999.99;
+				}
+				$("#sellingPrice").val(RetainDigits(sellingPrice, 2));
+				$("#basePriceShow").text(RetainDigits(basePriceShow, 2));
+
+				//支付宝每笔收款收1.2%手续费，每笔收0.5%手续费（最低1元，最高25元）
+				var anticipatedIncome = (salesGoal * (sellingPrice - Math.round(sellingPrice * 0.012 * 100) / 100 - basePriceShow));
+				var tax = anticipatedIncome * 0.005;
+				if (tax < 1)
+					tax = 1;
+				else if (tax > 25)
+					tax = 25;
+				tax = Math.round(tax * 100) / 100;
+				anticipatedIncome = Math.round((anticipatedIncome - tax) * 100) / 100;
+				$("#anticipatedIncome").text(RetainDigits(anticipatedIncome, 2) + "元");
+			}
 
 	</script>
 
