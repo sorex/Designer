@@ -54,8 +54,9 @@ namespace J.MainWeb.Controllers
 		[HttpPost]
 		public ActionResult Create(string materialGUID,string colorCode,string uploadPath,int salesGoal, decimal sellingPrice ,string title,int  time,string description)
 		{
-			var dwGUID = Basic.NewGuid();
+			var dwGUID = uploadPath.ToLower();
 			var userGUID = base.CurrentUser.GUID;
+			var userLoginName = base.CurrentUser.LoginName;
 
 			using (DBEntities db = new DBEntities())
 			{
@@ -67,6 +68,9 @@ namespace J.MainWeb.Controllers
 				var AnticipatedIncome = PriceCompute.ComputeAnticipatedIncome(BasePrice, salesGoal, sellingPrice);
 				if(AnticipatedIncome <= 0)
 					return Content(JsonConvert.SerializeObject(new { code = -1, msg = "请提高售价，您的受益太少。" }));
+
+				var UserFiles = Server.MapPath("~/Static/UserFiles/");
+				System.IO.Directory.Move(UserFiles + "\\temp\\" + dwGUID, UserFiles + "\\" + userLoginName + "\\" + dwGUID);
 
 				designwork dw = new designwork
 				{

@@ -9,7 +9,7 @@ namespace J.Utility
 	{
 		public static string NewGuid()
 		{
-			return Guid.NewGuid().ToString("N");
+			return Guid.NewGuid().ToString("N").ToLower();
 		}
 	}
 }
