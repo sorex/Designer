@@ -89,26 +89,26 @@ CREATE TABLE IF NOT EXISTS `materialcolors` (
 --
 
 INSERT INTO `materialcolors` (`GUID`, `MaterialID`, `ColorName`, `ColorCode`, `IsDefault`, `State`) VALUES
-('17e6a0ee06504d4482e6cf34a8bee546', 'ShortRNeck', '绿色', '00ff00', b'0', 0),
-('22b3beef5fc042adbb761bf740da92bb', 'ShortRNeck', '黑色', '000000', b'0', 0),
-('2d35bfc57cb04d259a501934c9cb2dbb', 'LongVNeck', '黑色', '000000', b'0', 1),
-('3974d3d0e3d04b36aab2940d5cef70c0', 'ShortVNeck', '白色', 'ffffff', b'1', 1),
-('3b71dbd2136840299affa832682ba1d7', 'LongVNeck', '绿色', '00ff00', b'0', 1),
-('455c42eb011f42be800101fab0291187', 'LongRNeck', '白色', 'ffffff', b'1', 1),
-('6286377937394dff902d658a39d7161b', 'ShortRNeck', '蓝色', '0000ff', b'0', 1),
-('69d107839ad940cd94fb433b4ab0f217', 'LongRNeck', '蓝色', '0000ff', b'0', 1),
-('6f679700555f4f23b28b8087d4d4c418', 'LongRNeck', '黑色', '000000', b'0', 1),
-('85116c4e9751427aafe0124735086ac0', 'ShortVNeck', '蓝色', '0000ff', b'0', 1),
-('89d8d523458f4a6ea3f5577cde82eb7c', 'ShortVNeck', '黑色', '000000', b'0', 1),
-('c2b564b2e69c4c9f9fe9d8879f5d2ff9', 'ShortRNeck', '红色', 'ff0000', b'0', 1),
-('c73b496c4bf347b2a9553ccca317a57d', 'ShortVNeck', '红色', 'ff0000', b'0', 1),
-('c8ae37eed2af4fbcb050ba2f48c536cc', 'LongRNeck', '绿色', '00ff00', b'0', 1),
-('cfdc884ecba041b594cd33392abb7ffa', 'LongRNeck', '红色', 'ff0000', b'0', 1),
-('d13361dcf50e4406bed0cfd0a203fa15', 'LongVNeck', '白色', 'ffffff', b'1', 1),
-('e07e6f0cd66d4656bb1866715caaa43e', 'LongVNeck', '蓝色', '0000ff', b'0', 1),
-('e5e682d606d7454088df9d56e1b9a257', 'LongVNeck', '红色', 'ff0000', b'0', 1),
-('f1b436a8973e41fb8f93bd616331d1b2', 'ShortRNeck', '白色', 'ffffff', b'1', 1),
-('f9e8870e0e034868b6691e91c3bcf45b', 'ShortVNeck', '绿色', '00ff00', b'0', 1);
+('17e6a0ee06504d4482e6cf34a8bee546', 'shortrneck', '绿色', '00ff00', b'0', 0),
+('22b3beef5fc042adbb761bf740da92bb', 'shortrneck', '黑色', '000000', b'0', 0),
+('2d35bfc57cb04d259a501934c9cb2dbb', 'longvneck', '黑色', '000000', b'0', 1),
+('3974d3d0e3d04b36aab2940d5cef70c0', 'shortvneck', '白色', 'ffffff', b'1', 1),
+('3b71dbd2136840299affa832682ba1d7', 'longvneck', '绿色', '00ff00', b'0', 1),
+('455c42eb011f42be800101fab0291187', 'longrneck', '白色', 'ffffff', b'1', 1),
+('6286377937394dff902d658a39d7161b', 'shortrneck', '蓝色', '0000ff', b'0', 1),
+('69d107839ad940cd94fb433b4ab0f217', 'longrneck', '蓝色', '0000ff', b'0', 1),
+('6f679700555f4f23b28b8087d4d4c418', 'longrneck', '黑色', '000000', b'0', 1),
+('85116c4e9751427aafe0124735086ac0', 'shortvneck', '蓝色', '0000ff', b'0', 1),
+('89d8d523458f4a6ea3f5577cde82eb7c', 'shortvneck', '黑色', '000000', b'0', 1),
+('c2b564b2e69c4c9f9fe9d8879f5d2ff9', 'shortrneck', '红色', 'ff0000', b'0', 1),
+('c73b496c4bf347b2a9553ccca317a57d', 'shortvneck', '红色', 'ff0000', b'0', 1),
+('c8ae37eed2af4fbcb050ba2f48c536cc', 'longrneck', '绿色', '00ff00', b'0', 1),
+('cfdc884ecba041b594cd33392abb7ffa', 'longrneck', '红色', 'ff0000', b'0', 1),
+('d13361dcf50e4406bed0cfd0a203fa15', 'longvneck', '白色', 'ffffff', b'1', 1),
+('e07e6f0cd66d4656bb1866715caaa43e', 'longvneck', '蓝色', '0000ff', b'0', 1),
+('e5e682d606d7454088df9d56e1b9a257', 'longvneck', '红色', 'ff0000', b'0', 1),
+('f1b436a8973e41fb8f93bd616331d1b2', 'shortrneck', '白色', 'ffffff', b'1', 1),
+('f9e8870e0e034868b6691e91c3bcf45b', 'shortvneck', '绿色', '00ff00', b'0', 1);
 
 -- --------------------------------------------------------
 
@@ -138,14 +138,14 @@ CREATE TABLE IF NOT EXISTS `materialpictures` (
 --
 
 INSERT INTO `materialpictures` (`GUID`, `MaterialID`, `Name`, `Index`, `FileName`, `Width`, `Height`, `Top`, `Left`, `UploadWidth`, `UploadHeight`, `ShowScale`) VALUES
-('13693fbb296d48e5b0892b4704a5e61f', 'ShortRNeck', '正面', 1, '01.png', 550, 650, 165, 155, 842, 1190, '0.28500000'),
-('5cd6d4eeb3a54573a6af64adb2482fe0', 'ShortVNeck', '正面', 1, '01.png', 550, 650, 165, 155, 842, 1190, '0.28500000'),
-('7faee0a6e75141faa33e19d22889539c', 'LongRNeck', '正面', 1, '01.png', 550, 650, 165, 155, 842, 1190, '0.28500000'),
-('a43d06771c934016a0928026a956c924', 'ShortRNeck', '反面', 2, '02.png', 550, 650, 165, 155, 842, 1190, '0.28500000'),
-('cb5c8686fb174befb5a67613ced100cc', 'LongVNeck', '反面', 2, '02.png', 550, 650, 165, 155, 842, 1190, '0.28500000'),
-('cd9ea4742a094d269e5c6e8fec53e802', 'LongVNeck', '正面', 1, '01.png', 550, 650, 165, 155, 842, 1190, '0.28500000'),
-('f4bfa0c52531431887b61011d9269c4f', 'ShortVNeck', '反面', 2, '02.png', 550, 650, 165, 155, 842, 1190, '0.28500000'),
-('fcc26dd512b24d82a98e6cca38a881a3', 'LongRNeck', '反面', 2, '02.png', 550, 650, 165, 155, 842, 1190, '0.28500000');
+('13693fbb296d48e5b0892b4704a5e61f', 'shortrneck', '正面', 1, '01.png', 550, 650, 165, 155, 842, 1190, '0.28500000'),
+('5cd6d4eeb3a54573a6af64adb2482fe0', 'shortvneck', '正面', 1, '01.png', 550, 650, 165, 155, 842, 1190, '0.28500000'),
+('7faee0a6e75141faa33e19d22889539c', 'longrneck', '正面', 1, '01.png', 550, 650, 165, 155, 842, 1190, '0.28500000'),
+('a43d06771c934016a0928026a956c924', 'shortrneck', '反面', 2, '02.png', 550, 650, 165, 155, 842, 1190, '0.28500000'),
+('cb5c8686fb174befb5a67613ced100cc', 'longvneck', '反面', 2, '02.png', 550, 650, 165, 155, 842, 1190, '0.28500000'),
+('cd9ea4742a094d269e5c6e8fec53e802', 'longvneck', '正面', 1, '01.png', 550, 650, 165, 155, 842, 1190, '0.28500000'),
+('f4bfa0c52531431887b61011d9269c4f', 'shortvneck', '反面', 2, '02.png', 550, 650, 165, 155, 842, 1190, '0.28500000'),
+('fcc26dd512b24d82a98e6cca38a881a3', 'longrneck', '反面', 2, '02.png', 550, 650, 165, 155, 842, 1190, '0.28500000');
 
 -- --------------------------------------------------------
 
@@ -185,10 +185,10 @@ CREATE TABLE IF NOT EXISTS `materials` (
 --
 
 INSERT INTO `materials` (`GUID`, `TypeID`, `Name`, `Price`, `Description`, `PictureNumber`, `State`) VALUES
-('LongRNeck', 'TShirt', '长袖圆领', '40.00000000', '详细', 2, 1),
-('LongVNeck', 'TShirt', '长袖V领', '40.00000000', '详细', 2, 1),
-('ShortRNeck', 'TShirt', '短袖圆领', '40.00000000', '详细', 2, 1),
-('ShortVNeck', 'TShirt', '短袖V领', '40.00000000', '详细', 2, 1);
+('longrneck', 'tshirt', '长袖圆领', '40.00000000', '详细', 2, 1),
+('longvneck', 'tshirt', '长袖V领', '40.00000000', '详细', 2, 1),
+('shortrneck', 'tshirt', '短袖圆领', '40.00000000', '详细', 2, 1),
+('shortvneck', 'tshirt', '短袖V领', '40.00000000', '详细', 2, 1);
 
 -- --------------------------------------------------------
 
@@ -226,8 +226,8 @@ CREATE TABLE IF NOT EXISTS `materialtypes` (
 --
 
 INSERT INTO `materialtypes` (`GUID`, `ParentID`, `Index`, `Name`, `IsLeafNode`, `State`) VALUES
-('Clothes', NULL, 1, '上衣', b'0', 1),
-('TShirt', 'Clothes', 2, 'T恤', b'1', 1);
+('clothes', NULL, 1, '上衣', b'0', 1),
+('tshirt', 'clothes', 2, 'T恤', b'1', 1);
 
 -- --------------------------------------------------------
 

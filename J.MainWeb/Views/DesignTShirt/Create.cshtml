@@ -12,22 +12,22 @@
 <div class="left">
 	<div id="TShirtTypeAndColor" class="group">
 		<div id="TShirtType">
-			<span id="_ShortRNeck" style="background-image: url('/Static/SystemFiles/TShirt/ShortRNeck/50x50.png')" title="短袖圆领" class="button active"></span>
-			<span id="_ShortVNeck" style="background-image: url('/Static/SystemFiles/TShirt/ShortVNeck/50x50.png')" title="短袖V领" class="button"></span>
-			<span id="_LongRNeck" style="background-image: url('/Static/SystemFiles/TShirt/LongRNeck/50x50.png')" title="长袖圆领" class="button"></span>
-			<span id="_LongVNeck" style="background-image: url('/Static/SystemFiles/TShirt/LongVNeck/50x50.png')" title="长袖V领" class="button"></span>
+			<span id="_shortrneck" style="background-image: url('/Static/SystemFiles/tshirt/shortrneck/50x50.png')" title="短袖圆领" class="button active"></span>
+			<span id="_shortvneck" style="background-image: url('/Static/SystemFiles/tshirt/shortvneck/50x50.png')" title="短袖V领" class="button"></span>
+			<span id="_longrneck" style="background-image: url('/Static/SystemFiles/tshirt/longrneck/50x50.png')" title="长袖圆领" class="button"></span>
+			<span id="_longvneck" style="background-image: url('/Static/SystemFiles/tshirt/longvneck/50x50.png')" title="长袖V领" class="button"></span>
 		</div>
 		<div id="TShirtColor">
-			<span id="_ColorGUID1" style="background-color: #ffffff;" data-colorcode="ffffff" class="button active"></span>
-			<span id="_ColorGUID2" style="background-color: #000000;" data-colorcode="000000" class="button"></span>
-			<span id="_ColorGUID3" style="background-color: #ff0000;" data-colorcode="ff0000" class="button"></span>
-			<span id="_ColorGUID4" style="background-color: #00ff00;" data-colorcode="00ff00" class="button"></span>
-			<span id="_ColorGUID5" style="background-color: #0000ff;" data-colorcode="0000ff" class="button"></span>
+			<span id="_colorguid1" style="background-color: #ffffff;" data-colorcode="ffffff" class="button active"></span>
+			<span id="_colorguid2" style="background-color: #000000;" data-colorcode="000000" class="button"></span>
+			<span id="_colorguid3" style="background-color: #ff0000;" data-colorcode="ff0000" class="button"></span>
+			<span id="_colorguid4" style="background-color: #00ff00;" data-colorcode="00ff00" class="button"></span>
+			<span id="_colorguid5" style="background-color: #0000ff;" data-colorcode="0000ff" class="button"></span>
 		</div>
 	</div>
 	<div id="UploadImage" class="group">
 		<input type="hidden" id="hiddenUploadPath" />
-		<input type="file" id="_PictureGUID1_uploadFile" name="_PictureGUID1_uploadFile" data-filename="" />
+		<input type="file" id="_pictureguid1_uploadFile" name="_pictureguid1_uploadFile" data-filename="" />
 	</div>
 
 	<div id="SalesInformation" class="group">
@@ -73,18 +73,18 @@
 </div>
 <div class="main">
 	<div id="ShowEffect" class="group">
-		<div id="_PictureGUID1_backgroundImage" style="position: relative; width: 550px; height: 650px;">
-			<div id="_PictureGUID1_uploadImage" class="uploadImage" style="width: 240px; height: 320px; left: 155px; top: 165px;"></div>
+		<div id="_pictureguid1_backgroundImage" style="position: relative; width: 550px; height: 650px;">
+			<div id="_pictureguid1_uploadImage" class="uploadImage" style="width: 240px; height: 320px; left: 155px; top: 165px;"></div>
 		</div>
-		<div id="_PictureGUID2_background" style="position: relative; width: 550px; height: 650px;">
-			<div id="_PictureGUID2_upload" class="uploadImage" style="width: 240px; height: 320px; left: 155px; top: 165px;"></div>
+		<div id="_pictureguid2_background" style="position: relative; width: 550px; height: 650px;">
+			<div id="_pictureguid2_upload" class="uploadImage" style="width: 240px; height: 320px; left: 155px; top: 165px;"></div>
 		</div>
 	</div>
 </div>
 
 @section scripts{
 	<script type="text/javascript">
-		var CurrentTShirtType = "ShortRNeck";
+		var CurrentTShirtType = "shortrneck";
 		var CurrentTShirtColor = "ffffff";
 
 		var DataTShirtType = @Html.Raw(ViewBag.DataTShirtType) ;
