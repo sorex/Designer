@@ -3,12 +3,18 @@
 -- http://www.phpmyadmin.net
 --
 -- 主机: localhost
--- 生成日期: 2013 年 06 月 12 日 15:36
+-- 生成日期: 2013 年 06 月 26 日 15:28
 -- 服务器版本: 5.5.32
 -- PHP 版本: 5.3.25
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
+
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8 */;
 
 --
 -- 数据库: `designerdb`
@@ -48,6 +54,7 @@ CREATE TABLE IF NOT EXISTS `designworks` (
   `GUID` varchar(200) NOT NULL,
   `DesignerID` varchar(200) NOT NULL COMMENT '设计者ID',
   `MaterialID` varchar(200) NOT NULL COMMENT '原料ID',
+  `MaterialColorID` varchar(200) NOT NULL COMMENT '原料颜色ID',
   `SalesGoal` int(11) NOT NULL COMMENT '销售目标',
   `BasePrice` decimal(18,8) NOT NULL COMMENT '底价/单件',
   `SellingPrice` decimal(18,8) NOT NULL COMMENT '售价/单件',
@@ -64,7 +71,8 @@ CREATE TABLE IF NOT EXISTS `designworks` (
   `CompletionTime` datetime DEFAULT NULL COMMENT '所有交易完成时间',
   PRIMARY KEY (`GUID`),
   KEY `DesignerID` (`DesignerID`),
-  KEY `MaterialID` (`MaterialID`)
+  KEY `MaterialID` (`MaterialID`),
+  KEY `MaterialColorID` (`MaterialColorID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -334,7 +342,8 @@ ALTER TABLE `addresses`
 --
 ALTER TABLE `designworks`
   ADD CONSTRAINT `designworks_ibfk_1` FOREIGN KEY (`DesignerID`) REFERENCES `users` (`GUID`),
-  ADD CONSTRAINT `designworks_ibfk_2` FOREIGN KEY (`MaterialID`) REFERENCES `materials` (`GUID`);
+  ADD CONSTRAINT `designworks_ibfk_2` FOREIGN KEY (`MaterialID`) REFERENCES `materials` (`GUID`),
+  ADD CONSTRAINT `designworks_ibfk_3` FOREIGN KEY (`MaterialColorID`) REFERENCES `materialcolors` (`GUID`);
 
 --
 -- 限制表 `materialcolors`
@@ -384,3 +393,7 @@ ALTER TABLE `orders`
 --
 ALTER TABLE `singlelogin`
   ADD CONSTRAINT `singlelogin_ibfk_1` FOREIGN KEY (`UserID`) REFERENCES `users` (`GUID`);
+
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

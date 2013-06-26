@@ -25,6 +25,7 @@ namespace J.MainWeb.Controllers
 			return View();
 		}
 
+		#region Create
 		public ActionResult Create()
 		{
 			using (DBEntities db = new DBEntities())
@@ -47,13 +48,16 @@ namespace J.MainWeb.Controllers
 				//Formatting.Indented
 				ViewBag.DataTShirtType = JsonConvert.SerializeObject(Materials, new JsonSerializerSettings { ContractResolver = new DynamicContractResolver(TypeAndProperties) });
 			}
-			
+
 			return View();
 		}
 
 		[HttpPost]
-		public ActionResult Create(string materialGUID,string colorCode,string uploadPath,int salesGoal, decimal sellingPrice ,string title,int  time,string description)
+		public ActionResult Create(string materialGUID, string colorCode, string uploadPath, int salesGoal, decimal sellingPrice, string title, int time, string description)
 		{
+			materialGUID = materialGUID.ToLower();
+			colorCode = colorCode.ToLower();
+
 			var dwGUID = uploadPath.ToLower();
 			var userGUID = base.CurrentUser.GUID;
 			var userLoginName = base.CurrentUser.LoginName;
@@ -61,12 +65,15 @@ namespace J.MainWeb.Controllers
 			using (DBEntities db = new DBEntities())
 			{
 				var material = db.materials.FirstOrDefault(p => p.GUID == materialGUID);
-				if(material == null)
+				if (material == null)
+					return Content(JsonConvert.SerializeObject(new { code = -1, msg = "信息未找到，请刷新后重试！" }));
+				var materialColor = material.materialcolors.FirstOrDefault(p => p.ColorCode == colorCode);
+				if (materialColor == null)
 					return Content(JsonConvert.SerializeObject(new { code = -1, msg = "信息未找到，请刷新后重试！" }));
 				var LowBasePrice = material.Price;
 				var BasePrice = PriceCompute.ComputeBasePrice(LowBasePrice, salesGoal);
 				var AnticipatedIncome = PriceCompute.ComputeAnticipatedIncome(BasePrice, salesGoal, sellingPrice);
-				if(AnticipatedIncome <= 0)
+				if (AnticipatedIncome <= 0)
 					return Content(JsonConvert.SerializeObject(new { code = -1, msg = "请提高售价，您的受益太少。" }));
 
 				var UserFiles = Server.MapPath("~/Static/UserFiles/");
@@ -77,6 +84,7 @@ namespace J.MainWeb.Controllers
 					GUID = dwGUID,
 					DesignerID = userGUID,
 					MaterialID = materialGUID,
+					MaterialColorID = materialColor.GUID,
 					SalesGoal = salesGoal,
 					BasePrice = BasePrice,
 					SellingPrice = sellingPrice,
@@ -95,9 +103,17 @@ namespace J.MainWeb.Controllers
 
 			return Content(JsonConvert.SerializeObject(new { code = 0, msg = dwGUID }));
 		}
+		#endregion
 
-		public ActionResult Preview()
+		public ActionResult Preview(string guid)
 		{
+			guid = guid.ToLower();
+			using (DBEntities db = new DBEntities())
+			{
+				var dw = db.designworks.FirstOrDefault(p => p.GUID == guid);
+				if(dw == null)
+					return RedirectToAction("Error", "Home", new { msg = "该活动的预览不存在!" });
+			}
 			return View();
 		}
 	}

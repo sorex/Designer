@@ -22,6 +22,7 @@ namespace J.Entities
         public string GUID { get; set; }
         public string DesignerID { get; set; }
         public string MaterialID { get; set; }
+        public string MaterialColorID { get; set; }
         public int SalesGoal { get; set; }
         public decimal BasePrice { get; set; }
         public decimal SellingPrice { get; set; }
@@ -39,6 +40,7 @@ namespace J.Entities
     
         public virtual user user { get; set; }
         public virtual material material { get; set; }
+        public virtual materialcolor materialcolor { get; set; }
         public virtual ICollection<order> orders { get; set; }
     }
 }

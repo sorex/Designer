@@ -14,6 +14,11 @@ namespace J.Entities
     
     public partial class materialcolor
     {
+        public materialcolor()
+        {
+            this.designworks = new HashSet<designwork>();
+        }
+    
         public string GUID { get; set; }
         public string MaterialID { get; set; }
         public string ColorName { get; set; }
@@ -21,6 +26,7 @@ namespace J.Entities
         public bool IsDefault { get; set; }
         public int State { get; set; }
     
+        public virtual ICollection<designwork> designworks { get; set; }
         public virtual material material { get; set; }
     }
 }

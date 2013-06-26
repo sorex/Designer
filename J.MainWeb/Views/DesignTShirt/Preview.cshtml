@@ -1,10 +1,48 @@
 ﻿@{
-    ViewBag.Title = "Preview";
+	ViewBag.Title = "Preview";
 }
 
 <h1>@ViewBag.Title</h1>
 <div class="hl"></div>
-<div id="imageShow">
-	<
+<div class="DesignInfo">
+	<div id="imageShow">
+		<div id="ShowEffect" class="group">
+			<div id="_pictureguid1_backgroundImage" style="position: relative; width: 550px; height: 650px;">
+				<div id="_pictureguid1_uploadImage" class="uploadImage" style="width: 240px; height: 320px; left: 155px; top: 165px;"></div>
+			</div>
+			<div id="_pictureguid2_background" style="position: relative; width: 550px; height: 650px;">
+				<div id="_pictureguid2_upload" class="uploadImage" style="width: 240px; height: 320px; left: 155px; top: 165px;"></div>
+			</div>
+		</div>
+	</div>
+	<div id="infoShow">
+		<h2>关于</h2>
+		<div id="DesignDescription">@ViewBag.Description</div>
+	</div>
 </div>
-<div id="infoShow"></div>
+<div class="MaterialInfo">
+	<div id="MaterialDescription">@ViewBag.MaterialDescription</div>
+</div>
+
+@section scripts{
+	<script type="text/javascript">
+		var CurrentTShirtType = @Html.Raw(ViewBag.CurrentTShirtType) ;
+		var CurrentTShirtColor = @Html.Raw(ViewBag.CurrentTShirtColor) ;
+		var DataMaterialpictures = @Html.Raw(ViewBag.DataMaterialpictures) ;
+
+		$(function ()
+		{
+			
+		});
+
+		function UpdateImage()
+		{
+			for (var i = 0; i < DataMaterialpictures.length; i++)
+			{
+				var tempElement = String.format('<div id="_{0}_backgroundImage" style="position: relative; background-image: url(\'/Static/SystemFiles/TShirt/{1}/{2}/{3}\'); width: {4}px; height: {5}px;"><div id="_{0}_uploadImage" class="uploadImage" style="width:{6}px; height:{7}px; left:{8}px; top:{9}px;"></div></div>',
+					DataMaterialpictures[i].GUID, CurrentTShirtType, CurrentTShirtColor, DataMaterialpictures[i].FileName, DataMaterialpictures[i].Width, DataMaterialpictures[i].Height, DataMaterialpictures[i].UploadWidth * DataMaterialpictures[i].ShowScale, DataMaterialpictures[i].UploadHeight * DataMaterialpictures[i].ShowScale, DataMaterialpictures[i].Left, DataMaterialpictures[i].Top);
+				$("#ShowEffect").append(tempElement);
+			}
+		}
+	</script>
+}

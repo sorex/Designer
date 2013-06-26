@@ -176,6 +176,12 @@ namespace J.MainWeb.Controllers
 		}
 		#endregion
 
+		public ActionResult Error(string msg)
+		{
+			ViewBag.Message = msg;
+			return View();
+		}
+
 		#region API
 		[HttpPost]
 		public ActionResult UploadDesignImage(string GUID, string UploadPath)
