@@ -113,6 +113,17 @@ namespace J.MainWeb.Controllers
 				var dw = db.designworks.FirstOrDefault(p => p.GUID == guid);
 				if(dw == null)
 					return RedirectToAction("Error", "Home", new { msg = "该活动的预览不存在!" });
+
+				ViewBag.Title = dw.Title;
+				ViewBag.Description = dw.Description;
+				ViewBag.MaterialDescription = dw.material.Description;
+				ViewBag.CurrentTShirtType = dw.MaterialID;
+				ViewBag.CurrentTShirtColor = dw.materialcolor.ColorCode;
+
+				Dictionary<string, List<string>> TypeAndProperties = new Dictionary<string, List<string>>();
+				TypeAndProperties.Add("materialpicture", new List<string> { "GUID", "MaterialID", "Name", "Index", "FileName", "Width", "Height", "Top", "Left", "UploadWidth", "UploadHeight", "ShowScale" });
+
+				ViewBag.DataMaterialpictures = JsonConvert.SerializeObject(dw.material.materialpictures, new JsonSerializerSettings { ContractResolver = new DynamicContractResolver(TypeAndProperties) });
 			}
 			return View();
 		}
