@@ -277,10 +277,10 @@
     <Content Include="Static\Resources\uploadify\uploadify.css" />
     <Content Include="Static\Resources\uploadify\uploadify.swf" />
     <Content Include="Static\Resources\_references.js" />
-    <Content Include="Static\SystemFiles\TShirt\LongRNeck\50x50.png" />
-    <Content Include="Static\SystemFiles\TShirt\LongVNeck\50x50.png" />
-    <Content Include="Static\SystemFiles\TShirt\ShortRNeck\50x50.png" />
-    <Content Include="Static\SystemFiles\TShirt\ShortVNeck\50x50.png" />
+    <Content Include="Static\SystemFiles\tshirt\longrneck\50x50.png" />
+    <Content Include="Static\SystemFiles\tshirt\longvneck\50x50.png" />
+    <Content Include="Static\SystemFiles\tshirt\shortrneck\50x50.png" />
+    <Content Include="Static\SystemFiles\tshirt\shortvneck\50x50.png" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
