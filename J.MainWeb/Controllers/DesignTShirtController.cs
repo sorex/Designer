@@ -60,7 +60,7 @@ namespace J.MainWeb.Controllers
 
 			var dwGUID = uploadPath.ToLower();
 			var userGUID = base.CurrentUser.GUID;
-			var userLoginName = base.CurrentUser.LoginName;
+			var userEmail = base.CurrentUser.Email;
 
 			using (DBEntities db = new DBEntities())
 			{
@@ -77,7 +77,9 @@ namespace J.MainWeb.Controllers
 					return Content(JsonConvert.SerializeObject(new { code = -1, msg = "请提高售价，您的受益太少。" }));
 
 				var UserFiles = Server.MapPath("~/Static/UserFiles/");
-				System.IO.Directory.Move(UserFiles + "\\temp\\" + dwGUID, UserFiles + "\\" + userLoginName + "\\" + dwGUID);
+				if (!System.IO.Directory.Exists(UserFiles + userEmail))
+					System.IO.Directory.CreateDirectory(UserFiles + userEmail);
+				System.IO.Directory.Move(UserFiles + "temp\\" + dwGUID, UserFiles + userEmail + "\\" + dwGUID);
 
 				designwork dw = new designwork
 				{
@@ -111,14 +113,20 @@ namespace J.MainWeb.Controllers
 			using (DBEntities db = new DBEntities())
 			{
 				var dw = db.designworks.FirstOrDefault(p => p.GUID == guid);
-				if(dw == null)
+				if (dw == null)
 					return RedirectToAction("Error", "Home", new { msg = "该活动的预览不存在!" });
 
 				ViewBag.Title = dw.Title;
-				ViewBag.Description = dw.Description;
-				ViewBag.MaterialDescription = dw.material.Description;
-				ViewBag.CurrentTShirtType = dw.MaterialID;
-				ViewBag.CurrentTShirtColor = dw.materialcolor.ColorCode;
+
+				ViewBag.Data = JsonConvert.SerializeObject(new
+				{
+					DesignworkID = dw.GUID,
+					UserEmail = base.CurrentUser.Email,
+					Description = dw.Description,
+					MaterialDescription = dw.material.Description,
+					CurrentMaterialID = dw.MaterialID,
+					CurrentColorCode = dw.materialcolor.ColorCode
+				});
 
 				Dictionary<string, List<string>> TypeAndProperties = new Dictionary<string, List<string>>();
 				TypeAndProperties.Add("materialpicture", new List<string> { "GUID", "MaterialID", "Name", "Index", "FileName", "Width", "Height", "Top", "Left", "UploadWidth", "UploadHeight", "ShowScale" });

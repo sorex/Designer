@@ -213,7 +213,7 @@
 							}
 							else
 							{
-								alert(dataobj.msg);
+								location.href="Preview?guid="+dataobj.msg;
 							}
 					},
 					error: function (XMLHttpRequest, textStatus, errorThrown)
@@ -329,7 +329,7 @@
 								if (dataobj.state == 'success')
 								{
 									$("#hiddenUploadPath").val(dataobj.msg);
-									$("#_" + tempGUID + "_uploadImage").css("background-image", "url('/Static/UserFiles/temp/" + dataobj.userID + "/" + dataobj.msg + "/" + tempFileName + "')");
+									$("#_" + tempGUID + "_uploadImage").css("background-image", "url('/Static/UserFiles/temp/" + dataobj.msg + "/" + tempFileName + "')");
 								}
 								else
 								{

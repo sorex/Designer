@@ -6,24 +6,24 @@
 	{
 	}
 
-		.body .DesignInfo .imageShow
+		.body .DesignInfo #imageShow
 		{
 			float: left;
 			width: 590px;
 		}
 
-		.body .DesignInfo .imageShow .uploadImage
-		{
-			position: relative;
-			border: 2px solid transparent;
-			border-radius: 5px;
-			-moz-background-size: 100% 100%;
-			-o-background-size: 100% 100%;
-			-webkit-background-size: 100% 100%;
-			background-size: 100% 100%;
-		}
+			.body .DesignInfo #imageShow .uploadImage
+			{
+				position: relative;
+				border: 2px solid transparent;
+				border-radius: 5px;
+				-moz-background-size: 100% 100%;
+				-o-background-size: 100% 100%;
+				-webkit-background-size: 100% 100%;
+				background-size: 100% 100%;
+			}
 
-		.body .DesignInfo .infoShow
+		.body .DesignInfo #infoShow
 		{
 			float: left;
 			width: 400px;

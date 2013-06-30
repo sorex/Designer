@@ -2,6 +2,13 @@
 	ViewBag.Title = "Preview";
 }
 
+@section head{
+	<script type="text/javascript" src="~/Static/Resources/_references.js"></script>
+	<link rel="stylesheet" href="~/Static/Resources/site/DesignTShirt_Preview.css" />
+
+
+}
+
 <h1>@ViewBag.Title</h1>
 <div class="hl"></div>
 <div class="DesignInfo">
@@ -17,30 +24,38 @@
 	</div>
 	<div id="infoShow">
 		<h2>关于</h2>
-		<div id="DesignDescription">@ViewBag.Description</div>
+		<div id="Description"></div>
+		<div id="Buy">
+			a
+		</div>
 	</div>
+	<div class="ui-helper-clearfix"></div>
 </div>
 <div class="MaterialInfo">
-	<div id="MaterialDescription">@ViewBag.MaterialDescription</div>
+	<div id="MaterialDescription"></div>
 </div>
 
 @section scripts{
 	<script type="text/javascript">
-		var CurrentTShirtType = @Html.Raw(ViewBag.CurrentTShirtType) ;
-		var CurrentTShirtColor = @Html.Raw(ViewBag.CurrentTShirtColor) ;
+		var Data = @Html.Raw(ViewBag.Data) ;
 		var DataMaterialpictures = @Html.Raw(ViewBag.DataMaterialpictures) ;
 
 		$(function ()
 		{
-			
+			$("#Description").html(Data.Description);
+			$("#MaterialDescription").html(Data.MaterialDescription);
+
+			UpdateImage();
 		});
 
 		function UpdateImage()
 		{
+			$("#ShowEffect").empty();
+
 			for (var i = 0; i < DataMaterialpictures.length; i++)
 			{
-				var tempElement = String.format('<div id="_{0}_backgroundImage" style="position: relative; background-image: url(\'/Static/SystemFiles/TShirt/{1}/{2}/{3}\'); width: {4}px; height: {5}px;"><div id="_{0}_uploadImage" class="uploadImage" style="width:{6}px; height:{7}px; left:{8}px; top:{9}px;"></div></div>',
-					DataMaterialpictures[i].GUID, CurrentTShirtType, CurrentTShirtColor, DataMaterialpictures[i].FileName, DataMaterialpictures[i].Width, DataMaterialpictures[i].Height, DataMaterialpictures[i].UploadWidth * DataMaterialpictures[i].ShowScale, DataMaterialpictures[i].UploadHeight * DataMaterialpictures[i].ShowScale, DataMaterialpictures[i].Left, DataMaterialpictures[i].Top);
+				var tempElement = String.format('<div id="_{0}_backgroundImage" style="position: relative; background-image: url(\'/Static/SystemFiles/TShirt/{1}/{2}/{3}\'); width: {4}px; height: {5}px;"><div id="_{0}_uploadImage" class="uploadImage" style="width:{6}px; height:{7}px; left:{8}px; top:{9}px; background-image:url(\'/Static/UserFiles/{10}/{11}/{3}\')"></div></div>',
+					DataMaterialpictures[i].GUID, Data.CurrentMaterialID, Data.CurrentColorCode, DataMaterialpictures[i].FileName, DataMaterialpictures[i].Width, DataMaterialpictures[i].Height, DataMaterialpictures[i].UploadWidth * DataMaterialpictures[i].ShowScale, DataMaterialpictures[i].UploadHeight * DataMaterialpictures[i].ShowScale, DataMaterialpictures[i].Left, DataMaterialpictures[i].Top, Data.UserEmail, Data.DesignworkID);
 				$("#ShowEffect").append(tempElement);
 			}
 		}

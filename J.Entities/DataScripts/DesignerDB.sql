@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- 主机: localhost
--- 生成日期: 2013 年 06 月 26 日 15:28
+-- 生成日期: 2013 年 06 月 30 日 15:41
 -- 服务器版本: 5.5.32
 -- PHP 版本: 5.3.25
 
@@ -74,6 +74,13 @@ CREATE TABLE IF NOT EXISTS `designworks` (
   KEY `MaterialID` (`MaterialID`),
   KEY `MaterialColorID` (`MaterialColorID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- 转存表中的数据 `designworks`
+--
+
+INSERT INTO `designworks` (`GUID`, `DesignerID`, `MaterialID`, `MaterialColorID`, `SalesGoal`, `BasePrice`, `SellingPrice`, `StartTime`, `EndTime`, `Title`, `Description`, `Url`, `SalesVolume`, `State`, `ProcurementCost`, `ProductionCost`, `SendCost`, `CompletionTime`) VALUES
+('7aa703935f244e53add6d53ea24d5b7a', '9ece1f8700bb4dd38832f14e4b480107', 'shortvneck', 'f9e8870e0e034868b6691e91c3bcf45b', 50, '35.00000000', '44.00000000', '2013-06-30 16:49:54', '2013-07-07 16:49:54', 'Test', 'Test', '', 0, 0, NULL, NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 

@@ -204,7 +204,7 @@ namespace J.MainWeb.Controllers
 					if (String.IsNullOrWhiteSpace(UploadPath))
 						UploadPath = Basic.NewGuid();
 
-					var UploadFullPath = Server.MapPath("~/Static/UserFiles") + "\\temp\\" + base.CurrentUser.GUID + "\\" + UploadPath;
+					var UploadFullPath = Server.MapPath("~/Static/UserFiles") + "\\temp\\" + UploadPath;
 
 					//上传路径不存在则创建路径
 					if (!Directory.Exists(UploadFullPath))
