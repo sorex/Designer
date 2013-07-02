@@ -6,13 +6,13 @@
 	{
 	}
 
-		.body .DesignInfo #imageShow
+		.body .DesignInfo .imageShow
 		{
 			float: left;
 			width: 590px;
 		}
 
-			.body .DesignInfo #imageShow .uploadImage
+			.body .DesignInfo .imageShow .uploadImage
 			{
 				position: relative;
 				border: 2px solid transparent;
@@ -23,11 +23,48 @@
 				background-size: 100% 100%;
 			}
 
-		.body .DesignInfo #infoShow
+		.body .DesignInfo .infoShow
 		{
 			float: left;
 			width: 400px;
 		}
+
+			.body .DesignInfo .infoShow .buy .submitButton
+			{
+				width: 380px;
+				height: 45px;
+				line-height: 45px;
+				font-size: 24px;
+			}
+
+				.body .DesignInfo .infoShow .buy .submitButton:link
+				{
+					color: #ffffff;
+					background-color: #3db236;
+					border: 1px solid #128d27;
+				}
+
+				.body .DesignInfo .infoShow .buy .submitButton:visited
+				{
+					color: #ffffff;
+					background-color: #3db236;
+					border: 1px solid #128d27;
+				}
+
+				.body .DesignInfo .infoShow .buy .submitButton:hover
+				{
+					color: #ffffff;
+					background-color: #0f7621;
+					border: 1px solid #128d27;
+				}
+
+				.body .DesignInfo .infoShow .buy .submitButton:active
+				{
+					color: #ffffff;
+					background-color: #0c601a;
+					border: 1px solid #128d27;
+				}
+
 
 	.body .MaterialInfo
 	{

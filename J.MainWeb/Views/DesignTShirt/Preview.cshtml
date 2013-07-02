@@ -12,7 +12,7 @@
 <h1>@ViewBag.Title</h1>
 <div class="hl"></div>
 <div class="DesignInfo">
-	<div id="imageShow">
+	<div class="imageShow">
 		<div id="ShowEffect" class="group">
 			<div id="_pictureguid1_backgroundImage" style="position: relative; width: 550px; height: 650px;">
 				<div id="_pictureguid1_uploadImage" class="uploadImage" style="width: 240px; height: 320px; left: 155px; top: 165px;"></div>
@@ -22,11 +22,11 @@
 			</div>
 		</div>
 	</div>
-	<div id="infoShow">
+	<div class="infoShow">
 		<h2>关于</h2>
 		<div id="Description"></div>
-		<div id="Buy">
-			a
+		<div class="buy">
+			<a id="submit" class="button submitButton" href="javascript:void(0);" onclick="return false;">发布</a>
 		</div>
 	</div>
 	<div class="ui-helper-clearfix"></div>
@@ -44,6 +44,52 @@
 		{
 			$("#Description").html(Data.Description);
 			$("#MaterialDescription").html(Data.MaterialDescription);
+
+			$("#submit").onclick(function(){
+				$.ajax({
+					type: "post",
+					cache: false,
+					url: "@Url.Action("Preview", "DesignTShirt")",
+					data:
+						{
+							guid: Data.DesignworkID
+						},
+					success: function (data)
+					{
+						var dataobj = JSON.parse(data);
+						if (dataobj.code > 0)
+						{
+							$('<div title="提示"><p>发布成功</p></div>').dialog({
+								resizable: false,
+								modal: true,
+								autoOpen: true,
+								buttons:
+									[
+										{
+											text: "关闭",
+											click: function ()
+											{
+												$(this).dialog("close");
+											}
+										}
+									],
+								close: function (event, ui)
+								{
+									location.href = "@Url.Action("Index", "Home")";
+								}
+							});
+							}
+							else
+							{
+								location.href="Preview?guid="+dataobj.msg;
+							}
+					},
+				error: function (XMLHttpRequest, textStatus, errorThrown)
+				{
+					alert("服务器连接失败，请重试！");
+				}
+			});
+			});
 
 			UpdateImage();
 		});

@@ -135,5 +135,21 @@ namespace J.MainWeb.Controllers
 			}
 			return View();
 		}
+
+		[HttpPost]
+		[ActionName("Preview")]
+		public ActionResult PreviewPost(string guid)
+		{
+			guid = guid.ToLower();
+			using (DBEntities db = new DBEntities())
+			{
+				var dw = db.designworks.FirstOrDefault(p => p.GUID == guid);
+				if (dw == null)
+					return RedirectToAction("Error", "Home", new { msg = "该活动的预览不存在!" });
+
+
+			}
+			return View();
+		}
 	}
 }
