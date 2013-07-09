@@ -216,6 +216,7 @@
     <Content Include="Static\Resources\jquery\jquery-1.10.1.min.js" />
     <Content Include="Static\Resources\jquery\jquery-migrate-1.2.1.js" />
     <Content Include="Static\Resources\jquery\jquery-migrate-1.2.1.min.js" />
+    <Content Include="Static\Resources\mustache\mustache.js" />
     <Content Include="Static\Resources\site\DesignTShirt_Create.css" />
     <Content Include="Static\Resources\site\DesignTShirt_Preview.css" />
     <Content Include="Static\Resources\site\images\home\button_200x75_active.png" />
@@ -281,7 +282,9 @@
     <Content Include="Static\SystemFiles\tshirt\longvneck\50x50.png" />
     <Content Include="Static\SystemFiles\tshirt\shortrneck\50x50.png" />
     <Content Include="Static\SystemFiles\tshirt\shortvneck\50x50.png" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>

@@ -68,6 +68,11 @@ namespace J.MainWeb
 						"~/Static/Resources/jquery.layout/jquery.layout*"));
 			#endregion
 
+			#region mustache
+			bundles.Add(new ScriptBundle("~/Static/Resources/mustache/js").Include(
+						"~/Static/Resources/mustache/mustache.js"));
+			#endregion
+
 			#region json2
 			bundles.Add(new ScriptBundle("~/Static/Resources/json2/js").Include(
 						"~/Static/Resources/json2/json2.js"));

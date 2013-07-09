@@ -1,4 +1,5 @@
-﻿using J.MainWeb.App_Code;
+﻿using J.Entities;
+using J.MainWeb.App_Code;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -20,5 +21,14 @@ namespace J.MainWeb.Controllers
 			return View();
 		}
 		#endregion
+
+		public ActionResult MyDesignworks()
+		{
+			using (DBEntities db = new DBEntities())
+			{
+				//db.designworks
+			}
+			return View();
+		}
 	}
 }
