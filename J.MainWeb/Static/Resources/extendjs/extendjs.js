@@ -2,7 +2,7 @@
  * 模    块	：	通用js扩展类
  * 作    者	：	Jasper
  * 编写时间	：	2012-10-22
- * 实现功能	：	添加通用方法，扩展String对象，Array对象
+ * 实现功能	：	添加通用方法，扩展String对象，Array对象，添加jquery扩展的render，initTemplate
  * 详细描述	：	
  * *********************************************************/
 
@@ -138,3 +138,27 @@ RetainDigits = function (num, digits)
 	}
 	return result;
 };
+
+//┏━━━━━━━━━━━━━━━━┓
+//┃ jQuery对象的扩展  ┃
+//┗━━━━━━━━━━━━━━━━┛
+jQuery.fn.extend({
+	render: function (data)
+	{
+		this.data("template_data", $.extend({}, data, this.data("template_extend")));
+		this.html(Mustache.render(this.data("template"), this.data("template_data")));
+	}
+});
+
+jQuery.extend({
+	initTemplate: function ()
+	{
+		$(".template").each(function ()
+		{
+			var $this = $(this);
+			$this.data("template", $this.html());
+			$this.data("template_extend", {});
+			$this.html("");
+		});
+	}
+});

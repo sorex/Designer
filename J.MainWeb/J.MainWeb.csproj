@@ -304,6 +304,7 @@
     </Content>
     <Content Include="Views\DesignTShirt\Preview.cshtml" />
     <Content Include="Views\Home\Error.cshtml" />
+    <Content Include="Views\MyInfo\MyDesignworks.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

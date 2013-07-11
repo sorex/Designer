@@ -1,0 +1,92 @@
+﻿@{
+	ViewBag.Title = "MyDesignworks";
+}
+
+@section head{
+	<script type="text/javascript" src="~/Static/Resources/_references.js"></script>
+	<link rel="stylesheet" href="~/Static/Resources/site/myInfo.css" />
+}
+
+<div class="myInfoSide">
+	<ul>
+		<li><a href="~/MyInfo/Index">我的资料</a></li>
+		<li><span class="myInfoSideActive">我的设计</span></li>
+		<li><a href="~/MyInfo/Index">我的订单</a></li>
+		<li><a href="~/MyInfo/Index">收货地址</a></li>
+	</ul>
+</div>
+<div class="myInfoMain">
+	<div></div>
+	<div>
+		<table id="dataTable" class="template">
+			<tr>
+				<th style="width: 60px;"></th>
+				<th style="width: 370px;">售价</th>
+				<th style="width: 80px;">已销售量/销售目标</th>
+				<th style="width: 80px;">收益</th>
+				<th style="width: 100px;">详细信息</th>
+				<th style="width: 100px;">状态</th>
+				<th style="width: 100px;">操作</th>
+			</tr>
+
+			{{#items}}
+			<tr class="sep-row">
+				<td colspan="6"></td>
+			</tr>
+			<tr class="item1">
+				<td colspan="6">
+					<input type="checkbox" /><span style="margin-right: 20px; display: inline-block;">创建时间：{{StartTime}}</span>活动标题：{{Title}}
+				</td>
+			</tr>
+			<tr class="item2">
+				<td>
+					<img class="itemImage" alt="查看详情" src="~/Static/Resources/site/images/Logo_150x40.png" />
+				</td>
+				<td class="rightLine">{{SellingPrice}}
+				</td>
+				<td>{{SalesVolume}}/{{SalesGoal}}</td>
+				<td class="rightLine">{{anticipatedIncome}}</td>
+				<td class="rightLine stress">
+					{{#showPublish}}
+						{{! 未发布的，打开预览页面}}
+						<a href="">查看详情</a>
+					{{/showPublish}}
+					{{^showPublish}}
+						{{! 已发布的，打开销售页面}}
+						<a href="">查看详情</a>
+					{{/showPublish}}
+				</td>
+				<td>
+					{{#showPublish}}
+					<a id="publish_{{GUID}}" href="javascript:void(0);" onclick="return false;">发布</a>
+					{{/showPublish}}
+				</td>
+			</tr>
+			{{/items}}
+		</table>
+	</div>
+</div>
+
+@section scripts{
+	<script type="text/javascript">
+		var Data = { items: { @Html.Raw(ViewBag.Data) } };
+
+		$(function ()
+		{
+			$.initTemplate();
+			$("#dataTable").data("template_extend", {
+				showPublish: function ()
+				{
+					return this.State == 0;
+				}
+			});
+
+			Data = [{ GUID: 'aaa&lt;;aa', WaitBuyerPayTime: '2013-05-17 18:08', Subject: '标题1', OrderDescription: '订单详细1', Price: '60.00', Quantity: '5', TotalPay: '300.00' },
+			{ GUID: 'bbbbb', WaitBuyerPayTime: '2013-05-17 17:08', Subject: '标题2', OrderDescription: '订单详细2', Price: '50.00', Quantity: '5', TotalPay: '250.00' },
+			{ GUID: 'ccccc', WaitBuyerPayTime: '2013-04-17 16:08', Subject: '标题3', OrderDescription: '订单详细3', Price: '40.00', Quantity: '4', TotalPay: '160.00' }];
+
+			$("#dataTable").render(Data);
+		});
+
+	</script>
+}
