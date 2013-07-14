@@ -36,7 +36,10 @@ namespace J.MainWeb.Controllers
 									 select dw;
 
 				var recordCount = alldesignworks.Count();
-				var pageAll = recordCount / pageSize;
+				//页数以0开始，无余数时需-1
+				var pageAll = recordCount / pageSize - (recordCount % pageSize == 0 ? 1 : 0);
+				if (pageIndex > pageAll) pageIndex = pageAll;
+				
 				var search = alldesignworks.Skip(pageIndex * pageSize).Take(pageSize).ToList();
 
 				var result = new[] { new {
@@ -46,14 +49,16 @@ namespace J.MainWeb.Controllers
 					MaterialTypeID = "MaterialTypeID",
 					ColorCode = "ColorCode",
 					MaterialPictureName = "MaterialPictureName",
-					SellingPrice = 1.0m,
-					SalesVolume = 1,
-					SalesGoal = 1,
-					AnticipatedIncome = 1.0m,
+					Title = "Title",
+					SellingPrice = "1.00",
+					SalesVolume = "1",
+					SalesGoal = "1",
+					AnticipatedIncome = "1.00",
 					StartTime = "2013-07-10 14:52",
 					EndTime = "2013-07-10 14:52",
 					State = 1
 				} }.ToList();
+				result.Clear();
 
 				foreach (var dw in search)
 				{
@@ -67,18 +72,23 @@ namespace J.MainWeb.Controllers
 						MaterialTypeID = dw.material.TypeID,
 						ColorCode = dw.materialcolor.ColorCode,
 						MaterialPictureName = MaterialPictureName,
-						SellingPrice = dw.SellingPrice,
-						SalesVolume = dw.SalesVolume.Value,
-						SalesGoal = dw.SalesGoal,
-						AnticipatedIncome = AnticipatedIncome,
+						Title = dw.Title,
+						SellingPrice = dw.SellingPrice.ToString("0.00"),
+						SalesVolume = dw.SalesVolume.Value.ToString(),
+						SalesGoal = dw.SalesGoal.ToString(),
+						AnticipatedIncome = AnticipatedIncome.ToString("0.00"),
 						StartTime = dw.StartTime.ToString("yyyy-MM-dd HH:mm"),
 						EndTime = dw.EndTime.ToString("yyyy-MM-dd HH:mm"),
 						State = dw.State
 					});
 				}
 
-				return Content(JsonConvert.SerializeObject(new { code = 1, data = result }));
-
+				ViewBag.Data = JsonConvert.SerializeObject(new { items = result });
+				ViewBag.HasNext = pageAll > pageIndex;
+				ViewBag.NextPageIndex = pageIndex + 1;
+				ViewBag.HasPrev = pageIndex > 0;
+				ViewBag.PrevPageIndex = pageIndex-1;
+				ViewBag.pageIndex = pageIndex;
 			}
 			return View();
 		}

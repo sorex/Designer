@@ -21,11 +21,11 @@
 	</div>
 	<div id="ShowInfo" class="infoShow template">
 		<script type="text/x-mustache">
+		<div class="buy">
+			<a id="submit" class="button submitButton" href="javascript:void(0);" onclick="return false;">￥{{designwork.SellingPrice}} 购买</a>
+		</div>
 		<h2>关于</h2>
 		<div id="Description">{{Description}}</div>
-		<div class="buy">
-			<a id="submit" class="button submitButton" href="javascript:void(0);" onclick="return false;">发布</a>
-		</div>
 		</script>
 	</div>
 	<div class="ui-helper-clearfix"></div>
@@ -40,7 +40,10 @@
 	<script type="text/javascript">
 		var Data = @Html.Raw(ViewBag.Data) ;
 		var DataMaterialpictures = {items: @Html.Raw(ViewBag.DataMaterialpictures) };
+		var DataDesignwork = {designwork: @Html.Raw(ViewBag.DataDesignwork) };
+		
 		$.extend(Data, DataMaterialpictures);
+		$.extend(Data, DataDesignwork);
 
 		$(function ()
 		{

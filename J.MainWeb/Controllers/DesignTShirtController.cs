@@ -107,6 +107,7 @@ namespace J.MainWeb.Controllers
 		}
 		#endregion
 
+		#region Preview
 		public ActionResult Preview(string guid)
 		{
 			guid = guid.ToLower();
@@ -124,6 +125,7 @@ namespace J.MainWeb.Controllers
 					UserEmail = base.CurrentUser.Email,
 					Description = dw.Description,
 					MaterialDescription = dw.material.Description,
+					CurrentMaterialTypeID = dw.material.TypeID,
 					CurrentMaterialID = dw.MaterialID,
 					CurrentColorCode = dw.materialcolor.ColorCode
 				});
@@ -131,7 +133,7 @@ namespace J.MainWeb.Controllers
 				Dictionary<string, List<string>> TypeAndProperties = new Dictionary<string, List<string>>();
 				TypeAndProperties.Add("materialpicture", new List<string> { "GUID", "MaterialID", "Name", "Index", "FileName", "Width", "Height", "Top", "Left", "UploadWidth", "UploadHeight", "ShowScale" });
 
-				ViewBag.DataMaterialpictures = JsonConvert.SerializeObject(dw.material.materialpictures, new JsonSerializerSettings { ContractResolver = new DynamicContractResolver(TypeAndProperties) });
+				ViewBag.DataMaterialpictures = JsonConvert.SerializeObject(dw.material.materialpictures , new JsonSerializerSettings { ContractResolver = new DynamicContractResolver(TypeAndProperties) });
 			}
 			return View();
 		}
@@ -146,8 +148,48 @@ namespace J.MainWeb.Controllers
 				var dw = db.designworks.FirstOrDefault(p => p.GUID == guid);
 				if (dw == null)
 					return RedirectToAction("Error", "Home", new { msg = "该活动的预览不存在!" });
+				if (dw.State != 0)
+					return RedirectToAction("Error", "Home", new { msg = "该活动不能发布!" });
 
+				dw.State = 1;
+				var time = dw.EndTime - dw.StartTime;
+				dw.StartTime = DateTime.Now;
+				dw.EndTime = dw.StartTime.AddMilliseconds(time.TotalMilliseconds);
+				db.SaveChanges();
+			}
+			return Content(JsonConvert.SerializeObject(new { code = 1, msg = guid }));
+		}
+		#endregion
 
+		public ActionResult Buy(string guid)
+		{
+			guid = guid.ToLower();
+			using (DBEntities db = new DBEntities())
+			{
+				var dw = db.designworks.FirstOrDefault(p => p.GUID == guid);
+				if (dw == null)
+					return RedirectToAction("Error", "Home", new { msg = "该活动的预览不存在!" });
+
+				ViewBag.Title = dw.Title;
+
+				ViewBag.Data = JsonConvert.SerializeObject(new
+				{
+					DesignworkID = dw.GUID,
+					UserEmail = base.CurrentUser.Email,
+					Description = dw.Description,
+					MaterialDescription = dw.material.Description,
+					CurrentMaterialTypeID = dw.material.TypeID,
+					CurrentMaterialID = dw.MaterialID,
+					CurrentColorCode = dw.materialcolor.ColorCode
+				});
+
+				Dictionary<string, List<string>> TypeAndProperties = new Dictionary<string, List<string>>();
+				TypeAndProperties.Add("materialpicture", new List<string> { "GUID", "MaterialID", "Name", "Index", "FileName", "Width", "Height", "Top", "Left", "UploadWidth", "UploadHeight", "ShowScale" });
+				ViewBag.DataMaterialpictures = JsonConvert.SerializeObject(dw.material.materialpictures, new JsonSerializerSettings { ContractResolver = new DynamicContractResolver(TypeAndProperties) });
+			
+				Dictionary<string, List<string>> TypeAndProperties2 = new Dictionary<string, List<string>>();
+				TypeAndProperties2.Add("designwork", new List<string> { "GUID", "DesignerID", "MaterialID", "MaterialColorID", "SalesGoal", "BasePrice", "SellingPrice", "StartTime", "EndTime", "SalesVolume", "State"});
+				ViewBag.DataDesignwork = JsonConvert.SerializeObject(dw, new JsonSerializerSettings { ContractResolver = new DynamicContractResolver(TypeAndProperties2) });
 			}
 			return View();
 		}

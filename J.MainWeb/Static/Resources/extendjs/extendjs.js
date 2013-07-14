@@ -156,7 +156,7 @@ jQuery.extend({
 		$(".template").each(function ()
 		{
 			var $this = $(this);
-			$this.data("template", $this.html());
+			$this.data("template", $("script[type='text/x-mustache']",$this).text());
 			$this.data("template_extend", {});
 			$this.html("");
 		});
