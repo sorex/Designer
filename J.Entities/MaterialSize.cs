@@ -17,7 +17,7 @@ namespace J.Entities
         public string GUID { get; set; }
         public string MaterialID { get; set; }
         public string SizeName { get; set; }
-        public bool IsDefault { get; set; }
+        public int Index { get; set; }
     
         public virtual material material { get; set; }
     }

@@ -166,7 +166,7 @@
           <Property Name="GUID" Type="varchar" Nullable="false" MaxLength="200" />
           <Property Name="MaterialID" Type="varchar" Nullable="false" MaxLength="200" />
           <Property Name="SizeName" Type="varchar" Nullable="false" MaxLength="200" />
-          <Property Name="IsDefault" Type="bit" Nullable="false" />
+          <Property Name="Index" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="materialtypes">
           <Key>
@@ -574,7 +574,7 @@
           <Property Type="String" Name="GUID" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
           <Property Type="String" Name="MaterialID" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
           <Property Type="String" Name="SizeName" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
-          <Property Type="Boolean" Name="IsDefault" Nullable="false" />
+          <Property Type="Int32" Name="Index" Nullable="false" />
           <NavigationProperty Name="material" Relationship="DBModel.materialsizes_ibfk_1" FromRole="materialsize" ToRole="material" />
         </EntityType>
         <EntityType Name="materialtype">
@@ -916,7 +916,7 @@
           <EntitySetMapping Name="materialsizes">
             <EntityTypeMapping TypeName="DBModel.materialsize">
               <MappingFragment StoreEntitySet="materialsizes">
-                <ScalarProperty Name="IsDefault" ColumnName="IsDefault" />
+                <ScalarProperty Name="Index" ColumnName="Index" />
                 <ScalarProperty Name="SizeName" ColumnName="SizeName" />
                 <ScalarProperty Name="MaterialID" ColumnName="MaterialID" />
                 <ScalarProperty Name="GUID" ColumnName="GUID" />

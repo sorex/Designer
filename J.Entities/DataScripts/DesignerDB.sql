@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- 主机: localhost
--- 生成日期: 2013 年 06 月 30 日 15:41
+-- 生成日期: 2013 年 07 月 15 日 09:25
 -- 服务器版本: 5.5.32
 -- PHP 版本: 5.3.25
 
@@ -215,10 +215,40 @@ CREATE TABLE IF NOT EXISTS `materialsizes` (
   `GUID` varchar(200) NOT NULL,
   `MaterialID` varchar(200) NOT NULL,
   `SizeName` varchar(200) NOT NULL,
-  `IsDefault` bit(1) NOT NULL,
+  `Index` int(1) NOT NULL,
   PRIMARY KEY (`GUID`),
   KEY `MaterialID` (`MaterialID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- 转存表中的数据 `materialsizes`
+--
+
+INSERT INTO `materialsizes` (`GUID`, `MaterialID`, `SizeName`, `Index`) VALUES
+('0aea20b3e393432480e34af50a0d03f1', 'shortrneck', 'XXXL', 6),
+('0afa6b847ef748599dd8b6615f6e0073', 'longrneck', 'L', 3),
+('24895233af8a4c51bcec3abcb369ef71', 'longvneck', 'M', 2),
+('25c1674802cf432798653ceaadb1380a', 'longrneck', 'M', 2),
+('30d19f76c7894437a9b996360e8a21ae', 'longvneck', 'XXL', 5),
+('30eb2146efef493fbfc2b456915d1fa0', 'shortrneck', 'XXL', 5),
+('47786f1477b14810a9cfe9742a540564', 'shortvneck', 'L', 3),
+('527808531c4c4a17a7c68cbe61572f13', 'shortvneck', 'XXXL', 6),
+('5591d8f8e7854dffa5a08006b7af65b6', 'longvneck', 'XXXL', 6),
+('5cbee24fc5414dfb81ed304bcb25b180', 'shortrneck', 'L', 3),
+('5d06b6a3e0df499bad870ce243fdb952', 'shortvneck', 'S', 1),
+('62ba46cb6a0c4f5a99d47c8af0736a66', 'longvneck', 'XL', 4),
+('68ed983e7dbb41e19c0609985925cb0c', 'shortrneck', 'M', 2),
+('7470fd81281243cd969bf460133157cf', 'shortvneck', 'XL', 4),
+('935f2711a7e24c17a661ac0bd155e025', 'longrneck', 'XXL', 5),
+('9e89d438ef4148e5a703cbef343d205b', 'longrneck', 'XXXL', 6),
+('a1030e3b60854fc69356d97d41251ec9', 'longvneck', 'S', 1),
+('b5cd176b668b4a90a7d8c95babf567ce', 'shortvneck', 'M', 2),
+('b64bac37616942b793990e0dfded1db8', 'shortrneck', 'S', 1),
+('cae594d031404b23849d514b48237790', 'longrneck', 'XL', 4),
+('cca01337e19a4b77b5a4477c0dcb2d38', 'longvneck', 'L', 3),
+('da2890568bb3470db6b07064f90e618a', 'longrneck', 'S', 1),
+('f4a1c19896f444d389b6b143e727dcbe', 'shortvneck', 'XXL', 5),
+('fc7bc846866f4897a4f34c1502974125', 'shortrneck', 'XL', 4);
 
 -- --------------------------------------------------------
 
