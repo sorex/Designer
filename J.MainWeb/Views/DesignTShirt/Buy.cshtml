@@ -22,7 +22,7 @@
 	<div id="ShowInfo" class="infoShow template">
 		<script type="text/x-mustache">
 		<div class="buy">
-			<a id="submit" class="button submitButton" href="javascript:void(0);" onclick="return false;">￥{{designwork.SellingPrice}} 购买</a>
+			<a id="buy" class="button submitButton" href="javascript:void(0);" onclick="return false;">￥{{designwork.SellingPrice}} 购买</a>
 		</div>
 		<h2>关于</h2>
 		<div id="Description">{{Description}}</div>
@@ -30,10 +30,13 @@
 	</div>
 	<div class="ui-helper-clearfix"></div>
 </div>
-<div  id="ShowMaterialInfo" class="MaterialInfo template">
+<div id="ShowMaterialInfo" class="MaterialInfo template">
 	<script type="text/x-mustache">
 	<div id="MaterialDescription">{{MaterialDescription}}</div>
 	</script>
+</div>
+<div id="BuyList">
+
 </div>
 
 @section scripts{
@@ -41,9 +44,11 @@
 		var Data = @Html.Raw(ViewBag.Data) ;
 		var DataMaterialpictures = {items: @Html.Raw(ViewBag.DataMaterialpictures) };
 		var DataDesignwork = {designwork: @Html.Raw(ViewBag.DataDesignwork) };
+		var DataSize = {size :@Html.Raw(ViewBag.DataSize) };
 		
 		$.extend(Data, DataMaterialpictures);
 		$.extend(Data, DataDesignwork);
+		$.extend(Data, DataSize);
 
 		$(function ()
 		{
@@ -63,7 +68,7 @@
 			$("#ShowInfo").render(Data);
 			$("#ShowMaterialInfo").render(Data);
 
-			$("#submit").click(function(){
+			$("#buy").click(function(){
 				$.ajax({
 					type: "post",
 					cache: false,

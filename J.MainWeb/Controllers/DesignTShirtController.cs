@@ -183,13 +183,19 @@ namespace J.MainWeb.Controllers
 					CurrentColorCode = dw.materialcolor.ColorCode
 				});
 
+
+
 				Dictionary<string, List<string>> TypeAndProperties = new Dictionary<string, List<string>>();
 				TypeAndProperties.Add("materialpicture", new List<string> { "GUID", "MaterialID", "Name", "Index", "FileName", "Width", "Height", "Top", "Left", "UploadWidth", "UploadHeight", "ShowScale" });
 				ViewBag.DataMaterialpictures = JsonConvert.SerializeObject(dw.material.materialpictures, new JsonSerializerSettings { ContractResolver = new DynamicContractResolver(TypeAndProperties) });
-			
+
 				Dictionary<string, List<string>> TypeAndProperties2 = new Dictionary<string, List<string>>();
-				TypeAndProperties2.Add("designwork", new List<string> { "GUID", "DesignerID", "MaterialID", "MaterialColorID", "SalesGoal", "BasePrice", "SellingPrice", "StartTime", "EndTime", "SalesVolume", "State"});
+				TypeAndProperties2.Add("designwork", new List<string> { "GUID", "DesignerID", "MaterialID", "MaterialColorID", "SalesGoal", "BasePrice", "SellingPrice", "StartTime", "EndTime", "SalesVolume", "State" });
 				ViewBag.DataDesignwork = JsonConvert.SerializeObject(dw, new JsonSerializerSettings { ContractResolver = new DynamicContractResolver(TypeAndProperties2) });
+
+				Dictionary<string, List<string>> TypeAndProperties3 = new Dictionary<string, List<string>>();
+				TypeAndProperties3.Add("materialsize", new List<string> { "GUID", "MaterialID", "SizeName", "Index" });
+				ViewBag.DataSize = JsonConvert.SerializeObject(dw.material.materialsizes.OrderBy(p => p.Index), new JsonSerializerSettings { ContractResolver = new DynamicContractResolver(TypeAndProperties3) });
 			}
 			return View();
 		}
