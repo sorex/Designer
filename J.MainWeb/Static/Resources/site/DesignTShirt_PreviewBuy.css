@@ -69,3 +69,29 @@
 	.body .MaterialInfo
 	{
 	}
+
+	.body .BuyList
+	{
+	}
+
+#BuyList .head
+{
+	text-align: center;
+	width: 75px;
+}
+
+#BuyList .size
+{
+	text-align: right;
+}
+
+#BuyList .quantity
+{
+	text-align: right;
+}
+
+	#BuyList .quantity input
+	{
+		text-align: right;
+		width: 75px;
+	}

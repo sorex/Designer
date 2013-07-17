@@ -1,6 +1,6 @@
 ﻿@section head{
 	<script type="text/javascript" src="~/Static/Resources/_references.js"></script>
-	<link rel="stylesheet" href="~/Static/Resources/site/DesignTShirt_Preview.css" />
+	<link rel="stylesheet" href="~/Static/Resources/site/DesignTShirt_PreviewBuy.css" />
 
 
 }
@@ -36,29 +36,32 @@
 	</script>
 </div>
 <div id="BuyList" class="template">
+	<hr />
 	<script type="text/x-mustache">
 	<table>
 		<tr>
-			<td>型号</td>
-			<td>数量</td>
+			<td class="head">型号</td>
+			<td class="head">数量</td>
 		</tr>
 		{{#size}}
 		<tr>
-			<td>{{SizeName}}</td>
-			<td><input id="_{{GUID}}" value="0" class="Quantity" /></td>
+			<td class="size">{{SizeName}}：</td>
+			<td class="quantity"><input id="_{{GUID}}" value="0" class="Quantity" onkeypress="onlyNumber(this,event)"  onblur="onlyNumber(this,event)"/></td>
 		</tr>
 		{{/size}}
 	</table>
+	<hr />
+	合计：<span id="allQuantity"></span>件、<span id="allPrice"></span>元
 	</script>
 </div>
 
 @section scripts{
 	<script type="text/javascript">
-		var Data = @Html.Raw(ViewBag.Data) ;
-		var DataMaterialpictures = {items: @Html.Raw(ViewBag.DataMaterialpictures) };
-		var DataDesignwork = {designwork: @Html.Raw(ViewBag.DataDesignwork) };
-		var DataSize = {size :@Html.Raw(ViewBag.DataSize) };
-		
+		var Data = @Html.Raw(ViewBag.Data);
+		var DataMaterialpictures = { items: @Html.Raw(ViewBag.DataMaterialpictures) };
+		var DataDesignwork = { designwork: @Html.Raw(ViewBag.DataDesignwork) };
+		var DataSize = { size: @Html.Raw(ViewBag.DataSize) };
+
 		$.extend(Data, DataMaterialpictures);
 		$.extend(Data, DataDesignwork);
 		$.extend(Data, DataSize);
@@ -71,9 +74,9 @@
 				{
 					return this.UploadWidth * this.ShowScale;
 				},
-				getUploadHeight:function()
+				getUploadHeight: function ()
 				{
-					return  this.UploadHeight * this.ShowScale;
+					return this.UploadHeight * this.ShowScale;
 				}
 			});
 
@@ -84,13 +87,68 @@
 
 			$("#BuyList").dialog({
 				autoOpen: false,
-				modal: true
+				modal: true,
+				title: "选择尺寸和数量",
+				buttons: [
+				{
+					text: "提交订单并付款",
+					click: function ()
+					{
+						var order = "";
+						$(":text", "#BuyList").each(function ()
+						{
+							order += this.id + ":" + this.value + "\n";
+						});
+						alert(order);
+					}
+				},
+				{
+					text: "取消",
+					click: function ()
+					{
+						$(this).dialog("close");
+					}
+				}]
 			});
 
-			$("#buy").click(function(){
+			$("#buy").click(function ()
+			{
 				$("#BuyList").dialog("open");
 			});
 
+			$(":text", "#BuyList").change(function ()
+			{
+				var allQuantity = 0;
+				if($(this).val().length == 0)
+					$(this).val("0");
+				$(":text", "#BuyList").each(function ()
+				{
+					allQuantity += parseInt(this.value);
+				});
+				$("#allQuantity").text(allQuantity);
+				$("#allPrice").text(RetainDigits(allQuantity * DataDesignwork.designwork.SellingPrice, 2));
+
+			});
 		});
+
+		function onlyNumber(obj, event)
+		{
+			try
+			{
+				if (event.keyCode < 48 || event.keyCode > 57)
+				{
+					if (obj.value.indexOf(".") == -1 && event.keyCode == 46)
+					{
+						event.returnValue = true;
+					} else
+					{
+						event.returnValue = false;
+					}
+				}
+			} catch (e)
+			{
+				alert(e.description);
+			}
+		}
 	</script>
 }

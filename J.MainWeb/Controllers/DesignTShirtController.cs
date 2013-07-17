@@ -122,7 +122,7 @@ namespace J.MainWeb.Controllers
 				ViewBag.Data = JsonConvert.SerializeObject(new
 				{
 					DesignworkID = dw.GUID,
-					UserEmail = base.CurrentUser.Email,
+					UserEmail = dw.user.Email,
 					Description = dw.Description,
 					MaterialDescription = dw.material.Description,
 					CurrentMaterialTypeID = dw.material.TypeID,
@@ -175,15 +175,13 @@ namespace J.MainWeb.Controllers
 				ViewBag.Data = JsonConvert.SerializeObject(new
 				{
 					DesignworkID = dw.GUID,
-					UserEmail = base.CurrentUser.Email,
+					UserEmail = dw.user.Email,
 					Description = dw.Description,
 					MaterialDescription = dw.material.Description,
 					CurrentMaterialTypeID = dw.material.TypeID,
 					CurrentMaterialID = dw.MaterialID,
 					CurrentColorCode = dw.materialcolor.ColorCode
 				});
-
-
 
 				Dictionary<string, List<string>> TypeAndProperties = new Dictionary<string, List<string>>();
 				TypeAndProperties.Add("materialpicture", new List<string> { "GUID", "MaterialID", "Name", "Index", "FileName", "Width", "Height", "Top", "Left", "UploadWidth", "UploadHeight", "ShowScale" });
