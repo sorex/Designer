@@ -35,8 +35,21 @@
 	<div id="MaterialDescription">{{MaterialDescription}}</div>
 	</script>
 </div>
-<div id="BuyList">
-
+<div id="BuyList" class="template">
+	<script type="text/x-mustache">
+	<table>
+		<tr>
+			<td>型号</td>
+			<td>数量</td>
+		</tr>
+		{{#size}}
+		<tr>
+			<td>{{SizeName}}</td>
+			<td><input id="_{{GUID}}" value="0" class="Quantity" /></td>
+		</tr>
+		{{/size}}
+	</table>
+	</script>
 </div>
 
 @section scripts{
@@ -67,51 +80,15 @@
 			$("#ShowEffect").render(Data);
 			$("#ShowInfo").render(Data);
 			$("#ShowMaterialInfo").render(Data);
+			$("#BuyList").render(Data);
+
+			$("#BuyList").dialog({
+				autoOpen: false,
+				modal: true
+			});
 
 			$("#buy").click(function(){
-				$.ajax({
-					type: "post",
-					cache: false,
-					url: "@Url.Action("Preview", "DesignTShirt")",
-					data:
-						{
-							guid: Data.DesignworkID
-						},
-					success: function (data)
-					{
-						var dataobj = JSON.parse(data);
-						if (dataobj.code > 0)
-						{
-							$('<div title="提示"><p>发布成功</p></div>').dialog({
-								resizable: false,
-								modal: true,
-								autoOpen: true,
-								buttons:
-									[
-										{
-											text: "关闭",
-											click: function ()
-											{
-												$(this).dialog("close");
-											}
-										}
-									],
-								close: function (event, ui)
-								{
-									location.href = "@Url.Action("Index", "Home")";
-								}
-							});
-							}
-							else
-							{
-								location.href="Preview?guid="+dataobj.msg;
-							}
-					},
-				error: function (XMLHttpRequest, textStatus, errorThrown)
-				{
-					alert("服务器连接失败，请重试！");
-				}
-			});
+				$("#BuyList").dialog("open");
 			});
 
 		});

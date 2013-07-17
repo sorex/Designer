@@ -58,11 +58,11 @@
 				<td class="rightLine stress">
 					{{#stateIs0}}
 						{{! 未发布的，打开预览页面}}
-						<a href="">查看详情</a>
+						<a href="/DesignTShirt/Preview?guid={{GUID}}" target="_blank">查看详情</a>
 					{{/stateIs0}}
 					{{^stateIs0}}
 						{{! 已发布的，打开销售页面}}
-						<a href="">查看详情</a>
+						<a href="/DesignTShirt/Buy?guid={{GUID}}" target="_blank">查看详情</a>
 					{{/stateIs0}}
 				</td>
 				<td class="rightLine stress">
