@@ -174,6 +174,11 @@ namespace J.MainWeb.Controllers
 				}
 			}
 		}
+
+		public ActionResult LoginPartial()
+		{
+			return PartialView();
+		}
 		#endregion
 
 		public ActionResult Error(string msg)

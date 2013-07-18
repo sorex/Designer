@@ -46,7 +46,7 @@
 		{{#size}}
 		<tr>
 			<td class="size">{{SizeName}}：</td>
-			<td class="quantity"><input id="_{{GUID}}" value="0" class="Quantity" onkeypress="onlyNumber(this,event)"  onblur="onlyNumber(this,event)"/></td>
+			<td class="quantity"><input id="_{{GUID}}" value="0" class="Quantity" onkeypress="onlyNumber(this,event)" onblur="onlyNumber(this,event)"/></td>
 		</tr>
 		{{/size}}
 	</table>
@@ -130,25 +130,5 @@
 
 			});
 		});
-
-		function onlyNumber(obj, event)
-		{
-			try
-			{
-				if (event.keyCode < 48 || event.keyCode > 57)
-				{
-					if (obj.value.indexOf(".") == -1 && event.keyCode == 46)
-					{
-						event.returnValue = true;
-					} else
-					{
-						event.returnValue = false;
-					}
-				}
-			} catch (e)
-			{
-				alert(e.description);
-			}
-		}
 	</script>
 }

@@ -1,0 +1,95 @@
+﻿<div id="loginDialog" class="login">
+	<div>
+		<div>
+			登录名：<br />
+			<input id="login_LoginName" type="text" />
+		</div>
+		<div>
+			登录密码：<a id="login_forget" style="float: right;" href="javascript:void(0);" onclick="return false;">忘记密码</a><br />
+			<input id="login_Password" type="password" />
+		</div>
+		<div>
+			<a style="float: right;" href="~/Home/Register">注册</a>
+		</div>
+	</div>
+</div>
+<style type="text/css">
+.login > div
+	{
+		width: 200px;
+		margin-top: 10px;
+		margin-left: auto;
+		margin-right: auto;
+	}
+
+	.login > div > div
+	{
+		margin-top: 10px;
+	}
+
+	.login input[type="text"], .login input[type="password"]
+	{
+		width: 200px;
+	}
+</style>
+<script type="text/javascript">
+	$(function ()
+	{
+		//#region 处理Tab和Shift+Tab以及Enter事件
+		$("#login_LoginName").keydown(function (event)
+		{
+			var e = window.event || event;
+			var k = e.keyCode || e.which;
+			if (k == 13 || k == 9)
+			{
+				$("#login_Password").focus();
+				e.preventDefault();
+			}
+		});
+		$("#login_Password").keydown(function (event)
+		{
+			var e = window.event || event;
+			var k = e.keyCode || e.which;
+			if (e.shiftKey && k == 9)
+			{
+				$("#login_LoginName").focus();
+				e.preventDefault();
+			}
+			else if (k == 9)
+			{
+				$("#login_login").focus();
+				e.preventDefault();
+			}
+			else if (k == 13)
+			{
+				$("#login_login").click();
+				e.preventDefault();
+			}
+		});
+		//#endregion
+
+		//$("#loginDialog").dialog("open");
+		$("#loginDialog").dialog({
+			autoOpen: false,
+			modal: true,
+			title: "用户登录",
+			closeText: "关闭",
+			buttons: [
+				{
+					text: "登录",
+					click: function ()
+					{
+
+					}
+				},
+				{
+					text: "取消",
+					click: function ()
+					{
+						$(this).dialog("close");
+					}
+				}
+			]
+		});
+	});
+</script>

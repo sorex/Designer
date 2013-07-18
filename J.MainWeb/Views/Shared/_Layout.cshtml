@@ -23,6 +23,10 @@
 
 	@Scripts.Render("~/Static/Resources/extendjs/js")
 
+	
+	<script type="text/javascript" src="~/Static/Resources/jquery.base64/jquery.base64.min.js"></script>
+
+
 	@RenderSection("head", required: false)
 </head>
 <body>
@@ -34,7 +38,8 @@
 				<ul>
 					@if (Session[J.BusinessLogics.Basic.SessionConfig.CurrentUser] == null)
 	 { 
-						<li><a href="~/Home/Login">登录</a></li>
+						@*<li><a href="~/Home/Login">登录</a></li>*@
+						<li><a id="btnLogin" href="javascript:void(0);" onclick="return false;">登录</a></li>
 						<li><a href="~/Home/Register">注册</a></li>
 	 }
 	 else
@@ -52,7 +57,17 @@
 		@RenderBody()
 	</div>
 	<footer>
+		@Html.Action("LoginPartial", "Home", null)
 	</footer>
+	<script type="text/javascript">
+		$(function ()
+		{
+			$("#btnLogin").click(function ()
+			{
+				$("#loginDialog").dialog("open");
+			});
+		});
+	</script>
 	@RenderSection("scripts", required: false)
 </body>
 </html>

@@ -162,3 +162,44 @@ jQuery.extend({
 		});
 	}
 });
+
+//┏━━━━━━━━━━━━━━━━━━┓
+//┃ 只能输入数字的input  ┃
+//┗━━━━━━━━━━━━━━━━━━┛
+function onlyNumber(obj, event)
+{
+	//IE的onkeypress和onblur会同时触发
+	try
+	{
+		e = window.event || event;		//FF使用event，IE使用window.event，chrome使用window.event
+		var k = e.keyCode || e.which;	//FF使用which，IE使用keyCode，chrome使用IE使用keyCode
+		if ((k < 48 || k > 57) && !(obj.value.indexOf(".") == -1 && event.keyCode == 46))
+			if (window.event)
+				e.returnValue = false;
+			else
+				e.preventDefault();
+	}
+	catch (e)
+	{
+		alert(e.description);
+	}
+}
+
+function onlyInt(obj, event)
+{
+	//IE的onkeypress和onblur会同时触发
+	try
+	{
+		e = window.event || event;		//FF使用event，IE使用window.event，chrome使用window.event
+		var k = e.keyCode || e.which;	//FF使用which，IE使用keyCode，chrome使用IE使用keyCode
+		if (k < 48 || k > 57)
+			if (window.event)
+				e.returnValue = false;
+			else
+				e.preventDefault();
+	}
+	catch (e)
+	{
+		alert(e.description);
+	}
+}
