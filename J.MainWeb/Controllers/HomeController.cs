@@ -155,7 +155,7 @@ namespace J.MainWeb.Controllers
 			Password = Encoding.UTF8.GetString(Convert.FromBase64String(Password));
 
 			if (!(Session[SessionConfig.SecurityCode] != null && Session[SessionConfig.SecurityCode].ToString() == SecurityCode.Trim().ToLower()))
-				return Content(JsonConvert.SerializeObject(new { code = -1, msg = "验证码输入错误！" }));
+				return Content(JsonConvert.SerializeObject(new { code = -1, msg = "<p><span style='color: red;'>验证码</span>输入错误！</p>" }));
 
 			Password = new DESEncrypt().EncryptString(Password);
 
@@ -166,7 +166,7 @@ namespace J.MainWeb.Controllers
 							select u).FirstOrDefault();
 
 				if (User == null)
-					return Content(JsonConvert.SerializeObject(new { code = -1, msg = "帐号或密码错误！" }));
+					return Content(JsonConvert.SerializeObject(new { code = -1, msg = "<p><span style='color: red;'>邮箱</span>或<span style='color: red;'>密码</span>错误！</p>" }));
 				else
 				{
 					Session[SessionConfig.CurrentUser] = User;
