@@ -66,8 +66,19 @@
 			{
 				$("#loginDialog").dialog("open");
 			});
+
+			$("#MessageDialog").dialog({
+				autoOpen: false,
+				modal: true,
+				title: "提示",
+				buttons: [{ text: "确定", click: function () { $(this).dialog("close"); } }]
+			});
 		});
 	</script>
 	@RenderSection("scripts", required: false)
+	<div id="MessageDialog">
+		<div id="MessageDialog_Message">
+		</div>
+	</div>
 </body>
 </html>

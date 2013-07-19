@@ -15,13 +15,7 @@
 			<a id="login_ChangeSecurityCodeImage" href="javascript:void(0);" onclick="return false;">换一张</a><br />
 			<div id="login_SecurityCodeError" style="display: none; color: red;">验证码错误。</div>
 		</div>
-@*		<div>
-			<a style="float: right;" href="~/Home/Register">注册</a>
-		</div>*@
 	</div>
-</div>
-<div id="loginDialogMessage">
-	<div id="loginDialogMessage_html"></div>
 </div>
 <style type="text/css">
 .login > div
@@ -180,15 +174,17 @@
 								}
 								else
 								{
-									$("#loginDialogMessage_html").html(dataobj.msg);
-									$("#loginDialogMessage").dialog("open");
+									$("#MessageDialog_Message").html(dataobj.msg);
+									$("#MessageDialog").dialog("option", { title: "错误提示", width: 200 });
+									$("#MessageDialog").dialog("open");
 									ChangeNewSecurityCodeImage();
 								}
 							},
 							error: function (XMLHttpRequest, textStatus, errorThrown)
 							{
-								$("#loginDialogMessage_html").html("网络错误，请重试！");
-								$("#loginDialogMessage").dialog("open");
+								$("#MessageDialog_Message").html("网络错误，请重试！");
+								$("#MessageDialog").dialog("option", { title: "错误提示", width: 200 });
+								$("#MessageDialog").dialog("open");
 							}
 						});
 						}
@@ -204,8 +200,9 @@
 							if (!SecurityCodeOK)
 								ErrorMessage += "<p><span style='color: red;'>验证码</span>输入错误。</p>";
 
-							$("#loginDialogMessage").html(ErrorMessage);
-							$("#loginDialogMessage").dialog("open");
+							$("#MessageDialog").html(ErrorMessage);
+							$("#MessageDialog").dialog("option", { title: "错误提示", width: 200 });
+							$("#MessageDialog").dialog("open");
 						}
 					}
 				},
@@ -217,14 +214,6 @@
 					}
 				}
 			]
-		});
-
-		$("#loginDialogMessage").dialog({
-			autoOpen: false,
-			modal: true,
-			width: 200,
-			title: "错误提示",
-			buttons: [{ text: "确定", click: function () { $(this).dialog("close"); } }]
 		});
 	});
 

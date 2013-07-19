@@ -113,7 +113,10 @@
 
 			$("#buy").click(function ()
 			{
-				$("#BuyList").dialog("open");
+				if($("#btnLogin").length != 0)
+					$("#loginDialog").dialog("open");
+				else
+					$("#BuyList").dialog("open");
 			});
 
 			$(":text", "#BuyList").change(function ()
@@ -127,7 +130,6 @@
 				});
 				$("#allQuantity").text(allQuantity);
 				$("#allPrice").text(RetainDigits(allQuantity * DataDesignwork.designwork.SellingPrice, 2));
-
 			});
 		});
 	</script>
