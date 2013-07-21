@@ -74,14 +74,9 @@
 				$("#login_Password").focus();
 				e.preventDefault();
 			}
-			else if (k == 9)
-			{
-				$("#login").focus();
-				e.preventDefault();
-			}
 			else if (k == 13)
 			{
-				$("#login").click();
+				LoginSubmit();
 				event.preventDefault();
 			}
 		});
@@ -148,62 +143,7 @@
 					text: "登录",
 					click: function ()
 					{
-						var LoginName = $("#login_LoginName").val();
-						var Password = $("#login_Password").val();
-						var SecurityCode = $("#login_SecurityCode").val();
-						var SecurityCodeOK = $("#login_SecurityCodeError").css("display") == "none";
-
-						if (LoginName.length > 0 && Password.length > 0 && SecurityCode.length > 0 && SecurityCodeOK)
-						{
-							$.ajax({
-								type: "post",
-								cache: false,
-								url: "@Url.Action("Login", "Home")",
-								data:
-							{
-								LoginName: $.base64.encode(LoginName),
-								Password: $.base64.encode(Password),
-								SecurityCode: SecurityCode
-							},
-							success: function (data)
-							{
-								var dataobj = JSON.parse(data);
-								if (dataobj.code > 0)
-								{
-									location.reload();
-								}
-								else
-								{
-									$("#MessageDialog_Message").html(dataobj.msg);
-									$("#MessageDialog").dialog("option", { title: "错误提示", width: 200 });
-									$("#MessageDialog").dialog("open");
-									ChangeNewSecurityCodeImage();
-								}
-							},
-							error: function (XMLHttpRequest, textStatus, errorThrown)
-							{
-								$("#MessageDialog_Message").html("网络错误，请重试！");
-								$("#MessageDialog").dialog("option", { title: "错误提示", width: 200 });
-								$("#MessageDialog").dialog("open");
-							}
-						});
-						}
-						else
-						{
-							var ErrorMessage = "";
-							if (LoginName.length == 0)
-								ErrorMessage += "<p>请输入<span style='color: red;'>邮箱</span>。</p>";
-							if (Password.length == 0)
-								ErrorMessage += "<p>请输入<span style='color: red;'>密码</span>。</p>";
-							if (SecurityCode.length == 0)
-								ErrorMessage += "<p>请输入<span style='color: red;'>验证码</span>。</p>";
-							if (!SecurityCodeOK)
-								ErrorMessage += "<p><span style='color: red;'>验证码</span>输入错误。</p>";
-
-							$("#MessageDialog").html(ErrorMessage);
-							$("#MessageDialog").dialog("option", { title: "错误提示", width: 200 });
-							$("#MessageDialog").dialog("open");
-						}
+						LoginSubmit();
 					}
 				},
 				{
@@ -222,5 +162,65 @@
 		$("#login_SecurityCodeImage").attr("src", $("#login_SecurityCodeImage").data("src") + "?" + new Date().getTime());
 		$("#login_SecurityCode").val("");
 		$("#login_SecurityCodeError").css("display", "none");
+	}
+
+	function LoginSubmit()
+	{
+		var LoginName = $("#login_LoginName").val();
+		var Password = $("#login_Password").val();
+		var SecurityCode = $("#login_SecurityCode").val();
+		var SecurityCodeOK = $("#login_SecurityCodeError").css("display") == "none";
+
+		if (LoginName.length > 0 && Password.length > 0 && SecurityCode.length > 0 && SecurityCodeOK)
+		{
+			$.ajax({
+				type: "post",
+				cache: false,
+				url: "@Url.Action("Login", "Home")",
+				data:
+			{
+				LoginName: $.base64.encode(LoginName),
+				Password: $.base64.encode(Password),
+				SecurityCode: SecurityCode
+			},
+				success: function (data)
+				{
+					var dataobj = JSON.parse(data);
+					if (dataobj.code > 0)
+					{
+						location.reload();
+					}
+					else
+					{
+						$("#MessageDialog_Message").html(dataobj.msg);
+						$("#MessageDialog").dialog("option", { title: "错误提示", width: 200 });
+						$("#MessageDialog").dialog("open");
+						ChangeNewSecurityCodeImage();
+					}
+				},
+				error: function (XMLHttpRequest, textStatus, errorThrown)
+				{
+					$("#MessageDialog_Message").html("网络错误，请重试！");
+					$("#MessageDialog").dialog("option", { title: "错误提示", width: 200 });
+					$("#MessageDialog").dialog("open");
+				}
+			});
+		}
+		else
+		{
+			var ErrorMessage = "";
+			if (LoginName.length == 0)
+				ErrorMessage += "<p>请输入<span style='color: red;'>邮箱</span>。</p>";
+			if (Password.length == 0)
+				ErrorMessage += "<p>请输入<span style='color: red;'>密码</span>。</p>";
+			if (SecurityCode.length == 0)
+				ErrorMessage += "<p>请输入<span style='color: red;'>验证码</span>。</p>";
+			if (!SecurityCodeOK)
+				ErrorMessage += "<p><span style='color: red;'>验证码</span>输入错误。</p>";
+
+			$("#MessageDialog").html(ErrorMessage);
+			$("#MessageDialog").dialog("option", { title: "错误提示", width: 200 });
+			$("#MessageDialog").dialog("open");
+		}
 	}
 </script>

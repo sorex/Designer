@@ -1,107 +1,173 @@
 ﻿.body {
 }
 
-    .body .myInfoSide {
-        float: left;
-        width: 80px;
-    }
+	.body .myInfoSide {
+		float: left;
+		width: 80px;
+	}
 
-        .body .myInfoSide .myInfoSideActive {
-            color: #ff4f00;
-        }
+		.body .myInfoSide .myInfoSideActive {
+			color: #ff4f00;
+		}
 
-    .body .myInfoMain {
-        float: left;
-        min-height: 300px;
-        border-left: 2px solid #000000;
-        padding-left: 12px;
-    }
+	.body .myInfoMain {
+		float: left;
+		min-height: 300px;
+		border-left: 2px solid #000000;
+		padding-left: 12px;
+	}
 
-        .body .myInfoMain #dataTable {
-            width: 900px;
-        }
+		.body .myInfoMain #dataTable {
+			width: 900px;
+		}
 
-            .body .myInfoMain #dataTable th {
-                border-top: 1px solid #000000;
-                border-bottom: 1px solid #000000;
-            }
+			.body .myInfoMain #dataTable th {
+				border-top: 1px solid #000000;
+				border-bottom: 1px solid #000000;
+			}
 
-            .body .myInfoMain #dataTable a, .body .myInfoMain #dataTable span {
-                display: block;
-            }
+			.body .myInfoMain #dataTable a, .body .myInfoMain #dataTable span {
+				display: block;
+			}
 
-            .body .myInfoMain #dataTable a {
-                color: #3366cc;
-                font-weight: normal;
-            }
+			.body .myInfoMain #dataTable a {
+				color: #3366cc;
+				font-weight: normal;
+			}
 
-                .body .myInfoMain #dataTable a:link {
-                    color: #3366cc;
-                    text-decoration: none;
-                }
+				.body .myInfoMain #dataTable a:link {
+					color: #3366cc;
+					text-decoration: none;
+				}
 
-                .body .myInfoMain #dataTable a:visited {
-                    color: #3366cc;
-                    text-decoration: underline;
-                }
+				.body .myInfoMain #dataTable a:visited {
+					color: #3366cc;
+					text-decoration: underline;
+				}
 
-                .body .myInfoMain #dataTable a:hover {
-                    color: #ff6600;
-                    text-decoration: underline;
-                }
+				.body .myInfoMain #dataTable a:hover {
+					color: #ff6600;
+					text-decoration: underline;
+				}
 
-                .body .myInfoMain #dataTable a:active {
-                    color: #ff6600;
-                    text-decoration: underline;
-                }
+				.body .myInfoMain #dataTable a:active {
+					color: #ff6600;
+					text-decoration: underline;
+				}
 
-            .body .myInfoMain #dataTable .sep-row {
-                height: 7px;
-            }
+			.body .myInfoMain #dataTable .sep-row {
+				height: 7px;
+			}
 
-            .body .myInfoMain #dataTable .item1 {
-                border: 1px solid #d4e7ff;
-                background-color: #f3f3f3;
-                color: #404040;
-            }
+			.body .myInfoMain #dataTable .item1 {
+				border: 1px solid #d4e7ff;
+				background-color: #f3f3f3;
+				color: #404040;
+			}
 
-                .body .myInfoMain #dataTable .item1 td {
-                    vertical-align: middle;
-                    height: 32px;
-                }
+				.body .myInfoMain #dataTable .item1 td {
+					vertical-align: middle;
+					height: 32px;
+				}
 
-            .body .myInfoMain #dataTable .item2 {
-                border: 1px solid #d4e7ff;
-            }
+			.body .myInfoMain #dataTable .item2 {
+				border: 1px solid #d4e7ff;
+			}
 
-                .body .myInfoMain #dataTable .item2 td {
-                    text-align: center;
-                    vertical-align: top;
-                    padding: 8px 5px 8px 5px;
-                }
+				.body .myInfoMain #dataTable .item2 td {
+					text-align: center;
+					vertical-align: top;
+					padding: 8px 5px 8px 5px;
+				}
 
-                    .body .myInfoMain #dataTable .item2 td:first-child {
-                        border-left: 1px solid #d4e7ff;
-                    }
+					.body .myInfoMain #dataTable .item2 td:first-child {
+						border-left: 1px solid #d4e7ff;
+					}
 
-                    .body .myInfoMain #dataTable .item2 td:last-child {
-                        border-right: 1px solid #d4e7ff;
-                    }
+					.body .myInfoMain #dataTable .item2 td:last-child {
+						border-right: 1px solid #d4e7ff;
+					}
 
-                .body .myInfoMain #dataTable .item2 .rightLine {
-                    border-right: 1px solid #d4e7ff;
-                }
+				.body .myInfoMain #dataTable .item2 .rightLine {
+					border-right: 1px solid #d4e7ff;
+				}
 
-                .body .myInfoMain #dataTable .item2 .itemImage {
-                    width: 50px;
-                    height: 50px;
-                }
+				.body .myInfoMain #dataTable .item2 .itemImage {
+					width: 50px;
+					height: 50px;
+				}
 
-                .body .myInfoMain #dataTable .item2 .stress {
-                    font-weight: bold;
-                }
+				.body .myInfoMain #dataTable .item2 .stress {
+					font-weight: bold;
+				}
 
-                .body .myInfoMain #dataTable .item2 .description {
-                    color: #808080;
-                }
+				.body .myInfoMain #dataTable .item2 .description {
+					color: #808080;
+				}
 
+	.body .myInfoMain .address{
+		margin-bottom:20px;
+	}
+
+	.body .myInfoMain .address .label{
+		width:120px; 
+		display: inline-block; 
+		text-align: right; 
+		margin-right: 20px;
+		vertical-align: central;
+	}
+
+	.body .myInfoMain .address input{
+		margin-left: 0px;
+		width: 200px;
+		font-size: 18px;
+		line-height: 25px;
+		height: 25px;
+		margin-top: 5px;
+	}
+
+	.body .myInfoMain .address textarea{
+		font-size: 18px;
+		margin-left: 0px;
+		margin-top: 5px;
+		width: 380px;
+		height: 110px;
+	}
+
+	.body .myInfoMain .address .SaveButton
+{
+	width: 70px;
+	height: 32px;
+	line-height: 32px;
+	font-size: 16px;
+	margin-left: 50px;
+	margin-top: 5px;
+}
+
+	.body .myInfoMain .address .SaveButton:link
+	{
+		color: #ffffff;
+		background-color:#ff7a01;
+		border:1px solid #f15c00;
+	}
+
+	.body .myInfoMain .address .SaveButton:visited
+	{
+		color: #ffffff;
+		background-color:#ff7a01;
+		border:1px solid #f15c00;
+	}
+
+	.body .myInfoMain .address .SaveButton:hover
+	{
+		color: #ffffff;
+		background-color:#fe920c;
+		border:1px solid #f4770d;
+	}
+
+	.body .myInfoMain .address .SaveButton:active
+	{
+		color: #ffffff;
+		background-color:#fe920c;
+		border:1px solid #f4770d;
+	}

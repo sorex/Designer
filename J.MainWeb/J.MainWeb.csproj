@@ -307,6 +307,7 @@
     <Content Include="Views\MyInfo\MyDesignworks.cshtml" />
     <Content Include="Views\DesignTShirt\Buy.cshtml" />
     <Content Include="Views\Home\LoginPartial.cshtml" />
+    <Content Include="Views\MyInfo\MyAddresses.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

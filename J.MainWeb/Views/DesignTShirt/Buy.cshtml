@@ -51,7 +51,7 @@
 		{{/size}}
 	</table>
 	<hr />
-	合计：<span id="allQuantity"></span>件、<span id="allPrice"></span>元
+	合计：<span id="allQuantity">0</span>件、<span id="allPrice">0.00</span>元
 	</script>
 </div>
 
@@ -107,6 +107,12 @@
 					click: function ()
 					{
 						$(this).dialog("close");
+						//$(":text", "#BuyList").each(function ()
+						//{
+						//	this.value = "0";
+						//});
+						//$("#allQuantity").text("0");
+						//$("#allPrice").text("0.00");
 					}
 				}]
 			});

@@ -1,0 +1,330 @@
+﻿@{
+	ViewBag.Title = "MyAddresses";
+}
+
+@section head{
+	<script type="text/javascript" src="~/Static/Resources/_references.js"></script>
+	<link rel="stylesheet" href="~/Static/Resources/site/myInfo.css" />
+}
+<div class="myInfoSide">
+	<ul>
+		<li><a href="~/MyInfo/Index">我的资料</a></li>
+		<li><a href="~/MyInfo/MyDesignworks">我的设计</a></li>
+		<li><a href="~/MyInfo/MyOrders">我的订单</a></li>
+		<li><span class="myInfoSideActive">收货地址</span></li>
+	</ul>
+</div>
+<div class="myInfoMain">
+	<div class="address">
+		新增收货地址电话号码、手机号选填一项,其余均为必填项<br />
+		<input type="hidden" id="AddressGUID" />
+
+		<span class="label">收货人姓名:</span>
+		<input type="text" id="Consignee" /><span style="color: red;"> * </span>
+		<br />
+
+		<span class="label">所在省:</span>
+		<input type="text" id="Province" /><span style="color: red;"> * </span>
+		<br />
+
+		<span class="label">所在市:</span>
+		<input type="text" id="City" /><span style="color: red;"> * </span>
+		<br />
+
+		<span class="label">所在区/县:</span>
+		<input type="text" id="County" /><span style="color: red;"> * </span>
+		<br />
+
+		<span class="label" style="vertical-align: top;">街道地址:</span>
+		<textarea id="StreetAddress"></textarea><span style="color: red;"> * </span>
+		<br />
+
+		<span class="label">邮政编码:</span>
+		<input type="text" style="width: 80px;" id="ZipCode" /><br />
+
+		<span class="label">手机号码:</span>
+		<input type="text" id="Mobile" />
+		电话号码、手机号码必填一项<br />
+
+		<span class="label">电话号码:</span>
+		<input type="text" id="Phone" />
+		填写电话号码一定要填写区号<br />
+
+		<span class="label">设为默认:</span>
+		<input type="checkbox" style="width: 16px;" id="IsDefault" /><br />
+
+		<a id="SaveButton" class="button SaveButton" href="javascript:void(0);" onclick="return false;">保存</a>
+	</div>
+	<div>
+		<table id="dataTable" class="template">
+			<script type="text/x-mustache">
+			<tr>
+				<th style="width: 65px;">收货人</th>
+				<th style="width: 140px;">所在地</th>
+				<th style="width: 160px;">街道地址</th>
+				<th style="width: 60px;">邮编</th>
+				<th style="width: 135px;">电话/手机</th>
+				<th style="width: 100px;"></th>
+				<th style="width: 100px;">操作</th>
+			</tr>
+			{{#items}}
+			<tr class="item2">
+				<td>
+					{{Consignee}}
+				</td>
+				<td>
+					{{Province}} {{City}} {{County}}
+				</td>
+				<td style="word-wrap: break-word;">
+					{{StreetAddress}}
+				</td>
+				<td>
+					{{ZipCode}}
+				</td>
+				<td>
+					<p>{{Mobile}}</p>
+					{{Phone}}
+				</td>
+				<td class="stress">
+					{{#IsDefault}}
+					默认
+					{{/IsDefault}}
+					{{^IsDefault}}
+					<a data-action="default" data-guid="{{GUID}}" href="javascript:void(0);" onclick="return false;">设为默认</a>
+					{{/IsDefault}}
+				</td>
+				<td class="stress">
+					<a data-action="edit" data-guid="{{GUID}}" href="javascript:void(0);" onclick="return false;">修改</a>
+					<a data-action="delete" data-guid="{{GUID}}" href="javascript:void(0);" onclick="return false;">删除</a>
+				</td>
+			</tr>
+			{{/items}}
+			</script>
+		</table>
+	</div>
+</div>
+<div id="DeleteConfirm">
+	您确定要删除该地址？
+</div>
+
+@section scripts{
+	<script type="text/javascript">
+		var Data = { items:  @Html.Raw(ViewBag.Data)  };
+
+		$(function ()
+		{
+			$.initTemplate();
+			$("#dataTable").data("template_extend", {});
+			$("#dataTable").render(Data);
+
+			$("#SaveButton").click(function ()
+			{
+				var postdata = CheckData();
+				if (postdata != false)
+				{
+					$.ajax({
+						type: "post",
+						cache: false,
+						url: "@Url.Action("SaveAddress", "MyInfo")",
+						data: postdata,
+						success: function (data)
+						{
+							var dataobj = JSON.parse(data);
+							if (dataobj.code > 0)
+							{
+								$("#MessageDialog_Message").html(dataobj.msg);
+								$("#MessageDialog").dialog("option", { title: "提示", width: 200, buttons: [{ text: "确定", click: function () { location.reload(); } }] });
+								$("#MessageDialog").dialog("open");
+							}
+							else
+							{
+								$("#MessageDialog_Message").html(dataobj.msg);
+								$("#MessageDialog").dialog("option", { title: "错误提示", width: 350 });
+								$("#MessageDialog").dialog("open");
+							}
+						},
+						error: function (XMLHttpRequest, textStatus, errorThrown)
+						{
+							$("#MessageDialog_Message").html("网络错误，请重试！");
+							$("#MessageDialog").dialog("option", { title: "错误提示", width: 200 });
+							$("#MessageDialog").dialog("open");
+						}
+					});
+				}
+			});
+
+			$("a[data-action='edit']", "#dataTable").each(function ()
+			{
+				$(this).click(function ()
+				{
+					Edit($(this).attr("data-guid"));
+				});
+			});
+
+			$("a[data-action='delete']", "#dataTable").each(function ()
+			{
+				$(this).click(function ()
+				{
+					Delete($(this).attr("data-guid"));
+				});
+			});
+
+			$("a[data-action='default']", "#dataTable").each(function ()
+			{
+				$(this).click(function ()
+				{
+					$.ajax({
+						type: "post",
+						cache: false,
+						url: "@Url.Action("DefaultAddress", "MyInfo")",
+								data: { guid: $("#AddressGUID").val() },
+								success: function (data)
+								{
+									var dataobj = JSON.parse(data);
+									if (dataobj.code > 0)
+									{
+										$("#MessageDialog_Message").html(dataobj.msg);
+										$("#MessageDialog").dialog("option", { title: "提示", width: 200, buttons: [{ text: "确定", click: function () { location.reload(); } }] });
+										$("#MessageDialog").dialog("open");
+									}
+									else
+									{
+										$("#MessageDialog_Message").html(dataobj.msg);
+										$("#MessageDialog").dialog("option", { title: "错误提示", width: 350 });
+										$("#MessageDialog").dialog("open");
+									}
+								},
+								error: function (XMLHttpRequest, textStatus, errorThrown)
+								{
+									$("#MessageDialog_Message").html("网络错误，请重试！");
+									$("#MessageDialog").dialog("option", { title: "错误提示", width: 200 });
+									$("#MessageDialog").dialog("open");
+								}
+					});
+				});
+			});
+
+			$("#DeleteConfirm").dialog({
+				autoOpen: false,
+				modal: true,
+				title: "提示",
+				buttons: [
+					{
+						text: "确定",
+						click: function ()
+						{
+							$.ajax({
+								type: "post",
+								cache: false,
+								url: "@Url.Action("DeleteAddress", "MyInfo")",
+								data: { guid: $("#AddressGUID").val() },
+								success: function (data)
+								{
+									var dataobj = JSON.parse(data);
+									if (dataobj.code > 0)
+									{
+										$("#MessageDialog_Message").html(dataobj.msg);
+										$("#MessageDialog").dialog("option", { title: "提示", width: 200, buttons: [{ text: "确定", click: function () { location.reload(); } }] });
+										$("#MessageDialog").dialog("open");
+									}
+									else
+									{
+										$("#MessageDialog_Message").html(dataobj.msg);
+										$("#MessageDialog").dialog("option", { title: "错误提示", width: 350 });
+										$("#MessageDialog").dialog("open");
+									}
+								},
+								error: function (XMLHttpRequest, textStatus, errorThrown)
+								{
+									$("#MessageDialog_Message").html("网络错误，请重试！");
+									$("#MessageDialog").dialog("option", { title: "错误提示", width: 200 });
+									$("#MessageDialog").dialog("open");
+								}
+							});
+						}
+					},
+					{
+						text: "取消",
+						click: function () { $(this).dialog("close"); }
+					}]
+			});
+		});
+
+		function CheckData()
+		{
+			var ErrorMessage = "";
+			var GUID = $("#AddressGUID").val();
+			var Consignee = $("#Consignee").val();
+			var Province = $("#Province").val();
+			var City = $("#City").val();
+			var County = $("#County").val();
+			var StreetAddress = $("#StreetAddress").val();
+			var ZipCode = $("#ZipCode").val();
+			var IntZipCode = parseInt(ZipCode);
+			var Mobile = $("#Mobile").val();
+			var Phone = $("#Phone").val();
+			var IsDefault = $("#IsDefault").attr("checked") == "checked";
+
+			if (Consignee.length < 2 || Consignee.length > 15)
+				ErrorMessage += "<p><span style='color:red;'>收货人姓名</span> 不能少于2个字，不能超过15个字</p>";
+			if (Province.length < 2 || Province.length > 15)
+				ErrorMessage += "<p><span style='color:red;'>所在省</span> 不能少于2个字，不能超过15个字</p>";
+			if (City.length < 2 || City.length > 15)
+				ErrorMessage += "<p><span style='color:red;'>所在市</span> 不能少于2个字，不能超过15个字</p>";
+			if (County.length < 2 || County.length > 15)
+				ErrorMessage += "<p><span style='color:red;'>所在区/县</span> 不能少于2个字，不能超过15个字</p>";
+			if (StreetAddress.length < 5 || StreetAddress.length > 60)
+				ErrorMessage += "<p><span style='color:red;'>街道地址</span> 最少5个字，最多不能超过60个字</p>";
+			if (!((!isNaN(IntZipCode) && IntZipCode.toString().length == 6) || ZipCode.length == 0))
+				ErrorMessage += "<p><span style='color:red;'>邮政编码</span> 必须由6个数字构成</p>";
+			if (Mobile.length == 0 && Phone.length == 0)
+				ErrorMessage += "<p><span style='color:red;'>电话号码、手机号码</span> 必填一项</p>";
+			if (Mobile.length > 20)
+				ErrorMessage += "<p><span style='color:red;'>手机号码</span> 不能超过20个字</p>";
+			if (Phone.length > 20)
+				ErrorMessage += "<p><span style='color:red;'>电话号码</span> 不能超过20个字</p>";
+
+			if (ErrorMessage.length == 0)
+			{
+				return { GUID: GUID, Consignee: Consignee, Province: Province, City: City, County: County, StreetAddress: StreetAddress, ZipCode: ZipCode, Mobile: Mobile, Phone: Phone, IsDefault: IsDefault };
+			}
+			else
+			{
+				$("#MessageDialog_Message").html(ErrorMessage);
+				$("#MessageDialog").dialog("option", { title: "错误提示", width: 350 });
+				$("#MessageDialog").dialog("open");
+				return false;
+			}
+		}
+
+		function Find(GUID)
+		{
+			for (var i = 0; i < Data.items.length; i++)
+			{
+				if (Data.items[i].GUID == GUID)
+					return Data.items[i];
+			}
+		}
+
+		function Edit(GUID)
+		{
+			var item = Find(GUID);
+			$("#AddressGUID").val(item.GUID);
+			$("#Consignee").val(item.Consignee);
+			$("#Province").val(item.Province);
+			$("#City").val(item.City);
+			$("#County").val(item.County);
+			$("#StreetAddress").val(item.StreetAddress);
+			$("#ZipCode").val(item.ZipCode);
+			$("#Mobile").val(item.Mobile);
+			$("#Phone").val(item.Phone);
+			$("#IsDefault").attr("checked", item.IsDefault);
+		}
+
+		function Delete(GUID)
+		{
+			$("#AddressGUID").val(GUID);
+			$("#DeleteConfirm").dialog("open");
+		}
+	</script>
+}
