@@ -142,10 +142,11 @@ namespace J.MainWeb.Controllers
 		[ActionName("Preview")]
 		public ActionResult PreviewPost(string guid)
 		{
+			var UserID = base.CurrentUser.GUID;
 			guid = guid.ToLower();
 			using (DBEntities db = new DBEntities())
 			{
-				var dw = db.designworks.FirstOrDefault(p => p.GUID == guid);
+				var dw = db.designworks.FirstOrDefault(p => p.GUID == guid && p.DesignerID == UserID);
 				if (dw == null)
 					return RedirectToAction("Error", "Home", new { msg = "该活动的预览不存在!" });
 				if (dw.State != 0)

@@ -94,12 +94,48 @@
 					text: "提交订单并付款",
 					click: function ()
 					{
-						var order = "";
+						var sizes = "", quantities = "";
 						$(":text", "#BuyList").each(function ()
 						{
-							order += this.id + ":" + this.value + "\n";
+							var q = parseInt(this.value);
+							if(q > 0)
+							{
+								sizes += this.id.substring(1) + ",";
+								quantities += q + ",";
+							}
 						});
-						alert(order);
+						var postdate = { guid: Data.DesignworkID, sizes: sizes, quantities: quantities };
+
+						$.ajax({
+							type: "post",
+							cache: false,
+							url: "@Url.Action("CreateOrder", "Logic")",
+							data: postdata,
+							success: function (data)
+							{
+								var dataobj = JSON.parse(data);
+								if(dataobj.code == -99)
+								{
+									$("#loginDialog").dialog("open");
+								}
+								else if (dataobj.code > 0)
+								{
+									//转到支付页面
+								}
+								else
+								{
+									$("#MessageDialog_Message").html(dataobj.msg);
+									$("#MessageDialog").dialog("option", { title: "错误提示", width: 350 });
+									$("#MessageDialog").dialog("open");
+								}
+							},
+							error: function (XMLHttpRequest, textStatus, errorThrown)
+							{
+								$("#MessageDialog_Message").html("网络错误，请重试！");
+								$("#MessageDialog").dialog("option", { title: "错误提示", width: 200 });
+								$("#MessageDialog").dialog("open");
+							}
+						});
 					}
 				},
 				{

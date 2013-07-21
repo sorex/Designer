@@ -175,6 +175,7 @@
     <Compile Include="Controllers\DemoController.cs" />
     <Compile Include="Controllers\DesignTShirtController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\LogicController.cs" />
     <Compile Include="Controllers\MyInfoController.cs" />
     <Compile Include="Controllers\ValuesController.cs" />
     <Compile Include="Global.asax.cs">

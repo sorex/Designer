@@ -185,7 +185,8 @@
           </Key>
           <Property Name="GUID" Type="varchar" Nullable="false" MaxLength="200" />
           <Property Name="OrderID" Type="varchar" Nullable="false" MaxLength="200" />
-          <Property Name="Size" Type="varchar" MaxLength="200" />
+          <Property Name="SizeID" Type="varchar" MaxLength="200" />
+          <Property Name="SizeName" Type="varchar" MaxLength="200" />
           <Property Name="Number" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="orders">
@@ -595,7 +596,8 @@
           </Key>
           <Property Type="String" Name="GUID" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
           <Property Type="String" Name="OrderID" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="Size" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="SizeID" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="SizeName" MaxLength="200" FixedLength="false" Unicode="false" />
           <Property Type="Int32" Name="Number" Nullable="false" />
           <NavigationProperty Name="order" Relationship="DBModel.orderdetails_ibfk_1" FromRole="orderdetail" ToRole="order" />
         </EntityType>
@@ -939,7 +941,8 @@
             <EntityTypeMapping TypeName="DBModel.orderdetail">
               <MappingFragment StoreEntitySet="orderdetails">
                 <ScalarProperty Name="Number" ColumnName="Number" />
-                <ScalarProperty Name="Size" ColumnName="Size" />
+                <ScalarProperty Name="SizeName" ColumnName="SizeName" />
+                <ScalarProperty Name="SizeID" ColumnName="SizeID" />
                 <ScalarProperty Name="OrderID" ColumnName="OrderID" />
                 <ScalarProperty Name="GUID" ColumnName="GUID" />
               </MappingFragment>
