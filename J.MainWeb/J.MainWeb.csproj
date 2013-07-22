@@ -303,10 +303,8 @@
     <Content Include="Static\Resources\uploadify\jquery.uploadify.min.js.map">
       <DependentUpon>jquery.uploadify.js</DependentUpon>
     </Content>
-    <Content Include="Views\DesignTShirt\Preview.cshtml" />
     <Content Include="Views\Home\Error.cshtml" />
     <Content Include="Views\MyInfo\MyDesignworks.cshtml" />
-    <Content Include="Views\DesignTShirt\Buy.cshtml" />
     <Content Include="Views\Home\LoginPartial.cshtml" />
     <Content Include="Views\MyInfo\MyAddresses.cshtml" />
     <Content Include="Views\Logic\Preview.cshtml" />
