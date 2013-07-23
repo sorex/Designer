@@ -125,6 +125,7 @@ namespace J.MainWeb.Controllers
 
 			var ErrorMessage = String.Empty;
 			int IntZipCode;
+
 			#region checkdata
 			if (Consignee.Length < 2 || Consignee.Length > 15)
 				ErrorMessage += "<p><span style='color:red;'>收货人姓名</span> 不能少于2个字，不能超过15个字</p>";
@@ -181,8 +182,8 @@ namespace J.MainWeb.Controllers
 			{
 				using (DBEntities db = new DBEntities())
 				{
-					if(db.addresses.Count(p=>p.UserID == UserID) >= 5)
-						return Content(JsonConvert.SerializeObject(new { code = -1, msg = "每个用户只能存储5个收货地址。" }));
+					if(db.addresses.Count(p=>p.UserID == UserID) >= SystemConfig.MaxAddresses)
+						return Content(JsonConvert.SerializeObject(new { code = -1, msg = "每个用户最多只能存储" + SystemConfig.MaxAddresses + "个收货地址。" }));
 
 					var Address = new address();
 					Address.GUID = Basic.NewGuid();

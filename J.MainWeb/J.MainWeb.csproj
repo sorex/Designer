@@ -218,6 +218,7 @@
     <Content Include="Static\Resources\jquery\jquery-migrate-1.2.1.js" />
     <Content Include="Static\Resources\jquery\jquery-migrate-1.2.1.min.js" />
     <Content Include="Static\Resources\mustache\mustache.js" />
+    <Content Include="Static\Resources\site\Logic_ConfirmOrder.css" />
     <Content Include="Static\Resources\site\DesignTShirt_Create.css" />
     <Content Include="Static\Resources\site\Logic_PreviewBuy.css" />
     <Content Include="Static\Resources\site\images\home\button_200x75_active.png" />
@@ -309,6 +310,7 @@
     <Content Include="Views\MyInfo\MyAddresses.cshtml" />
     <Content Include="Views\Logic\Preview.cshtml" />
     <Content Include="Views\Logic\Buy.cshtml" />
+    <Content Include="Views\Logic\ConfirmOrder.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

@@ -1,8 +1,6 @@
 ﻿@section head{
 	<script type="text/javascript" src="~/Static/Resources/_references.js"></script>
 	<link rel="stylesheet" href="~/Static/Resources/site/Logic_PreviewBuy.css" />
-
-
 }
 
 <h1>@ViewBag.Title</h1>
@@ -57,6 +55,8 @@
 
 @section scripts{
 	<script type="text/javascript">
+		var CanPost = true;
+
 		var Data = @Html.Raw(ViewBag.Data);
 		var DataMaterialpictures = { items: @Html.Raw(ViewBag.DataMaterialpictures) };
 		var DataDesignwork = { designwork: @Html.Raw(ViewBag.DataDesignwork) };
@@ -104,38 +104,45 @@
 								quantities += q + ",";
 							}
 						});
-						var postdate = { guid: Data.DesignworkID, sizes: sizes, quantities: quantities };
+						var postdata = { guid: Data.DesignworkID, sizes: sizes, quantities: quantities };
 
-						$.ajax({
-							type: "post",
-							cache: false,
-							url: "@Url.Action("CreateOrder", "Logic")",
-							data: postdata,
-							success: function (data)
-							{
-								var dataobj = JSON.parse(data);
-								if(dataobj.code == -99)
+						if(CanPost)
+						{
+							$.ajax({
+								type: "post",
+								cache: false,
+								url: "@Url.Action("CreateOrder", "Logic")",
+								data: postdata,
+								success: function (data)
 								{
-									$("#loginDialog").dialog("open");
-								}
-								else if (dataobj.code > 0)
+									var dataobj = JSON.parse(data);
+									if(dataobj.code == -99)
+									{
+										$("#loginDialog").dialog("open");
+									}
+									else if (dataobj.code > 0)
+									{
+										//转到选择地址和支付页面
+										location.href = "@Url.Action("ConfirmOrder", "Logic")" + "?guid=" + dataobj.msg;
+									}
+									else
+									{
+										$("#MessageDialog_Message").html(dataobj.msg);
+										$("#MessageDialog").dialog("option", { title: "错误提示", width: 350 });
+										$("#MessageDialog").dialog("open");
+									}
+									CanPost = true;
+								},
+								error: function (XMLHttpRequest, textStatus, errorThrown)
 								{
-									//转到选择地址和支付页面
-								}
-								else
-								{
-									$("#MessageDialog_Message").html(dataobj.msg);
-									$("#MessageDialog").dialog("option", { title: "错误提示", width: 350 });
+									CanPost = true;
+									$("#MessageDialog_Message").html("网络错误，请重试！");
+									$("#MessageDialog").dialog("option", { title: "错误提示", width: 200 });
 									$("#MessageDialog").dialog("open");
 								}
-							},
-							error: function (XMLHttpRequest, textStatus, errorThrown)
-							{
-								$("#MessageDialog_Message").html("网络错误，请重试！");
-								$("#MessageDialog").dialog("option", { title: "错误提示", width: 200 });
-								$("#MessageDialog").dialog("open");
-							}
-						});
+							});
+							CanPost = false;
+						}
 					}
 				},
 				{

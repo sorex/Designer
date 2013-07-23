@@ -52,6 +52,7 @@
     <Compile Include="Basic\PriceCompute.cs" />
     <Compile Include="Basic\SecurityCode.cs" />
     <Compile Include="Basic\SessionConfig.cs" />
+    <Compile Include="Basic\SystemConfig.cs" />
     <Compile Include="DesignTShirt.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

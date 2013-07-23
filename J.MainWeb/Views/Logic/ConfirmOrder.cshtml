@@ -1,0 +1,92 @@
+﻿@{
+	ViewBag.Title = "确认订单";
+}
+
+@section head{
+	<script type="text/javascript" src="~/Static/Resources/_references.js"></script>
+	<link rel="stylesheet" href="~/Static/Resources/site/Logic_ConfirmOrder.css" />
+}
+<div id="Addresses">
+	<div class="Address">
+		<div>
+			{{Province}}{{City}} ({{Consignee}} 收)
+			<hr />
+		</div>
+		<div>
+			{{County}} {{StreetAddress}} {{MobileORPhone}}
+		</div>
+		<div class="ui-helper-clearfix"></div>
+	</div>
+	<div class="Address">
+		<div>
+			{{Province}}{{City}} ({{Consignee}} 收)
+			<hr />
+		</div>
+		<div>
+			{{County}} {{StreetAddress}} {{MobileORPhone}}
+		</div>
+		<div class="ui-helper-clearfix"></div>
+	</div>
+	<div class="Address active">
+		<div>
+			{{Province}}{{City}} ({{Consignee}} 收)
+			<hr />
+		</div>
+		<div>
+			{{County}} {{StreetAddress}} {{MobileORPhone}}
+		</div>
+		<div class="ui-helper-clearfix"></div>
+	</div>
+	<div class="Address">
+		<div>
+			{{Province}}{{City}} ({{Consignee}} 收)
+			<hr />
+		</div>
+		<div>
+			{{County}} {{StreetAddress}} {{MobileORPhone}}
+		</div>
+		<div class="ui-helper-clearfix"></div>
+	</div>
+	<div class="Address">
+		<div>
+			{{Province}}{{City}} ({{Consignee}} 收)
+			<hr />
+		</div>
+		<div>
+			{{County}} {{StreetAddress}} {{MobileORPhone}}
+		</div>
+		<div class="ui-helper-clearfix"></div>
+	</div>
+	<div class="Address">
+		<div>
+			{{Province}}{{City}} ({{Consignee}} 收)
+			<hr />
+		</div>
+		<div>
+			{{County}} {{StreetAddress}} {{MobileORPhone}}
+		</div>
+		<div class="ui-helper-clearfix"></div>
+	</div>
+</div>
+<div id="OrderInfo">
+
+</div>
+
+<script type="text/javascript">
+	$(function ()
+	{
+		//$.initTemplate();
+		//$("#Addresses").data("template_extend", {
+		//	MobileORPhone: function ()
+		//	{
+		//		if (this.Mobile.length > 0)
+		//			return this.Mobile;
+		//		else
+		//			return this.Phone;
+		//	}
+		//});
+		//$("#Addresses").render(Data);
+
+	});
+
+</script>

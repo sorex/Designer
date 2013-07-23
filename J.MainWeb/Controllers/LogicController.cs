@@ -120,7 +120,7 @@ namespace J.MainWeb.Controllers
 
 			var sizequantity = new Dictionary<string, int>();
 			var sizesStr = sizes.Trim(',').ToLower().Split(',');
-			var quantitiesStr = sizes.Trim(',').ToLower().Split(',');
+			var quantitiesStr = quantities.Trim(',').ToLower().Split(',');
 			for (int i = 0; i < sizesStr.Length; i++)
 			{
 				int tempQuantity = 0;
@@ -168,6 +168,13 @@ namespace J.MainWeb.Controllers
 			}
 
 			return Content(JsonConvert.SerializeObject(new { code = 1, msg = OrderID }));
+		}
+		#endregion
+
+		#region 确定订单和收货地址
+		public ActionResult  ConfirmOrder(string guid)
+		{
+			return View();
 		}
 		#endregion
 	}
