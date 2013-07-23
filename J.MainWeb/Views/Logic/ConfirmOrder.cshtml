@@ -6,87 +6,69 @@
 	<script type="text/javascript" src="~/Static/Resources/_references.js"></script>
 	<link rel="stylesheet" href="~/Static/Resources/site/Logic_ConfirmOrder.css" />
 }
-<div id="Addresses">
-	<div class="Address">
+<div id="Addresses" class="template">
+	<script type="text/x-mustache">
+	{{#item}}
+	<div class="Address{{active}}">
 		<div>
-			{{Province}}{{City}} ({{Consignee}} 收)
+			<span id="Province">{{Province}}</span><span id="City">{{City}}</span> (<span id="Consignee">{{Consignee}}</span> 收)
 			<hr />
 		</div>
 		<div>
-			{{County}} {{StreetAddress}} {{MobileORPhone}}
+			<span id="County">{{County}}</span> <span id="StreetAddress">{{StreetAddress}}</span> {{MobileORPhone}}
+			<span id="Mobile" style="display: none;">{{Mobile}}</span><span id="Phone" style="display: none;">{{Phone}}</span>
 		</div>
-		<div class="ui-helper-clearfix"></div>
 	</div>
-	<div class="Address">
-		<div>
-			{{Province}}{{City}} ({{Consignee}} 收)
-			<hr />
-		</div>
-		<div>
-			{{County}} {{StreetAddress}} {{MobileORPhone}}
-		</div>
-		<div class="ui-helper-clearfix"></div>
-	</div>
-	<div class="Address active">
-		<div>
-			{{Province}}{{City}} ({{Consignee}} 收)
-			<hr />
-		</div>
-		<div>
-			{{County}} {{StreetAddress}} {{MobileORPhone}}
-		</div>
-		<div class="ui-helper-clearfix"></div>
-	</div>
-	<div class="Address">
-		<div>
-			{{Province}}{{City}} ({{Consignee}} 收)
-			<hr />
-		</div>
-		<div>
-			{{County}} {{StreetAddress}} {{MobileORPhone}}
-		</div>
-		<div class="ui-helper-clearfix"></div>
-	</div>
-	<div class="Address">
-		<div>
-			{{Province}}{{City}} ({{Consignee}} 收)
-			<hr />
-		</div>
-		<div>
-			{{County}} {{StreetAddress}} {{MobileORPhone}}
-		</div>
-		<div class="ui-helper-clearfix"></div>
-	</div>
-	<div class="Address">
-		<div>
-			{{Province}}{{City}} ({{Consignee}} 收)
-			<hr />
-		</div>
-		<div>
-			{{County}} {{StreetAddress}} {{MobileORPhone}}
-		</div>
-		<div class="ui-helper-clearfix"></div>
-	</div>
+	{{/item}}
+	<div class="ui-helper-clearfix"></div>
+	</script>
 </div>
 <div id="OrderInfo">
-
 </div>
 
-<script type="text/javascript">
-	$(function ()
-	{
-		//$.initTemplate();
-		//$("#Addresses").data("template_extend", {
-		//	MobileORPhone: function ()
-		//	{
-		//		if (this.Mobile.length > 0)
-		//			return this.Mobile;
-		//		else
-		//			return this.Phone;
-		//	}
-		//});
-		//$("#Addresses").render(Data);
+@if (ViewBag.UnLogin)
+{
+	<script type="text/javascript">
+		$("#loginDialog").dialog("open");
+	</script> 
+}
+else
+{
+	<script type="text/javascript">
 
-	});
+		var Data = {};
+		var DataAddresses = { item : @Html.Raw(ViewBag.DataAddresses) };
 
-</script>
+		$.extend(Data, DataAddresses);
+
+
+		$(function ()
+		{
+			$.initTemplate();
+			$("#Addresses").data("template_extend", {
+				MobileORPhone: function ()
+				{
+					if (this.Mobile.length > 0)
+						return this.Mobile;
+					else
+						return this.Phone;
+				},
+				active: function()
+				{
+					if(this.IsDefault)
+						return " active";
+					else
+						return "";
+				}
+			});
+			$("#Addresses").render(Data);
+
+
+			$("#Addresses > div").live("click", function ()
+			{
+				$("#Addresses > div.active").removeClass("active");
+				$(this).addClass("active");
+			});
+		});
+	</script> 
+}

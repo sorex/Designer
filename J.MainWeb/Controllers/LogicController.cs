@@ -174,6 +174,25 @@ namespace J.MainWeb.Controllers
 		#region 确定订单和收货地址
 		public ActionResult  ConfirmOrder(string guid)
 		{
+			if (base.CurrentUser == null)
+				ViewBag.UnLogin = true;
+			else
+			{
+				ViewBag.UnLogin = false;
+				var UserID = base.CurrentUser.GUID;
+
+			using (DBEntities db = new DBEntities())
+			{
+				var Addresses = (from a in db.addresses
+								where a.UserID == UserID
+								select a).ToList();
+
+				Dictionary<string, List<string>> TypeAndProperties = new Dictionary<string, List<string>>();
+				TypeAndProperties.Add("address", new List<string> { "GUID", "UserID", "Consignee", "Province", "City", "County", "StreetAddress", "ZipCode", "Mobile", "Phone", "IsDefault" });
+
+				ViewBag.DataAddresses = JsonConvert.SerializeObject(Addresses, new JsonSerializerSettings { ContractResolver = new DynamicContractResolver(TypeAndProperties) });
+			}
+			}
 			return View();
 		}
 		#endregion
