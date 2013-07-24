@@ -172,8 +172,9 @@ namespace J.MainWeb.Controllers
 		#endregion
 
 		#region 确定订单和收货地址
-		public ActionResult  ConfirmOrder(string guid)
+		public ActionResult ConfirmOrder(string guid)
 		{
+			guid = guid.ToLower();
 			if (base.CurrentUser == null)
 				ViewBag.UnLogin = true;
 			else
@@ -181,17 +182,21 @@ namespace J.MainWeb.Controllers
 				ViewBag.UnLogin = false;
 				var UserID = base.CurrentUser.GUID;
 
-			using (DBEntities db = new DBEntities())
-			{
-				var Addresses = (from a in db.addresses
-								where a.UserID == UserID
-								select a).ToList();
+				using (DBEntities db = new DBEntities())
+				{
+					var Addresses = (from a in db.addresses
+									 where a.UserID == UserID
+									 select a).ToList();
 
-				Dictionary<string, List<string>> TypeAndProperties = new Dictionary<string, List<string>>();
-				TypeAndProperties.Add("address", new List<string> { "GUID", "UserID", "Consignee", "Province", "City", "County", "StreetAddress", "ZipCode", "Mobile", "Phone", "IsDefault" });
+					Dictionary<string, List<string>> TypeAndProperties = new Dictionary<string, List<string>>();
+					TypeAndProperties.Add("address", new List<string> { "GUID", "UserID", "Consignee", "Province", "City", "County", "StreetAddress", "ZipCode", "Mobile", "Phone", "IsDefault" });
+					ViewBag.DataAddresses = JsonConvert.SerializeObject(Addresses, new JsonSerializerSettings { ContractResolver = new DynamicContractResolver(TypeAndProperties) });
 
-				ViewBag.DataAddresses = JsonConvert.SerializeObject(Addresses, new JsonSerializerSettings { ContractResolver = new DynamicContractResolver(TypeAndProperties) });
-			}
+					var Order = db.orders.FirstOrDefault(p => p.GUID == guid);
+					if (Order == null)
+						return RedirectToAction("Error", "Home", new { msg = "该订单不存在!" });
+
+				}
 			}
 			return View();
 		}

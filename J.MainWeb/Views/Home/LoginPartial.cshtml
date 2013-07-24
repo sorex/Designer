@@ -2,15 +2,15 @@
 	<div>
 		<div>
 			邮箱：<br />
-			<input id="login_LoginName" type="text" />
+			<input id="login_LoginName" type="text" tabIndex="1"/>
 		</div>
 		<div>
 			密码：<a id="login_forget" style="float: right;" href="javascript:void(0);" onclick="return false;">忘记密码</a><br />
-			<input id="login_Password" type="password" />
+			<input id="login_Password" type="password" tabIndex="2"/>
 		</div>
 		<div>
 			验证码：<br />
-			<input id="login_SecurityCode" type="text" style="width: 85px;" placeholder="输入验证码" value="" />
+			<input id="login_SecurityCode" type="text" style="width: 80px;" placeholder="输入验证码" value="" tabIndex="3"/>
 			<img id="login_SecurityCodeImage" alt="看不清楚，点击更换。" src="~/Home/SecurityCode" style="vertical-align: middle;" />
 			<a id="login_ChangeSecurityCodeImage" href="javascript:void(0);" onclick="return false;">换一张</a><br />
 			<div id="login_SecurityCodeError" style="display: none; color: red;">验证码错误。</div>
@@ -44,40 +44,39 @@
 		{
 			var e = window.event || event;
 			var k = e.keyCode || e.which;
-			if (k == 13 || k == 9)
+			if (k == 13)
 			{
 				$("#login_Password").focus();
-				e.preventDefault();
+				if (e.preventDefault)
+					e.preventDefault();
+				else
+					e.returnValue = false;
 			}
 		});
 		$("#login_Password").keydown(function (event)
 		{
 			var e = window.event || event;
 			var k = e.keyCode || e.which;
-			if (e.shiftKey && k == 9)
-			{
-				$("#login_LoginName").focus();
-				e.preventDefault();
-			}
-			else if (k == 13 || k == 9)
+			if (k == 13)
 			{
 				$("#login_SecurityCode").focus();
-				e.preventDefault();
+				if (e.preventDefault)
+					e.preventDefault();
+				else
+					e.returnValue = false;
 			}
 		});
 		$("#login_SecurityCode").keydown(function (event)
 		{
 			var e = window.event || event;
 			var k = e.keyCode || e.which;
-			if (e.shiftKey && k == 9)
-			{
-				$("#login_Password").focus();
-				e.preventDefault();
-			}
-			else if (k == 13)
+			if (k == 13)
 			{
 				LoginSubmit();
-				event.preventDefault();
+				if (e.preventDefault)
+					e.preventDefault();
+				else
+					e.returnValue = false;
 			}
 		});
 		//#endregion
@@ -178,11 +177,11 @@
 				cache: false,
 				url: "@Url.Action("Login", "Home")",
 				data:
-			{
-				LoginName: $.base64.encode(LoginName),
-				Password: $.base64.encode(Password),
-				SecurityCode: SecurityCode
-			},
+				{
+					LoginName: $.base64.encode(LoginName),
+					Password: $.base64.encode(Password),
+					SecurityCode: SecurityCode
+				},
 				success: function (data)
 				{
 					var dataobj = JSON.parse(data);
