@@ -8,22 +8,58 @@
 }
 <div id="Addresses" class="template">
 	<script type="text/x-mustache">
+	<h2>选择收货地址</h2>
 	{{#item}}
 	<div class="Address{{active}}">
 		<div>
 			<span id="Province">{{Province}}</span><span id="City">{{City}}</span> (<span id="Consignee">{{Consignee}}</span> 收)
 			<hr />
 		</div>
-		<div>
-			<span id="County">{{County}}</span> <span id="StreetAddress">{{StreetAddress}}</span> {{MobileORPhone}}
-			<span id="Mobile" style="display: none;">{{Mobile}}</span><span id="Phone" style="display: none;">{{Phone}}</span>
+		<div style="word-wrap: break-word; word-break: break-all;">
+			<span id="County">{{County}}</span> <span id="StreetAddress">{{StreetAddress}}</span> <br />{{MobileORPhone}}
+			<span id="Mobile" style="display: none;">{{Mobile}}</span>
+			<span id="Phone" style="display: none;">{{Phone}}</span>
 		</div>
 	</div>
 	{{/item}}
 	<div class="ui-helper-clearfix"></div>
 	</script>
 </div>
-<div id="OrderInfo">
+<div id="OrderInfo" class="template">
+<script type="text/x-mustache">
+	<h2>确认订单信息</h2>
+	<table>
+			<tr>
+				<th style="width: 60px;"></th>
+				<th style="width: 650px;">订单信息</th>
+				<th style="width: 60px;">单价(元)</th>
+				<th style="width: 60px;">数量</th>
+				<th style="width: 60px;">合计</th>
+				<th style="width: 100px;">配送方式</th>
+			</tr>
+			<tr class="item2">
+				<td>
+					<img class="itemImage" alt="查看详情" src="/Static/Resources/site/images/Logo_150x40.png" />
+				</td>
+				<td class="rightLine" style="text-align: left;">
+					{{order.Subject}}
+					{{sizequantity}}
+				</td>
+				<td>
+					{{price}}
+				</td>
+				<td class="rightLine">
+					{{order.Quantity}}
+				</td>
+				<td class="rightLine">
+					{{totalprice}}
+				</td>
+				<td class="rightLine stress">
+					//配送方式
+				</td>
+			</tr>
+		</table>
+</script>
 </div>
 
 @if (ViewBag.UnLogin)
@@ -38,9 +74,11 @@ else
 
 		var Data = {};
 		var DataAddresses = { item : @Html.Raw(ViewBag.DataAddresses) };
+		var DataOrder = { order : @Html.Raw(ViewBag.DataOrder) };
 
 		$.extend(Data, DataAddresses);
-
+		$.extend(Data, DataOrder);
+		
 
 		$(function ()
 		{
@@ -63,12 +101,38 @@ else
 			});
 			$("#Addresses").render(Data);
 
+			$("#OrderInfo").data("template_extend", {
+				sizequantity: function ()
+				{
+					var result = "";
+					for (var i = 0; i < this.order.orderdetails.length; i++) {
+						if (result.length != 0)
+							result += "、";
+						result += this.order.orderdetails[i].SizeName + "：" + this.order.orderdetails[i].Quantity + "件"
+					}
+					result += "。";
+					
+					return result;
+				},
+				price: function()
+				{
+					return RetainDigits(this.order.Price, 2);
+				},
+				totalprice: function()
+				{
+					return RetainDigits(this.order.Price * this.order.Quantity, 2);
+				}
+			});
+			$("#OrderInfo").render(Data);
 
-			$("#Addresses > div").live("click", function ()
+
+			$("#Addresses > .Address").live("click", function ()
 			{
-				$("#Addresses > div.active").removeClass("active");
+				$("#Addresses > .Address.active").removeClass("active");
 				$(this).addClass("active");
 			});
+
+
 		});
 	</script> 
 }

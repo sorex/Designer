@@ -159,7 +159,7 @@ namespace J.MainWeb.Controllers
 						OrderID = OrderID,
 						SizeID = s.Key,
 						SizeName = sizesDB.FirstOrDefault(p => p.GUID == s.Key).SizeName,
-						Number = s.Value
+						Quantity = s.Value
 					};
 					db.orderdetails.Add(OrderDetail);
 				}
@@ -188,13 +188,21 @@ namespace J.MainWeb.Controllers
 									 where a.UserID == UserID
 									 select a).ToList();
 
-					Dictionary<string, List<string>> TypeAndProperties = new Dictionary<string, List<string>>();
-					TypeAndProperties.Add("address", new List<string> { "GUID", "UserID", "Consignee", "Province", "City", "County", "StreetAddress", "ZipCode", "Mobile", "Phone", "IsDefault" });
-					ViewBag.DataAddresses = JsonConvert.SerializeObject(Addresses, new JsonSerializerSettings { ContractResolver = new DynamicContractResolver(TypeAndProperties) });
+					Dictionary<string, List<string>> TypeAndProperties1 = new Dictionary<string, List<string>>();
+					TypeAndProperties1.Add("address", new List<string> { "GUID", "UserID", "Consignee", "Province", "City", "County", "StreetAddress", "ZipCode", "Mobile", "Phone", "IsDefault" });
+					ViewBag.DataAddresses = JsonConvert.SerializeObject(Addresses, new JsonSerializerSettings { ContractResolver = new DynamicContractResolver(TypeAndProperties1) });
 
-					var Order = db.orders.FirstOrDefault(p => p.GUID == guid);
+					var Order = db.orders.FirstOrDefault(p => p.GUID == guid && p.State == 0);
 					if (Order == null)
-						return RedirectToAction("Error", "Home", new { msg = "该订单不存在!" });
+						return RedirectToAction("Error", "Home", new { msg = "该订单不存在或者已确定!" });
+
+					Dictionary<string, List<string>> TypeAndProperties2 = new Dictionary<string, List<string>>();
+					TypeAndProperties2.Add("order", new List<string> { "GUID", "UserID", "DesignWorkID", "Subject", "Price", "Quantity", "orderdetails", "designwork" });
+					TypeAndProperties2.Add("orderdetail", new List<string> { "GUID", "OrderID", "SizeID", "SizeName", "Quantity" });
+					TypeAndProperties2.Add("designwork", new List<string> { "GUID", "MaterialID", "MaterialColorID", "material", "materialcolor" });
+					TypeAndProperties2.Add("material", new List<string> { "GUID", "TypeID", "materialpictures" });
+					TypeAndProperties2.Add("materialpicture", new List<string> { "GUID", "Name", "Index" });
+					ViewBag.DataOrder = JsonConvert.SerializeObject(Order, new JsonSerializerSettings { ContractResolver = new DynamicContractResolver(TypeAndProperties2) });
 
 				}
 			}

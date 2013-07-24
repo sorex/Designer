@@ -42,6 +42,7 @@ namespace J.Entities
         public string ZipCode { get; set; }
         public string Mobile { get; set; }
         public string Phone { get; set; }
+        public string ShippingMethod { get; set; }
         public Nullable<int> PayType { get; set; }
         public string PayOrderNo { get; set; }
     

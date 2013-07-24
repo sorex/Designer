@@ -18,7 +18,7 @@ namespace J.Entities
         public string OrderID { get; set; }
         public string SizeID { get; set; }
         public string SizeName { get; set; }
-        public int Number { get; set; }
+        public int Quantity { get; set; }
     
         public virtual order order { get; set; }
     }

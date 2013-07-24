@@ -15,6 +15,7 @@
 			margin-left: 30px;
 			margin-top: 20px;
 			padding: 5px;
+			overflow:auto;
 		}
 
 			.body #Addresses .Address span
