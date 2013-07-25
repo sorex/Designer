@@ -19,8 +19,76 @@ namespace J.MainWeb.Controllers
 		}
 
 		#region 我的订单
-		public ActionResult MyOrders()
+		public ActionResult MyOrders(int pageIndex = 0)
 		{
+			var UserID = String.Empty;
+			if(base.CurrentUser != null)
+				UserID = base.CurrentUser.GUID;
+			using (DBEntities db = new DBEntities())
+			{
+				var allorders = from o in db.orders
+								where o.UserID == UserID
+								orderby o.WaitBuyerPayTime descending
+								select o;
+
+				var recordCount = allorders.Count();
+				//页数以0开始，无余数时需-1
+				var pageAll = recordCount / SystemConfig.PageSize - (recordCount % SystemConfig.PageSize == 0 ? 1 : 0);
+				if (pageIndex > pageAll) pageIndex = pageAll;
+
+				var search = allorders.Skip(pageIndex * SystemConfig.PageSize).Take(SystemConfig.PageSize).ToList();
+
+				var result = new[] { new {
+					GUID = "GUID", 
+					DesignWorkID = "DesignWorkID",
+					CreateTime = "2013-07-10 14:52",
+					Title = "Title",
+					OrderDetails = "OrderDetails",
+					Price = "1.00",
+					Quantity = "1",
+					Total = "1.00",
+					State = 1,
+					DesignerEmail = "sorex@163.com",
+					MaterialPictureFileName = "MaterialPictureFileName"
+				} }.ToList();
+				result.Clear();
+
+				foreach (var o in search)
+				{
+					var OrderDetails = String.Empty;
+					foreach (var od in o.orderdetails)
+					{
+						if (OrderDetails.Length != 0)
+							OrderDetails += "、";
+						OrderDetails += od.SizeName + "：" + od.Quantity + "件";
+					}
+					OrderDetails += "。";
+
+					var MaterialPictureFileName = o.designwork.material.materialpictures.OrderBy(p => p.Index).FirstOrDefault().FileName;
+
+					result.Add(new
+					{
+						GUID = o.GUID, 
+						DesignWorkID = o.designwork.GUID,
+						CreateTime = o.WaitBuyerPayTime.Value.ToString("yyyy-MM-dd HH:mm"),
+						Title = o.Subject,
+						OrderDetails = OrderDetails,
+						Price = o.Price.ToString("0.00"),
+						Quantity = o.Quantity.ToString(),
+						Total = (o.Price * o.Quantity).ToString("0.00"),
+						State = o.State,
+						DesignerEmail = o.designwork.user.Email,
+						MaterialPictureFileName = MaterialPictureFileName
+					});
+				}
+
+				ViewBag.Data = JsonConvert.SerializeObject(new { items = result });
+				ViewBag.HasNext = pageAll > pageIndex;
+				ViewBag.NextPageIndex = pageIndex + 1;
+				ViewBag.HasPrev = pageIndex > 0;
+				ViewBag.PrevPageIndex = pageIndex - 1;
+				ViewBag.pageIndex = pageIndex;
+			}
 			return View();
 		}
 		#endregion
@@ -28,7 +96,6 @@ namespace J.MainWeb.Controllers
 		#region 我的设计
 		public ActionResult MyDesignworks(int pageIndex = 0)
 		{
-			var pageSize = 25;
 			using (DBEntities db = new DBEntities())
 			{
 				var designerID = base.CurrentUser.GUID;
@@ -39,10 +106,10 @@ namespace J.MainWeb.Controllers
 
 				var recordCount = alldesignworks.Count();
 				//页数以0开始，无余数时需-1
-				var pageAll = recordCount / pageSize - (recordCount % pageSize == 0 ? 1 : 0);
+				var pageAll = recordCount / SystemConfig.PageSize - (recordCount % SystemConfig.PageSize == 0 ? 1 : 0);
 				if (pageIndex > pageAll) pageIndex = pageAll;
-				
-				var search = alldesignworks.Skip(pageIndex * pageSize).Take(pageSize).ToList();
+
+				var search = alldesignworks.Skip(pageIndex * SystemConfig.PageSize).Take(SystemConfig.PageSize).ToList();
 
 				var result = new[] { new {
 					GUID = "GUID", 

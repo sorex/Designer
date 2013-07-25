@@ -12,5 +12,10 @@ namespace J.BusinessLogics.Basic
 		/// 用户最大地址存储数量
 		/// </summary>
 		public const int MaxAddresses = 6;
+
+		/// <summary>
+		/// 每页数据量
+		/// </summary>
+		public const int PageSize = 25;
 	}
 }

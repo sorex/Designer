@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- 主机: localhost
--- 生成日期: 2013 年 07 月 24 日 16:08
+-- 生成日期: 2013 年 07 月 25 日 09:19
 -- 服务器版本: 5.5.32
 -- PHP 版本: 5.3.25
 
@@ -321,7 +321,7 @@ CREATE TABLE IF NOT EXISTS `orders` (
   `RefundClosedTime` datetime DEFAULT NULL COMMENT '退款关闭时间',
   `Subject` varchar(200) NOT NULL COMMENT '商品名称',
   `Price` decimal(18,8) NOT NULL COMMENT '单价',
-  `Quantity` int(11) DEFAULT NULL COMMENT '数量',
+  `Quantity` int(11) NOT NULL COMMENT '数量',
   `Body` varchar(4000) DEFAULT NULL COMMENT '商品描述',
   `Consignee` varchar(200) DEFAULT NULL COMMENT '收件人姓名',
   `Address` varchar(200) DEFAULT NULL COMMENT '收件地址',
@@ -341,7 +341,7 @@ CREATE TABLE IF NOT EXISTS `orders` (
 --
 
 INSERT INTO `orders` (`GUID`, `UserID`, `DesignWorkID`, `State`, `RefundState`, `WaitBuyerPayTime`, `WaitSellerSendGoodsTime`, `WaitBuyerConfirmGoodsTime`, `TradeFinishedTime`, `TradeClosedTime`, `RefundWaitSellerAgreeTime`, `RefundSellerFefuseBuyerTime`, `RefundSuccessTime`, `RefundClosedTime`, `Subject`, `Price`, `Quantity`, `Body`, `Consignee`, `Address`, `ZipCode`, `Mobile`, `Phone`, `ShippingMethod`, `PayType`, `PayOrderNo`) VALUES
-('c93571ac5b4a4d2183955d3b95b48094', '9ece1f8700bb4dd38832f14e4b480107', '7aa703935f244e53add6d53ea24d5b7a', 0, 0, '2013-07-23 22:59:37', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Test', '44.00000000', NULL, '详细', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
+('c93571ac5b4a4d2183955d3b95b48094', '9ece1f8700bb4dd38832f14e4b480107', '7aa703935f244e53add6d53ea24d5b7a', 0, 0, '2013-07-23 22:59:37', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Test', '44.00000000', 2, '详细', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 

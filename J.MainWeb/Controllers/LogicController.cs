@@ -147,6 +147,7 @@ namespace J.MainWeb.Controllers
 					WaitBuyerPayTime = DateTime.Now,
 					Subject = DesignWork.Title,
 					Price = DesignWork.SellingPrice,
+					Quantity = sizequantity.Values.Sum(),
 					Body = DesignWork.material.Description
 				};
 				db.orders.Add(Order);

@@ -35,7 +35,7 @@ namespace J.Entities
         public Nullable<System.DateTime> RefundClosedTime { get; set; }
         public string Subject { get; set; }
         public decimal Price { get; set; }
-        public Nullable<int> Quantity { get; set; }
+        public int Quantity { get; set; }
         public string Body { get; set; }
         public string Consignee { get; set; }
         public string Address { get; set; }
