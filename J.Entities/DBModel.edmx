@@ -610,7 +610,7 @@
           <Property Type="String" Name="UserID" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
           <Property Type="String" Name="DesignWorkID" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
           <Property Type="Int32" Name="State" Nullable="false" />
-          <Property Type="Int32" Name="RefundState" />
+          <Property Type="Int32" Name="RefundState" Nullable="false" />
           <Property Type="DateTime" Name="WaitBuyerPayTime" />
           <Property Type="DateTime" Name="WaitSellerSendGoodsTime" />
           <Property Type="DateTime" Name="WaitBuyerConfirmGoodsTime" />

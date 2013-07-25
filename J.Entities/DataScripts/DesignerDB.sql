@@ -309,7 +309,7 @@ CREATE TABLE IF NOT EXISTS `orders` (
   `UserID` varchar(200) NOT NULL,
   `DesignWorkID` varchar(200) NOT NULL COMMENT '设计ID',
   `State` int(11) NOT NULL COMMENT '状态\r\n1：等待买家付款\r\n2：买家已付款，等待卖家发货\r\n3：卖家已发货，等待买家确认\r\n4：交易成功结束\r\n5：交易中途关闭(已结束，未成功完成)',
-  `RefundState` int(11) DEFAULT NULL COMMENT '退款状态\r\n0：未发生退款\r\n1：退款协议等待卖家确认中\r\n2：卖家不同意协议，等待买家修改\r\n3：退款成功\r\n4：退款关闭',
+  `RefundState` int(11) NOT NULL COMMENT '退款状态\r\n0：未发生退款\r\n1：退款协议等待卖家确认中\r\n2：卖家不同意协议，等待买家修改\r\n3：退款成功\r\n4：退款关闭',
   `WaitBuyerPayTime` datetime DEFAULT NULL COMMENT '创建时间/等待买家付款时间',
   `WaitSellerSendGoodsTime` datetime DEFAULT NULL COMMENT '付款时间/买家已付款，等待卖家发货时间',
   `WaitBuyerConfirmGoodsTime` datetime DEFAULT NULL COMMENT '发货时间/卖家已发货，等待买家确认时间',

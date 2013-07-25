@@ -23,7 +23,7 @@ namespace J.Entities
         public string UserID { get; set; }
         public string DesignWorkID { get; set; }
         public int State { get; set; }
-        public Nullable<int> RefundState { get; set; }
+        public int RefundState { get; set; }
         public Nullable<System.DateTime> WaitBuyerPayTime { get; set; }
         public Nullable<System.DateTime> WaitSellerSendGoodsTime { get; set; }
         public Nullable<System.DateTime> WaitBuyerConfirmGoodsTime { get; set; }

@@ -9,7 +9,7 @@
 <div id="Addresses" class="template">
 	<script type="text/x-mustache">
 	<h2>选择收货地址</h2>
-	{{#item}}
+	{{#items}}
 	<div class="Address{{active}}">
 		<div>
 			<span id="Province">{{Province}}</span><span id="City">{{City}}</span> (<span id="Consignee">{{Consignee}}</span> 收)
@@ -21,7 +21,7 @@
 			<span id="Phone" style="display: none;">{{Phone}}</span>
 		</div>
 	</div>
-	{{/item}}
+	{{/items}}
 	<div class="ui-helper-clearfix"></div>
 	</script>
 </div>
@@ -39,20 +39,20 @@
 			</tr>
 			<tr class="item2">
 				<td>
-					<img class="itemImage" alt="查看详情" src="/Static/Resources/site/images/Logo_150x40.png" />
+					<img class="itemImage" alt="查看详情" src="/Static/UserFiles/{{OrderInfo.DesignerEmail}}/{{OrderInfo.DesignWorkID}}/{{OrderInfo.MaterialPictureFileName}}" />
 				</td>
 				<td class="rightLine" style="text-align: left;">
-					{{order.Subject}}
-					{{sizequantity}}
+					{{OrderInfo.Title}}
+					{{OrderInfo.OrderDetails}}
 				</td>
 				<td>
-					{{price}}
+					{{OrderInfo.Price}}
 				</td>
 				<td class="rightLine">
-					{{order.Quantity}}
+					{{OrderInfo.Quantity}}
 				</td>
 				<td class="rightLine">
-					{{totalprice}}
+					{{OrderInfo.Total}}
 				</td>
 				<td class="rightLine stress">
 					//配送方式
@@ -61,6 +61,9 @@
 		</table>
 </script>
 </div>
+<div>
+	<
+</div>>
 
 @if (ViewBag.UnLogin)
 {
@@ -73,11 +76,11 @@ else
 	<script type="text/javascript">
 
 		var Data = {};
-		var DataAddresses = { item : @Html.Raw(ViewBag.DataAddresses) };
-		var DataOrder = { order : @Html.Raw(ViewBag.DataOrder) };
+		var DataAddresses = { items : @Html.Raw(ViewBag.DataAddresses) };
+		var DataOrderInfo = @Html.Raw(ViewBag.DataOrderInfo) ;
 
 		$.extend(Data, DataAddresses);
-		$.extend(Data, DataOrder);
+		$.extend(Data, DataOrderInfo);
 		
 
 		$(function ()
@@ -101,28 +104,7 @@ else
 			});
 			$("#Addresses").render(Data);
 
-			$("#OrderInfo").data("template_extend", {
-				sizequantity: function ()
-				{
-					var result = "";
-					for (var i = 0; i < this.order.orderdetails.length; i++) {
-						if (result.length != 0)
-							result += "、";
-						result += this.order.orderdetails[i].SizeName + "：" + this.order.orderdetails[i].Quantity + "件"
-					}
-					result += "。";
-					
-					return result;
-				},
-				price: function()
-				{
-					return RetainDigits(this.order.Price, 2);
-				},
-				totalprice: function()
-				{
-					return RetainDigits(this.order.Price * this.order.Quantity, 2);
-				}
-			});
+			$("#OrderInfo").data("template_extend", {});
 			$("#OrderInfo").render(Data);
 
 

@@ -193,22 +193,49 @@ namespace J.MainWeb.Controllers
 					TypeAndProperties1.Add("address", new List<string> { "GUID", "UserID", "Consignee", "Province", "City", "County", "StreetAddress", "ZipCode", "Mobile", "Phone", "IsDefault" });
 					ViewBag.DataAddresses = JsonConvert.SerializeObject(Addresses, new JsonSerializerSettings { ContractResolver = new DynamicContractResolver(TypeAndProperties1) });
 
+
 					var Order = db.orders.FirstOrDefault(p => p.GUID == guid && p.State == 0);
 					if (Order == null)
 						return RedirectToAction("Error", "Home", new { msg = "该订单不存在或者已确定!" });
 
-					Dictionary<string, List<string>> TypeAndProperties2 = new Dictionary<string, List<string>>();
-					TypeAndProperties2.Add("order", new List<string> { "GUID", "UserID", "DesignWorkID", "Subject", "Price", "Quantity", "orderdetails", "designwork" });
-					TypeAndProperties2.Add("orderdetail", new List<string> { "GUID", "OrderID", "SizeID", "SizeName", "Quantity" });
-					TypeAndProperties2.Add("designwork", new List<string> { "GUID", "MaterialID", "MaterialColorID", "material", "materialcolor" });
-					TypeAndProperties2.Add("material", new List<string> { "GUID", "TypeID", "materialpictures" });
-					TypeAndProperties2.Add("materialpicture", new List<string> { "GUID", "Name", "Index" });
-					ViewBag.DataOrder = JsonConvert.SerializeObject(Order, new JsonSerializerSettings { ContractResolver = new DynamicContractResolver(TypeAndProperties2) });
+					var OrderDetails = String.Empty;
+					foreach (var od in Order.orderdetails)
+					{
+						if (OrderDetails.Length != 0)
+							OrderDetails += "、";
+						OrderDetails += od.SizeName + "：" + od.Quantity + "件";
+					}
+					OrderDetails += "。";
 
+					var MaterialPictureFileName = Order.designwork.material.materialpictures.OrderBy(p => p.Index).FirstOrDefault().FileName;
+
+					var OrderInfo = new {
+						GUID = Order.GUID,
+						Title = Order.Subject,
+						OrderDetails = OrderDetails,
+						Price = Order.Price.ToString("0.00"),
+						Quantity = Order.Quantity.ToString(),
+						Total = (Order.Price * Order.Quantity).ToString("0.00"),
+						DesignerEmail = Order.designwork.user.Email,
+						DesignWorkID = Order.DesignWorkID,
+						MaterialPictureFileName = MaterialPictureFileName
+					};
+					ViewBag.DataOrderInfo = JsonConvert.SerializeObject(new { OrderInfo = OrderInfo });
 				}
 			}
 			return View();
 		}
+
+		[HttpPost]
+		public ActionResult ConfirmOrder(string guid, string Province, string City, string County, string StreetAddress, string Mobile, string Phone, string Consignee, string ShippingMethod)
+		{
+			return View();
+		}
 		#endregion
+
+		public ActionResult Pay(string guid)
+		{
+			return View();
+		}
 	}
 }

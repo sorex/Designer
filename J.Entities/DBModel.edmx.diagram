@@ -5,18 +5,18 @@
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
       <Diagram DiagramId="1387a46d1d124f8a8d60d27c88b7e6cc" Name="关系图1">
-        <EntityTypeShape EntityType="DBModel.address" Width="1.5" PointX="6.8575274938985373" PointY="15.676056615857434" />
-        <EntityTypeShape EntityType="DBModel.designwork" Width="1.5" PointX="7.1241536546145348" PointY="29.162039308418539" />
-        <EntityTypeShape EntityType="DBModel.materialcolor" Width="1.5" PointX="7.5045712587910574" PointY="21.10477807610518" />
-        <EntityTypeShape EntityType="DBModel.materialpicture" Width="1.5" PointX="8.95444363958875" PointY="21.759572441577713" />
-        <EntityTypeShape EntityType="DBModel.materialpricelog" Width="1.5" PointX="8.6117903313654427" PointY="28.794404579696433" />
-        <EntityTypeShape EntityType="DBModel.material" Width="1.5" PointX="4.74139456112934" PointY="13.197296148723595" />
-        <EntityTypeShape EntityType="DBModel.materialsize" Width="1.5" PointX="0.9483851925229585" PointY="1.7658257641670414" />
-        <EntityTypeShape EntityType="DBModel.materialtype" Width="1.5" PointX="6.0582707030969996" PointY="5.0796916359475306" />
-        <EntityTypeShape EntityType="DBModel.orderdetail" Width="1.5" PointX="9.0736220148734859" PointY="28.127866370662986" />
-        <EntityTypeShape EntityType="DBModel.order" Width="1.5" PointX="2.4421073489087206" PointY="26.887066749337627" />
-        <EntityTypeShape EntityType="DBModel.singlelogin" Width="1.5" PointX="7.6686181852913542" PointY="25.480363842789252" />
-        <EntityTypeShape EntityType="DBModel.user" Width="1.5" PointX="9.8488046386506429" PointY="24.718704860992126" />
+        <EntityTypeShape EntityType="DBModel.address" Width="1.5" PointX="8.2750112676410978" PointY="5.2217381173846027" />
+        <EntityTypeShape EntityType="DBModel.designwork" Width="1.5" PointX="0.38058394583900645" PointY="0.63899685472203271" />
+        <EntityTypeShape EntityType="DBModel.materialcolor" Width="1.5" PointX="1.532359835473988" PointY="6.0155160902140272" />
+        <EntityTypeShape EntityType="DBModel.materialpicture" Width="1.5" PointX="7.53905078188472" PointY="18.763139822875679" />
+        <EntityTypeShape EntityType="DBModel.materialpricelog" Width="1.5" PointX="10.100536000961688" PointY="26.668509734174474" />
+        <EntityTypeShape EntityType="DBModel.material" Width="1.5" PointX="9.7332268495733043" PointY="10.15275273199787" />
+        <EntityTypeShape EntityType="DBModel.materialsize" Width="1.5" PointX="11.681623840556304" PointY="16.711339407000384" />
+        <EntityTypeShape EntityType="DBModel.materialtype" Width="1.5" PointX="0.00157167390062086" PointY="5.7886986759438637" />
+        <EntityTypeShape EntityType="DBModel.orderdetail" Width="1.5" PointX="9.1430786834764675" PointY="30.238235293998493" />
+        <EntityTypeShape EntityType="DBModel.order" Width="2.625" PointX="4.5" PointY="2.75" />
+        <EntityTypeShape EntityType="DBModel.singlelogin" Width="1.5" PointX="7.5566970014743031" PointY="29.194789929871817" />
+        <EntityTypeShape EntityType="DBModel.user" Width="1.5" PointX="3.2953806385842062" PointY="24.740800347524136" />
         <AssociationConnector Association="DBModel.addresses_ibfk_1" />
         <AssociationConnector Association="DBModel.designworks_ibfk_1" />
         <AssociationConnector Association="DBModel.designworks_ibfk_2" />

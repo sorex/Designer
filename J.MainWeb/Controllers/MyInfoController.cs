@@ -49,7 +49,9 @@ namespace J.MainWeb.Controllers
 					Total = "1.00",
 					State = 1,
 					DesignerEmail = "sorex@163.com",
-					MaterialPictureFileName = "MaterialPictureFileName"
+					MaterialPictureFileName = "MaterialPictureFileName",
+					DesignWorkState = 1,
+					RefundState = 1
 				} }.ToList();
 				result.Clear();
 
@@ -78,7 +80,9 @@ namespace J.MainWeb.Controllers
 						Total = (o.Price * o.Quantity).ToString("0.00"),
 						State = o.State,
 						DesignerEmail = o.designwork.user.Email,
-						MaterialPictureFileName = MaterialPictureFileName
+						MaterialPictureFileName = MaterialPictureFileName,
+						DesignWorkState = o.designwork.State,
+						RefundState = o.RefundState
 					});
 				}
 
@@ -117,7 +121,6 @@ namespace J.MainWeb.Controllers
 					MaterialID = "MaterialID",
 					MaterialTypeID = "MaterialTypeID",
 					ColorCode = "ColorCode",
-					MaterialPictureName = "MaterialPictureName",
 					Title = "Title",
 					SellingPrice = "1.00",
 					SalesVolume = "1",
@@ -125,14 +128,17 @@ namespace J.MainWeb.Controllers
 					AnticipatedIncome = "1.00",
 					StartTime = "2013-07-10 14:52",
 					EndTime = "2013-07-10 14:52",
-					State = 1
+					State = 1,
+					DesignerEmail = "DesignerEmail",
+					MaterialPictureFileName = "MaterialPictureFileName"
 				} }.ToList();
 				result.Clear();
 
 				foreach (var dw in search)
 				{
 					var AnticipatedIncome = dw.SalesVolume >= dw.SalesGoal ? PriceCompute.ComputeAnticipatedIncome(dw.BasePrice, dw.SalesVolume.Value, dw.SellingPrice) : 0;
-					var MaterialPictureName = dw.material.materialpictures.OrderBy(p => p.Index).FirstOrDefault().Name;
+					var MaterialPictureFileName = dw.material.materialpictures.OrderBy(p => p.Index).FirstOrDefault().FileName;
+
 					result.Add(new
 					{
 						GUID = dw.GUID,
@@ -140,7 +146,6 @@ namespace J.MainWeb.Controllers
 						MaterialID = dw.MaterialID,
 						MaterialTypeID = dw.material.TypeID,
 						ColorCode = dw.materialcolor.ColorCode,
-						MaterialPictureName = MaterialPictureName,
 						Title = dw.Title,
 						SellingPrice = dw.SellingPrice.ToString("0.00"),
 						SalesVolume = dw.SalesVolume.Value.ToString(),
@@ -148,7 +153,9 @@ namespace J.MainWeb.Controllers
 						AnticipatedIncome = AnticipatedIncome.ToString("0.00"),
 						StartTime = dw.StartTime.ToString("yyyy-MM-dd HH:mm"),
 						EndTime = dw.EndTime.ToString("yyyy-MM-dd HH:mm"),
-						State = dw.State
+						State = dw.State,
+						DesignerEmail = dw.user.Email,
+						MaterialPictureFileName = MaterialPictureFileName
 					});
 				}
 
