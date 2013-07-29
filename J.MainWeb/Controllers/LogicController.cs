@@ -227,9 +227,34 @@ namespace J.MainWeb.Controllers
 		}
 
 		[HttpPost]
-		public ActionResult ConfirmOrder(string guid, string Province, string City, string County, string StreetAddress, string Mobile, string Phone, string Consignee, string ShippingMethod)
+		public ActionResult ConfirmOrder(string guid, string Province, string City, string County, string StreetAddress, string Mobile, string Phone, string Consignee,string ZipCode, string ShippingMethod)
 		{
-			return View();
+			guid = guid.ToLower();
+			if (base.CurrentUser == null)
+				return Content(JsonConvert.SerializeObject(new { code = -99, msg = "请登录后重试！" }));
+
+			var UserID = base.CurrentUser.GUID;
+			using (DBEntities db = new DBEntities())
+			{
+				var Order = db.orders.FirstOrDefault(p => p.GUID == guid);
+				if(Order == null)
+					return Content(JsonConvert.SerializeObject(new { code = -1, msg = "订单不存在，请刷新后重试。" }));
+				if (Order.UserID != UserID)
+					return Content(JsonConvert.SerializeObject(new { code = -1, msg = "您没有权限做此操作！" }));
+				if(Order.State != 0)
+					return Content(JsonConvert.SerializeObject(new { code = -1, msg = "订单状态不正确。" }));
+
+				Order.Consignee = Consignee;
+				Order.Address = Province + " " + City + " " + County + " " + StreetAddress;
+				Order.ZipCode = ZipCode;
+				Order.Mobile = Mobile;
+				Order.Phone = Phone;
+				Order.ShippingMethod = ShippingMethod;
+				Order.State = 1;
+
+				db.SaveChanges();
+				return Content(JsonConvert.SerializeObject(new { code = 1, msg = "操作成功。" }));
+			}
 		}
 		#endregion
 

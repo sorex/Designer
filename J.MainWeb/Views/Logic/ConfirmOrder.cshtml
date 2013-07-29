@@ -19,6 +19,7 @@
 			<span id="County">{{County}}</span> <span id="StreetAddress">{{StreetAddress}}</span> <br />{{MobileORPhone}}
 			<span id="Mobile" style="display: none;">{{Mobile}}</span>
 			<span id="Phone" style="display: none;">{{Phone}}</span>
+			<span id="ZipCode" style="display: none;">{{ZipCode}}</span>
 		</div>
 	</div>
 	{{/items}}
@@ -55,7 +56,7 @@
 					{{OrderInfo.Total}}
 				</td>
 				<td class="rightLine stress">
-					//配送方式
+					<span id="ShippingMethod">EMS</span>
 				</td>
 			</tr>
 			<tr class="sep-row">
@@ -119,55 +120,74 @@ else
 			});
 
 			$("#Submit").click(function(){
-				var $Address = $("#Addresses > .Address.active");
-				if($Address.length == 0)
-				{
-					$("#MessageDialog_Message").html("请选择 <span style='color: red;'>收货地址</span>");
-					$("#MessageDialog").dialog("option", { title: "错误提示", width: 200 });
-					$("#MessageDialog").dialog("open");
-					return;
-				}
-
-
-
 				if(CanPost)
 				{
+					CanPost = false;
+
+					var postdata = GetAddress();
+					if(postdata == null)
+					{
+						$("#MessageDialog_Message").html("请选择 <span style='color: red;'>收货地址</span>");
+						$("#MessageDialog").dialog("option", { title: "错误提示", width: 200 });
+						$("#MessageDialog").dialog("open");
+						return;
+					}
+
 					$.ajax({
 						type: "post",
 						cache: false,
-						url: "@Url.Action("CreateOrder", "Logic")",
-								data: postdata,
-								success: function (data)
-								{
-									var dataobj = JSON.parse(data);
-									if(dataobj.code == -99)
-									{
-										$("#loginDialog").dialog("open");
-									}
-									else if (dataobj.code > 0)
-									{
-										//转到选择地址和支付页面
-										location.href = "@Url.Action("ConfirmOrder", "Logic")" + "?guid=" + dataobj.msg;
-									}
-									else
-									{
-										$("#MessageDialog_Message").html(dataobj.msg);
-										$("#MessageDialog").dialog("option", { title: "错误提示", width: 350 });
-										$("#MessageDialog").dialog("open");
-									}
-									CanPost = true;
-								},
-								error: function (XMLHttpRequest, textStatus, errorThrown)
-								{
-									CanPost = true;
-									$("#MessageDialog_Message").html("网络错误，请重试！");
-									$("#MessageDialog").dialog("option", { title: "错误提示", width: 200 });
-									$("#MessageDialog").dialog("open");
-								}
-							});
-						CanPost = false;
-					}
+						url: "@Url.Action("ConfirmOrder", "Logic")",
+						data: postdata,
+						success: function (data)
+						{
+							var dataobj = JSON.parse(data);
+							if(dataobj.code == -99)
+							{
+								$("#loginDialog").dialog("open");
+							}
+							else if (dataobj.code > 0)
+							{
+								//转到选择地址和支付页面
+								location.href = "@Url.Action("Pay", "Logic")" + "?guid=" + dataobj.msg;
+							}
+							else
+							{
+								$("#MessageDialog_Message").html(dataobj.msg);
+								$("#MessageDialog").dialog("option", { title: "错误提示", width: 350 });
+								$("#MessageDialog").dialog("open");
+							}
+							CanPost = true;
+						},
+						error: function (XMLHttpRequest, textStatus, errorThrown)
+						{
+							CanPost = true;
+							$("#MessageDialog_Message").html("网络错误，请重试！");
+							$("#MessageDialog").dialog("option", { title: "错误提示", width: 200 });
+							$("#MessageDialog").dialog("open");
+						}
+					});
+				}
 			});
 		});
+
+		function GetAddress()
+		{
+			var $Address = $("#Addresses > .Address.active");
+			if($Address.length == 0)
+				return null
+			
+			return {
+				guid: Data.OrderInfo.GUID,
+				Province: $("#Province", $Address).text(),
+				City: $("#City", $Address).text(),
+				County: $("#County", $Address).text(),
+				StreetAddress: $("#StreetAddress", $Address).text(),
+				Mobile: $("#Mobile", $Address).text(),
+				Phone: $("#Phone", $Address).text(),
+				Consignee: $("#Consignee", $Address).text(),
+				ZipCode: $("#ZipCode", $Address).text(),
+				ShippingMethod: $("#ShippingMethod").text()
+			};
+		}
 	</script> 
 }

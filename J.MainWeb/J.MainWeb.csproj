@@ -311,6 +311,7 @@
     <Content Include="Views\Logic\Preview.cshtml" />
     <Content Include="Views\Logic\Buy.cshtml" />
     <Content Include="Views\Logic\ConfirmOrder.cshtml" />
+    <Content Include="Views\Logic\Pay.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
