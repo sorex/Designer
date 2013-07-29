@@ -15,7 +15,7 @@
 			margin-left: 30px;
 			margin-top: 20px;
 			padding: 5px;
-			overflow:auto;
+			overflow: auto;
 		}
 
 			.body #Addresses .Address span
@@ -27,3 +27,147 @@
 		{
 			border: 4px solid #ff6a00;
 		}
+
+	.body #OrderInfo table
+	{
+		width: 1000px;
+	}
+
+		.body #OrderInfo table th
+		{
+			border-top: 1px solid #000000;
+			border-bottom: 1px solid #000000;
+		}
+
+		.body #OrderInfo table a, .body #OrderInfo table span
+		{
+			display: block;
+		}
+
+		.body #OrderInfo table a
+		{
+			color: #3366cc;
+			font-weight: normal;
+		}
+
+			.body #OrderInfo table a:link
+			{
+				color: #3366cc;
+				text-decoration: none;
+			}
+
+			.body #OrderInfo table a:visited
+			{
+				color: #3366cc;
+				text-decoration: underline;
+			}
+
+			.body #OrderInfo table a:hover
+			{
+				color: #ff6600;
+				text-decoration: underline;
+			}
+
+			.body #OrderInfo table a:active
+			{
+				color: #ff6600;
+				text-decoration: underline;
+			}
+
+		.body #OrderInfo table .sep-row
+		{
+			height: 7px;
+		}
+
+		.body #OrderInfo table .item1
+		{
+			border: 1px solid #d4e7ff;
+			background-color: #f3f3f3;
+			color: #404040;
+		}
+
+			.body #OrderInfo table .item1 td
+			{
+				vertical-align: middle;
+				height: 32px;
+			}
+
+		.body #OrderInfo table .item2
+		{
+			border: 1px solid #d4e7ff;
+		}
+
+			.body #OrderInfo table .item2 td
+			{
+				text-align: center;
+				vertical-align: top;
+				padding: 8px 5px 8px 5px;
+			}
+
+				.body #OrderInfo table .item2 td:first-child
+				{
+					border-left: 1px solid #d4e7ff;
+				}
+
+				.body #OrderInfo table .item2 td:last-child
+				{
+					border-right: 1px solid #d4e7ff;
+				}
+
+			.body #OrderInfo table .item2 .rightLine
+			{
+				border-right: 1px solid #d4e7ff;
+			}
+
+			.body #OrderInfo table .item2 .itemImage
+			{
+				width: 50px;
+				height: 50px;
+			}
+
+			.body #OrderInfo table .item2 .stress
+			{
+				font-weight: bold;
+			}
+
+			.body #OrderInfo table .item2 .description
+			{
+				color: #808080;
+			}
+
+.SubmitButton
+{
+	width: 202px;
+	height: 32px;
+	line-height: 32px;
+	font-size: 16px;
+	float: right;
+}
+
+	.SubmitButton:link
+	{
+		color: #ffffff;
+		background-color: #ff7a01;
+		border: 1px solid #f15c00;
+	}
+
+	.SubmitButton:visited
+	{
+		color: #ffffff;
+		background-color: #ff7a01;
+		border: 1px solid #f15c00;
+	}
+
+	.SubmitButton:hover
+	{
+		color: #ffffff;
+		background-color: #fe920c;
+		border: 1px solid #f4770d;
+	}
+
+	.SubmitButton:active
+	{
+		color: #ffffff;
+		background-color: #fe920c;
+		border: 1px solid #f4770d;
+	}
