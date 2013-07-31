@@ -153,11 +153,11 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="App_Code\AlipayConfig.cs" />
-    <Content Include="App_Code\AlipayCore.cs" />
-    <Content Include="App_Code\AlipayMD5.cs" />
-    <Content Include="App_Code\AlipayNotify.cs" />
-    <Content Include="App_Code\AlipaySubmit.cs" />
+    <Compile Include="App_Code\AlipayConfig.cs" />
+    <Compile Include="App_Code\AlipayCore.cs" />
+    <Compile Include="App_Code\AlipayMD5.cs" />
+    <Compile Include="App_Code\AlipayNotify.cs" />
+    <Compile Include="App_Code\AlipaySubmit.cs" />
     <Compile Include="App_Code\BaseController.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
@@ -323,6 +323,7 @@
     <Folder Include="App_Data\" />
     <Folder Include="Models\" />
     <Folder Include="Static\UserFiles\" />
+    <Folder Include="Views\Alipay\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
