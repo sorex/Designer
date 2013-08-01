@@ -17,5 +17,15 @@ namespace J.BusinessLogics.Basic
 		/// 每页数据量
 		/// </summary>
 		public const int PageSize = 25;
+
+		/// <summary>
+		/// 包邮数量，2件起包邮
+		/// </summary>
+		public const int FreePostageNumber = 2;
+
+		/// <summary>
+		/// 基础运费，不够包邮时加的运费
+		/// </summary>
+		public const decimal BaseFreight = 8.0m;
 	}
 }

@@ -35,6 +35,7 @@
 				<th style="width: 530px;">订单信息</th>
 				<th style="width: 80px;">单价(元)</th>
 				<th style="width: 80px;">数量</th>
+				<th style="width: 80px;">运费</th>
 				<th style="width: 100px;">合计</th>
 				<th style="width: 150px;">配送方式</th>
 			</tr>
@@ -53,10 +54,16 @@
 					{{OrderInfo.Quantity}}
 				</td>
 				<td class="rightLine">
+					{{OrderInfo.Freight}}
+				</td>
+				<td class="rightLine">
 					{{OrderInfo.Total}}
 				</td>
 				<td class="rightLine stress">
-					<span id="ShippingMethod">EMS</span>
+					<select id="ShippingMethod">
+						<option value="中通速递" selected >中通速递</option>
+						<option value="韵达快递" >韵达快递</option>
+					</select>
 				</td>
 			</tr>
 			<tr class="sep-row">
@@ -186,7 +193,7 @@ else
 				Phone: $("#Phone", $Address).text(),
 				Consignee: $("#Consignee", $Address).text(),
 				ZipCode: $("#ZipCode", $Address).text(),
-				ShippingMethod: $("#ShippingMethod").text()
+				ShippingMethod: $("#ShippingMethod").val()
 			};
 		}
 	</script> 

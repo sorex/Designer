@@ -197,7 +197,7 @@
           <Property Name="UserID" Type="varchar" Nullable="false" MaxLength="200" />
           <Property Name="DesignWorkID" Type="varchar" Nullable="false" MaxLength="200" />
           <Property Name="State" Type="int" Nullable="false" />
-          <Property Name="RefundState" Type="int" />
+          <Property Name="RefundState" Type="int" Nullable="false" />
           <Property Name="WaitBuyerPayTime" Type="datetime" />
           <Property Name="WaitSellerSendGoodsTime" Type="datetime" />
           <Property Name="WaitBuyerConfirmGoodsTime" Type="datetime" />
@@ -210,6 +210,7 @@
           <Property Name="Subject" Type="varchar" Nullable="false" MaxLength="200" />
           <Property Name="Price" Type="decimal" Nullable="false" Precision="18" Scale="8" />
           <Property Name="Quantity" Type="int" Nullable="false" />
+          <Property Name="Freight" Type="decimal" Nullable="false" Precision="18" Scale="8" />
           <Property Name="Body" Type="varchar" MaxLength="4000" />
           <Property Name="Consignee" Type="varchar" MaxLength="200" />
           <Property Name="Address" Type="varchar" MaxLength="200" />
@@ -219,6 +220,7 @@
           <Property Name="ShippingMethod" Type="varchar" MaxLength="200" />
           <Property Name="PayType" Type="int" />
           <Property Name="PayOrderNo" Type="varchar" MaxLength="200" />
+          <Property Name="ExpressNumber" Type="varchar" MaxLength="200" />
         </EntityType>
         <EntityType Name="singlelogin">
           <Key>
@@ -623,6 +625,7 @@
           <Property Type="String" Name="Subject" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
           <Property Type="Decimal" Name="Price" Nullable="false" />
           <Property Type="Int32" Name="Quantity" Nullable="false" />
+          <Property Type="Decimal" Name="Freight" Nullable="false" />
           <Property Type="String" Name="Body" MaxLength="4000" FixedLength="false" Unicode="false" />
           <Property Type="String" Name="Consignee" MaxLength="200" FixedLength="false" Unicode="false" />
           <Property Type="String" Name="Address" MaxLength="200" FixedLength="false" Unicode="false" />
@@ -632,6 +635,7 @@
           <Property Type="String" Name="ShippingMethod" MaxLength="200" FixedLength="false" Unicode="false" />
           <Property Type="Int32" Name="PayType" />
           <Property Type="String" Name="PayOrderNo" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="ExpressNumber" MaxLength="200" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="designwork" Relationship="DBModel.orders_ibfk_1" FromRole="order" ToRole="designwork" />
           <NavigationProperty Name="orderdetails" Relationship="DBModel.orderdetails_ibfk_1" FromRole="order" ToRole="orderdetail" />
           <NavigationProperty Name="user" Relationship="DBModel.orders_ibfk_2" FromRole="order" ToRole="user" />
@@ -953,6 +957,7 @@
           <EntitySetMapping Name="orders">
             <EntityTypeMapping TypeName="DBModel.order">
               <MappingFragment StoreEntitySet="orders">
+                <ScalarProperty Name="ExpressNumber" ColumnName="ExpressNumber" />
                 <ScalarProperty Name="PayOrderNo" ColumnName="PayOrderNo" />
                 <ScalarProperty Name="PayType" ColumnName="PayType" />
                 <ScalarProperty Name="ShippingMethod" ColumnName="ShippingMethod" />
@@ -962,6 +967,7 @@
                 <ScalarProperty Name="Address" ColumnName="Address" />
                 <ScalarProperty Name="Consignee" ColumnName="Consignee" />
                 <ScalarProperty Name="Body" ColumnName="Body" />
+                <ScalarProperty Name="Freight" ColumnName="Freight" />
                 <ScalarProperty Name="Quantity" ColumnName="Quantity" />
                 <ScalarProperty Name="Price" ColumnName="Price" />
                 <ScalarProperty Name="Subject" ColumnName="Subject" />

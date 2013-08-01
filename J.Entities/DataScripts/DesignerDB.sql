@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- 主机: localhost
--- 生成日期: 2013 年 07 月 25 日 09:19
+-- 生成日期: 2013 年 08 月 01 日 09:25
 -- 服务器版本: 5.5.32
 -- PHP 版本: 5.3.25
 
@@ -43,6 +43,14 @@ CREATE TABLE IF NOT EXISTS `addresses` (
   PRIMARY KEY (`GUID`),
   KEY `UserID` (`UserID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- 转存表中的数据 `addresses`
+--
+
+INSERT INTO `addresses` (`GUID`, `UserID`, `Consignee`, `Province`, `City`, `County`, `StreetAddress`, `ZipCode`, `Mobile`, `Phone`, `IsDefault`) VALUES
+('1e5dfe31d9ec478abcac8da9518f867d', '9ece1f8700bb4dd38832f14e4b480107', 'Jasper', 'hubei', 'wuhan ', 'qingshang', 'This is the test addresses', '400000', '18061234567', '', b'1'),
+('5a3055278883456ab09a5bf12c7ec254', '9ece1f8700bb4dd38832f14e4b480107', 'Jasper', '湖北省', '武汉市', '青山区', '这是一个测试的地址', '400000', '18067654321', '027-88888888', b'0');
 
 -- --------------------------------------------------------
 
@@ -296,6 +304,8 @@ CREATE TABLE IF NOT EXISTS `orderdetails` (
 
 INSERT INTO `orderdetails` (`GUID`, `OrderID`, `SizeID`, `SizeName`, `Quantity`) VALUES
 ('58e973f80c624702afcd4fd0e8fc5a87', 'c93571ac5b4a4d2183955d3b95b48094', '5d06b6a3e0df499bad870ce243fdb952', 'S', 1),
+('935740eeaedb4171b9ba59eeb9efa6db', '29693e894bcb481fa73269e230f7fe4d', 'b5cd176b668b4a90a7d8c95babf567ce', 'M', 1),
+('d7f8ed12ce9040c3a429e6c17e1bb856', '29693e894bcb481fa73269e230f7fe4d', '5d06b6a3e0df499bad870ce243fdb952', 'S', 1),
 ('e6c9b988cfef4067b306e87b6129c506', 'c93571ac5b4a4d2183955d3b95b48094', 'b5cd176b668b4a90a7d8c95babf567ce', 'M', 1);
 
 -- --------------------------------------------------------
@@ -322,6 +332,7 @@ CREATE TABLE IF NOT EXISTS `orders` (
   `Subject` varchar(200) NOT NULL COMMENT '商品名称',
   `Price` decimal(18,8) NOT NULL COMMENT '单价',
   `Quantity` int(11) NOT NULL COMMENT '数量',
+  `Freight` decimal(18,8) NOT NULL COMMENT '运费',
   `Body` varchar(4000) DEFAULT NULL COMMENT '商品描述',
   `Consignee` varchar(200) DEFAULT NULL COMMENT '收件人姓名',
   `Address` varchar(200) DEFAULT NULL COMMENT '收件地址',
@@ -331,6 +342,7 @@ CREATE TABLE IF NOT EXISTS `orders` (
   `ShippingMethod` varchar(200) DEFAULT NULL COMMENT '配送方式',
   `PayType` int(11) DEFAULT NULL COMMENT '支付平台\r\n1：Alipay',
   `PayOrderNo` varchar(200) DEFAULT NULL COMMENT '支付平台内流水号',
+  `ExpressNumber` varchar(200) DEFAULT NULL COMMENT '快递单号',
   PRIMARY KEY (`GUID`),
   KEY `DesignWorkID` (`DesignWorkID`),
   KEY `UserID` (`UserID`)
@@ -340,8 +352,9 @@ CREATE TABLE IF NOT EXISTS `orders` (
 -- 转存表中的数据 `orders`
 --
 
-INSERT INTO `orders` (`GUID`, `UserID`, `DesignWorkID`, `State`, `RefundState`, `WaitBuyerPayTime`, `WaitSellerSendGoodsTime`, `WaitBuyerConfirmGoodsTime`, `TradeFinishedTime`, `TradeClosedTime`, `RefundWaitSellerAgreeTime`, `RefundSellerFefuseBuyerTime`, `RefundSuccessTime`, `RefundClosedTime`, `Subject`, `Price`, `Quantity`, `Body`, `Consignee`, `Address`, `ZipCode`, `Mobile`, `Phone`, `ShippingMethod`, `PayType`, `PayOrderNo`) VALUES
-('c93571ac5b4a4d2183955d3b95b48094', '9ece1f8700bb4dd38832f14e4b480107', '7aa703935f244e53add6d53ea24d5b7a', 0, 0, '2013-07-23 22:59:37', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Test', '44.00000000', 2, '详细', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
+INSERT INTO `orders` (`GUID`, `UserID`, `DesignWorkID`, `State`, `RefundState`, `WaitBuyerPayTime`, `WaitSellerSendGoodsTime`, `WaitBuyerConfirmGoodsTime`, `TradeFinishedTime`, `TradeClosedTime`, `RefundWaitSellerAgreeTime`, `RefundSellerFefuseBuyerTime`, `RefundSuccessTime`, `RefundClosedTime`, `Subject`, `Price`, `Quantity`, `Freight`, `Body`, `Consignee`, `Address`, `ZipCode`, `Mobile`, `Phone`, `ShippingMethod`, `PayType`, `PayOrderNo`, `ExpressNumber`) VALUES
+('29693e894bcb481fa73269e230f7fe4d', '9ece1f8700bb4dd38832f14e4b480107', '7aa703935f244e53add6d53ea24d5b7a', 1, 0, '2013-07-29 15:55:00', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Test', '44.00000000', 2, '0.00000000', '详细', 'Jasper', '湖北省 武汉市 青山区 这是一个测试的地址', '400000', '18067654321', '027-88888888', '韵达快递', NULL, NULL, NULL),
+('c93571ac5b4a4d2183955d3b95b48094', '9ece1f8700bb4dd38832f14e4b480107', '7aa703935f244e53add6d53ea24d5b7a', 0, 0, '2013-07-23 22:59:37', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Test', '44.00000000', 2, '0.00000000', '详细', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 

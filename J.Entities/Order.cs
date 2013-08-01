@@ -36,6 +36,7 @@ namespace J.Entities
         public string Subject { get; set; }
         public decimal Price { get; set; }
         public int Quantity { get; set; }
+        public decimal Freight { get; set; }
         public string Body { get; set; }
         public string Consignee { get; set; }
         public string Address { get; set; }
@@ -45,6 +46,7 @@ namespace J.Entities
         public string ShippingMethod { get; set; }
         public Nullable<int> PayType { get; set; }
         public string PayOrderNo { get; set; }
+        public string ExpressNumber { get; set; }
     
         public virtual designwork designwork { get; set; }
         public virtual ICollection<orderdetail> orderdetails { get; set; }

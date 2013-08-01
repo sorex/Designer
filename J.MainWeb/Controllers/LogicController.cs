@@ -148,6 +148,7 @@ namespace J.MainWeb.Controllers
 					Subject = DesignWork.Title,
 					Price = DesignWork.SellingPrice,
 					Quantity = sizequantity.Values.Sum(),
+					Freight = sizequantity.Values.Sum() >= SystemConfig.FreePostageNumber ? 0 : SystemConfig.BaseFreight,
 					Body = DesignWork.material.Description
 				};
 				db.orders.Add(Order);
@@ -169,6 +170,20 @@ namespace J.MainWeb.Controllers
 			}
 
 			return Content(JsonConvert.SerializeObject(new { code = 1, msg = OrderID }));
+		}
+		#endregion
+
+		#region 订单详情
+		public ActionResult Detail(string guid)
+		{
+			guid = guid.ToLower();
+			using (DBEntities db = new DBEntities())
+			{
+				var Order = db.orders.FirstOrDefault(p => p.GUID == guid);
+
+			}
+
+			return View();
 		}
 		#endregion
 
@@ -215,7 +230,8 @@ namespace J.MainWeb.Controllers
 						OrderDetails = OrderDetails,
 						Price = Order.Price.ToString("0.00"),
 						Quantity = Order.Quantity.ToString(),
-						Total = (Order.Price * Order.Quantity).ToString("0.00"),
+						Freight = Order.Freight.ToString("0.00"),
+						Total = (Order.Price * Order.Quantity + Order.Freight).ToString("0.00"),
 						DesignerEmail = Order.designwork.user.Email,
 						DesignWorkID = Order.DesignWorkID,
 						MaterialPictureFileName = MaterialPictureFileName

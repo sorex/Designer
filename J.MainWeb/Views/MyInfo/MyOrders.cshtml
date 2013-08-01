@@ -25,16 +25,17 @@
 				<th style="width: 370px;">物品</th>
 				<th style="width: 80px;">单价(元)</th>
 				<th style="width: 80px;">数量</th>
+				<th style="width: 80px;">运费</th>
 				<th style="width: 100px;">总价(元)</th>
 				<th style="width: 100px;">订单状态</th>
 				<th style="width: 100px;">其他操作</th>
 			</tr>
 			{{#items}}
 			<tr class="sep-row">
-				<td colspan="7"></td>
+				<td colspan="8"></td>
 			</tr>
 			<tr class="item1">
-				<td colspan="7">
+				<td colspan="8">
 					<input type="checkbox" />订单编号：{{GUID}}<span style="margin-left: 20px; display: inline-block;">成交时间：{{CreateTime}}</span>
 				</td>
 			</tr>
@@ -48,9 +49,11 @@
 				</td>
 				<td>{{Price}}</td>
 				<td class="rightLine">{{Quantity}}</td>
+				<td class="rightLine">{{Freight}}</td>
 				<td class="rightLine stress">{{Total}}</td>
 				<td class="rightLine">
 					{{{stateString}}}
+					<a href="/Logic/Detail?guid={{GUID}}" target="_blank">订单详情</a>
 				</td>
 				<td>
 					<a data-action="" data-guid="{{GUID}}" href="javascript:void(0);" onclick="return false;">退款/退货</a>
