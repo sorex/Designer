@@ -198,6 +198,7 @@
           <Property Name="DesignWorkID" Type="varchar" Nullable="false" MaxLength="200" />
           <Property Name="State" Type="int" Nullable="false" />
           <Property Name="RefundState" Type="int" Nullable="false" />
+          <Property Name="CreateTime" Type="datetime" Nullable="false" />
           <Property Name="WaitBuyerPayTime" Type="datetime" />
           <Property Name="WaitSellerSendGoodsTime" Type="datetime" />
           <Property Name="WaitBuyerConfirmGoodsTime" Type="datetime" />
@@ -613,6 +614,7 @@
           <Property Type="String" Name="DesignWorkID" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
           <Property Type="Int32" Name="State" Nullable="false" />
           <Property Type="Int32" Name="RefundState" Nullable="false" />
+          <Property Type="DateTime" Name="CreateTime" Nullable="false" />
           <Property Type="DateTime" Name="WaitBuyerPayTime" />
           <Property Type="DateTime" Name="WaitSellerSendGoodsTime" />
           <Property Type="DateTime" Name="WaitBuyerConfirmGoodsTime" />
@@ -980,6 +982,7 @@
                 <ScalarProperty Name="WaitBuyerConfirmGoodsTime" ColumnName="WaitBuyerConfirmGoodsTime" />
                 <ScalarProperty Name="WaitSellerSendGoodsTime" ColumnName="WaitSellerSendGoodsTime" />
                 <ScalarProperty Name="WaitBuyerPayTime" ColumnName="WaitBuyerPayTime" />
+                <ScalarProperty Name="CreateTime" ColumnName="CreateTime" />
                 <ScalarProperty Name="RefundState" ColumnName="RefundState" />
                 <ScalarProperty Name="State" ColumnName="State" />
                 <ScalarProperty Name="DesignWorkID" ColumnName="DesignWorkID" />

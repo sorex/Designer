@@ -28,7 +28,7 @@ namespace J.MainWeb.Controllers
 			{
 				var allorders = from o in db.orders
 								where o.UserID == UserID
-								orderby o.WaitBuyerPayTime descending
+								orderby o.CreateTime descending
 								select o;
 
 				var recordCount = allorders.Count();
@@ -73,7 +73,7 @@ namespace J.MainWeb.Controllers
 					{
 						GUID = o.GUID, 
 						DesignWorkID = o.designwork.GUID,
-						CreateTime = o.WaitBuyerPayTime.Value.ToString("yyyy-MM-dd HH:mm"),
+						CreateTime = o.CreateTime.ToString("yyyy-MM-dd HH:mm"),
 						Title = o.Subject,
 						OrderDetails = OrderDetails,
 						Price = o.Price.ToString("0.00"),

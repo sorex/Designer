@@ -144,7 +144,7 @@ namespace J.MainWeb.Controllers
 					DesignWorkID = DesignWorkID,
 					State = 0,
 					RefundState = 0,
-					WaitBuyerPayTime = DateTime.Now,
+					CreateTime = DateTime.Now,
 					Subject = DesignWork.Title,
 					Price = DesignWork.SellingPrice,
 					Quantity = sizequantity.Values.Sum(),
@@ -267,6 +267,7 @@ namespace J.MainWeb.Controllers
 				Order.Phone = Phone;
 				Order.ShippingMethod = ShippingMethod;
 				Order.State = 1;
+				Order.WaitBuyerPayTime = DateTime.Now;
 
 				db.SaveChanges();
 				return Content(JsonConvert.SerializeObject(new { code = 1, msg = "操作成功。" }));
