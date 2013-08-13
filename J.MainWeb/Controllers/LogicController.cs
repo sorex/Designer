@@ -180,6 +180,9 @@ namespace J.MainWeb.Controllers
 			using (DBEntities db = new DBEntities())
 			{
 				var Order = db.orders.FirstOrDefault(p => p.GUID == guid);
+				if (Order == null)
+					return RedirectToAction("Error", "Home", new { msg = "该订单不存在或者已确定!" });
+
 
 			}
 
