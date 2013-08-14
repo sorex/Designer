@@ -226,6 +226,7 @@
     <Content Include="Static\Resources\mustache\mustache.js" />
     <Content Include="Static\Resources\site\Logic_ConfirmOrder.css" />
     <Content Include="Static\Resources\site\DesignTShirt_Create.css" />
+    <Content Include="Static\Resources\site\Logic_Detail.css" />
     <Content Include="Static\Resources\site\Logic_PreviewBuy.css" />
     <Content Include="Static\Resources\site\images\home\button_200x75_active.png" />
     <Content Include="Static\Resources\site\images\home\button_200x75_default.png" />
@@ -318,6 +319,7 @@
     <Content Include="Views\Logic\Buy.cshtml" />
     <Content Include="Views\Logic\ConfirmOrder.cshtml" />
     <Content Include="Views\Logic\Pay.cshtml" />
+    <Content Include="Views\Logic\Detail.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

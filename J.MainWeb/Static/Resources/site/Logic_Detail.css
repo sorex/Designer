@@ -1,0 +1,22 @@
+﻿.body
+{
+}
+
+	.body .StateList
+	{
+	}
+
+		.body .StateList > div
+		{
+			float: left;
+			width: 160px;
+			height: 150px;
+			margin-right: 4px;
+			border: 1px solid #000;
+			text-align:center;
+		}
+
+		.body .StateList > div > span
+		{
+			display:block;
+		}
