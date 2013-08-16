@@ -6,11 +6,49 @@
 	<script type="text/javascript" src="~/Static/Resources/_references.js"></script>
 	<link rel="stylesheet" href="~/Static/Resources/site/Logic_Detail.css" />
 }
-<div class="StateList ui-helper-clearfix">
-	<div class="StateItem StateComplete"><span>创建订单</span><span>2013-08-14 21:21:21</span></div>
-	<div class="StateItem StateActive"><span>确认订单</span><span>2013-08-14 21:21:21</span></div>
-	<div class="StateItem"><span>付款</span><span>2013-08-14 21:21:21</span></div>
-	<div class="StateItem"><span>等待(结束和生产)</span><span>2013-08-14 21:21:21</span></div>
-	<div class="StateItem"><span>发货</span><span>2013-08-14 21:21:21</span></div>
-	<div class="StateItem"><span>确认收货</span><span>2013-08-14 21:21:21</span></div>
+<div id="StateList" class="ui-helper-clearfix template">
+	<script type="text/x-mustache">
+	<div class="StateItem StateComplete"><span>创建订单</span><span>{{CreateTime}}</span></div>
+	<div class="StateItem StateActive"><span>确认订单</span><span>{{WaitBuyerPayTime}}</span></div>
+	<div class="StateItem"><span>付款</span><span>{{WaitSellerSendGoodsTime}}</span></div>
+	<div class="StateItem"><span>生产</span><span>{{EndTime}}</span></div>
+	<div class="StateItem"><span>发货</span><span>{{WaitBuyerConfirmGoodsTime}}</span></div>
+	<div class="StateItem"><span>确认收货</span><span>{{TradeFinishedTime}}</span></div>
+	</script>
 </div>
+
+@section scripts{
+	<script type="text/javascript">
+		var CanPost = true;
+
+		// var Data = {};
+		// var DataAddresses = { items : @Html.Raw(ViewBag.DataAddresses) };
+		// var DataOrderInfo = @Html.Raw(ViewBag.DataOrderInfo) ;
+		// 
+		// $.extend(Data, DataAddresses);
+		// $.extend(Data, DataOrderInfo);
+		// 
+		// 
+		// $(function ()
+		// {
+		// 	$.initTemplate();
+		// 	$("#StateList").data("template_extend", {
+		// 		MobileORPhone: function ()
+		// 		{
+		// 			if (this.Mobile.length > 0)
+		// 				return this.Mobile;
+		// 			else
+		// 				return this.Phone;
+		// 		},
+		// 		active: function()
+		// 		{
+		// 			if(this.IsDefault)
+		// 				return " active";
+		// 			else
+		// 				return "";
+		// 		}
+		// 	});
+		// 	$("#Addresses").render(Data);
+		// });
+	</script>
+}

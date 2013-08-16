@@ -2,11 +2,11 @@
 {
 }
 
-	.body .StateList
+	.body #StateList
 	{
 	}
 
-		.body .StateList .StateItem
+		.body #StateList .StateItem
 		{
 			-moz-box-sizing: border-box;
 			-webkit-box-sizing: border-box;
@@ -19,18 +19,18 @@
 			margin: 2px;
 		}
 
-			.body .StateList .StateItem > span
+			.body #StateList .StateItem > span
 			{
 				display: block;
 				cursor: default;
 			}
 
-		.body .StateList .StateComplete
+		.body #StateList .StateComplete
 		{
 			background-color: #00ff00;
 		}
 
-		.body .StateList .StateActive
+		.body #StateList .StateActive
 		{
 			border: 3px solid #f15c00;
 		}
