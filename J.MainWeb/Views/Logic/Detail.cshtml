@@ -21,34 +21,31 @@
 	<script type="text/javascript">
 		var CanPost = true;
 
-		// var Data = {};
-		// var DataAddresses = { items : @Html.Raw(ViewBag.DataAddresses) };
-		// var DataOrderInfo = @Html.Raw(ViewBag.DataOrderInfo) ;
-		// 
-		// $.extend(Data, DataAddresses);
-		// $.extend(Data, DataOrderInfo);
-		// 
-		// 
-		// $(function ()
-		// {
-		// 	$.initTemplate();
-		// 	$("#StateList").data("template_extend", {
-		// 		MobileORPhone: function ()
-		// 		{
-		// 			if (this.Mobile.length > 0)
-		// 				return this.Mobile;
-		// 			else
-		// 				return this.Phone;
-		// 		},
-		// 		active: function()
-		// 		{
-		// 			if(this.IsDefault)
-		// 				return " active";
-		// 			else
-		// 				return "";
-		// 		}
-		// 	});
-		// 	$("#Addresses").render(Data);
-		// });
+		var Data = {};
+		var DataOrderInfo = @Html.Raw(ViewBag.DataOrderInfo) ;
+		
+		$.extend(Data, DataOrderInfo);
+
+		$(function ()
+		{
+			$.initTemplate();
+			$("#StateList").data("template_extend", {
+				MobileORPhone: function ()
+				{
+					if (this.Mobile.length > 0)
+						return this.Mobile;
+					else
+						return this.Phone;
+				},
+				active: function()
+				{
+					if(this.IsDefault)
+						return " active";
+					else
+						return "";
+				}
+			});
+			$("#StateList").render(Data);
+		});
 	</script>
 }

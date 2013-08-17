@@ -183,23 +183,37 @@ namespace J.MainWeb.Controllers
 				if (Order == null)
 					return RedirectToAction("Error", "Home", new { msg = "该订单不存在或者已确定!" });
 
-				//var OrderInfo = new
-				//{
-				//	GUID = Order.GUID,
-				//	CreateTime = Order.CreateTime.ToString("yyyy-MM-dd HH:mm:ss"),
-				//	WaitBuyerPayTime = Order.WaitBuyerPayTime == null ? String.Empty : Order.WaitBuyerPayTime.Value.ToString("yyyy-MM-dd HH:mm:ss"),
-				//	WaitSellerSendGoodsTime = Order.WaitSellerSendGoodsTime == null ? String.Empty : Order.WaitSellerSendGoodsTime.Value.ToString("yyyy-MM-dd HH:mm:ss"),
-				//	WaitBuyerConfirmGoodsTime = Order.WaitBuyerConfirmGoodsTime == null ? String.Empty : Order.WaitBuyerConfirmGoodsTime.Value.ToString("yyyy-MM-dd HH:mm:ss"),
-				//	TradeFinishedTime = Order.TradeFinishedTime == null ? String.Empty : Order.TradeFinishedTime.Value.ToString("yyyy-MM-dd HH:mm:ss"),
-				//	EndTime = Order.designwork.EndTime,
-				//	Price = Order.Price.ToString("0.00"),
-				//	Quantity = Order.Quantity.ToString(),
-				//	Freight = Order.Freight.ToString("0.00"),
-				//	Total = (Order.Price * Order.Quantity + Order.Freight).ToString("0.00"),
-				//	DesignerEmail = Order.designwork.user.Email,
-				//	DesignWorkID = Order.DesignWorkID,
-				//	MaterialPictureFileName = MaterialPictureFileName
-				//};
+				var MaterialPictureFileName = Order.designwork.material.materialpictures.OrderBy(p => p.Index).FirstOrDefault().FileName;
+
+				var OrderInfo = new
+				{
+					GUID = Order.GUID,
+					CreateTime = Order.CreateTime.ToString("yyyy-MM-dd HH:mm:ss"),
+					WaitBuyerPayTime = Order.WaitBuyerPayTime == null ? String.Empty : Order.WaitBuyerPayTime.Value.ToString("yyyy-MM-dd HH:mm:ss"),
+					WaitSellerSendGoodsTime = Order.WaitSellerSendGoodsTime == null ? String.Empty : Order.WaitSellerSendGoodsTime.Value.ToString("yyyy-MM-dd HH:mm:ss"),
+					WaitBuyerConfirmGoodsTime = Order.WaitBuyerConfirmGoodsTime == null ? String.Empty : Order.WaitBuyerConfirmGoodsTime.Value.ToString("yyyy-MM-dd HH:mm:ss"),
+					TradeFinishedTime = Order.TradeFinishedTime == null ? String.Empty : Order.TradeFinishedTime.Value.ToString("yyyy-MM-dd HH:mm:ss"),
+					EndTime = Order.designwork.EndTime,
+					State = Order.State,
+					IsOverEndTime = DateTime.Now >= Order.designwork.EndTime,
+
+					Price = Order.Price.ToString("0.00"),
+					Quantity = Order.Quantity.ToString(),
+					Freight = Order.Freight.ToString("0.00"),
+					Total = (Order.Price * Order.Quantity + Order.Freight).ToString("0.00"),
+					DesignerEmail = Order.designwork.user.Email,
+					DesignWorkID = Order.DesignWorkID,
+					MaterialPictureFileName = MaterialPictureFileName,
+
+					Consignee = Order.Consignee,
+					Address = Order.Address,
+					ZipCode = Order.ZipCode,
+					Mobile = Order.Mobile,
+					Phone = Order.Phone,
+					ShippingMethod = Order.ShippingMethod
+				};
+
+				ViewBag.DataOrderInfo = JsonConvert.SerializeObject(new { OrderInfo = OrderInfo });
 			}
 
 			return View();
