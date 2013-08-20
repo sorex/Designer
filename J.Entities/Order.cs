@@ -23,15 +23,19 @@ namespace J.Entities
         public string UserID { get; set; }
         public string DesignWorkID { get; set; }
         public int State { get; set; }
-        public int RefundState { get; set; }
         public System.DateTime CreateTime { get; set; }
-        public Nullable<System.DateTime> WaitBuyerPayTime { get; set; }
-        public Nullable<System.DateTime> WaitSellerSendGoodsTime { get; set; }
-        public Nullable<System.DateTime> WaitBuyerConfirmGoodsTime { get; set; }
-        public Nullable<System.DateTime> TradeFinishedTime { get; set; }
-        public Nullable<System.DateTime> TradeClosedTime { get; set; }
-        public Nullable<System.DateTime> RefundWaitSellerAgreeTime { get; set; }
-        public Nullable<System.DateTime> RefundSellerFefuseBuyerTime { get; set; }
+        public Nullable<System.DateTime> ConfirmOrderTime { get; set; }
+        public Nullable<System.DateTime> BuyerPayTime { get; set; }
+        public Nullable<System.DateTime> StartProductionTime { get; set; }
+        public Nullable<System.DateTime> SendGoodsTime { get; set; }
+        public Nullable<System.DateTime> ConfirmGoodsTime { get; set; }
+        public Nullable<System.DateTime> RefundTime { get; set; }
+        public Nullable<System.DateTime> RefundAgreeTime { get; set; }
+        public Nullable<System.DateTime> RefundFefuseTime { get; set; }
+        public Nullable<System.DateTime> RefundGoodsTime { get; set; }
+        public Nullable<System.DateTime> RefundGoodsAgreeTime { get; set; }
+        public Nullable<System.DateTime> RefundGoodsFefuseTime { get; set; }
+        public Nullable<System.DateTime> RefundGoodsSuccessTime { get; set; }
         public Nullable<System.DateTime> RefundSuccessTime { get; set; }
         public Nullable<System.DateTime> RefundClosedTime { get; set; }
         public string Subject { get; set; }

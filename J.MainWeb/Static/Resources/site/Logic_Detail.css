@@ -17,7 +17,6 @@
 			text-align: center;
 			border: 1px solid #000;
 			margin: 2px;
-			background-color: #00ff00;
 		}
 
 			.body #StateList .StateItem > span
@@ -26,18 +25,13 @@
 				cursor: default;
 			}
 
-		/*.body #StateList .StateComplete
+		.body #StateList .StateComplete
 		{
 			background-color: #00ff00;
-		}*/
+		}
 
 		.body #StateList .StateActive
 		{
 			border: 3px solid #f15c00;
-			background-color: transparent;
-		}
-
-		.body #StateList .StateActive ~ div
-		{
 			background-color: transparent;
 		}

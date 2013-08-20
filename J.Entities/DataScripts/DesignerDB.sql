@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- 主机: localhost
--- 生成日期: 2013 年 08 月 04 日 15:36
+-- 生成日期: 2013 年 08 月 20 日 10:42
 -- 服务器版本: 5.5.32
 -- PHP 版本: 5.3.25
 
@@ -62,12 +62,14 @@ CREATE TABLE IF NOT EXISTS `designworks` (
   `GUID` varchar(200) NOT NULL,
   `DesignerID` varchar(200) NOT NULL COMMENT '设计者ID',
   `MaterialID` varchar(200) NOT NULL COMMENT '原料ID',
-  `MaterialColorID` varchar(200) NOT NULL COMMENT '原料颜色ID',
+  `MaterialColorID` varchar(200) NOT NULL COMMENT '原材料颜色',
   `SalesGoal` int(11) NOT NULL COMMENT '销售目标',
   `BasePrice` decimal(18,8) NOT NULL COMMENT '底价/单件',
   `SellingPrice` decimal(18,8) NOT NULL COMMENT '售价/单件',
-  `StartTime` datetime NOT NULL COMMENT '创建时间/活动开始时间',
-  `EndTime` datetime NOT NULL COMMENT '活动截止时间',
+  `CreateTime` datetime NOT NULL COMMENT '创建时间',
+  `LongTime` int(11) NOT NULL COMMENT '活动时长（天）',
+  `StartTime` datetime DEFAULT NULL COMMENT '活动开始时间',
+  `EndTime` datetime DEFAULT NULL COMMENT '活动截止时间',
   `Title` varchar(200) NOT NULL COMMENT '活动标题',
   `Description` varchar(4000) NOT NULL COMMENT '活动说明',
   `Url` varchar(200) DEFAULT NULL COMMENT 'Url',
@@ -87,8 +89,8 @@ CREATE TABLE IF NOT EXISTS `designworks` (
 -- 转存表中的数据 `designworks`
 --
 
-INSERT INTO `designworks` (`GUID`, `DesignerID`, `MaterialID`, `MaterialColorID`, `SalesGoal`, `BasePrice`, `SellingPrice`, `StartTime`, `EndTime`, `Title`, `Description`, `Url`, `SalesVolume`, `State`, `ProcurementCost`, `ProductionCost`, `SendCost`, `CompletionTime`) VALUES
-('7aa703935f244e53add6d53ea24d5b7a', '9ece1f8700bb4dd38832f14e4b480107', 'shortvneck', 'f9e8870e0e034868b6691e91c3bcf45b', 50, '35.00000000', '44.00000000', '2013-07-17 20:49:41', '2013-07-24 20:49:41', 'Test', 'Test', '', 0, 1, NULL, NULL, NULL, NULL);
+INSERT INTO `designworks` (`GUID`, `DesignerID`, `MaterialID`, `MaterialColorID`, `SalesGoal`, `BasePrice`, `SellingPrice`, `CreateTime`, `LongTime`, `StartTime`, `EndTime`, `Title`, `Description`, `Url`, `SalesVolume`, `State`, `ProcurementCost`, `ProductionCost`, `SendCost`, `CompletionTime`) VALUES
+('7aa703935f244e53add6d53ea24d5b7a', '9ece1f8700bb4dd38832f14e4b480107', 'shortvneck', 'f9e8870e0e034868b6691e91c3bcf45b', 50, '35.00000000', '44.00000000', '2013-07-16 20:49:41', 7, '2013-07-17 20:49:41', '2013-07-24 20:49:41', 'Test', 'Test', '', 0, 1, NULL, NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -223,7 +225,7 @@ CREATE TABLE IF NOT EXISTS `materialsizes` (
   `GUID` varchar(200) NOT NULL,
   `MaterialID` varchar(200) NOT NULL,
   `SizeName` varchar(200) NOT NULL,
-  `Index` int(1) NOT NULL,
+  `Index` int(11) NOT NULL,
   PRIMARY KEY (`GUID`),
   KEY `MaterialID` (`MaterialID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -291,22 +293,12 @@ INSERT INTO `materialtypes` (`GUID`, `ParentID`, `Index`, `Name`, `IsLeafNode`, 
 CREATE TABLE IF NOT EXISTS `orderdetails` (
   `GUID` varchar(200) NOT NULL,
   `OrderID` varchar(200) NOT NULL,
-  `SizeID` varchar(200) NOT NULL COMMENT '尺码',
-  `SizeName` varchar(200) NOT NULL,
+  `SizeID` varchar(200) NOT NULL,
+  `SizeName` varchar(200) NOT NULL COMMENT '尺码',
   `Quantity` int(11) NOT NULL COMMENT '购买数量',
   PRIMARY KEY (`GUID`),
   KEY `OrderID` (`OrderID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
---
--- 转存表中的数据 `orderdetails`
---
-
-INSERT INTO `orderdetails` (`GUID`, `OrderID`, `SizeID`, `SizeName`, `Quantity`) VALUES
-('58e973f80c624702afcd4fd0e8fc5a87', 'c93571ac5b4a4d2183955d3b95b48094', '5d06b6a3e0df499bad870ce243fdb952', 'S', 1),
-('935740eeaedb4171b9ba59eeb9efa6db', '29693e894bcb481fa73269e230f7fe4d', 'b5cd176b668b4a90a7d8c95babf567ce', 'M', 1),
-('d7f8ed12ce9040c3a429e6c17e1bb856', '29693e894bcb481fa73269e230f7fe4d', '5d06b6a3e0df499bad870ce243fdb952', 'S', 1),
-('e6c9b988cfef4067b306e87b6129c506', 'c93571ac5b4a4d2183955d3b95b48094', 'b5cd176b668b4a90a7d8c95babf567ce', 'M', 1);
 
 -- --------------------------------------------------------
 
@@ -318,17 +310,21 @@ CREATE TABLE IF NOT EXISTS `orders` (
   `GUID` varchar(200) NOT NULL,
   `UserID` varchar(200) NOT NULL,
   `DesignWorkID` varchar(200) NOT NULL COMMENT '设计ID',
-  `State` int(11) NOT NULL COMMENT '状态\r\n1：等待买家付款\r\n2：买家已付款，等待卖家发货\r\n3：卖家已发货，等待买家确认\r\n4：交易成功结束\r\n5：交易中途关闭(已结束，未成功完成)',
-  `RefundState` int(11) NOT NULL COMMENT '退款状态\r\n0：未发生退款\r\n1：退款协议等待卖家确认中\r\n2：卖家不同意协议，等待买家修改\r\n3：退款成功\r\n4：退款关闭',
-  `CreateTime` datetime NOT NULL,
-  `WaitBuyerPayTime` datetime DEFAULT NULL COMMENT '创建时间/等待买家付款时间',
-  `WaitSellerSendGoodsTime` datetime DEFAULT NULL COMMENT '付款时间/买家已付款，等待卖家发货时间',
-  `WaitBuyerConfirmGoodsTime` datetime DEFAULT NULL COMMENT '发货时间/卖家已发货，等待买家确认时间',
-  `TradeFinishedTime` datetime DEFAULT NULL COMMENT '收款时间/交易成功结束时间',
-  `TradeClosedTime` datetime DEFAULT NULL COMMENT '交易关闭时间',
-  `RefundWaitSellerAgreeTime` datetime DEFAULT NULL COMMENT '买家申请退款时间/退款协议等待卖家确认时间',
-  `RefundSellerFefuseBuyerTime` datetime DEFAULT NULL COMMENT '卖家拒绝退款时间/等待买家修改时间',
-  `RefundSuccessTime` datetime DEFAULT NULL COMMENT '退款成功时间',
+  `State` int(11) NOT NULL COMMENT '状态\r\n0：创建订单，等待确认订单\r\n1：确认订单，等待买家付款\r\n2：卖家付款，等待生产\r\n3：开始生产，等待发货\r\n4：发货，等待买家确认\r\n5：确认收货，即交易成功\r\n6：申请退款\r\n7：同意退款\r\n8：拒绝退款\r\n9：申请退货\r\n10：同意退货\r\n11：拒绝退货\r\n12：退货完成，等待退款\r\n13：退款完成\r\n14：退款关闭\r\n-1：交易中途关闭(已结束，未成功完成)',
+  `CreateTime` datetime NOT NULL COMMENT '创建订单时间，等待确认订单',
+  `ConfirmOrderTime` datetime DEFAULT NULL COMMENT '确认订单时间，等待买家付款',
+  `BuyerPayTime` datetime DEFAULT NULL COMMENT '卖家付款时间，等待生产',
+  `StartProductionTime` datetime DEFAULT NULL COMMENT '开始生产时间，等待发货',
+  `SendGoodsTime` datetime DEFAULT NULL COMMENT '发货时间，等待买家确认',
+  `ConfirmGoodsTime` datetime DEFAULT NULL COMMENT '确认收货时间，即交易成功',
+  `RefundTime` datetime DEFAULT NULL COMMENT '申请退款时间',
+  `RefundAgreeTime` datetime DEFAULT NULL COMMENT '同意退款时间',
+  `RefundFefuseTime` datetime DEFAULT NULL COMMENT '拒绝退款时间',
+  `RefundGoodsTime` datetime DEFAULT NULL COMMENT '申请退货时间',
+  `RefundGoodsAgreeTime` datetime DEFAULT NULL COMMENT '同意退货时间',
+  `RefundGoodsFefuseTime` datetime DEFAULT NULL COMMENT '拒绝退货时间',
+  `RefundGoodsSuccessTime` datetime DEFAULT NULL COMMENT '退货完成时间，等待退款',
+  `RefundSuccessTime` datetime DEFAULT NULL COMMENT '退款完成时间',
   `RefundClosedTime` datetime DEFAULT NULL COMMENT '退款关闭时间',
   `Subject` varchar(200) NOT NULL COMMENT '商品名称',
   `Price` decimal(18,8) NOT NULL COMMENT '单价',
@@ -348,14 +344,6 @@ CREATE TABLE IF NOT EXISTS `orders` (
   KEY `DesignWorkID` (`DesignWorkID`),
   KEY `UserID` (`UserID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
---
--- 转存表中的数据 `orders`
---
-
-INSERT INTO `orders` (`GUID`, `UserID`, `DesignWorkID`, `State`, `RefundState`, `CreateTime`, `WaitBuyerPayTime`, `WaitSellerSendGoodsTime`, `WaitBuyerConfirmGoodsTime`, `TradeFinishedTime`, `TradeClosedTime`, `RefundWaitSellerAgreeTime`, `RefundSellerFefuseBuyerTime`, `RefundSuccessTime`, `RefundClosedTime`, `Subject`, `Price`, `Quantity`, `Freight`, `Body`, `Consignee`, `Address`, `ZipCode`, `Mobile`, `Phone`, `ShippingMethod`, `PayType`, `PayOrderNo`, `ExpressNumber`) VALUES
-('29693e894bcb481fa73269e230f7fe4d', '9ece1f8700bb4dd38832f14e4b480107', '7aa703935f244e53add6d53ea24d5b7a', 1, 0, '2013-07-29 15:45:00', '2013-07-29 15:55:00', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Test', '44.00000000', 2, '0.00000000', '详细', 'Jasper', '湖北省 武汉市 青山区 这是一个测试的地址', '400000', '18067654321', '027-88888888', '韵达快递', NULL, NULL, NULL),
-('c93571ac5b4a4d2183955d3b95b48094', '9ece1f8700bb4dd38832f14e4b480107', '7aa703935f244e53add6d53ea24d5b7a', 0, 0, '2013-07-23 22:50:37', '2013-07-23 22:59:37', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Test', '44.00000000', 2, '0.00000000', '详细', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -409,9 +397,9 @@ ALTER TABLE `addresses`
 -- 限制表 `designworks`
 --
 ALTER TABLE `designworks`
+  ADD CONSTRAINT `designworks_ibfk_3` FOREIGN KEY (`MaterialColorID`) REFERENCES `materialcolors` (`GUID`),
   ADD CONSTRAINT `designworks_ibfk_1` FOREIGN KEY (`DesignerID`) REFERENCES `users` (`GUID`),
-  ADD CONSTRAINT `designworks_ibfk_2` FOREIGN KEY (`MaterialID`) REFERENCES `materials` (`GUID`),
-  ADD CONSTRAINT `designworks_ibfk_3` FOREIGN KEY (`MaterialColorID`) REFERENCES `materialcolors` (`GUID`);
+  ADD CONSTRAINT `designworks_ibfk_2` FOREIGN KEY (`MaterialID`) REFERENCES `materials` (`GUID`);
 
 --
 -- 限制表 `materialcolors`
@@ -453,8 +441,8 @@ ALTER TABLE `orderdetails`
 -- 限制表 `orders`
 --
 ALTER TABLE `orders`
-  ADD CONSTRAINT `orders_ibfk_1` FOREIGN KEY (`DesignWorkID`) REFERENCES `designworks` (`GUID`),
-  ADD CONSTRAINT `orders_ibfk_2` FOREIGN KEY (`UserID`) REFERENCES `users` (`GUID`);
+  ADD CONSTRAINT `orders_ibfk_2` FOREIGN KEY (`UserID`) REFERENCES `users` (`GUID`),
+  ADD CONSTRAINT `orders_ibfk_1` FOREIGN KEY (`DesignWorkID`) REFERENCES `designworks` (`GUID`);
 
 --
 -- 限制表 `singlelogin`

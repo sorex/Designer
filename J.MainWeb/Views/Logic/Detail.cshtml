@@ -20,6 +20,7 @@
 @section scripts{
 	<script type="text/javascript">
 		var CanPost = true;
+		var StateIndex = 0;
 
 		var Data = {};
 		var DataOrderInfo = @Html.Raw(ViewBag.DataOrderInfo) ;
@@ -30,9 +31,9 @@
 		{
 			$.initTemplate();
 			$("#StateList").data("template_extend", {
-				MobileORPhone: function ()
+				stateClass: function ()
 				{
-					if (this.Mobile.length > 0)
+					if (this.State < StateIndex)
 						return this.Mobile;
 					else
 						return this.Phone;

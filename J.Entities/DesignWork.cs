@@ -26,8 +26,10 @@ namespace J.Entities
         public int SalesGoal { get; set; }
         public decimal BasePrice { get; set; }
         public decimal SellingPrice { get; set; }
-        public System.DateTime StartTime { get; set; }
-        public System.DateTime EndTime { get; set; }
+        public System.DateTime CreateTime { get; set; }
+        public int LongTime { get; set; }
+        public Nullable<System.DateTime> StartTime { get; set; }
+        public Nullable<System.DateTime> EndTime { get; set; }
         public string Title { get; set; }
         public string Description { get; set; }
         public string Url { get; set; }

@@ -98,8 +98,10 @@
           <Property Name="SalesGoal" Type="int" Nullable="false" />
           <Property Name="BasePrice" Type="decimal" Nullable="false" Precision="18" Scale="8" />
           <Property Name="SellingPrice" Type="decimal" Nullable="false" Precision="18" Scale="8" />
-          <Property Name="StartTime" Type="datetime" Nullable="false" />
-          <Property Name="EndTime" Type="datetime" Nullable="false" />
+          <Property Name="CreateTime" Type="datetime" Nullable="false" />
+          <Property Name="LongTime" Type="int" Nullable="false" />
+          <Property Name="StartTime" Type="datetime" />
+          <Property Name="EndTime" Type="datetime" />
           <Property Name="Title" Type="varchar" Nullable="false" MaxLength="200" />
           <Property Name="Description" Type="varchar" Nullable="false" MaxLength="4000" />
           <Property Name="Url" Type="varchar" MaxLength="200" />
@@ -197,15 +199,19 @@
           <Property Name="UserID" Type="varchar" Nullable="false" MaxLength="200" />
           <Property Name="DesignWorkID" Type="varchar" Nullable="false" MaxLength="200" />
           <Property Name="State" Type="int" Nullable="false" />
-          <Property Name="RefundState" Type="int" Nullable="false" />
           <Property Name="CreateTime" Type="datetime" Nullable="false" />
-          <Property Name="WaitBuyerPayTime" Type="datetime" />
-          <Property Name="WaitSellerSendGoodsTime" Type="datetime" />
-          <Property Name="WaitBuyerConfirmGoodsTime" Type="datetime" />
-          <Property Name="TradeFinishedTime" Type="datetime" />
-          <Property Name="TradeClosedTime" Type="datetime" />
-          <Property Name="RefundWaitSellerAgreeTime" Type="datetime" />
-          <Property Name="RefundSellerFefuseBuyerTime" Type="datetime" />
+          <Property Name="ConfirmOrderTime" Type="datetime" />
+          <Property Name="BuyerPayTime" Type="datetime" />
+          <Property Name="StartProductionTime" Type="datetime" />
+          <Property Name="SendGoodsTime" Type="datetime" />
+          <Property Name="ConfirmGoodsTime" Type="datetime" />
+          <Property Name="RefundTime" Type="datetime" />
+          <Property Name="RefundAgreeTime" Type="datetime" />
+          <Property Name="RefundFefuseTime" Type="datetime" />
+          <Property Name="RefundGoodsTime" Type="datetime" />
+          <Property Name="RefundGoodsAgreeTime" Type="datetime" />
+          <Property Name="RefundGoodsFefuseTime" Type="datetime" />
+          <Property Name="RefundGoodsSuccessTime" Type="datetime" />
           <Property Name="RefundSuccessTime" Type="datetime" />
           <Property Name="RefundClosedTime" Type="datetime" />
           <Property Name="Subject" Type="varchar" Nullable="false" MaxLength="200" />
@@ -497,8 +503,10 @@
           <Property Type="Int32" Name="SalesGoal" Nullable="false" />
           <Property Type="Decimal" Name="BasePrice" Nullable="false" />
           <Property Type="Decimal" Name="SellingPrice" Nullable="false" />
-          <Property Type="DateTime" Name="StartTime" Nullable="false" />
-          <Property Type="DateTime" Name="EndTime" Nullable="false" />
+          <Property Type="DateTime" Name="CreateTime" Nullable="false" />
+          <Property Type="Int32" Name="LongTime" Nullable="false" />
+          <Property Type="DateTime" Name="StartTime" />
+          <Property Type="DateTime" Name="EndTime" />
           <Property Type="String" Name="Title" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
           <Property Type="String" Name="Description" Nullable="false" MaxLength="4000" FixedLength="false" Unicode="false" />
           <Property Type="String" Name="Url" MaxLength="200" FixedLength="false" Unicode="false" />
@@ -613,15 +621,19 @@
           <Property Type="String" Name="UserID" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
           <Property Type="String" Name="DesignWorkID" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
           <Property Type="Int32" Name="State" Nullable="false" />
-          <Property Type="Int32" Name="RefundState" Nullable="false" />
           <Property Type="DateTime" Name="CreateTime" Nullable="false" />
-          <Property Type="DateTime" Name="WaitBuyerPayTime" />
-          <Property Type="DateTime" Name="WaitSellerSendGoodsTime" />
-          <Property Type="DateTime" Name="WaitBuyerConfirmGoodsTime" />
-          <Property Type="DateTime" Name="TradeFinishedTime" />
-          <Property Type="DateTime" Name="TradeClosedTime" />
-          <Property Type="DateTime" Name="RefundWaitSellerAgreeTime" />
-          <Property Type="DateTime" Name="RefundSellerFefuseBuyerTime" />
+          <Property Type="DateTime" Name="ConfirmOrderTime" />
+          <Property Type="DateTime" Name="BuyerPayTime" />
+          <Property Type="DateTime" Name="StartProductionTime" />
+          <Property Type="DateTime" Name="SendGoodsTime" />
+          <Property Type="DateTime" Name="ConfirmGoodsTime" />
+          <Property Type="DateTime" Name="RefundTime" />
+          <Property Type="DateTime" Name="RefundAgreeTime" />
+          <Property Type="DateTime" Name="RefundFefuseTime" />
+          <Property Type="DateTime" Name="RefundGoodsTime" />
+          <Property Type="DateTime" Name="RefundGoodsAgreeTime" />
+          <Property Type="DateTime" Name="RefundGoodsFefuseTime" />
+          <Property Type="DateTime" Name="RefundGoodsSuccessTime" />
           <Property Type="DateTime" Name="RefundSuccessTime" />
           <Property Type="DateTime" Name="RefundClosedTime" />
           <Property Type="String" Name="Subject" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
@@ -860,6 +872,8 @@
                 <ScalarProperty Name="Title" ColumnName="Title" />
                 <ScalarProperty Name="EndTime" ColumnName="EndTime" />
                 <ScalarProperty Name="StartTime" ColumnName="StartTime" />
+                <ScalarProperty Name="LongTime" ColumnName="LongTime" />
+                <ScalarProperty Name="CreateTime" ColumnName="CreateTime" />
                 <ScalarProperty Name="SellingPrice" ColumnName="SellingPrice" />
                 <ScalarProperty Name="BasePrice" ColumnName="BasePrice" />
                 <ScalarProperty Name="SalesGoal" ColumnName="SalesGoal" />
@@ -975,15 +989,19 @@
                 <ScalarProperty Name="Subject" ColumnName="Subject" />
                 <ScalarProperty Name="RefundClosedTime" ColumnName="RefundClosedTime" />
                 <ScalarProperty Name="RefundSuccessTime" ColumnName="RefundSuccessTime" />
-                <ScalarProperty Name="RefundSellerFefuseBuyerTime" ColumnName="RefundSellerFefuseBuyerTime" />
-                <ScalarProperty Name="RefundWaitSellerAgreeTime" ColumnName="RefundWaitSellerAgreeTime" />
-                <ScalarProperty Name="TradeClosedTime" ColumnName="TradeClosedTime" />
-                <ScalarProperty Name="TradeFinishedTime" ColumnName="TradeFinishedTime" />
-                <ScalarProperty Name="WaitBuyerConfirmGoodsTime" ColumnName="WaitBuyerConfirmGoodsTime" />
-                <ScalarProperty Name="WaitSellerSendGoodsTime" ColumnName="WaitSellerSendGoodsTime" />
-                <ScalarProperty Name="WaitBuyerPayTime" ColumnName="WaitBuyerPayTime" />
+                <ScalarProperty Name="RefundGoodsSuccessTime" ColumnName="RefundGoodsSuccessTime" />
+                <ScalarProperty Name="RefundGoodsFefuseTime" ColumnName="RefundGoodsFefuseTime" />
+                <ScalarProperty Name="RefundGoodsAgreeTime" ColumnName="RefundGoodsAgreeTime" />
+                <ScalarProperty Name="RefundGoodsTime" ColumnName="RefundGoodsTime" />
+                <ScalarProperty Name="RefundFefuseTime" ColumnName="RefundFefuseTime" />
+                <ScalarProperty Name="RefundAgreeTime" ColumnName="RefundAgreeTime" />
+                <ScalarProperty Name="RefundTime" ColumnName="RefundTime" />
+                <ScalarProperty Name="ConfirmGoodsTime" ColumnName="ConfirmGoodsTime" />
+                <ScalarProperty Name="SendGoodsTime" ColumnName="SendGoodsTime" />
+                <ScalarProperty Name="StartProductionTime" ColumnName="StartProductionTime" />
+                <ScalarProperty Name="BuyerPayTime" ColumnName="BuyerPayTime" />
+                <ScalarProperty Name="ConfirmOrderTime" ColumnName="ConfirmOrderTime" />
                 <ScalarProperty Name="CreateTime" ColumnName="CreateTime" />
-                <ScalarProperty Name="RefundState" ColumnName="RefundState" />
                 <ScalarProperty Name="State" ColumnName="State" />
                 <ScalarProperty Name="DesignWorkID" ColumnName="DesignWorkID" />
                 <ScalarProperty Name="UserID" ColumnName="UserID" />

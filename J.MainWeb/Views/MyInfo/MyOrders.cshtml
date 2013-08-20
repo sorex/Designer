@@ -85,6 +85,43 @@
 			$("#dataTable").data("template_extend", {
 				stateString: function ()
 				{
+					switch (this.State)
+					{
+						case 0:
+							return '<a href="/Logic/ConfirmOrder?guid=' + this.GUID + '" target="_blank">确认地址</a>';
+						case 1:
+							return '<a href="/Logic/Pay?guid=' + this.GUID + '" target="_blank">付款</a>';
+						case 2:
+							return '<span>等待预售结束</span>';
+						case 3:
+							return '<span>生产中</span>';
+						case 4:
+							return '<span>已发货</span>';
+						case 5:
+							return '<span>确认收货</span>';
+						case 6:
+							return '<span>等待退款审核</span>';
+						case 7:
+							return '<span>退款中</span>';
+						case 8:
+							return '<span>退款被拒绝</span>';
+						case 9:
+							return '<span>等待退货审核</span>';
+						case 10:
+							return '<span>同意退货，请邮寄货物</span>';
+						case 11:
+							return '<span>退货被拒绝</span>';
+						case 12:
+							return '<span>退货成功，退款中</span>';
+						case 13:
+							return '<span>退款成功</span>';
+						case 14:
+							return '<span>退款关闭</span>';
+						case -1:
+							return '<span>交易关闭</span>';
+					}
+
+
 					// 退款状态
 					// 0：未发生退款
 					// 1：退款申请中

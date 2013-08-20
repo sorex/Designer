@@ -51,8 +51,7 @@ namespace J.MainWeb.Controllers
 					State = 1,
 					DesignerEmail = "sorex@163.com",
 					MaterialPictureFileName = "MaterialPictureFileName",
-					DesignWorkState = 1,
-					RefundState = 1
+					DesignWorkState = 1
 				} }.ToList();
 				result.Clear();
 
@@ -83,8 +82,7 @@ namespace J.MainWeb.Controllers
 						State = o.State,
 						DesignerEmail = o.designwork.user.Email,
 						MaterialPictureFileName = MaterialPictureFileName,
-						DesignWorkState = o.designwork.State,
-						RefundState = o.RefundState
+						DesignWorkState = o.designwork.State
 					});
 				}
 
@@ -128,6 +126,7 @@ namespace J.MainWeb.Controllers
 					SalesVolume = "1",
 					SalesGoal = "1",
 					AnticipatedIncome = "1.00",
+					CreateTime = "2013-07-10 14:52",
 					StartTime = "2013-07-10 14:52",
 					EndTime = "2013-07-10 14:52",
 					State = 1,
@@ -153,8 +152,9 @@ namespace J.MainWeb.Controllers
 						SalesVolume = dw.SalesVolume.Value.ToString(),
 						SalesGoal = dw.SalesGoal.ToString(),
 						AnticipatedIncome = AnticipatedIncome.ToString("0.00"),
-						StartTime = dw.StartTime.ToString("yyyy-MM-dd HH:mm"),
-						EndTime = dw.EndTime.ToString("yyyy-MM-dd HH:mm"),
+						CreateTime = dw.CreateTime.ToString("yyyy-MM-dd HH:mm"),
+						StartTime = dw.StartTime == null ? String.Empty : dw.StartTime.Value.ToString("yyyy-MM-dd HH:mm"),
+						EndTime = dw.EndTime == null ? String.Empty : dw.EndTime.Value.ToString("yyyy-MM-dd HH:mm"),
 						State = dw.State,
 						DesignerEmail = dw.user.Email,
 						MaterialPictureFileName = MaterialPictureFileName

@@ -59,9 +59,8 @@ namespace J.MainWeb.Controllers
 					return RedirectToAction("Error", "Home", new { msg = "该活动不能发布!" });
 
 				dw.State = 1;
-				var time = dw.EndTime - dw.StartTime;
 				dw.StartTime = DateTime.Now;
-				dw.EndTime = dw.StartTime.AddMilliseconds(time.TotalMilliseconds);
+				dw.EndTime = dw.StartTime.Value.AddDays(dw.LongTime);
 				db.SaveChanges();
 			}
 			return Content(JsonConvert.SerializeObject(new { code = 1, msg = guid }));
@@ -143,7 +142,6 @@ namespace J.MainWeb.Controllers
 					UserID = UserID,
 					DesignWorkID = DesignWorkID,
 					State = 0,
-					RefundState = 0,
 					CreateTime = DateTime.Now,
 					Subject = DesignWork.Title,
 					Price = DesignWork.SellingPrice,
@@ -189,13 +187,12 @@ namespace J.MainWeb.Controllers
 				{
 					GUID = Order.GUID,
 					CreateTime = Order.CreateTime.ToString("yyyy-MM-dd HH:mm:ss"),
-					WaitBuyerPayTime = Order.WaitBuyerPayTime == null ? String.Empty : Order.WaitBuyerPayTime.Value.ToString("yyyy-MM-dd HH:mm:ss"),
-					WaitSellerSendGoodsTime = Order.WaitSellerSendGoodsTime == null ? String.Empty : Order.WaitSellerSendGoodsTime.Value.ToString("yyyy-MM-dd HH:mm:ss"),
-					WaitBuyerConfirmGoodsTime = Order.WaitBuyerConfirmGoodsTime == null ? String.Empty : Order.WaitBuyerConfirmGoodsTime.Value.ToString("yyyy-MM-dd HH:mm:ss"),
-					TradeFinishedTime = Order.TradeFinishedTime == null ? String.Empty : Order.TradeFinishedTime.Value.ToString("yyyy-MM-dd HH:mm:ss"),
-					EndTime = Order.designwork.EndTime,
+					ConfirmOrderTime = Order.ConfirmOrderTime == null ? String.Empty : Order.ConfirmOrderTime.Value.ToString("yyyy-MM-dd HH:mm:ss"),
+					BuyerPayTime = Order.BuyerPayTime == null ? String.Empty : Order.BuyerPayTime.Value.ToString("yyyy-MM-dd HH:mm:ss"),
+					StartProductionTime = Order.StartProductionTime == null ? String.Empty : Order.StartProductionTime.Value.ToString("yyyy-MM-dd HH:mm:ss"),
+					SendGoodsTime = Order.SendGoodsTime == null ? String.Empty : Order.SendGoodsTime.Value.ToString("yyyy-MM-dd HH:mm:ss"),
+					ConfirmGoodsTime = Order.ConfirmGoodsTime == null ? String.Empty : Order.ConfirmGoodsTime.Value.ToString("yyyy-MM-dd HH:mm:ss"),
 					State = Order.State,
-					IsOverEndTime = DateTime.Now >= Order.designwork.EndTime,
 
 					Price = Order.Price.ToString("0.00"),
 					Quantity = Order.Quantity.ToString(),
@@ -300,7 +297,7 @@ namespace J.MainWeb.Controllers
 				Order.Phone = Phone;
 				Order.ShippingMethod = ShippingMethod;
 				Order.State = 1;
-				Order.WaitBuyerPayTime = DateTime.Now;
+				Order.ConfirmOrderTime = DateTime.Now;
 
 				db.SaveChanges();
 				return Content(JsonConvert.SerializeObject(new { code = 1, msg = "操作成功。" }));
