@@ -36,7 +36,7 @@
 			</tr>
 			<tr class="item1">
 				<td colspan="8">
-					<input type="checkbox" /><span style="margin-right: 20px; display: inline-block;">开始时间：{{StartTime}}</span>{{^stateIs0}}结束时间：{{StartTime}}{{/stateIs0}}
+					<input type="checkbox" /><span style="margin-right: 20px; display: inline-block;">创建时间：{{CreateTime}}</span>{{^stateIs0}}结束时间：{{StartTime}}{{/stateIs0}}
 				</td>
 			</tr>
 			<tr class="item2">
@@ -108,10 +108,22 @@
 				stateString:function()
 				{
 					switch (this.State) {
+						case -1:
+							return "预售不足";
 						case 0:
 							return "设计中";
 						case 1:
-							return " ";
+							return "正在预售";
+						case 2:
+							return "等待生产";
+						case 3:
+							return "已发货";
+						case 4:
+							return "收款中";
+						case 5:
+							return "等待返款";
+						case 6:
+							return "完成";
 						default:
 							return " ";
 					}

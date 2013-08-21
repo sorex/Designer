@@ -19,10 +19,17 @@
 			margin: 2px;
 		}
 
+			.body #StateList .StateItem .StateString
+			{
+				font-weight: bold;
+				color: #000;
+			}
+
 			.body #StateList .StateItem > span
 			{
 				display: block;
 				cursor: default;
+				color: #888;
 			}
 
 		.body #StateList .StateComplete

@@ -8,13 +8,60 @@
 }
 <div id="StateList" class="ui-helper-clearfix template">
 	<script type="text/x-mustache">
-	<div class="StateItem StateComplete"><span>创建订单</span><span>{{CreateTime}}</span></div>
-	<div class="StateItem StateActive"><span>确认订单</span><span>{{WaitBuyerPayTime}}</span></div>
-	<div class="StateItem"><span>付款</span><span>{{WaitSellerSendGoodsTime}}</span></div>
-	<div class="StateItem"><span>生产</span><span>{{EndTime}}</span></div>
-	<div class="StateItem"><span>发货</span><span>{{WaitBuyerConfirmGoodsTime}}</span></div>
-	<div class="StateItem"><span>确认收货</span><span>{{TradeFinishedTime}}</span></div>
+	<div class="StateItem{{stateClass}}"><span class="StateString">创建订单</span><span>{{CreateTime}}</span></div>
+	<div class="StateItem{{stateClass}}"><span class="StateString">确认订单</span><span>{{ConfirmOrderTime}}</span></div>
+	<div class="StateItem{{stateClass}}"><span class="StateString">付款</span><span>{{BuyerPayTime}}</span></div>
+	<div class="StateItem{{stateClass}}"><span class="StateString">生产</span><span>{{StartProductionTime}}</span></div>
+	<div class="StateItem{{stateClass}}"><span class="StateString">发货</span><span>{{SendGoodsTime}}</span></div>
+	<div class="StateItem{{stateClass}}"><span class="StateString">确认收货</span><span>{{ConfirmGoodsTime}}</span></div>
 	</script>
+</div>
+<div id="OrderInfo">
+	<div></div>
+	<table id="dataTable" class="template">
+			<script type="text/x-mustache">
+			<tr>
+				<th style="width: 60px;"></th>
+				<th style="width: 370px;">物品</th>
+				<th style="width: 80px;">单价(元)</th>
+				<th style="width: 80px;">数量</th>
+				<th style="width: 80px;">运费</th>
+				<th style="width: 100px;">总价(元)</th>
+				<th style="width: 100px;">订单状态</th>
+				<th style="width: 100px;">其他操作</th>
+			</tr>
+			{{#items}}
+			<tr class="sep-row">
+				<td colspan="8"></td>
+			</tr>
+			<tr class="item1">
+				<td colspan="8">
+					<input type="checkbox" />订单编号：{{GUID}}<span style="margin-left: 20px; display: inline-block;">成交时间：{{CreateTime}}</span>
+				</td>
+			</tr>
+			<tr class="item2">
+				<td>
+					<img class="itemImage" alt="查看详情" src="/Static/UserFiles/{{DesignerEmail}}/{{DesignWorkID}}/{{MaterialPictureFileName}}" />
+				</td>
+				<td style="text-align: left;">
+					<a href="">{{Title}}</a>
+					<span class="description">{{OrderDetails}} </span>
+				</td>
+				<td>{{Price}}</td>
+				<td class="rightLine">{{Quantity}}</td>
+				<td class="rightLine">{{Freight}}</td>
+				<td class="rightLine stress">{{Total}}</td>
+				<td class="rightLine">
+					{{{stateString}}}
+					<a href="/Logic/Detail?guid={{GUID}}" target="_blank">订单详情</a>
+				</td>
+				<td>
+					<a data-action="" data-guid="{{GUID}}" href="javascript:void(0);" onclick="return false;">退款/退货</a>
+				</td>
+			</tr>
+			{{/items}}
+			</script>
+		</table>
 </div>
 
 @section scripts{
@@ -33,10 +80,13 @@
 			$("#StateList").data("template_extend", {
 				stateClass: function ()
 				{
-					if (this.State < StateIndex)
-						return this.Mobile;
-					else
-						return this.Phone;
+					var result = "";
+					if (this.State > StateIndex)
+						result = " StateComplete";
+					else if (this.State == StateIndex)
+						result = " StateActive";
+					StateIndex++;
+					return result;
 				},
 				active: function()
 				{
@@ -46,7 +96,9 @@
 						return "";
 				}
 			});
-			$("#StateList").render(Data);
+
+			StateIndex = 0;
+			$("#StateList").render(Data.OrderInfo);
 		});
 	</script>
 }
