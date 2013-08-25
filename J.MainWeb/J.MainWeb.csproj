@@ -224,6 +224,7 @@
     <Content Include="Static\Resources\jquery\jquery-migrate-1.2.1.js" />
     <Content Include="Static\Resources\jquery\jquery-migrate-1.2.1.min.js" />
     <Content Include="Static\Resources\mustache\mustache.js" />
+    <Content Include="Static\Resources\site\images\Logo_350x40.png" />
     <Content Include="Static\Resources\site\Logic_ConfirmOrder.css" />
     <Content Include="Static\Resources\site\DesignTShirt_Create.css" />
     <Content Include="Static\Resources\site\Logic_Detail.css" />
@@ -320,6 +321,8 @@
     <Content Include="Views\Logic\ConfirmOrder.cshtml" />
     <Content Include="Views\Logic\Pay.cshtml" />
     <Content Include="Views\Logic\Detail.cshtml" />
+    <Content Include="Static\Resources\site\images\Logo.psd" />
+    <Content Include="Static\Resources\site\images\华康娃娃体简W5.ttc" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
