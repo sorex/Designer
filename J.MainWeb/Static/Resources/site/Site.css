@@ -126,12 +126,12 @@ a
 	position: relative;
 }
 
-.logo_350x40
+.logo_300x40
 {
 	float: left;
-	width: 350px;
+	width: 300px;
 	height: 40px;
-	background: transparent url("images/Logo_350x40.png") center center no-repeat;
+	background: transparent url("images/Logo_300x40.png") center center no-repeat;
 }
 
 .main_nav
