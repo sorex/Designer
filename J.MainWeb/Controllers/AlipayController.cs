@@ -247,7 +247,8 @@ namespace J.MainWeb.Controllers
 		}
 		#endregion
 
-		public ActionResult ClickLogin()
+		#region Login
+		public ActionResult Alipay_Login()
 		{
 			////////////////////////////////////////////请求参数////////////////////////////////////////////
 
@@ -255,7 +256,7 @@ namespace J.MainWeb.Controllers
 			string target_service = "user.auth.quick.login";
 			//必填
 			//必填，页面跳转同步通知页面路径
-			string return_url = "http://www.xxx.com/Alipay/return_url";
+			string return_url = "http://www.cysjf.com/Alipay/return_url_login";
 			//需http://格式的完整路径，不允许加?id=123这类自定义参数
 
 			//防钓鱼时间戳
@@ -284,5 +285,53 @@ namespace J.MainWeb.Controllers
 
 			return Content(sHtmlText);
 		}
+
+		public ActionResult return_url_login()
+		{
+			SortedDictionary<string, string> sPara = GetRequestGet();
+
+			if (sPara.Count > 0)//判断是否有带返回参数
+			{
+				Notify aliNotify = new Notify();
+				bool verifyResult = aliNotify.Verify(sPara, Request.QueryString["notify_id"], Request.QueryString["sign"]);
+
+				if (verifyResult)//验证成功
+				{
+					/////////////////////////////////////////////////////////////////////////////////////////////////////////////
+					//请在这里加上商户的业务逻辑程序代码
+
+
+					//——请根据您的业务逻辑来编写程序（以下代码仅作参考）——
+					//获取支付宝的通知返回参数，可参考技术文档中页面跳转同步通知参数列表
+
+					//支付宝用户号
+					string user_id = Request.QueryString["user_id"];
+
+					//授权令牌
+					string token = Request.QueryString["token"];
+
+
+					//判断是否在商户网站中已经做过了这次通知返回的处理
+					//如果没有做过处理，那么执行商户的业务程序
+					//如果有做过处理，那么不执行商户的业务程序
+
+					//打印页面
+					return Content("验证成功<br />");
+
+					//——请根据您的业务逻辑来编写程序（以上代码仅作参考）——
+
+					/////////////////////////////////////////////////////////////////////////////////////////////////////////////
+				}
+				else//验证失败
+				{
+					return Content("验证失败");
+				}
+			}
+			else
+			{
+				return Content("无返回参数");
+			}
+		}
+		#endregion
 	}
 }
