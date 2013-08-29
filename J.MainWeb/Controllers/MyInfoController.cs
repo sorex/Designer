@@ -49,7 +49,7 @@ namespace J.MainWeb.Controllers
 					Freight = "1.00",
 					Total = "1.00",
 					State = 1,
-					DesignerEmail = "sorex@163.com",
+					DesignerID = "sorex@163.com",
 					MaterialPictureFileName = "MaterialPictureFileName",
 					DesignWorkState = 1
 				} }.ToList();
@@ -80,7 +80,7 @@ namespace J.MainWeb.Controllers
 						Freight = o.Freight.ToString("0.00"),
 						Total = (o.Price * o.Quantity + o.Freight).ToString("0.00"),
 						State = o.State,
-						DesignerEmail = o.designwork.user.Email,
+						DesignerID = o.designwork.user.GUID,
 						MaterialPictureFileName = MaterialPictureFileName,
 						DesignWorkState = o.designwork.State
 					});
@@ -117,7 +117,6 @@ namespace J.MainWeb.Controllers
 
 				var result = new[] { new {
 					GUID = "GUID", 
-					LoginName = "LoginName",
 					MaterialID = "MaterialID",
 					MaterialTypeID = "MaterialTypeID",
 					ColorCode = "ColorCode",
@@ -130,7 +129,7 @@ namespace J.MainWeb.Controllers
 					StartTime = "2013-07-10 14:52",
 					EndTime = "2013-07-10 14:52",
 					State = 1,
-					DesignerEmail = "DesignerEmail",
+					DesignerID = "DesignerID",
 					MaterialPictureFileName = "MaterialPictureFileName"
 				} }.ToList();
 				result.Clear();
@@ -143,7 +142,6 @@ namespace J.MainWeb.Controllers
 					result.Add(new
 					{
 						GUID = dw.GUID,
-						LoginName = dw.user.LoginName,
 						MaterialID = dw.MaterialID,
 						MaterialTypeID = dw.material.TypeID,
 						ColorCode = dw.materialcolor.ColorCode,
@@ -156,7 +154,7 @@ namespace J.MainWeb.Controllers
 						StartTime = dw.StartTime == null ? String.Empty : dw.StartTime.Value.ToString("yyyy-MM-dd HH:mm"),
 						EndTime = dw.EndTime == null ? String.Empty : dw.EndTime.Value.ToString("yyyy-MM-dd HH:mm"),
 						State = dw.State,
-						DesignerEmail = dw.user.Email,
+						DesignerID = dw.user.GUID,
 						MaterialPictureFileName = MaterialPictureFileName
 					});
 				}

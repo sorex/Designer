@@ -23,9 +23,8 @@ namespace J.Entities
         }
     
         public string GUID { get; set; }
-        public string LoginName { get; set; }
+        public string RealName { get; set; }
         public string Email { get; set; }
-        public string Password { get; set; }
         public string StageName { get; set; }
         public System.DateTime CreateTime { get; set; }
         public int State { get; set; }

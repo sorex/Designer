@@ -28,7 +28,7 @@ namespace J.MainWeb.Controllers
 				ViewBag.Data = JsonConvert.SerializeObject(new
 				{
 					DesignworkID = dw.GUID,
-					UserEmail = dw.user.Email,
+					UserID = dw.user.GUID,
 					Description = dw.Description,
 					MaterialDescription = dw.material.Description,
 					CurrentMaterialTypeID = dw.material.TypeID,
@@ -82,7 +82,7 @@ namespace J.MainWeb.Controllers
 				ViewBag.Data = JsonConvert.SerializeObject(new
 				{
 					DesignworkID = dw.GUID,
-					UserEmail = dw.user.Email,
+					UserID = dw.user.GUID,
 					Description = dw.Description,
 					MaterialDescription = dw.material.Description,
 					CurrentMaterialTypeID = dw.material.TypeID,
@@ -198,7 +198,7 @@ namespace J.MainWeb.Controllers
 					Quantity = Order.Quantity.ToString(),
 					Freight = Order.Freight.ToString("0.00"),
 					Total = (Order.Price * Order.Quantity + Order.Freight).ToString("0.00"),
-					DesignerEmail = Order.designwork.user.Email,
+					DesignerID = Order.designwork.user.GUID,
 					DesignWorkID = Order.DesignWorkID,
 					MaterialPictureFileName = MaterialPictureFileName,
 
@@ -262,7 +262,7 @@ namespace J.MainWeb.Controllers
 						Quantity = Order.Quantity.ToString(),
 						Freight = Order.Freight.ToString("0.00"),
 						Total = (Order.Price * Order.Quantity + Order.Freight).ToString("0.00"),
-						DesignerEmail = Order.designwork.user.Email,
+						DesignerID = Order.designwork.user.GUID,
 						DesignWorkID = Order.DesignWorkID,
 						MaterialPictureFileName = MaterialPictureFileName
 					};

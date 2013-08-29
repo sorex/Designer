@@ -242,9 +242,8 @@
             <PropertyRef Name="GUID" />
           </Key>
           <Property Name="GUID" Type="varchar" Nullable="false" MaxLength="200" />
-          <Property Name="LoginName" Type="varchar" Nullable="false" MaxLength="200" />
+          <Property Name="RealName" Type="varchar" Nullable="false" MaxLength="200" />
           <Property Name="Email" Type="varchar" Nullable="false" MaxLength="200" />
-          <Property Name="Password" Type="varchar" Nullable="false" MaxLength="200" />
           <Property Name="StageName" Type="varchar" Nullable="false" MaxLength="200" />
           <Property Name="CreateTime" Type="datetime" Nullable="false" />
           <Property Name="State" Type="int" Nullable="false" />
@@ -668,9 +667,8 @@
             <PropertyRef Name="GUID" />
           </Key>
           <Property Type="String" Name="GUID" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="LoginName" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="RealName" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
           <Property Type="String" Name="Email" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
-          <Property Type="String" Name="Password" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
           <Property Type="String" Name="StageName" Nullable="false" MaxLength="200" FixedLength="false" Unicode="false" />
           <Property Type="DateTime" Name="CreateTime" Nullable="false" />
           <Property Type="Int32" Name="State" Nullable="false" />
@@ -1024,9 +1022,8 @@
                 <ScalarProperty Name="State" ColumnName="State" />
                 <ScalarProperty Name="CreateTime" ColumnName="CreateTime" />
                 <ScalarProperty Name="StageName" ColumnName="StageName" />
-                <ScalarProperty Name="Password" ColumnName="Password" />
                 <ScalarProperty Name="Email" ColumnName="Email" />
-                <ScalarProperty Name="LoginName" ColumnName="LoginName" />
+                <ScalarProperty Name="RealName" ColumnName="RealName" />
                 <ScalarProperty Name="GUID" ColumnName="GUID" />
               </MappingFragment>
             </EntityTypeMapping>

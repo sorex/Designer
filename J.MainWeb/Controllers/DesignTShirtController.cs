@@ -59,8 +59,7 @@ namespace J.MainWeb.Controllers
 			colorCode = colorCode.ToLower();
 
 			var dwGUID = uploadPath.ToLower();
-			var userGUID = base.CurrentUser.GUID;
-			var userEmail = base.CurrentUser.Email;
+			var userID = base.CurrentUser.GUID;
 
 			using (DBEntities db = new DBEntities())
 			{
@@ -77,14 +76,14 @@ namespace J.MainWeb.Controllers
 					return Content(JsonConvert.SerializeObject(new { code = -1, msg = "请提高售价，您的受益太少。" }));
 
 				var UserFiles = Server.MapPath("~/Static/UserFiles/");
-				if (!System.IO.Directory.Exists(UserFiles + userEmail))
-					System.IO.Directory.CreateDirectory(UserFiles + userEmail);
-				System.IO.Directory.Move(UserFiles + "temp\\" + dwGUID, UserFiles + userEmail + "\\" + dwGUID);
+				if (!System.IO.Directory.Exists(UserFiles + userID))
+					System.IO.Directory.CreateDirectory(UserFiles + userID);
+				System.IO.Directory.Move(UserFiles + "temp\\" + dwGUID, UserFiles + userID + "\\" + dwGUID);
 
 				designwork dw = new designwork
 				{
 					GUID = dwGUID,
-					DesignerID = userGUID,
+					DesignerID = userID,
 					MaterialID = materialGUID,
 					MaterialColorID = materialColor.GUID,
 					SalesGoal = salesGoal,

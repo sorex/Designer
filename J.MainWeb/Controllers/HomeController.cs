@@ -58,6 +58,7 @@ namespace J.MainWeb.Controllers
 		#endregion
 
 		#region 注册
+		/*
 		public ActionResult Register()
 		{
 			return View();
@@ -108,8 +109,8 @@ namespace J.MainWeb.Controllers
 
 			using (DBEntities db = new DBEntities())
 			{
-				if (db.users.Count(p => p.LoginName == LoginName.ToLower()) > 0)
-					return Content(JsonConvert.SerializeObject(new { code = -1, msg = "该账户已被注册。请重试！" }));
+				//if (db.users.Count(p => p.LoginName == LoginName.ToLower()) > 0)
+				//	return Content(JsonConvert.SerializeObject(new { code = -1, msg = "该账户已被注册。请重试！" }));
 
 				if (db.users.Count(p => p.StageName == StageName) > 0)
 					return Content(JsonConvert.SerializeObject(new { code = -1, msg = "该昵称已被注册。请重试！" }));
@@ -140,9 +141,11 @@ namespace J.MainWeb.Controllers
 
 			return Content(JsonConvert.SerializeObject(new { code = 1, msg = "注册成功。" }));
 		}
+		*/
 		#endregion
 
 		#region 登录
+		/*
 		public ActionResult Login()
 		{
 			return View();
@@ -179,6 +182,7 @@ namespace J.MainWeb.Controllers
 		{
 			return PartialView();
 		}
+		*/
 		#endregion
 
 		public ActionResult Error(string msg)
