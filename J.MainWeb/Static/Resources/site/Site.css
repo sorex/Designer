@@ -155,3 +155,28 @@ a
 	height: 20px;
 	background: transparent url("images/horizontal_line.png") center center no-repeat;
 }
+
+
+.AlipayLoginButton
+{
+	width: 73px;
+	height: 32px;
+	line-height: 19px;
+	background: transparent url("images/alipay_login_button.png") center center no-repeat;
+}
+
+	.AlipayLoginButton:link
+	{
+	}
+
+	.AlipayLoginButton:visited
+	{
+	}
+
+	.AlipayLoginButton:hover
+	{
+	}
+
+	.AlipayLoginButton:active
+	{
+	}

@@ -48,7 +48,28 @@ namespace J.MainWeb.Controllers
 				{
 					/////////////////////////////////////////////////////////////////////////////////////////////////////////////
 					//请在这里加上商户的业务逻辑程序代码
+					#region 自行添加的业务逻辑
+					string user_id = Request.Form["user_id"];
+					string trade_status = Request.Form["trade_status"];
+					string refund_status = Request.Form["refund_status"];
 
+					if (user_id != null)
+					{
+						//执行登陆逻辑
+					}
+					if (trade_status != null)
+					{
+						//交易逻辑
+						if(refund_status != null)
+						{
+							//退款状态
+						}
+						else
+						{
+							//交易状态
+						}
+					}
+					#endregion
 
 					//——请根据您的业务逻辑来编写程序（以下代码仅作参考）——
 					//获取支付宝的通知返回参数，可参考技术文档中服务器异步通知参数列表

@@ -38,9 +38,7 @@
 				<ul>
 					@if (Session[J.BusinessLogics.Basic.SessionConfig.CurrentUser] == null)
 	 { 
-@*<li><a href="~/Home/Login">登录</a></li>*@
-						<li><a id="btnLogin" href="javascript:void(0);" onclick="return false;">登录</a></li>
-						<li><a href="~/Home/Register">注册</a></li>
+						<li> <a target="_blank" href="~/Alipay/Alipay_Login" class="button AlipayLoginButton"> </a></li>
 	 }
 	 else
 	 { 
@@ -57,10 +55,7 @@
 		@RenderBody()
 	</div>
 	<footer>
-		@if (Session[J.BusinessLogics.Basic.SessionConfig.CurrentUser] == null)
-  {
-			@Html.Action("LoginPartial", "Home", null);
-  }
+		
 	</footer>
 	<script type="text/javascript">
 		$(function ()

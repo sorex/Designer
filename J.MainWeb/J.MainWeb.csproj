@@ -224,6 +224,7 @@
     <Content Include="Static\Resources\jquery\jquery-migrate-1.2.1.js" />
     <Content Include="Static\Resources\jquery\jquery-migrate-1.2.1.min.js" />
     <Content Include="Static\Resources\mustache\mustache.js" />
+    <Content Include="Static\Resources\site\images\alipay_login_button.png" />
     <Content Include="Static\Resources\site\images\Logo_300x40.png" />
     <Content Include="Static\Resources\site\Logic_ConfirmOrder.css" />
     <Content Include="Static\Resources\site\DesignTShirt_Create.css" />

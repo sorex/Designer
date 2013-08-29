@@ -22,6 +22,16 @@ namespace J.MainWeb.Controllers
 
 		public ActionResult Index()
 		{
+			if (Session[SessionConfig.CurrentUser] == null)
+				using (DBEntities db = new DBEntities())
+				{
+					var User = (from u in db.users
+								where u.GUID == "9ece1f8700bb4dd38832f14e4b480107"
+								select u).FirstOrDefault();
+
+					Session[SessionConfig.CurrentUser] = User;
+				}
+			
 			return View();
 		}
 
