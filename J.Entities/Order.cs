@@ -42,6 +42,7 @@ namespace J.Entities
         public decimal Price { get; set; }
         public int Quantity { get; set; }
         public decimal Freight { get; set; }
+        public decimal Total { get; set; }
         public string Body { get; set; }
         public string Consignee { get; set; }
         public string Address { get; set; }

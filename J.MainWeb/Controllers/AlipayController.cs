@@ -83,7 +83,7 @@ namespace J.MainWeb.Controllers
 					string trade_no = Request.Form["trade_no"];
 
 					//交易状态
-					string trade_status = Request.Form["trade_status"];
+					//string trade_status = Request.Form["trade_status"];
 
 
 					if (Request.Form["trade_status"] == "WAIT_BUYER_PAY")
@@ -352,6 +352,13 @@ namespace J.MainWeb.Controllers
 			{
 				return Content("无返回参数");
 			}
+		}
+		#endregion
+
+		#region Pay
+		public ActionResult Alipay_Pay()
+		{
+			return Content("无返回参数");
 		}
 		#endregion
 	}

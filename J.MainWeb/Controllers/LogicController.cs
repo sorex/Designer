@@ -147,6 +147,7 @@ namespace J.MainWeb.Controllers
 					Price = DesignWork.SellingPrice,
 					Quantity = sizequantity.Values.Sum(),
 					Freight = sizequantity.Values.Sum() >= SystemConfig.FreePostageNumber ? 0 : SystemConfig.BaseFreight,
+					Total = DesignWork.SellingPrice * sizequantity.Values.Sum() + (sizequantity.Values.Sum() >= SystemConfig.FreePostageNumber ? 0 : SystemConfig.BaseFreight),
 					Body = DesignWork.material.Description
 				};
 				db.orders.Add(Order);

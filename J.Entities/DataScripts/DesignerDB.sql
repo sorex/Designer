@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- 主机: localhost
--- 生成日期: 2013 年 08 月 29 日 09:29
+-- 生成日期: 2013 年 08 月 30 日 09:01
 -- 服务器版本: 5.5.32
 -- PHP 版本: 5.3.25
 
@@ -300,15 +300,6 @@ CREATE TABLE IF NOT EXISTS `orderdetails` (
   KEY `OrderID` (`OrderID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
---
--- 转存表中的数据 `orderdetails`
---
-
-INSERT INTO `orderdetails` (`GUID`, `OrderID`, `SizeID`, `SizeName`, `Quantity`) VALUES
-('1d94e31992774a928d431c6aad6a4fc1', '0c12008a55a0424f8d7052698cdb95b1', '5d06b6a3e0df499bad870ce243fdb952', 'S', 1),
-('33e83e024da342738776676f87b60d09', '0c12008a55a0424f8d7052698cdb95b1', '47786f1477b14810a9cfe9742a540564', 'L', 2),
-('8ae114e01b564b39b64b4bf963296546', '0c12008a55a0424f8d7052698cdb95b1', 'b5cd176b668b4a90a7d8c95babf567ce', 'M', 1);
-
 -- --------------------------------------------------------
 
 --
@@ -339,6 +330,7 @@ CREATE TABLE IF NOT EXISTS `orders` (
   `Price` decimal(18,8) NOT NULL COMMENT '单价',
   `Quantity` int(11) NOT NULL COMMENT '数量',
   `Freight` decimal(18,8) NOT NULL COMMENT '运费',
+  `Total` decimal(18,8) NOT NULL COMMENT '总价',
   `Body` varchar(4000) DEFAULT NULL COMMENT '商品描述',
   `Consignee` varchar(200) DEFAULT NULL COMMENT '收件人姓名',
   `Address` varchar(200) DEFAULT NULL COMMENT '收件地址',
@@ -353,13 +345,6 @@ CREATE TABLE IF NOT EXISTS `orders` (
   KEY `DesignWorkID` (`DesignWorkID`),
   KEY `UserID` (`UserID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
-
---
--- 转存表中的数据 `orders`
---
-
-INSERT INTO `orders` (`GUID`, `UserID`, `DesignWorkID`, `State`, `CreateTime`, `ConfirmOrderTime`, `BuyerPayTime`, `StartProductionTime`, `SendGoodsTime`, `ConfirmGoodsTime`, `RefundTime`, `RefundAgreeTime`, `RefundFefuseTime`, `RefundGoodsTime`, `RefundGoodsAgreeTime`, `RefundGoodsFefuseTime`, `RefundGoodsSuccessTime`, `RefundSuccessTime`, `RefundClosedTime`, `Subject`, `Price`, `Quantity`, `Freight`, `Body`, `Consignee`, `Address`, `ZipCode`, `Mobile`, `Phone`, `ShippingMethod`, `PayType`, `PayOrderNo`, `ExpressNumber`) VALUES
-('0c12008a55a0424f8d7052698cdb95b1', '9ece1f8700bb4dd38832f14e4b480107', '7aa703935f244e53add6d53ea24d5b7a', 1, '2013-08-21 16:07:29', '2013-08-21 16:07:46', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Test', '44.00000000', 4, '0.00000000', '详细', 'Jasper', 'hubei wuhan  qingshang This is the test addresses', '400000', '18061234567', '', '中通速递', NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 

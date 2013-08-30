@@ -218,6 +218,7 @@
           <Property Name="Price" Type="decimal" Nullable="false" Precision="18" Scale="8" />
           <Property Name="Quantity" Type="int" Nullable="false" />
           <Property Name="Freight" Type="decimal" Nullable="false" Precision="18" Scale="8" />
+          <Property Name="Total" Type="decimal" Nullable="false" Precision="18" Scale="8" />
           <Property Name="Body" Type="varchar" MaxLength="4000" />
           <Property Name="Consignee" Type="varchar" MaxLength="200" />
           <Property Name="Address" Type="varchar" MaxLength="200" />
@@ -639,6 +640,7 @@
           <Property Type="Decimal" Name="Price" Nullable="false" />
           <Property Type="Int32" Name="Quantity" Nullable="false" />
           <Property Type="Decimal" Name="Freight" Nullable="false" />
+          <Property Type="Decimal" Name="Total" Nullable="false" />
           <Property Type="String" Name="Body" MaxLength="4000" FixedLength="false" Unicode="false" />
           <Property Type="String" Name="Consignee" MaxLength="200" FixedLength="false" Unicode="false" />
           <Property Type="String" Name="Address" MaxLength="200" FixedLength="false" Unicode="false" />
@@ -981,6 +983,7 @@
                 <ScalarProperty Name="Address" ColumnName="Address" />
                 <ScalarProperty Name="Consignee" ColumnName="Consignee" />
                 <ScalarProperty Name="Body" ColumnName="Body" />
+                <ScalarProperty Name="Total" ColumnName="Total" />
                 <ScalarProperty Name="Freight" ColumnName="Freight" />
                 <ScalarProperty Name="Quantity" ColumnName="Quantity" />
                 <ScalarProperty Name="Price" ColumnName="Price" />
