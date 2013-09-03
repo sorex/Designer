@@ -110,10 +110,10 @@ namespace J.BusinessLogics
 			return Result;
 		}
 
-
+		//退款
 		public int Refund(string PayTradeNO, string BuyerID, string OrderID)
 		{
-
+			return 0;
 		}
 	}
 }

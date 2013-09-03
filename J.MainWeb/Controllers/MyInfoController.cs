@@ -33,7 +33,7 @@ namespace J.MainWeb.Controllers
 
 				var recordCount = allorders.Count();
 				//页数以0开始，无余数时需-1
-				var pageAll = recordCount / SystemConfig.PageSize - (recordCount % SystemConfig.PageSize == 0 ? 1 : 0);
+				var pageAll = recordCount == 0 ? 0 :recordCount / SystemConfig.PageSize - (recordCount % SystemConfig.PageSize == 0 ? 1 : 0);
 				if (pageIndex > pageAll) pageIndex = pageAll;
 
 				var search = allorders.Skip(pageIndex * SystemConfig.PageSize).Take(SystemConfig.PageSize).ToList();
@@ -110,7 +110,7 @@ namespace J.MainWeb.Controllers
 
 				var recordCount = alldesignworks.Count();
 				//页数以0开始，无余数时需-1
-				var pageAll = recordCount / SystemConfig.PageSize - (recordCount % SystemConfig.PageSize == 0 ? 1 : 0);
+				var pageAll = recordCount == 0 ? 0 : recordCount / SystemConfig.PageSize - (recordCount % SystemConfig.PageSize == 0 ? 1 : 0);
 				if (pageIndex > pageAll) pageIndex = pageAll;
 
 				var search = alldesignworks.Skip(pageIndex * SystemConfig.PageSize).Take(SystemConfig.PageSize).ToList();
