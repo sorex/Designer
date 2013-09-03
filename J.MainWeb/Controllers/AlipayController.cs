@@ -430,6 +430,25 @@ namespace J.MainWeb.Controllers
 			return Content(sHtmlText);
 
 		}
+
+		public bool Alipay_PayOK(string PayTradeNO, string BuyerID, string OrderID)
+		{
+			var Result = false;
+			using (DBEntities db = new DBEntities())
+			{
+				var Order = db.orders.FirstOrDefault(p => p.GUID == OrderID && p.UserID == BuyerID && p.State == 1);
+				if (Order != null)
+				{
+					Order.State = 2;
+					Order.PayType = 1;
+					Order.PayOrderNo = PayTradeNO;
+					Order.BuyerPayTime = DateTime.Now;
+					db.SaveChanges();
+					Result = true;
+				}
+			}
+			return Result;
+		}
 		#endregion
 	}
 }
