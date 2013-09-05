@@ -12,8 +12,7 @@
 		<div id="ShowEffect" class="group template">
 			<script type="text/x-mustache">
 			{{#items}}
-			<div id="_{{GUID}}_backgroundImage" style="position: relative; background-image: url('/Static/SystemFiles/{{CurrentMaterialTypeID}}/{{CurrentMaterialID}}/{{CurrentColorCode}}/{{FileName}}'); width: {{Width}}px; height: {{Height}}px;">
-				<div id="_{{GUID}}_uploadImage" class="uploadImage" style="background-image: url('/Static/UserFiles/{{UserID}}/{{DesignworkID}}/{{FileName}}'); width: {{getUploadWidth}}px; height: {{getUploadHeight}}px; left: {{Left}}px; top: {{Top}}px;"></div>
+			<div id="_{{GUID}}_backgroundImage" style="position: relative; background-image: url('/Static/UserFiles/{{UserID}}/{{DesignworkID}}/m_{{FileName}}'); width: {{Width}}px; height: {{Height}}px;">
 			</div>
 			{{/items}}
 			</script>

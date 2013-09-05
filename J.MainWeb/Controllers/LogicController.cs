@@ -39,7 +39,7 @@ namespace J.MainWeb.Controllers
 				Dictionary<string, List<string>> TypeAndProperties = new Dictionary<string, List<string>>();
 				TypeAndProperties.Add("materialpicture", new List<string> { "GUID", "MaterialID", "Name", "Index", "FileName", "Width", "Height", "Top", "Left", "UploadWidth", "UploadHeight", "ShowScale" });
 
-				ViewBag.DataMaterialpictures = JsonConvert.SerializeObject(dw.material.materialpictures, new JsonSerializerSettings { ContractResolver = new DynamicContractResolver(TypeAndProperties) });
+				ViewBag.DataMaterialpictures = JsonConvert.SerializeObject(dw.material.materialpictures.OrderBy(p=>p.Index), new JsonSerializerSettings { ContractResolver = new DynamicContractResolver(TypeAndProperties) });
 			}
 			return View();
 		}
