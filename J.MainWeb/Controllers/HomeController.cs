@@ -20,18 +20,63 @@ namespace J.MainWeb.Controllers
 	{
 		private static Logger logger = LogManager.GetCurrentClassLogger();
 
+		//[OutputCache(Duration = 3600)]
 		public ActionResult Index()
 		{
-			if (Session[SessionConfig.CurrentUser] == null)
-				using (DBEntities db = new DBEntities())
-				{
-					var User = (from u in db.users
-								where u.GUID == "9ece1f8700bb4dd38832f14e4b480107"
-								select u).FirstOrDefault();
+			//if (Session[SessionConfig.CurrentUser] == null)
+			//	using (DBEntities db = new DBEntities())
+			//	{
+			//		var User = (from u in db.users
+			//					where u.GUID == "9ece1f8700bb4dd38832f14e4b480107"
+			//					select u).FirstOrDefault();
 
-					Session[SessionConfig.CurrentUser] = User;
+			//		Session[SessionConfig.CurrentUser] = User;
+			//	}
+
+			using (DBEntities db = new DBEntities())
+			{
+				var ShowIDs = "b1bed31ded4740f6801bc5490badbc6d,dc68dcd318d14e019c23ba84a2605c03".Split(',');
+				var search = (from dw in db.designworks
+							  where ShowIDs.Contains(dw.GUID)
+							  orderby dw.StartTime descending
+							  select dw).ToList();
+
+				var result = new[] { new {
+					GUID = "GUID", 
+					DesignerID = "DesignerID",
+					MaterialPictureFileName = "MaterialPictureFileName",
+					DesignerName = "DesignerName",
+					Title = "Title",
+					Description = "Description",
+					SellingPrice = "1.00",
+					SalesVolume = "1",
+					SalesGoal = "1",
+					EndTime = "2013-07-10 14:52"
+				} }.ToList();
+				result.Clear();
+
+				foreach (var dw in search)
+				{
+					var MaterialPictureFileName = dw.material.materialpictures.OrderBy(p => p.Index).FirstOrDefault().FileName;
+
+					result.Add(new
+					{
+						GUID = dw.GUID,
+						DesignerID = dw.user.GUID,
+						MaterialPictureFileName = MaterialPictureFileName,
+						DesignerName = dw.user.StageName,
+						Title = dw.Title,
+						Description = dw.Description,
+						SellingPrice = dw.SellingPrice.ToString("0.00"),
+						SalesVolume = dw.SalesVolume.Value.ToString(),
+						SalesGoal = dw.SalesGoal.ToString(),
+						EndTime = dw.EndTime == null ? String.Empty : dw.EndTime.Value.ToString("yyyy-MM-dd HH:mm:ss"),
+					});
 				}
-			
+
+				ViewBag.Data = JsonConvert.SerializeObject(new { items = result });
+			}
+
 			return View();
 		}
 

@@ -41,7 +41,7 @@
 			</tr>
 			<tr class="item2">
 				<td>
-					<img class="itemImage" alt="查看详情" src="/Static/UserFiles/{{DesignerID}}/{{DesignWorkID}}/50_{{MaterialPictureFileName}}" />
+					<img class="itemImage" alt="查看详情" src="/Static/UserFiles/{{DesignerID}}/{{DesignWorkID}}/50_{{MaterialPictureFileName}}" data-tooptip="data-tooptip" data-tooptipSrc="/Static/UserFiles/{{DesignerID}}/{{DesignWorkID}}/180_{{MaterialPictureFileName}}"/>
 				</td>
 				<td style="text-align: left;">
 					<a href="">{{Title}}</a>
@@ -196,6 +196,23 @@
 			});
 
 			$("#dataTable").render(Data);
+
+			$( document ).tooltip({
+				items: "img, [data-tooptip], [title]",
+				content: function() {
+					var element = $( this );
+					if ( element.is( "[data-tooptip]" ) ) {
+						var text = element.text();
+						return "<img src='" + element.attr("data-tooptipSrc") + "'>";
+					}
+					if ( element.is( "[title]" ) ) {
+						return element.attr( "title" );
+					}
+					if ( element.is( "img" ) ) {
+						return element.attr( "alt" );
+					}
+				}
+			});
 		});
 
 	</script>

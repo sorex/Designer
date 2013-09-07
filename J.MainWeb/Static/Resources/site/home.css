@@ -122,144 +122,96 @@
 		background: transparent url("images/home/space_50x18.png") center center no-repeat;
 	}
 
-
 .body .line3
 {
-	height: 360px;
 	border: 2px solid #000000;
 	margin-top: 15px;
 }
 
-	.body .line3 .leftButton
+	.body .line3 .itemDiv
 	{
-		display: inline-block;
+		width: 492px;
+		height: 230px;
+		border: 1px solid #ccc;
 		float: left;
-		width: 44px;
-		height: 100%;
-		background: transparent url("images/home/left_button_44x44_default.png") center center no-repeat;
+		margin: 2px;
 	}
 
-		.body .line3 .leftButton:hover
+		.body .line3 .itemDiv .itemImage
 		{
-			background-image: url("images/home/left_button_44x44_hover.png");
-			background-color: #eeeeee;
+			width: 180px;
+			height: 180px;
+			float: left;
 		}
 
-	.body .line3 .rightButton
-	{
-		display: inline-block;
-		float: right;
-		width: 44px;
-		height: 100%;
-		background: transparent url("images/home/right_button_44x44_default.png") center center no-repeat;
-	}
-
-		.body .line3 .rightButton:hover
+		.body .line3 .itemDiv .itemInfo
 		{
-			background-image: url("images/home/right_button_44x44_hover.png");
-			background-color: #eeeeee;
+			width: 310px;
+			height: 180px;
+			float: left;
 		}
 
-	.body .line3 .listDiv
-	{
-		width: 908px; /* 1000 - 2*2（边框） - 44*2（左右按钮） */
-		height: 100%;
-		margin-left: auto;
-		margin-right: auto;
-		overflow-x: hidden;
-	}
-
-		.body .line3 .listDiv .listContainDiv
-		{
-			height: 100%;
-			width: 3632px;
-		}
-
-			.body .line3 .listDiv .listContainDiv .itemDiv
+			.body .line3 .itemDiv .itemInfo h1
 			{
-				display: inline-block;
-				float: left;
-				width: 904px; /* 908- 2*2（自身边框） */
-				height: 100%;
-				border-left: 2px solid #000000;
-				border-right: 2px solid #000000;
+				height: 30px;
+				font-size: 24px;
+				overflow: hidden;
 			}
 
-				.body .line3 .listDiv .listContainDiv .itemDiv .imageDiv
+			.body .line3 .itemDiv .itemInfo h2
+			{
+				height: 20px;
+				font-size: 14px;
+				overflow: hidden;
+			}
+
+			.body .line3 .itemDiv .itemInfo .descriptionInfo
+			{
+				height: 130px;
+				overflow-y: auto;
+			}
+
+		.body .line3 .itemDiv .saleInfo
+		{
+			width: 480px;
+			height: 50px;
+			float: left;
+			margin-left: 6px;
+		}
+
+			.body .line3 .itemDiv .saleInfo span
+			{
+				/*display: block;*/
+				font-size: 16px;
+			}
+
+			.body .line3 .itemDiv .saleInfo a
+			{
+				display: inline-block;
+				font-size: 20px;
+				font-weight: bold;
+			}
+
+				.body .line3 .itemDiv .saleInfo a:link
 				{
-					display: inline-block;
-					float: left;
-					width: 480px;
-					height: 100%;
+					text-decoration: none;
+					color: #3772b8;
 				}
 
-				.body .line3 .listDiv .listContainDiv .itemDiv .infoDiv
+				.body .line3 .itemDiv .saleInfo a:visited
 				{
-					display: inline-block;
-					float: left;
-					width: 414px; /* 904 - 480（图片宽度） - 2（自身边框） - 4*2（自身padding） */
-					height: 100%;
-					border-left: 2px solid #000000;
-					padding-left: 4px;
-					padding-right: 4px;
+					text-decoration: none;
+					color: #3772b8;
 				}
 
-					.body .line3 .listDiv .listContainDiv .itemDiv .infoDiv h1
-					{
-						height: 31px;
-						font-size: 24px;
-						overflow: hidden;
-					}
+				.body .line3 .itemDiv .saleInfo a:hover
+				{
+					text-decoration: underline;
+					color: #365d93;
+				}
 
-					.body .line3 .listDiv .listContainDiv .itemDiv .infoDiv h2
-					{
-						height: 20px;
-						font-size: 14px;
-						overflow: hidden;
-					}
-
-					.body .line3 .listDiv .listContainDiv .itemDiv .infoDiv .DescriptionDiv
-					{
-						height: 200px;
-						overflow-y: auto;
-					}
-
-					.body .line3 .listDiv .listContainDiv .itemDiv .infoDiv .OtherDiv
-					{
-						border-top: 2px solid #000000;
-					}
-
-					.body .line3 .listDiv .listContainDiv .itemDiv .infoDiv .LinkDiv
-					{
-					}
-
-						.body .line3 .listDiv .listContainDiv .itemDiv .infoDiv .LinkDiv a
-						{
-							display: inline-block;
-							font-size: 24px;
-							font-weight: bold;
-						}
-
-							.body .line3 .listDiv .listContainDiv .itemDiv .infoDiv .LinkDiv a:link
-							{
-								text-decoration: none;
-								color: #3772b8;
-							}
-
-							.body .line3 .listDiv .listContainDiv .itemDiv .infoDiv .LinkDiv a:visited
-							{
-								text-decoration: none;
-								color: #3772b8;
-							}
-
-							.body .line3 .listDiv .listContainDiv .itemDiv .infoDiv .LinkDiv a:hover
-							{
-								text-decoration: underline;
-								color: #365d93;
-							}
-
-							.body .line3 .listDiv .listContainDiv .itemDiv .infoDiv .LinkDiv a:active
-							{
-								text-decoration: underline;
-								color: #365d93;
-							}
+				.body .line3 .itemDiv .saleInfo a:active
+				{
+					text-decoration: underline;
+					color: #365d93;
+				}
