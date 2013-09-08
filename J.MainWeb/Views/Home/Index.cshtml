@@ -49,6 +49,11 @@
 
 <div id="showItems" class="line3 ui-helper-clearfix template">
 	<script type="text/x-mustache">
+		<div class="ui-helper-clearfix">
+			<span style="font-size: 16px;">设计展示</span>
+			<a href="/Home/AllDesign" style="float: right;">更多</a>
+		</div>
+		<div class="hl"></div>
 		{{#items}}
 	<div class="itemDiv">
 		<div class="itemImage" style="background-image:url(/Static/UserFiles/{{DesignerID}}/{{GUID}}/180_{{MaterialPictureFileName}})"></div>
@@ -60,10 +65,14 @@
 			</div>
 		</div>
 		<div class="saleInfo">
-			<span style="color:#0094ff;">售价：￥{{SellingPrice}}</span>
-			<span style="float:right;">已售/目标 {{SalesVolume}}/{{SalesGoal}}</span><br />
-			<a href="/Logic/Buy?guid={{GUID}}" target="_blank">查看这个活动 »</a>
-			<span style="float:right;">截止时间：{{EndTime}}</span>
+			<div>
+				<span style="color:#0094ff;">售价：￥{{SellingPrice}}</span>
+				<span style="float:right;">已售/目标：{{SalesVolume}}/{{SalesGoal}}</span>
+			</div>
+			<div>
+				<a href="/Logic/Buy?guid={{GUID}}" target="_blank">查看这个活动 »</a>
+				<span style="float:right;">截止时间：{{EndTime}}</span>
+			</div>
 		</div>
 	</div>
 		{{/items}}
@@ -78,35 +87,6 @@
 		$(function ()
 		{
 			$.initTemplate();
-			$("#showItems").data("template_extend", {
-				stateIs0: function ()
-				{
-					return this.State == 0;
-				},
-				stateString:function()
-				{
-					switch (this.State) {
-						case -1:
-							return "预售不足";
-						case 0:
-							return "设计中";
-						case 1:
-							return "正在预售";
-						case 2:
-							return "等待生产";
-						case 3:
-							return "已发货";
-						case 4:
-							return "收款中";
-						case 5:
-							return "等待返款";
-						case 6:
-							return "完成";
-						default:
-							return " ";
-					}
-				}
-			});
 
 			$("#showItems").render(Data);
 		});

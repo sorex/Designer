@@ -27,5 +27,10 @@ namespace J.BusinessLogics.Basic
 		/// 基础运费，不够包邮时加的运费
 		/// </summary>
 		public const decimal BaseFreight = 8.0m;
+
+		/// <summary>
+		/// 显示所有设计的界面，每页数据量
+		/// </summary>
+		public const int AllDesignPageSize = 40;
 	}
 }

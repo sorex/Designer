@@ -1,0 +1,56 @@
+﻿@{
+	ViewBag.Title = "AllDesign";
+}
+@section head{
+	<link rel="stylesheet" href="~/Static/Resources/site/home.css" />
+}
+
+<div id="showItems" class="line3 ui-helper-clearfix template">
+	<script type="text/x-mustache">
+		{{#items}}
+	<div class="itemDiv">
+		<div class="itemImage" style="background-image:url(/Static/UserFiles/{{DesignerID}}/{{GUID}}/180_{{MaterialPictureFileName}})"></div>
+		<div class="itemInfo">
+			<h1>{{Title}}</h1>
+			<h2 style="color:#0094ff;">设计师：{{DesignerName}}</h2>
+			<div class="descriptionInfo">
+				{{Description}}
+			</div>
+		</div>
+		<div class="saleInfo">
+			<div>
+				<span style="color:#0094ff;">售价：￥{{SellingPrice}}</span>
+				<span style="float:right;">已售/目标：{{SalesVolume}}/{{SalesGoal}}</span>
+			</div>
+			<div>
+				<a href="/Logic/Buy?guid={{GUID}}" target="_blank">查看这个活动 »</a>
+				<span style="float:right;">截止时间：{{EndTime}}</span>
+			</div>
+		</div>
+	</div>
+		{{/items}}
+	</script>
+</div>
+<div style="text-align: left;">
+	@if (ViewBag.HasPrev)
+ { 
+		<a href="~/MyInfo/MyOrders?pageIndex=@ViewBag.PrevPageIndex" >上一页</a>
+ }
+	@if (ViewBag.HasNext)
+ { 
+		<a href="~/MyInfo/MyOrders?pageIndex=@ViewBag.NextPageIndex" >下一页</a>
+ }
+</div>
+
+@section scripts{
+	<script type="text/javascript">
+		var Data = @Html.Raw(ViewBag.Data) ;
+
+		$(function ()
+		{
+			$.initTemplate();
+
+			$("#showItems").render(Data);
+		});
+	</script>
+}
