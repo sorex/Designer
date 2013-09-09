@@ -137,7 +137,68 @@ namespace J.MainWeb.Controllers
 				ViewBag.HasPrev = pageIndex > 0;
 				ViewBag.PrevPageIndex = pageIndex - 1;
 				ViewBag.pageIndex = pageIndex;
+			}
 
+			return View();
+		}
+
+		public ActionResult UserDesign(string userID, int pageIndex = 0)
+		{
+
+			using (DBEntities db = new DBEntities())
+			{
+				var alldesignworks = from dw in db.designworks
+									 where dw.State > 0 && dw.DesignerID == userID
+									 orderby dw.EndTime descending
+									 select dw;
+
+				var recordCount = alldesignworks.Count();
+				//页数以0开始，无余数时需-1
+				var pageAll = recordCount == 0 ? 0 : recordCount / SystemConfig.AllDesignPageSize - (recordCount % SystemConfig.AllDesignPageSize == 0 ? 1 : 0);
+				if (pageIndex > pageAll) pageIndex = pageAll;
+
+				var search = alldesignworks.Skip(pageIndex * SystemConfig.AllDesignPageSize).Take(SystemConfig.AllDesignPageSize).ToList();
+
+
+				var result = new[] { new {
+					GUID = "GUID", 
+					DesignerID = "DesignerID",
+					MaterialPictureFileName = "MaterialPictureFileName",
+					DesignerName = "DesignerName",
+					Title = "Title",
+					Description = "Description",
+					SellingPrice = "1.00",
+					SalesVolume = "1",
+					SalesGoal = "1",
+					EndTime = "2013-07-10 14:52"
+				} }.ToList();
+				result.Clear();
+
+				foreach (var dw in search)
+				{
+					var MaterialPictureFileName = dw.material.materialpictures.OrderBy(p => p.Index).FirstOrDefault().FileName;
+
+					result.Add(new
+					{
+						GUID = dw.GUID,
+						DesignerID = dw.user.GUID,
+						MaterialPictureFileName = MaterialPictureFileName,
+						DesignerName = dw.user.StageName,
+						Title = dw.Title,
+						Description = dw.Description,
+						SellingPrice = dw.SellingPrice.ToString("0.00"),
+						SalesVolume = dw.SalesVolume.Value.ToString(),
+						SalesGoal = dw.SalesGoal.ToString(),
+						EndTime = dw.EndTime == null ? String.Empty : dw.EndTime.Value.ToString("yyyy-MM-dd HH:mm:ss"),
+					});
+				}
+
+				ViewBag.Data = JsonConvert.SerializeObject(new { items = result });
+				ViewBag.HasNext = pageAll > pageIndex;
+				ViewBag.NextPageIndex = pageIndex + 1;
+				ViewBag.HasPrev = pageIndex > 0;
+				ViewBag.PrevPageIndex = pageIndex - 1;
+				ViewBag.pageIndex = pageIndex;
 			}
 
 			return View();
