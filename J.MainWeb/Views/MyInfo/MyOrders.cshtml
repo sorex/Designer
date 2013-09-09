@@ -119,78 +119,8 @@
 							return '<span>退款关闭</span>';
 						case -1:
 							return '<span>交易关闭</span>';
-					}
-
-
-					// 退款状态
-					// 0：未发生退款
-					// 1：退款申请中
-					// 2：退款成功
-					// 3：退款失败
-					switch (this.RefundState)
-					{
-						case 0:
-							// 状态
-							// 0：等待输入地址等信息
-							// 1：等待买家付款
-							// 2：买家已付款，等待卖家发货
-							// 3：卖家已发货，等待买家确认
-							// 4：交易成功结束
-							// 5：交易中途关闭(已结束，未成功完成)
-							switch (this.State)
-							{
-								case 0:
-									return '<a href="/Logic/ConfirmOrder?guid=' + this.GUID + '" target="_blank">确认地址</a>';
-								case 1:
-									return '<a href="/Logic/Pay?guid=' + this.GUID + '" target="_blank">付款</a>';
-								case 2:
-									switch (this.DesignWorkState)
-									{
-										// 状态
-										// -1：预售不足
-										// 0：设计中
-										// 1：预售中
-										// 2：生产中
-										// 3：发货中
-										// 4：收款中
-										// 5：返款中
-										// 6：归档
-										case -1:
-											return '<span>预售不足，退款中</span>';
-										case 1:
-											return '<span>等待预售结束</span>';
-										case 2:
-											return '<span>生产中</span>';
-										case 3:
-											return '<span>发货中</span>';
-									}
-								case 3:
-									return '<span>已发货</span>';
-								case 4:
-									return '<span>交易成功</span>';
-								case 5:
-									return '<span>交易关闭</span>';
-							}
-						case 1:
-							return '<span>申请退款中</span>';
-						case 2:
-							return '<span>退款成功</span>';
-						case 3:
-							return '<span>退款失败</span>';
-
-					}
-					return "";
-				},
-				stateAction: function ()
-				{
-					switch (this.State)
-					{
-						case 0:
-							return "设计中";
-						case 1:
-							return " ";
 						default:
-							return " ";
+							return '';
 					}
 				}
 			});
@@ -214,6 +144,5 @@
 				}
 			});
 		});
-
 	</script>
 }
