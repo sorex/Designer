@@ -1,5 +1,5 @@
 ﻿@{
-	ViewBag.Title = "AllDesign";
+	ViewBag.Title = "UserDesign";
 }
 @section head{
 	<link rel="stylesheet" href="~/Static/Resources/site/home.css" />
@@ -34,11 +34,11 @@
 <div style="text-align: left;">
 	@if (ViewBag.HasPrev)
  { 
-		<a href="~/Home/AllDesign?pageIndex=@ViewBag.PrevPageIndex" >上一页</a>
+		<a href="~/Home/UserDesign?userID=@ViewBag.userID&pageIndex=@ViewBag.PrevPageIndex" >上一页</a>
  }
 	@if (ViewBag.HasNext)
  { 
-		<a href="~/Home/AllDesign?pageIndex=@ViewBag.NextPageIndex" >下一页</a>
+		<a href="~/Home/UserDesign?userID=@ViewBag.userID&pageIndex=@ViewBag.NextPageIndex" >下一页</a>
  }
 </div>
 

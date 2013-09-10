@@ -13,6 +13,7 @@ using J.Utility.Cryptography;
 using J.Utility;
 using System.IO;
 using J.MainWeb.App_Code;
+using System.Drawing;
 
 namespace J.MainWeb.Controllers
 {
@@ -199,6 +200,8 @@ namespace J.MainWeb.Controllers
 				ViewBag.HasPrev = pageIndex > 0;
 				ViewBag.PrevPageIndex = pageIndex - 1;
 				ViewBag.pageIndex = pageIndex;
+
+				ViewBag.userID = userID;
 			}
 
 			return View();
@@ -422,6 +425,203 @@ namespace J.MainWeb.Controllers
 				return Content(JsonConvert.SerializeObject(new { state = "error", msg = e.Message }));
 			}
 		}
+		#endregion
+
+		#region 添加数据
+		/*
+		public ActionResult AddData()
+		{
+			using (DBEntities db = new DBEntities())
+			{
+				var mt = db.materialtypes.FirstOrDefault(p => p.GUID == "tshirt");
+
+				#region material
+				var m1 = new material
+				{
+					GUID = "womanshorttee",
+					TypeID = mt.GUID,
+					Name = "女士短袖T恤",
+					Price = 45.0m,
+					Description = String.Empty,
+					PictureNumber = 2,
+					State = 1
+				};
+				#endregion
+				#region materialsize
+				var m1ms1 = new materialsize
+				{
+					GUID = Basic.NewGuid(),
+					MaterialID = m1.GUID,
+					SizeName = "XS",
+					Index = 1
+				};
+				var m1ms2 = new materialsize
+				{
+					GUID = Basic.NewGuid(),
+					MaterialID = m1.GUID,
+					SizeName = "S",
+					Index = 2
+				};
+				var m1ms3 = new materialsize
+				{
+					GUID = Basic.NewGuid(),
+					MaterialID = m1.GUID,
+					SizeName = "M",
+					Index = 3
+				};
+				var m1ms4 = new materialsize
+				{
+					GUID = Basic.NewGuid(),
+					MaterialID = m1.GUID,
+					SizeName = "L",
+					Index = 4
+				};
+				#endregion
+				#region materialcolor
+				var m1mc1 = new materialcolor
+				{
+					GUID = Basic.NewGuid(),
+					MaterialID = m1.GUID,
+					ColorName = "白色",
+					ColorCode = "ffffff",
+					IsDefault = true,
+					State = 1
+				};
+				var m1mc2 = new materialcolor
+				{
+					GUID = Basic.NewGuid(),
+					MaterialID = m1.GUID,
+					ColorName = "黑色",
+					ColorCode = "1a1a1a",
+					IsDefault = false,
+					State = 1
+				};
+				var m1mc3 = new materialcolor
+				{
+					GUID = Basic.NewGuid(),
+					MaterialID = m1.GUID,
+					ColorName = "灰色",
+					ColorCode = "d4cfc3",
+					IsDefault = false,
+					State = 1
+				};
+				var m1mc4 = new materialcolor
+				{
+					GUID = Basic.NewGuid(),
+					MaterialID = m1.GUID,
+					ColorName = "深蓝色",
+					ColorCode = "1a2f78",
+					IsDefault = false,
+					State = 1
+				};
+				var m1mc5 = new materialcolor
+				{
+					GUID = Basic.NewGuid(),
+					MaterialID = m1.GUID,
+					ColorName = "深红色",
+					ColorCode = "9f0110",
+					IsDefault = false,
+					State = 1
+				};
+				var m1mc6 = new materialcolor
+				{
+					GUID = Basic.NewGuid(),
+					MaterialID = m1.GUID,
+					ColorName = "橙色",
+					ColorCode = "e54d09",
+					IsDefault = false,
+					State = 1
+				};
+				var m1mc7 = new materialcolor
+				{
+					GUID = Basic.NewGuid(),
+					MaterialID = m1.GUID,
+					ColorName = "紫色",
+					ColorCode = "4b256e",
+					IsDefault = false,
+					State = 1
+				};
+				#endregion
+				#region materialpicture
+				var m1mp1 = new materialpicture
+				{
+					GUID = Basic.NewGuid(),
+					MaterialID = m1.GUID,
+					Name = "正面",
+					Index = 1,
+					FileName = "01.png",
+					Width = 530,
+					Height = 630,
+					Top = 105,
+					Left = 145,
+					UploadWidth = 842,
+					UploadHeight = 1190,
+					ShowScale = 0.285m
+				};
+				var m1mp2 = new materialpicture
+				{
+					GUID = Basic.NewGuid(),
+					MaterialID = m1.GUID,
+					Name = "背面",
+					Index = 2,
+					FileName = "02.png",
+					Width = 530,
+					Height = 630,
+					Top = 105,
+					Left = 145,
+					UploadWidth = 842,
+					UploadHeight = 1190,
+					ShowScale = 0.285m
+				};
+				#endregion
+
+				#region AddToDB
+				db.materials.Add(m1);
+				db.materialcolors.Add(m1mc1);
+				db.materialcolors.Add(m1mc2);
+				db.materialcolors.Add(m1mc3);
+				db.materialcolors.Add(m1mc4);
+				db.materialcolors.Add(m1mc5);
+				db.materialcolors.Add(m1mc6);
+				db.materialcolors.Add(m1mc7);
+				db.materialpictures.Add(m1mp1);
+				db.materialpictures.Add(m1mp2);
+				db.materialsizes.Add(m1ms1);
+				db.materialsizes.Add(m1ms2);
+				db.materialsizes.Add(m1ms3);
+				db.materialsizes.Add(m1ms4);
+				db.SaveChanges();
+				#endregion
+				#region 保存文件
+				// D:\Work\GitHub\Designer\J.MainWeb\Static\SystemFiles\tshirt
+				foreach (var mc in m1.materialcolors)
+				{
+					foreach (var mp in m1.materialpictures)
+					{
+						CreateP(m1.GUID, mc.ColorCode, mp.FileName, mp.Index);
+					}
+				}
+				#endregion
+			}
+
+			return View();
+		}
+
+		public void CreateP(string guid, string ColorCode, string FileName, int Index)
+		{
+			var dir = "D:\\Work\\GitHub\\Designer\\J.MainWeb\\Static\\SystemFiles\\tshirt\\" + guid + "\\" + ColorCode;
+			if (!Directory.Exists(dir))
+				Directory.CreateDirectory(dir);
+
+			Bitmap SolidColor = new Bitmap(530, 630);
+			Graphics grapSolidColor = Graphics.FromImage(SolidColor);
+			grapSolidColor.Clear(J.Utility.ImageTool.Basic.ColorFromHEX(ColorCode));
+			if (Index == 1)
+				J.Utility.ImageTool.Basic.Merge(SolidColor, new Bitmap("C:/Users/Jasper/Desktop/图片/女士短袖（正）.png"), 0, 0).Save(dir + "\\" + FileName);
+			else
+				J.Utility.ImageTool.Basic.Merge(SolidColor, new Bitmap("C:/Users/Jasper/Desktop/图片/女士短袖（反）.png"), 0, 0).Save(dir + "\\" + FileName);
+		}
+		*/
 		#endregion
 	}
 }

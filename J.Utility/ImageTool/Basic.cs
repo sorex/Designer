@@ -59,5 +59,28 @@ namespace J.Utility.ImageTool
 
 			return Result;
 		}
+
+		/// <summary>  
+		/// 将16进制颜色字符串(ffffff)转化为Color 
+		/// </summary>  
+		/// <param name="HEX">16进制颜色(FFFFFF)</param>  
+		/// <returns>Color</returns>  
+		public static Color ColorFromHEX(string HEX)
+		{
+			return System.Drawing.Color.FromArgb(
+				System.Int32.Parse(HEX.Substring(0, 2), System.Globalization.NumberStyles.AllowHexSpecifier), 
+				System.Int32.Parse(HEX.Substring(2, 2), System.Globalization.NumberStyles.AllowHexSpecifier), 
+				System.Int32.Parse(HEX.Substring(4, 2), System.Globalization.NumberStyles.AllowHexSpecifier));
+		}
+
+		/// <summary>
+		/// 将Color转换为16进制的颜色字符串(ffffff),小写
+		/// </summary>
+		/// <param name="color">颜色</param>
+		/// <returns>16进制的颜色字符串(ffffff),小写</returns>
+		public static String ColorToHEX(Color color)
+		{
+			return color.R.ToString("x02") + color.G.ToString("x02") + color.B.ToString("x02");
+		}
 	}
 }
