@@ -2,10 +2,10 @@
 -- version 4.0.2
 -- http://www.phpmyadmin.net
 --
--- 涓绘満: localhost
--- 鐢熸垚鏃ユ湡: 2013 骞?09 鏈?10 鏃?15:15
--- 鏈嶅姟鍣ㄧ増鏈? 5.5.32
--- PHP 鐗堟湰: 5.3.25
+-- 主机: localhost
+-- 生成日期: 2013 年 09 月 11 日 15:49
+-- 服务器版本: 5.5.32
+-- PHP 版本: 5.3.25
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -17,7 +17,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8 */;
 
 --
--- 鏁版嵁搴? `designerdb`
+-- 数据库: `designerdb`
 --
 CREATE DATABASE IF NOT EXISTS `designerdb` DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;
 USE `designerdb`;
@@ -25,60 +25,60 @@ USE `designerdb`;
 -- --------------------------------------------------------
 
 --
--- 琛ㄧ殑缁撴瀯 `addresses`
+-- 表的结构 `addresses`
 --
 
 CREATE TABLE IF NOT EXISTS `addresses` (
   `GUID` varchar(200) NOT NULL,
   `UserID` varchar(200) NOT NULL,
-  `Consignee` varchar(200) NOT NULL COMMENT '鏀惰揣浜?,
-  `Province` varchar(200) NOT NULL COMMENT '鐪?,
-  `City` varchar(200) NOT NULL COMMENT '甯?,
-  `County` varchar(200) NOT NULL COMMENT '鍖?鍘?,
-  `StreetAddress` varchar(1000) NOT NULL COMMENT '琛楅亾鍦板潃',
-  `ZipCode` varchar(200) NOT NULL COMMENT '閭紪',
-  `Mobile` varchar(200) NOT NULL COMMENT '鎵嬫満鍙风爜',
-  `Phone` varchar(200) NOT NULL COMMENT '鐢佃瘽鍙风爜',
-  `IsDefault` bit(1) NOT NULL DEFAULT b'0' COMMENT '鏄惁榛樿鍦板潃',
+  `Consignee` varchar(200) NOT NULL COMMENT '收货人',
+  `Province` varchar(200) NOT NULL COMMENT '省',
+  `City` varchar(200) NOT NULL COMMENT '市',
+  `County` varchar(200) NOT NULL COMMENT '区/县',
+  `StreetAddress` varchar(1000) NOT NULL COMMENT '街道地址',
+  `ZipCode` varchar(200) NOT NULL COMMENT '邮编',
+  `Mobile` varchar(200) NOT NULL COMMENT '手机号码',
+  `Phone` varchar(200) NOT NULL COMMENT '电话号码',
+  `IsDefault` bit(1) NOT NULL DEFAULT b'0' COMMENT '是否默认地址',
   PRIMARY KEY (`GUID`),
   KEY `UserID` (`UserID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- 杞瓨琛ㄤ腑鐨勬暟鎹?`addresses`
+-- 转存表中的数据 `addresses`
 --
 
 INSERT INTO `addresses` (`GUID`, `UserID`, `Consignee`, `Province`, `City`, `County`, `StreetAddress`, `ZipCode`, `Mobile`, `Phone`, `IsDefault`) VALUES
 ('1e5dfe31d9ec478abcac8da9518f867d', '9ece1f8700bb4dd38832f14e4b480107', 'Jasper', 'hubei', 'wuhan ', 'qingshang', 'This is the test addresses', '400000', '18061234567', '', b'1'),
-('5a3055278883456ab09a5bf12c7ec254', '9ece1f8700bb4dd38832f14e4b480107', 'Jasper', '婀栧寳鐪?, '姝︽眽甯?, '闈掑北鍖?, '杩欐槸涓€涓祴璇曠殑鍦板潃', '400000', '18067654321', '027-88888888', b'0');
+('5a3055278883456ab09a5bf12c7ec254', '9ece1f8700bb4dd38832f14e4b480107', 'Jasper', '湖北省', '武汉市', '青山区', '这是一个测试的地址', '400000', '18067654321', '027-88888888', b'0');
 
 -- --------------------------------------------------------
 
 --
--- 琛ㄧ殑缁撴瀯 `designworks`
+-- 表的结构 `designworks`
 --
 
 CREATE TABLE IF NOT EXISTS `designworks` (
   `GUID` varchar(200) NOT NULL,
-  `DesignerID` varchar(200) NOT NULL COMMENT '璁捐鑰匢D',
-  `MaterialID` varchar(200) NOT NULL COMMENT '鍘熸枡ID',
-  `MaterialColorID` varchar(200) NOT NULL COMMENT '鍘熸潗鏂欓鑹?,
-  `SalesGoal` int(11) NOT NULL COMMENT '閿€鍞洰鏍?,
-  `BasePrice` decimal(18,8) NOT NULL COMMENT '搴曚环/鍗曚欢',
-  `SellingPrice` decimal(18,8) NOT NULL COMMENT '鍞环/鍗曚欢',
-  `CreateTime` datetime NOT NULL COMMENT '鍒涘缓鏃堕棿',
-  `LongTime` int(11) NOT NULL COMMENT '娲诲姩鏃堕暱锛堝ぉ锛?,
-  `StartTime` datetime DEFAULT NULL COMMENT '娲诲姩寮€濮嬫椂闂?,
-  `EndTime` datetime DEFAULT NULL COMMENT '娲诲姩鎴鏃堕棿',
-  `Title` varchar(200) NOT NULL COMMENT '娲诲姩鏍囬',
-  `Description` varchar(4000) NOT NULL COMMENT '娲诲姩璇存槑',
+  `DesignerID` varchar(200) NOT NULL COMMENT '设计者ID',
+  `MaterialID` varchar(200) NOT NULL COMMENT '原料ID',
+  `MaterialColorID` varchar(200) NOT NULL COMMENT '原材料颜色',
+  `SalesGoal` int(11) NOT NULL COMMENT '销售目标',
+  `BasePrice` decimal(18,8) NOT NULL COMMENT '底价/单件',
+  `SellingPrice` decimal(18,8) NOT NULL COMMENT '售价/单件',
+  `CreateTime` datetime NOT NULL COMMENT '创建时间',
+  `LongTime` int(11) NOT NULL COMMENT '活动时长（天）',
+  `StartTime` datetime DEFAULT NULL COMMENT '活动开始时间',
+  `EndTime` datetime DEFAULT NULL COMMENT '活动截止时间',
+  `Title` varchar(200) NOT NULL COMMENT '活动标题',
+  `Description` varchar(4000) NOT NULL COMMENT '活动说明',
   `Url` varchar(200) DEFAULT NULL COMMENT 'Url',
-  `SalesVolume` int(11) DEFAULT NULL COMMENT '閿€鍞噺/缁熻鍊?,
-  `State` int(11) NOT NULL COMMENT '鐘舵€乗r\n-1锛氶鍞笉瓒砛r\n0锛氳璁′腑\r\n1锛氶鍞腑\r\n2锛氱敓浜т腑\r\n3锛氬彂璐т腑\r\n4锛氭敹娆句腑\r\n5锛氳繑娆句腑\r\n6锛氬綊妗?,
-  `ProcurementCost` decimal(18,8) DEFAULT NULL COMMENT '閲囪喘鎴愭湰',
-  `ProductionCost` decimal(18,8) DEFAULT NULL COMMENT '鐢熶骇鎴愭湰',
-  `SendCost` decimal(18,8) DEFAULT NULL COMMENT '鍙戣揣鎴愭湰',
-  `CompletionTime` datetime DEFAULT NULL COMMENT '鎵€鏈変氦鏄撳畬鎴愭椂闂?,
+  `SalesVolume` int(11) DEFAULT NULL COMMENT '销售量/统计值',
+  `State` int(11) NOT NULL COMMENT '状态\r\n-1：预售不足\r\n0：设计中\r\n1：预售中\r\n2：生产中\r\n3：发货中\r\n4：收款中\r\n5：返款中\r\n6：归档',
+  `ProcurementCost` decimal(18,8) DEFAULT NULL COMMENT '采购成本',
+  `ProductionCost` decimal(18,8) DEFAULT NULL COMMENT '生产成本',
+  `SendCost` decimal(18,8) DEFAULT NULL COMMENT '发货成本',
+  `CompletionTime` datetime DEFAULT NULL COMMENT '所有交易完成时间',
   PRIMARY KEY (`GUID`),
   KEY `DesignerID` (`DesignerID`),
   KEY `MaterialID` (`MaterialID`),
@@ -88,7 +88,7 @@ CREATE TABLE IF NOT EXISTS `designworks` (
 -- --------------------------------------------------------
 
 --
--- 琛ㄧ殑缁撴瀯 `materialcolors`
+-- 表的结构 `materialcolors`
 --
 
 CREATE TABLE IF NOT EXISTS `materialcolors` (
@@ -96,112 +96,112 @@ CREATE TABLE IF NOT EXISTS `materialcolors` (
   `MaterialID` varchar(200) NOT NULL,
   `ColorName` varchar(200) NOT NULL,
   `ColorCode` varchar(200) NOT NULL,
-  `IsDefault` bit(1) NOT NULL DEFAULT b'0' COMMENT '鏄惁鏄粯璁ら鑹?,
-  `State` int(11) NOT NULL COMMENT '鐘舵€乗r\n0锛氬仠浜r\n1锛氭甯竆r\n2锛氱己璐?,
+  `IsDefault` bit(1) NOT NULL DEFAULT b'0' COMMENT '是否是默认颜色',
+  `State` int(11) NOT NULL COMMENT '状态\r\n0：停产\r\n1：正常\r\n2：缺货',
   PRIMARY KEY (`GUID`),
   KEY `MaterialID` (`MaterialID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- 杞瓨琛ㄤ腑鐨勬暟鎹?`materialcolors`
+-- 转存表中的数据 `materialcolors`
 --
 
 INSERT INTO `materialcolors` (`GUID`, `MaterialID`, `ColorName`, `ColorCode`, `IsDefault`, `State`) VALUES
-('01e09dc805c54493b203a1921a2538e4', 'vneckshorttee', '姗欒壊', 'e54d09', b'0', 1),
-('05351318cab849aba9fc7c277902e8fd', 'longtee', '绱壊', '4b256e', b'0', 1),
-('15fe082c7b044537b546134cabd34866', 'tanktops', '鐏拌壊', 'd4cfc3', b'0', 1),
-('171eb4b405204ae69babfac594a4f2ec', 'hoodies', '绱壊', '4b256e', b'0', 1),
-('1b7ab971321249d7823b3faab5053ab3', 'vneckshorttee', '鐧借壊', 'ffffff', b'1', 1),
-('1e1a985f8e2346979b711aab05cd14e1', 'longtee', '娣辩孩鑹?, '9f0110', b'0', 1),
-('1e413cca0663422ba635ee7d747a2eaf', 'tanktops', '姗欒壊', 'e54d09', b'0', 1),
-('22d33b2ebcd84f59ade9c6b5dd94fd40', 'shorttee', '鐏拌壊', 'd4cfc3', b'0', 1),
-('2423b15a66fb437fbed23b3c09c97ed7', 'longtee', '娣辫摑鑹?, '1a2f78', b'0', 1),
-('2e38833a3007486d9642c6e620921af9', 'womanshorttee', '姗欒壊', 'e54d09', b'0', 1),
-('2f9c5ef3a4c84834ba540d7dbd341dfa', 'hoodies', '鐧借壊', 'ffffff', b'1', 1),
-('3579d1cc5231409ba43090b8d9318601', 'shorttee', '榛戣壊', '1a1a1a', b'0', 1),
-('40cc9f242aa64bde9fb7ea68f2199597', 'vneckshorttee', '娣辫摑鑹?, '1a2f78', b'0', 1),
-('417b6042d2b54a3787ab2e7227663fac', 'hoodies', '榛戣壊', '1a1a1a', b'0', 1),
-('424a7a1549674b0991865057ce40c77b', 'vneckshorttee', '鐏拌壊', 'd4cfc3', b'0', 1),
-('4ab050c435b1457a8fc0e98a1d95b63b', 'shorttee', '娣辫摑鑹?, '1a2f78', b'0', 1),
-('4ac876fa4d5b4b21a6be884060b0dab5', 'hoodies', '姗欒壊', 'e54d09', b'0', 1),
-('4c50a9be760045049c196391fc3c7bfe', 'longtee', '鐧借壊', 'ffffff', b'1', 1),
-('4cd8891daae940e8873cf4a666c0fda7', 'shorttee', '娣辩孩鑹?, '9f0110', b'0', 1),
-('4e8e95ad705a4ffc964161127f799424', 'hoodies', '鐏拌壊', 'd4cfc3', b'0', 1),
-('4ff3967cbf9647c395b278fd2172879f', 'tanktops', '榛戣壊', '1a1a1a', b'0', 1),
-('5020317d398443938e60c22481b4211b', 'womanshorttee', '娣辫摑鑹?, '1a2f78', b'0', 1),
-('5f005782de264909bfa50435c9994484', 'hoodies', '娣辫摑鑹?, '1a2f78', b'0', 1),
-('643c079b5e034c5192f73e502b3f3046', 'shorttee', '鐧借壊', 'ffffff', b'1', 1),
-('6c61878a45364b518d059f8ffc710746', 'tanktops', '娣辫摑鑹?, '1a2f78', b'0', 1),
-('7a906cae086142188615701a436bda19', 'shorttee', '姗欒壊', 'e54d09', b'0', 1),
-('8360c16150fc42c8ae5a30a3ca16b41d', 'longtee', '鐏拌壊', 'd4cfc3', b'0', 1),
-('9d46df7c56bb4fa7942e50dbd35aa853', 'womanshorttee', '鐏拌壊', 'd4cfc3', b'0', 1),
-('a6ead6937e294affab1754ec829a6832', 'longtee', '榛戣壊', '1a1a1a', b'0', 1),
-('a9430b61802c4d4f9b36325ad087ef6d', 'longtee', '姗欒壊', 'e54d09', b'0', 1),
-('ab81fa6ed92340a4bc5b4de75369967a', 'hoodies', '娣辩孩鑹?, '9f0110', b'0', 1),
-('b324c14ce13f4001b692488cd731bbfa', 'womanshorttee', '娣辩孩鑹?, '9f0110', b'0', 1),
-('b3ae2b5af55b41b99882d6cee887003d', 'vneckshorttee', '绱壊', '4b256e', b'0', 1),
-('b59a522d444943ee8c2dca57a54bea29', 'tanktops', '绱壊', '4b256e', b'0', 1),
-('b7443ed96aa6469eb4c96ee89cd10f30', 'womanshorttee', '榛戣壊', '1a1a1a', b'0', 1),
-('bdeeee99d0f945a18403fde056cf3aed', 'vneckshorttee', '榛戣壊', '1a1a1a', b'0', 1),
-('bfa4e79d84684a2fb3db3deecf4597c3', 'vneckshorttee', '娣辩孩鑹?, '9f0110', b'0', 1),
-('cd18fe60933245469627b5aa2effe1d0', 'womanshorttee', '绱壊', '4b256e', b'0', 1),
-('f18793fc789449699b3496baf9e65982', 'tanktops', '娣辩孩鑹?, '9f0110', b'0', 1),
-('fcf7848d045143d3a95e864e42a3fa99', 'tanktops', '鐧借壊', 'ffffff', b'1', 1),
-('fd08d062b2fc414492aa7edc737dfff8', 'womanshorttee', '鐧借壊', 'ffffff', b'1', 1),
-('fe8d2df0f8a34908a63af1041e688940', 'shorttee', '绱壊', '4b256e', b'0', 1);
+('01e09dc805c54493b203a1921a2538e4', 'vneckshorttee', '橙色', 'e54d09', b'0', 1),
+('05351318cab849aba9fc7c277902e8fd', 'longtee', '紫色', '4b256e', b'0', 1),
+('15fe082c7b044537b546134cabd34866', 'tanktops', '灰色', 'd4cfc3', b'1', 1),
+('171eb4b405204ae69babfac594a4f2ec', 'hoodies', '紫色', '4b256e', b'0', 1),
+('1b7ab971321249d7823b3faab5053ab3', 'vneckshorttee', '白色', 'ffffff', b'0', 1),
+('1e1a985f8e2346979b711aab05cd14e1', 'longtee', '深红色', '9f0110', b'0', 1),
+('1e413cca0663422ba635ee7d747a2eaf', 'tanktops', '橙色', 'e54d09', b'0', 1),
+('22d33b2ebcd84f59ade9c6b5dd94fd40', 'shorttee', '灰色', 'd4cfc3', b'1', 1),
+('2423b15a66fb437fbed23b3c09c97ed7', 'longtee', '深蓝色', '1a2f78', b'0', 1),
+('2e38833a3007486d9642c6e620921af9', 'womanshorttee', '橙色', 'e54d09', b'0', 1),
+('2f9c5ef3a4c84834ba540d7dbd341dfa', 'hoodies', '白色', 'ffffff', b'0', 1),
+('3579d1cc5231409ba43090b8d9318601', 'shorttee', '黑色', '1a1a1a', b'0', 1),
+('40cc9f242aa64bde9fb7ea68f2199597', 'vneckshorttee', '深蓝色', '1a2f78', b'0', 1),
+('417b6042d2b54a3787ab2e7227663fac', 'hoodies', '黑色', '1a1a1a', b'0', 1),
+('424a7a1549674b0991865057ce40c77b', 'vneckshorttee', '灰色', 'd4cfc3', b'1', 1),
+('4ab050c435b1457a8fc0e98a1d95b63b', 'shorttee', '深蓝色', '1a2f78', b'0', 1),
+('4ac876fa4d5b4b21a6be884060b0dab5', 'hoodies', '橙色', 'e54d09', b'0', 1),
+('4c50a9be760045049c196391fc3c7bfe', 'longtee', '白色', 'ffffff', b'0', 1),
+('4cd8891daae940e8873cf4a666c0fda7', 'shorttee', '深红色', '9f0110', b'0', 1),
+('4e8e95ad705a4ffc964161127f799424', 'hoodies', '灰色', 'd4cfc3', b'1', 1),
+('4ff3967cbf9647c395b278fd2172879f', 'tanktops', '黑色', '1a1a1a', b'0', 1),
+('5020317d398443938e60c22481b4211b', 'womanshorttee', '深蓝色', '1a2f78', b'0', 1),
+('5f005782de264909bfa50435c9994484', 'hoodies', '深蓝色', '1a2f78', b'0', 1),
+('643c079b5e034c5192f73e502b3f3046', 'shorttee', '白色', 'ffffff', b'0', 1),
+('6c61878a45364b518d059f8ffc710746', 'tanktops', '深蓝色', '1a2f78', b'0', 1),
+('7a906cae086142188615701a436bda19', 'shorttee', '橙色', 'e54d09', b'0', 1),
+('8360c16150fc42c8ae5a30a3ca16b41d', 'longtee', '灰色', 'd4cfc3', b'1', 1),
+('9d46df7c56bb4fa7942e50dbd35aa853', 'womanshorttee', '灰色', 'd4cfc3', b'1', 1),
+('a6ead6937e294affab1754ec829a6832', 'longtee', '黑色', '1a1a1a', b'0', 1),
+('a9430b61802c4d4f9b36325ad087ef6d', 'longtee', '橙色', 'e54d09', b'0', 1),
+('ab81fa6ed92340a4bc5b4de75369967a', 'hoodies', '深红色', '9f0110', b'0', 1),
+('b324c14ce13f4001b692488cd731bbfa', 'womanshorttee', '深红色', '9f0110', b'0', 1),
+('b3ae2b5af55b41b99882d6cee887003d', 'vneckshorttee', '紫色', '4b256e', b'0', 1),
+('b59a522d444943ee8c2dca57a54bea29', 'tanktops', '紫色', '4b256e', b'0', 1),
+('b7443ed96aa6469eb4c96ee89cd10f30', 'womanshorttee', '黑色', '1a1a1a', b'0', 1),
+('bdeeee99d0f945a18403fde056cf3aed', 'vneckshorttee', '黑色', '1a1a1a', b'0', 1),
+('bfa4e79d84684a2fb3db3deecf4597c3', 'vneckshorttee', '深红色', '9f0110', b'0', 1),
+('cd18fe60933245469627b5aa2effe1d0', 'womanshorttee', '紫色', '4b256e', b'0', 1),
+('f18793fc789449699b3496baf9e65982', 'tanktops', '深红色', '9f0110', b'0', 1),
+('fcf7848d045143d3a95e864e42a3fa99', 'tanktops', '白色', 'ffffff', b'0', 1),
+('fd08d062b2fc414492aa7edc737dfff8', 'womanshorttee', '白色', 'ffffff', b'0', 1),
+('fe8d2df0f8a34908a63af1041e688940', 'shorttee', '紫色', '4b256e', b'0', 1);
 
 -- --------------------------------------------------------
 
 --
--- 琛ㄧ殑缁撴瀯 `materialpictures`
+-- 表的结构 `materialpictures`
 --
 
 CREATE TABLE IF NOT EXISTS `materialpictures` (
   `GUID` varchar(200) NOT NULL,
   `MaterialID` varchar(200) NOT NULL,
-  `Name` varchar(200) NOT NULL COMMENT '鍥剧墖鍚嶇О(渚嬶細姝ｉ潰锛岃儗闈?',
-  `Index` int(11) NOT NULL COMMENT '鎺掑垪搴忓彿',
-  `FileName` varchar(200) NOT NULL COMMENT '搴曞浘鏂囦欢鍚?,
-  `Width` int(11) NOT NULL COMMENT '鍥剧墖瀹藉害',
-  `Height` int(11) NOT NULL COMMENT '鍥剧墖楂樺害',
-  `Top` int(11) NOT NULL COMMENT '涓婁紶鍥剧墖璺濈涓婅竟鐣岃窛绂?,
-  `Left` int(11) NOT NULL COMMENT '涓婁紶鍥剧墖璺濈宸﹁竟鐣岃窛绂?,
-  `UploadWidth` int(11) NOT NULL COMMENT '涓婁紶鍥剧墖瀹藉害',
-  `UploadHeight` int(11) NOT NULL COMMENT '涓婁紶鍥剧墖楂樺害',
-  `ShowScale` decimal(18,8) NOT NULL COMMENT '鏄剧ず鏃剁殑缂╂斁姣斾緥',
+  `Name` varchar(200) NOT NULL COMMENT '图片名称(例：正面，背面)',
+  `Index` int(11) NOT NULL COMMENT '排列序号',
+  `FileName` varchar(200) NOT NULL COMMENT '底图文件名',
+  `Width` int(11) NOT NULL COMMENT '图片宽度',
+  `Height` int(11) NOT NULL COMMENT '图片高度',
+  `Top` int(11) NOT NULL COMMENT '上传图片距离上边界距离',
+  `Left` int(11) NOT NULL COMMENT '上传图片距离左边界距离',
+  `UploadWidth` int(11) NOT NULL COMMENT '上传图片宽度',
+  `UploadHeight` int(11) NOT NULL COMMENT '上传图片高度',
+  `ShowScale` decimal(18,8) NOT NULL COMMENT '显示时的缩放比例',
   PRIMARY KEY (`GUID`),
   KEY `MaterialID` (`MaterialID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- 杞瓨琛ㄤ腑鐨勬暟鎹?`materialpictures`
+-- 转存表中的数据 `materialpictures`
 --
 
 INSERT INTO `materialpictures` (`GUID`, `MaterialID`, `Name`, `Index`, `FileName`, `Width`, `Height`, `Top`, `Left`, `UploadWidth`, `UploadHeight`, `ShowScale`) VALUES
-('0e1e5810b77140d49d998ae5094d4d45', 'vneckshorttee', '鑳岄潰', 2, '02.png', 530, 630, 105, 145, 842, 1190, '0.28500000'),
-('3db03862e9ab4ae4bdfed310dcfabb16', 'longtee', '姝ｉ潰', 1, '01.png', 530, 630, 105, 145, 842, 1190, '0.28500000'),
-('5115749d814647c2862987fdd32d2979', 'womanshorttee', '鑳岄潰', 2, '02.png', 530, 630, 105, 145, 842, 1190, '0.28500000'),
-('5541a58e98294de4b9f4196fce1f2667', 'womanshorttee', '姝ｉ潰', 1, '01.png', 530, 630, 105, 145, 842, 1190, '0.28500000'),
-('717a3b3228a74b58b8160601bbf19afb', 'vneckshorttee', '姝ｉ潰', 1, '01.png', 530, 630, 105, 145, 842, 1190, '0.28500000'),
-('7ab334cdddc34f10bdcc611012490883', 'hoodies', '姝ｉ潰', 1, '01.png', 530, 630, 140, 145, 842, 1190, '0.28500000'),
-('8e03040e035e41289a3f186312c5f3d2', 'tanktops', '鑳岄潰', 2, '02.png', 530, 630, 205, 145, 842, 1190, '0.28500000'),
-('9093598fa164459ab90830b091f06940', 'shorttee', '姝ｉ潰', 1, '01.png', 530, 630, 105, 145, 842, 1190, '0.28500000'),
-('9e8865446e104000974132d8c4f21dd1', 'shorttee', '鑳岄潰', 2, '02.png', 530, 630, 105, 145, 842, 1190, '0.28500000'),
-('ca24307b22174b34a98e1c04a653a901', 'longtee', '鑳岄潰', 2, '02.png', 530, 630, 105, 145, 842, 1190, '0.28500000'),
-('d16742e83aac40da907e6998ab70e594', 'hoodies', '鑳岄潰', 2, '02.png', 530, 630, 140, 145, 842, 1190, '0.28500000'),
-('e207d929a1a14a61a3732b643acf82f6', 'tanktops', '姝ｉ潰', 1, '01.png', 530, 630, 205, 145, 842, 1190, '0.28500000');
+('0e1e5810b77140d49d998ae5094d4d45', 'vneckshorttee', '背面', 2, '02.png', 530, 630, 105, 145, 842, 1190, '0.28500000'),
+('3db03862e9ab4ae4bdfed310dcfabb16', 'longtee', '正面', 1, '01.png', 530, 630, 105, 145, 842, 1190, '0.28500000'),
+('5115749d814647c2862987fdd32d2979', 'womanshorttee', '背面', 2, '02.png', 530, 630, 105, 145, 842, 1190, '0.28500000'),
+('5541a58e98294de4b9f4196fce1f2667', 'womanshorttee', '正面', 1, '01.png', 530, 630, 105, 145, 842, 1190, '0.28500000'),
+('717a3b3228a74b58b8160601bbf19afb', 'vneckshorttee', '正面', 1, '01.png', 530, 630, 105, 145, 842, 1190, '0.28500000'),
+('7ab334cdddc34f10bdcc611012490883', 'hoodies', '正面', 1, '01.png', 530, 630, 140, 145, 842, 1190, '0.28500000'),
+('8e03040e035e41289a3f186312c5f3d2', 'tanktops', '背面', 2, '02.png', 530, 630, 205, 145, 842, 1190, '0.28500000'),
+('9093598fa164459ab90830b091f06940', 'shorttee', '正面', 1, '01.png', 530, 630, 105, 145, 842, 1190, '0.28500000'),
+('9e8865446e104000974132d8c4f21dd1', 'shorttee', '背面', 2, '02.png', 530, 630, 105, 145, 842, 1190, '0.28500000'),
+('ca24307b22174b34a98e1c04a653a901', 'longtee', '背面', 2, '02.png', 530, 630, 105, 145, 842, 1190, '0.28500000'),
+('d16742e83aac40da907e6998ab70e594', 'hoodies', '背面', 2, '02.png', 530, 630, 140, 145, 842, 1190, '0.28500000'),
+('e207d929a1a14a61a3732b643acf82f6', 'tanktops', '正面', 1, '01.png', 530, 630, 205, 145, 842, 1190, '0.28500000');
 
 -- --------------------------------------------------------
 
 --
--- 琛ㄧ殑缁撴瀯 `materialpricelogs`
+-- 表的结构 `materialpricelogs`
 --
 
 CREATE TABLE IF NOT EXISTS `materialpricelogs` (
   `GUID` varchar(200) NOT NULL,
   `MaterialID` varchar(200) NOT NULL,
-  `Price` decimal(18,8) NOT NULL COMMENT '浠锋牸',
-  `CreateTime` datetime NOT NULL COMMENT '褰曞叆鏃堕棿',
+  `Price` decimal(18,8) NOT NULL COMMENT '价格',
+  `CreateTime` datetime NOT NULL COMMENT '录入时间',
   PRIMARY KEY (`GUID`),
   KEY `MaterialID` (`MaterialID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -209,37 +209,37 @@ CREATE TABLE IF NOT EXISTS `materialpricelogs` (
 -- --------------------------------------------------------
 
 --
--- 琛ㄧ殑缁撴瀯 `materials`
+-- 表的结构 `materials`
 --
 
 CREATE TABLE IF NOT EXISTS `materials` (
   `GUID` varchar(200) NOT NULL,
-  `TypeID` varchar(200) NOT NULL COMMENT '绫诲瀷\r\n1锛氱煭琚朤鎭r\n2锛氶暱琚朤鎭r\n3锛氳儗蹇僜r\n4锛氳繛甯借～',
-  `Name` varchar(200) NOT NULL COMMENT '鍘熸枡缂栧彿',
-  `Price` decimal(18,8) NOT NULL DEFAULT '0.00000000' COMMENT '鐩墠鍧囦环',
+  `TypeID` varchar(200) NOT NULL COMMENT '类型\r\n1：短袖T恤\r\n2：长袖T恤\r\n3：背心\r\n4：连帽衫',
+  `Name` varchar(200) NOT NULL COMMENT '原料编号',
+  `Price` decimal(18,8) NOT NULL DEFAULT '0.00000000' COMMENT '目前均价',
   `Description` varchar(4000) NOT NULL,
-  `PictureNumber` int(11) NOT NULL COMMENT '闇€瑕佷笂浼犲浘鐗囧紶鏁?,
-  `State` int(11) NOT NULL COMMENT '鐘舵€乗r\n0锛氬仠浜r\n1锛氭甯竆r\n2锛氱己璐r\n3锛氬仠鐢?鏈惎鐢?,
+  `PictureNumber` int(11) NOT NULL COMMENT '需要上传图片张数',
+  `State` int(11) NOT NULL COMMENT '状态\r\n0：停产\r\n1：正常\r\n2：缺货\r\n3：停用/未启用',
   PRIMARY KEY (`GUID`),
   KEY `TypeID` (`TypeID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- 杞瓨琛ㄤ腑鐨勬暟鎹?`materials`
+-- 转存表中的数据 `materials`
 --
 
 INSERT INTO `materials` (`GUID`, `TypeID`, `Name`, `Price`, `Description`, `PictureNumber`, `State`) VALUES
-('hoodies', 'tshirt', '鍗。', '45.00000000', '', 2, 1),
-('longtee', 'tshirt', '闀胯T鎭?, '45.00000000', '', 2, 1),
-('shorttee', 'tshirt', '鐭T鎭?, '45.00000000', '', 2, 1),
-('tanktops', 'tshirt', '鑳屽績', '45.00000000', '', 2, 1),
-('vneckshorttee', 'tshirt', 'V棰嗙煭琚朤鎭?, '45.00000000', '', 2, 1),
-('womanshorttee', 'tshirt', '濂冲＋鐭T鎭?, '45.00000000', '', 2, 1);
+('hoodies', 'tshirt', '卫衣', '45.00000000', '', 2, 1),
+('longtee', 'tshirt', '长袖T恤', '45.00000000', '', 2, 1),
+('shorttee', 'tshirt', '短袖T恤', '45.00000000', '', 2, 1),
+('tanktops', 'tshirt', '背心', '45.00000000', '', 2, 1),
+('vneckshorttee', 'tshirt', 'V领短袖T恤', '45.00000000', '', 2, 1),
+('womanshorttee', 'tshirt', '女士短袖T恤', '45.00000000', '', 2, 1);
 
 -- --------------------------------------------------------
 
 --
--- 琛ㄧ殑缁撴瀯 `materialsizes`
+-- 表的结构 `materialsizes`
 --
 
 CREATE TABLE IF NOT EXISTS `materialsizes` (
@@ -252,7 +252,7 @@ CREATE TABLE IF NOT EXISTS `materialsizes` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- 杞瓨琛ㄤ腑鐨勬暟鎹?`materialsizes`
+-- 转存表中的数据 `materialsizes`
 --
 
 INSERT INTO `materialsizes` (`GUID`, `MaterialID`, `SizeName`, `Index`) VALUES
@@ -284,39 +284,39 @@ INSERT INTO `materialsizes` (`GUID`, `MaterialID`, `SizeName`, `Index`) VALUES
 -- --------------------------------------------------------
 
 --
--- 琛ㄧ殑缁撴瀯 `materialtypes`
+-- 表的结构 `materialtypes`
 --
 
 CREATE TABLE IF NOT EXISTS `materialtypes` (
   `GUID` varchar(200) NOT NULL,
   `ParentID` varchar(200) DEFAULT NULL,
   `Index` int(11) NOT NULL,
-  `Name` varchar(200) NOT NULL COMMENT '绫诲瀷鍚嶇О',
-  `IsLeafNode` bit(1) NOT NULL DEFAULT b'1' COMMENT '鏄惁鏄彾瀛愯妭鐐?,
-  `State` int(11) NOT NULL COMMENT '鐘舵€乗r\n0锛氬仠鐢╘r\n1锛氭甯竆r\n',
+  `Name` varchar(200) NOT NULL COMMENT '类型名称',
+  `IsLeafNode` bit(1) NOT NULL DEFAULT b'1' COMMENT '是否是叶子节点',
+  `State` int(11) NOT NULL COMMENT '状态\r\n0：停用\r\n1：正常\r\n',
   PRIMARY KEY (`GUID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- 杞瓨琛ㄤ腑鐨勬暟鎹?`materialtypes`
+-- 转存表中的数据 `materialtypes`
 --
 
 INSERT INTO `materialtypes` (`GUID`, `ParentID`, `Index`, `Name`, `IsLeafNode`, `State`) VALUES
-('clothes', NULL, 1, '涓婅。', b'0', 1),
-('tshirt', 'clothes', 2, 'T鎭?, b'1', 1);
+('clothes', NULL, 1, '上衣', b'0', 1),
+('tshirt', 'clothes', 2, 'T恤', b'1', 1);
 
 -- --------------------------------------------------------
 
 --
--- 琛ㄧ殑缁撴瀯 `orderdetails`
+-- 表的结构 `orderdetails`
 --
 
 CREATE TABLE IF NOT EXISTS `orderdetails` (
   `GUID` varchar(200) NOT NULL,
   `OrderID` varchar(200) NOT NULL,
   `SizeID` varchar(200) NOT NULL,
-  `SizeName` varchar(200) NOT NULL COMMENT '灏虹爜',
-  `Quantity` int(11) NOT NULL COMMENT '璐拱鏁伴噺',
+  `SizeName` varchar(200) NOT NULL COMMENT '尺码',
+  `Quantity` int(11) NOT NULL COMMENT '购买数量',
   PRIMARY KEY (`GUID`),
   KEY `OrderID` (`OrderID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -324,44 +324,44 @@ CREATE TABLE IF NOT EXISTS `orderdetails` (
 -- --------------------------------------------------------
 
 --
--- 琛ㄧ殑缁撴瀯 `orders`
+-- 表的结构 `orders`
 --
 
 CREATE TABLE IF NOT EXISTS `orders` (
   `GUID` varchar(200) NOT NULL,
   `UserID` varchar(200) NOT NULL,
-  `DesignWorkID` varchar(200) NOT NULL COMMENT '璁捐ID',
-  `State` int(11) NOT NULL COMMENT '鐘舵€乗r\n0锛氬垱寤鸿鍗曪紝绛夊緟纭璁㈠崟\r\n1锛氱‘璁よ鍗曪紝绛夊緟涔板浠樻\r\n2锛氬崠瀹朵粯娆撅紝绛夊緟鐢熶骇\r\n3锛氬紑濮嬬敓浜э紝绛夊緟鍙戣揣\r\n4锛氬彂璐э紝绛夊緟涔板纭\r\n5锛氱‘璁ゆ敹璐э紝鍗充氦鏄撴垚鍔焅r\n6锛氱敵璇烽€€娆綷r\n7锛氬悓鎰忛€€娆綷r\n8锛氭嫆缁濋€€娆綷r\n9锛氱敵璇烽€€璐r\n10锛氬悓鎰忛€€璐r\n11锛氭嫆缁濋€€璐r\n12锛氶€€璐у畬鎴愶紝绛夊緟閫€娆綷r\n13锛氶€€娆惧畬鎴怽r\n14锛氶€€娆惧叧闂璡r\n-1锛氫氦鏄撲腑閫斿叧闂?宸茬粨鏉燂紝鏈垚鍔熷畬鎴?',
-  `CreateTime` datetime NOT NULL COMMENT '鍒涘缓璁㈠崟鏃堕棿锛岀瓑寰呯‘璁よ鍗?,
-  `ConfirmOrderTime` datetime DEFAULT NULL COMMENT '纭璁㈠崟鏃堕棿锛岀瓑寰呬拱瀹朵粯娆?,
-  `BuyerPayTime` datetime DEFAULT NULL COMMENT '鍗栧浠樻鏃堕棿锛岀瓑寰呯敓浜?,
-  `StartProductionTime` datetime DEFAULT NULL COMMENT '寮€濮嬬敓浜ф椂闂达紝绛夊緟鍙戣揣',
-  `SendGoodsTime` datetime DEFAULT NULL COMMENT '鍙戣揣鏃堕棿锛岀瓑寰呬拱瀹剁‘璁?,
-  `ConfirmGoodsTime` datetime DEFAULT NULL COMMENT '纭鏀惰揣鏃堕棿锛屽嵆浜ゆ槗鎴愬姛',
-  `RefundTime` datetime DEFAULT NULL COMMENT '鐢宠閫€娆炬椂闂?,
-  `RefundAgreeTime` datetime DEFAULT NULL COMMENT '鍚屾剰閫€娆炬椂闂?,
-  `RefundFefuseTime` datetime DEFAULT NULL COMMENT '鎷掔粷閫€娆炬椂闂?,
-  `RefundGoodsTime` datetime DEFAULT NULL COMMENT '鐢宠閫€璐ф椂闂?,
-  `RefundGoodsAgreeTime` datetime DEFAULT NULL COMMENT '鍚屾剰閫€璐ф椂闂?,
-  `RefundGoodsFefuseTime` datetime DEFAULT NULL COMMENT '鎷掔粷閫€璐ф椂闂?,
-  `RefundGoodsSuccessTime` datetime DEFAULT NULL COMMENT '閫€璐у畬鎴愭椂闂达紝绛夊緟閫€娆?,
-  `RefundSuccessTime` datetime DEFAULT NULL COMMENT '閫€娆惧畬鎴愭椂闂?,
-  `RefundClosedTime` datetime DEFAULT NULL COMMENT '閫€娆惧叧闂椂闂?,
-  `Subject` varchar(200) NOT NULL COMMENT '鍟嗗搧鍚嶇О',
-  `Price` decimal(18,8) NOT NULL COMMENT '鍗曚环',
-  `Quantity` int(11) NOT NULL COMMENT '鏁伴噺',
-  `Freight` decimal(18,8) NOT NULL COMMENT '杩愯垂',
-  `Total` decimal(18,8) NOT NULL COMMENT '鎬讳环',
-  `Body` varchar(4000) DEFAULT NULL COMMENT '鍟嗗搧鎻忚堪',
-  `Consignee` varchar(200) DEFAULT NULL COMMENT '鏀朵欢浜哄鍚?,
-  `Address` varchar(200) DEFAULT NULL COMMENT '鏀朵欢鍦板潃',
-  `ZipCode` varchar(200) DEFAULT NULL COMMENT '閭紪',
-  `Mobile` varchar(200) DEFAULT NULL COMMENT '鎵嬫満鍙?,
-  `Phone` varchar(200) DEFAULT NULL COMMENT '搴ф満鍙?,
-  `ShippingMethod` varchar(200) DEFAULT NULL COMMENT '閰嶉€佹柟寮?,
-  `PayType` int(11) DEFAULT NULL COMMENT '鏀粯骞冲彴\r\n1锛欰lipay',
-  `PayOrderNo` varchar(200) DEFAULT NULL COMMENT '鏀粯骞冲彴鍐呮祦姘村彿',
-  `ExpressNumber` varchar(200) DEFAULT NULL COMMENT '蹇€掑崟鍙?,
+  `DesignWorkID` varchar(200) NOT NULL COMMENT '设计ID',
+  `State` int(11) NOT NULL COMMENT '状态\r\n0：创建订单，等待确认订单\r\n1：确认订单，等待买家付款\r\n2：卖家付款，等待生产\r\n3：开始生产，等待发货\r\n4：发货，等待买家确认\r\n5：确认收货，即交易成功\r\n6：申请退款\r\n7：同意退款\r\n8：拒绝退款\r\n9：申请退货\r\n10：同意退货\r\n11：拒绝退货\r\n12：退货完成，等待退款\r\n13：退款完成\r\n14：退款关闭\r\n-1：交易中途关闭(已结束，未成功完成)',
+  `CreateTime` datetime NOT NULL COMMENT '创建订单时间，等待确认订单',
+  `ConfirmOrderTime` datetime DEFAULT NULL COMMENT '确认订单时间，等待买家付款',
+  `BuyerPayTime` datetime DEFAULT NULL COMMENT '卖家付款时间，等待生产',
+  `StartProductionTime` datetime DEFAULT NULL COMMENT '开始生产时间，等待发货',
+  `SendGoodsTime` datetime DEFAULT NULL COMMENT '发货时间，等待买家确认',
+  `ConfirmGoodsTime` datetime DEFAULT NULL COMMENT '确认收货时间，即交易成功',
+  `RefundTime` datetime DEFAULT NULL COMMENT '申请退款时间',
+  `RefundAgreeTime` datetime DEFAULT NULL COMMENT '同意退款时间',
+  `RefundFefuseTime` datetime DEFAULT NULL COMMENT '拒绝退款时间',
+  `RefundGoodsTime` datetime DEFAULT NULL COMMENT '申请退货时间',
+  `RefundGoodsAgreeTime` datetime DEFAULT NULL COMMENT '同意退货时间',
+  `RefundGoodsFefuseTime` datetime DEFAULT NULL COMMENT '拒绝退货时间',
+  `RefundGoodsSuccessTime` datetime DEFAULT NULL COMMENT '退货完成时间，等待退款',
+  `RefundSuccessTime` datetime DEFAULT NULL COMMENT '退款完成时间',
+  `RefundClosedTime` datetime DEFAULT NULL COMMENT '退款关闭时间',
+  `Subject` varchar(200) NOT NULL COMMENT '商品名称',
+  `Price` decimal(18,8) NOT NULL COMMENT '单价',
+  `Quantity` int(11) NOT NULL COMMENT '数量',
+  `Freight` decimal(18,8) NOT NULL COMMENT '运费',
+  `Total` decimal(18,8) NOT NULL COMMENT '总价',
+  `Body` varchar(4000) DEFAULT NULL COMMENT '商品描述',
+  `Consignee` varchar(200) DEFAULT NULL COMMENT '收件人姓名',
+  `Address` varchar(200) DEFAULT NULL COMMENT '收件地址',
+  `ZipCode` varchar(200) DEFAULT NULL COMMENT '邮编',
+  `Mobile` varchar(200) DEFAULT NULL COMMENT '手机号',
+  `Phone` varchar(200) DEFAULT NULL COMMENT '座机号',
+  `ShippingMethod` varchar(200) DEFAULT NULL COMMENT '配送方式',
+  `PayType` int(11) DEFAULT NULL COMMENT '支付平台\r\n1：Alipay',
+  `PayOrderNo` varchar(200) DEFAULT NULL COMMENT '支付平台内流水号',
+  `ExpressNumber` varchar(200) DEFAULT NULL COMMENT '快递单号',
   PRIMARY KEY (`GUID`),
   KEY `DesignWorkID` (`DesignWorkID`),
   KEY `UserID` (`UserID`)
@@ -370,13 +370,13 @@ CREATE TABLE IF NOT EXISTS `orders` (
 -- --------------------------------------------------------
 
 --
--- 琛ㄧ殑缁撴瀯 `singlelogin`
+-- 表的结构 `singlelogin`
 --
 
 CREATE TABLE IF NOT EXISTS `singlelogin` (
   `GUID` varchar(200) NOT NULL,
   `UserID` varchar(200) NOT NULL,
-  `LoginTime` datetime NOT NULL COMMENT '鐧婚檰鏃堕棿',
+  `LoginTime` datetime NOT NULL COMMENT '登陆时间',
   PRIMARY KEY (`GUID`),
   KEY `UserID` (`UserID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -384,38 +384,38 @@ CREATE TABLE IF NOT EXISTS `singlelogin` (
 -- --------------------------------------------------------
 
 --
--- 琛ㄧ殑缁撴瀯 `users`
+-- 表的结构 `users`
 --
 
 CREATE TABLE IF NOT EXISTS `users` (
   `GUID` varchar(200) NOT NULL,
-  `RealName` varchar(200) NOT NULL COMMENT '鏀粯瀹濈敤鎴峰鍚嶆垨娣樺疂鏄电О',
-  `Email` varchar(200) NOT NULL COMMENT '鐢ㄦ埛鏀粯瀹濈櫥褰曡处鍙?閭鎴栨墜鏈哄彿)',
-  `StageName` varchar(200) NOT NULL COMMENT '鑹哄悕',
-  `CreateTime` datetime NOT NULL COMMENT '鐢ㄦ埛娉ㄥ唽鏃堕棿',
-  `State` int(11) NOT NULL COMMENT '鐘舵€乗r\n0锛氱鐢╘r\n1锛氭甯?,
+  `RealName` varchar(200) NOT NULL COMMENT '支付宝用户姓名或淘宝昵称',
+  `Email` varchar(200) NOT NULL COMMENT '用户支付宝登录账号(邮箱或手机号)',
+  `StageName` varchar(200) NOT NULL COMMENT '艺名',
+  `CreateTime` datetime NOT NULL COMMENT '用户注册时间',
+  `State` int(11) NOT NULL COMMENT '状态\r\n0：禁用\r\n1：正常',
   PRIMARY KEY (`GUID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 --
--- 杞瓨琛ㄤ腑鐨勬暟鎹?`users`
+-- 转存表中的数据 `users`
 --
 
 INSERT INTO `users` (`GUID`, `RealName`, `Email`, `StageName`, `CreateTime`, `State`) VALUES
 ('9ece1f8700bb4dd38832f14e4b480107', 'sorex@163.com', 'sorex@163.com', 'sorex', '2013-06-01 21:35:12', 0);
 
 --
--- 闄愬埗瀵煎嚭鐨勮〃
+-- 限制导出的表
 --
 
 --
--- 闄愬埗琛?`addresses`
+-- 限制表 `addresses`
 --
 ALTER TABLE `addresses`
   ADD CONSTRAINT `addresses_ibfk_1` FOREIGN KEY (`UserID`) REFERENCES `users` (`GUID`);
 
 --
--- 闄愬埗琛?`designworks`
+-- 限制表 `designworks`
 --
 ALTER TABLE `designworks`
   ADD CONSTRAINT `designworks_ibfk_1` FOREIGN KEY (`DesignerID`) REFERENCES `users` (`GUID`),
@@ -423,50 +423,50 @@ ALTER TABLE `designworks`
   ADD CONSTRAINT `designworks_ibfk_3` FOREIGN KEY (`MaterialColorID`) REFERENCES `materialcolors` (`GUID`);
 
 --
--- 闄愬埗琛?`materialcolors`
+-- 限制表 `materialcolors`
 --
 ALTER TABLE `materialcolors`
   ADD CONSTRAINT `materialcolors_ibfk_1` FOREIGN KEY (`MaterialID`) REFERENCES `materials` (`GUID`);
 
 --
--- 闄愬埗琛?`materialpictures`
+-- 限制表 `materialpictures`
 --
 ALTER TABLE `materialpictures`
   ADD CONSTRAINT `materialpictures_ibfk_1` FOREIGN KEY (`MaterialID`) REFERENCES `materials` (`GUID`);
 
 --
--- 闄愬埗琛?`materialpricelogs`
+-- 限制表 `materialpricelogs`
 --
 ALTER TABLE `materialpricelogs`
   ADD CONSTRAINT `materialpricelogs_ibfk_1` FOREIGN KEY (`MaterialID`) REFERENCES `materials` (`GUID`);
 
 --
--- 闄愬埗琛?`materials`
+-- 限制表 `materials`
 --
 ALTER TABLE `materials`
   ADD CONSTRAINT `materials_ibfk_1` FOREIGN KEY (`TypeID`) REFERENCES `materialtypes` (`GUID`);
 
 --
--- 闄愬埗琛?`materialsizes`
+-- 限制表 `materialsizes`
 --
 ALTER TABLE `materialsizes`
   ADD CONSTRAINT `materialsizes_ibfk_1` FOREIGN KEY (`MaterialID`) REFERENCES `materials` (`GUID`);
 
 --
--- 闄愬埗琛?`orderdetails`
+-- 限制表 `orderdetails`
 --
 ALTER TABLE `orderdetails`
   ADD CONSTRAINT `orderdetails_ibfk_1` FOREIGN KEY (`OrderID`) REFERENCES `orders` (`GUID`);
 
 --
--- 闄愬埗琛?`orders`
+-- 限制表 `orders`
 --
 ALTER TABLE `orders`
   ADD CONSTRAINT `orders_ibfk_1` FOREIGN KEY (`DesignWorkID`) REFERENCES `designworks` (`GUID`),
   ADD CONSTRAINT `orders_ibfk_2` FOREIGN KEY (`UserID`) REFERENCES `users` (`GUID`);
 
 --
--- 闄愬埗琛?`singlelogin`
+-- 限制表 `singlelogin`
 --
 ALTER TABLE `singlelogin`
   ADD CONSTRAINT `singlelogin_ibfk_1` FOREIGN KEY (`UserID`) REFERENCES `users` (`GUID`);
