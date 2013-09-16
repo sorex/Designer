@@ -20,7 +20,12 @@
 	<div id="ShowInfo" class="infoShow template">
 		<script type="text/x-mustache">
 		<div class="buy">
+			{{^IsOver}}
 			<a id="buy" class="button submitButton" href="javascript:void(0);" onclick="return false;">￥{{designwork.SellingPrice}} 购买</a>
+			{{/IsOver}}
+			{{#IsOver}}
+			<span class="buyOver">活动已结束</span>
+			{{/IsOver}}
 		</div>
 		<h2>关于</h2>
 		<div id="Description">{{Description}}</div>
@@ -163,9 +168,9 @@
 
 			$("#buy").click(function ()
 			{
-				if($("#btnLogin").length != 0)
-					$("#loginDialog").dialog("open");
-				else
+				//if($("#btnLogin").length != 0)
+				//	$("#loginDialog").dialog("open");
+				//else
 					$("#BuyList").dialog("open");
 			});
 

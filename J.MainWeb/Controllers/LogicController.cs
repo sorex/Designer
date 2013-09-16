@@ -87,7 +87,8 @@ namespace J.MainWeb.Controllers
 					MaterialDescription = dw.material.Description,
 					CurrentMaterialTypeID = dw.material.TypeID,
 					CurrentMaterialID = dw.MaterialID,
-					CurrentColorCode = dw.materialcolor.ColorCode
+					CurrentColorCode = dw.materialcolor.ColorCode,
+					IsOver = dw.EndTime < DateTime.Now
 				});
 
 				Dictionary<string, List<string>> TypeAndProperties = new Dictionary<string, List<string>>();
@@ -111,7 +112,9 @@ namespace J.MainWeb.Controllers
 		public ActionResult CreateOrder(string guid, string sizes, string quantities)
 		{
 			if (base.CurrentUser == null)
-				return Content(JsonConvert.SerializeObject(new { code = -99, msg = "请登录后重试！" }));
+				return Content(JsonConvert.SerializeObject(new { code = -1, msg = "请登录后重试！" }));
+			//自动登录使用-99
+			//return Content(JsonConvert.SerializeObject(new { code = -99, msg = "请登录后重试！" }));
 
 			var UserID = base.CurrentUser.GUID;
 			var OrderID = Basic.NewGuid();
@@ -132,6 +135,9 @@ namespace J.MainWeb.Controllers
 			using(DBEntities db = new DBEntities())
 			{
 				var DesignWork = db.designworks.FirstOrDefault(p=>p.GUID == DesignWorkID);
+				if (DesignWork.EndTime < DateTime.Now)
+					return Content(JsonConvert.SerializeObject(new { code = -1, msg = "很遗憾，活动已结束！请刷新页面。" }));
+
 				var sizesDB = db.materialsizes.Where(p => sizesStr.Contains(p.GUID)).ToList();
 				if(sizesDB.Count() != sizesStr.Count())
 					return Content(JsonConvert.SerializeObject(new { code = -1, msg = "选择的尺寸不存在，请重试！" }));

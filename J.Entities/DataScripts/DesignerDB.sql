@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- 主机: localhost
--- 生成日期: 2013 年 09 月 11 日 15:49
+-- 生成日期: 2013 年 09 月 16 日 14:29
 -- 服务器版本: 5.5.32
 -- PHP 版本: 5.3.25
 
@@ -84,6 +84,14 @@ CREATE TABLE IF NOT EXISTS `designworks` (
   KEY `MaterialID` (`MaterialID`),
   KEY `MaterialColorID` (`MaterialColorID`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- 转存表中的数据 `designworks`
+--
+
+INSERT INTO `designworks` (`GUID`, `DesignerID`, `MaterialID`, `MaterialColorID`, `SalesGoal`, `BasePrice`, `SellingPrice`, `CreateTime`, `LongTime`, `StartTime`, `EndTime`, `Title`, `Description`, `Url`, `SalesVolume`, `State`, `ProcurementCost`, `ProductionCost`, `SendCost`, `CompletionTime`) VALUES
+('85425ba56c5344f6bb0f360fac4a06da', '9ece1f8700bb4dd38832f14e4b480107', 'longtee', 'a9430b61802c4d4f9b36325ad087ef6d', 30, '57.00000000', '66.00000000', '2013-09-16 22:07:10', 7, '2013-09-16 22:07:11', '2013-09-23 22:07:11', '工作&游戏', '工作和游戏的上下左右键哦！！', '', 0, 1, NULL, NULL, NULL, NULL),
+('e585192fe5a942be97650a2b99534014', '9ece1f8700bb4dd38832f14e4b480107', 'shorttee', '22d33b2ebcd84f59ade9c6b5dd94fd40', 10, '45.00000000', '50.00000000', '2013-09-16 22:05:30', 7, '2013-09-16 22:05:33', '2013-09-23 22:05:33', '可爱的喵~~', '这么可爱的喵咪~~你不领回家吗？？？', '', 0, 1, NULL, NULL, NULL, NULL);
 
 -- --------------------------------------------------------
 
@@ -229,12 +237,12 @@ CREATE TABLE IF NOT EXISTS `materials` (
 --
 
 INSERT INTO `materials` (`GUID`, `TypeID`, `Name`, `Price`, `Description`, `PictureNumber`, `State`) VALUES
-('hoodies', 'tshirt', '卫衣', '45.00000000', '', 2, 1),
-('longtee', 'tshirt', '长袖T恤', '45.00000000', '', 2, 1),
+('hoodies', 'tshirt', '卫衣', '100.00000000', '', 2, 1),
+('longtee', 'tshirt', '长袖T恤', '60.00000000', '', 2, 1),
 ('shorttee', 'tshirt', '短袖T恤', '45.00000000', '', 2, 1),
-('tanktops', 'tshirt', '背心', '45.00000000', '', 2, 1),
+('tanktops', 'tshirt', '背心', '35.00000000', '', 2, 1),
 ('vneckshorttee', 'tshirt', 'V领短袖T恤', '45.00000000', '', 2, 1),
-('womanshorttee', 'tshirt', '女士短袖T恤', '45.00000000', '', 2, 1);
+('womanshorttee', 'tshirt', '女士短袖T恤', '40.00000000', '', 2, 1);
 
 -- --------------------------------------------------------
 

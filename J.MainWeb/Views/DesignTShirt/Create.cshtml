@@ -12,10 +12,10 @@
 <div class="left">
 	<div id="TShirtTypeAndColor" class="group">
 		<div id="TShirtType">
-			<span id="_shortrneck" style="background-image: url('/Static/SystemFiles/tshirt/shortrneck/50x50.png')" title="短袖圆领" class="button active"></span>
+			@*<span id="_shortrneck" style="background-image: url('/Static/SystemFiles/tshirt/shortrneck/50x50.png')" title="短袖圆领" class="button active"></span>
 			<span id="_shortvneck" style="background-image: url('/Static/SystemFiles/tshirt/shortvneck/50x50.png')" title="短袖V领" class="button"></span>
 			<span id="_longrneck" style="background-image: url('/Static/SystemFiles/tshirt/longrneck/50x50.png')" title="长袖圆领" class="button"></span>
-			<span id="_longvneck" style="background-image: url('/Static/SystemFiles/tshirt/longvneck/50x50.png')" title="长袖V领" class="button"></span>
+			<span id="_longvneck" style="background-image: url('/Static/SystemFiles/tshirt/longvneck/50x50.png')" title="长袖V领" class="button"></span>*@
 		</div>
 		<div id="TShirtColor">
 			<span id="_colorguid1" style="background-color: #ffffff;" data-colorcode="ffffff" class="button active"></span>
@@ -166,7 +166,7 @@
 
 				var time = parseInt($('input[name="longTime"]:checked').val());
 
-				var description = $("#title").val();
+				var description = $("#description").val();
 				if (description.length == 0)
 					description = "这家伙很懒，什么说明都没留下";
 				description = description.substring(0, 2000);
@@ -308,6 +308,7 @@
 
 					var tempElementUpload = String.format('<input type="file" id="_{0}_uploadFile" name="_{0}_uploadFile" data-fileName="{1}" />',
 						CurrentMaterialpictures[i].GUID, CurrentMaterialpictures[i].FileName);
+
 					$("#UploadImage").append(tempElementUpload);
 					(function ()
 					{

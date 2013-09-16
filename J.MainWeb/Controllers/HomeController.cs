@@ -30,13 +30,13 @@ namespace J.MainWeb.Controllers
 			//		var User = (from u in db.users
 			//					where u.GUID == "9ece1f8700bb4dd38832f14e4b480107"
 			//					select u).FirstOrDefault();
-
+			//
 			//		Session[SessionConfig.CurrentUser] = User;
 			//	}
 
 			using (DBEntities db = new DBEntities())
 			{
-				var ShowIDs = "b1bed31ded4740f6801bc5490badbc6d,dc68dcd318d14e019c23ba84a2605c03".Split(',');
+				var ShowIDs = System.Configuration.ConfigurationManager.AppSettings["HomeShowIDs"].Split(',');
 				var search = (from dw in db.designworks
 							  where ShowIDs.Contains(dw.GUID)
 							  orderby dw.StartTime descending

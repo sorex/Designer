@@ -20,15 +20,15 @@ namespace J.Utility.ImageTool
 			int x = 0, y = 0, width = NewWidth, height = NewHeight;
 			if (Source.Width / Source.Height >= NewWidth / NewHeight)
 			{
-				//新图片宽度过大
-				width = (int)(1.0 * Source.Width / Source.Height * NewHeight);
-				x = (int)((NewWidth - width) / 2);
-			}
-			else
-			{
 				//新图片高度过大
 				height = (int)(1.0 * Source.Height / Source.Width * NewWidth);
 				y = (int)((NewHeight - height) / 2);
+			}
+			else
+			{
+				//新图片宽度过大
+				width = (int)(1.0 * Source.Width / Source.Height * NewHeight);
+				x = (int)((NewWidth - width) / 2);
 			}
 
 			Bitmap Result = new Bitmap(NewWidth, NewHeight); // 创建新图片

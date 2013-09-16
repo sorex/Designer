@@ -65,6 +65,10 @@
 					border: 1px solid #128d27;
 				}
 
+			.body .DesignInfo .infoShow .buy .buyOver
+			{
+				background-color:#ccc;
+			}
 
 	.body .MaterialInfo
 	{

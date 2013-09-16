@@ -216,6 +216,7 @@
     <Content Include="Static\Resources\jquery.base64\jquery.base64.min.js" />
     <Content Include="Static\Resources\jquery.validate\additional-methods.js" />
     <Content Include="Static\Resources\jquery.validate\additional-methods.min.js" />
+    <None Include="Properties\PublishProfiles\publish.pubxml" />
     <None Include="Static\Resources\jquery.validate\jquery.validate-vsdoc.js" />
     <Content Include="Static\Resources\jquery.validate\jquery.validate.js" />
     <Content Include="Static\Resources\jquery.validate\jquery.validate.min.js" />
@@ -225,6 +226,7 @@
     <Content Include="Static\Resources\jquery\jquery-migrate-1.2.1.js" />
     <Content Include="Static\Resources\jquery\jquery-migrate-1.2.1.min.js" />
     <Content Include="Static\Resources\mustache\mustache.js" />
+    <Content Include="Static\Resources\site\images\1.gif" />
     <Content Include="Static\Resources\site\images\alipay_login_button.png" />
     <Content Include="Static\Resources\site\images\Logo_300x40.png" />
     <Content Include="Static\Resources\site\Logic_ConfirmOrder.css" />
