@@ -11,6 +11,13 @@ namespace J.BusinessLogics
 {
 	public class Logic
 	{
+		/// <summary>
+		/// 用户
+		/// </summary>
+		/// <param name="UserID"></param>
+		/// <param name="RealName"></param>
+		/// <param name="Email"></param>
+		/// <returns></returns>
 		public bool LoginOK(string UserID, string RealName, string Email)
 		{
 			using (DBEntities db = new DBEntities())

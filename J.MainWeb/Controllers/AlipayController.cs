@@ -7,6 +7,7 @@ using System.Web;
 using System.Web.Mvc;
 using J.Entities;
 using J.MainWeb.App_Code;
+using J.BusinessLogics.Basic;
 
 namespace J.MainWeb.Controllers
 {
@@ -279,7 +280,7 @@ namespace J.MainWeb.Controllers
 			string target_service = "user.auth.quick.login";
 			//必填
 			//必填，页面跳转同步通知页面路径
-			string return_url = System.Configuration.ConfigurationManager.AppSettings["WebUrl"] + "Alipay/return_url_login";
+			string return_url = System.Configuration.ConfigurationManager.AppSettings["WebUrl"] + "Alipay/Alipay_Login_return_url";
 			//需http://格式的完整路径，不允许加?id=123这类自定义参数
 
 			//防钓鱼时间戳
@@ -328,12 +329,46 @@ namespace J.MainWeb.Controllers
 					//获取支付宝的通知返回参数，可参考技术文档中页面跳转同步通知参数列表
 
 					//支付宝用户号
-
 					string user_id = Request.QueryString["user_id"];
 
 					//授权令牌
 					string token = Request.QueryString["token"];
 
+					//支付宝用户姓名或淘宝昵称
+					string real_name = Request.QueryString["real_name"];
+
+					//用户支付宝登录账号【可能是邮箱或手机号】
+					string email = Request.QueryString["email"];
+
+
+					using (DBEntities db = new DBEntities())
+					{
+						var User = db.users.FirstOrDefault(p => p.GUID == user_id);
+						if (User != null)
+						{
+							if (User.RealName != real_name)
+								User.RealName = real_name;
+							if (User.Email != email)
+								User.Email = email;
+							db.SaveChanges();
+						}
+						else
+						{
+							User = new user
+							{
+								GUID = user_id,
+								RealName = real_name,
+								Email = email,
+								CreateTime = DateTime.Now,
+								StageName = String.Empty,
+								State = 1
+							};
+							db.users.Add(User);
+							db.SaveChanges();
+						}
+
+						Session[SessionConfig.CurrentUser] = User;
+					}
 
 					//判断是否在商户网站中已经做过了这次通知返回的处理
 					//如果没有做过处理，那么执行商户的业务程序
