@@ -1,0 +1,124 @@
+﻿@{
+	ViewBag.Title = "Index";
+}
+
+@section head{
+	<script type="text/javascript" src="~/Static/Resources/_references.js"></script>
+	<link rel="stylesheet" href="~/Static/Resources/site/myInfo.css" />
+}
+
+<div class="myInfoSide">
+	<ul>
+		<li><span class="myInfoSideActive">我的资料</span></li>
+		<li><a href="~/MyInfo/MyDesignworks">我的设计</a></li>
+		<li><a href="~/MyInfo/MyOrders">我的订单</a></li>
+		<li><a href="~/MyInfo/MyAddresses">收货地址</a></li>
+	</ul>
+</div>
+<div class="myInfoMain">
+	<span id="realname" style="float: left; width: 150px; text-align: right;">姓名：</span><br />
+	<span id="createtime" style="float: left; width: 150px; text-align: right;">创建时间：</span><br />
+	<br />
+	<span id="email" style="float: left; width: 150px; text-align: right;">支付宝账号：</span>
+	<div id="emailEdit" style="float: left;">
+		<input id="newEmail" type="text" value="" title="给您打款的账户，务必填写正确。" />
+		<a id="changeEmail" class="button" href="javascript:void(0);" onclick="return false;">提交</a>
+	</div>
+	<br />
+	<span id="stagename" style="float: left; width: 150px; text-align: right;">艺名：</span>
+	<div id="stagenameEdit" style="float: left;">
+		<input id="newStageName" type="text" value="" title="用于显示在您的设计上面。" />
+		<a id="changeStageName" class="button" href="javascript:void(0);" onclick="return false;">提交</a>
+	</div>
+</div>
+
+@section scripts{
+	<script type="text/javascript">
+		var Data = @Html.Raw(ViewBag.Data);
+
+		$(function ()
+		{
+			if (Data != null)
+			{
+				if (Data.Email != "")
+				{
+					$("#email").after("<b>" + Data.Email + "</b>");
+					$("#emailEdit").css("display","none");
+				}
+
+				$("#realname").after("<b>" + Data.RealName + "</b>");
+				$("#createtime").after("<b>" + Data.CreateTime + "</b>");
+
+				if (Data.StageName != "")
+				{
+					$("#stagename").after("<b>" + Data.StageName + "</b>");
+					$("#stagenameEdit").css("display","none");
+				}
+			}
+
+			$( document ).tooltip();
+
+			$("#changeEmail").click(function(){
+				$.ajax({
+					type: "post",
+					cache: false,
+					url: "@Url.Action("ChangeEmail", "MyInfo")",
+					data: { email : $("#newEmail").val() },
+					success: function (data)
+					{
+						var dataobj = JSON.parse(data);
+						if (dataobj.code > 0)
+						{
+							$("#MessageDialog_Message").html(dataobj.msg);
+							$("#MessageDialog").dialog("option", { title: "提示", width: 200, buttons: [{ text: "确定", click: function () { location.reload(); } }] });
+							$("#MessageDialog").dialog("open");
+						}
+						else
+						{
+							$("#MessageDialog_Message").html(dataobj.msg);
+							$("#MessageDialog").dialog("option", { title: "错误提示", width: 350 });
+							$("#MessageDialog").dialog("open");
+						}
+					},
+					error: function (XMLHttpRequest, textStatus, errorThrown)
+					{
+						$("#MessageDialog_Message").html("网络错误，请重试！");
+						$("#MessageDialog").dialog("option", { title: "错误提示", width: 200 });
+						$("#MessageDialog").dialog("open");
+					}
+				});
+			});
+
+			$("#changeStageName").click(function(){
+				$.ajax({
+					type: "post",
+					cache: false,
+					url: "@Url.Action("ChangeStageName", "MyInfo")",
+					data: { stagename : $("#newStageName").val() },
+					success: function (data)
+					{
+						var dataobj = JSON.parse(data);
+						if (dataobj.code > 0)
+						{
+							$("#MessageDialog_Message").html(dataobj.msg);
+							$("#MessageDialog").dialog("option", { title: "提示", width: 200, buttons: [{ text: "确定", click: function () { location.reload(); } }] });
+							$("#MessageDialog").dialog("open");
+						}
+						else
+						{
+							$("#MessageDialog_Message").html(dataobj.msg);
+							$("#MessageDialog").dialog("option", { title: "错误提示", width: 350 });
+							$("#MessageDialog").dialog("open");
+						}
+					},
+					error: function (XMLHttpRequest, textStatus, errorThrown)
+					{
+						$("#MessageDialog_Message").html("网络错误，请重试！");
+						$("#MessageDialog").dialog("option", { title: "错误提示", width: 200 });
+						$("#MessageDialog").dialog("open");
+					}
+				});
+			});
+		});
+	</script>
+}

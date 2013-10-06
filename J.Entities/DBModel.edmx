@@ -228,6 +228,8 @@
           <Property Name="ShippingMethod" Type="varchar" MaxLength="200" />
           <Property Name="PayType" Type="int" />
           <Property Name="PayOrderNo" Type="varchar" MaxLength="200" />
+          <Property Name="PayUserID" Type="varchar" MaxLength="200" />
+          <Property Name="PayUserName" Type="varchar" MaxLength="200" />
           <Property Name="ExpressNumber" Type="varchar" MaxLength="200" />
         </EntityType>
         <EntityType Name="singlelogin">
@@ -650,6 +652,8 @@
           <Property Type="String" Name="ShippingMethod" MaxLength="200" FixedLength="false" Unicode="false" />
           <Property Type="Int32" Name="PayType" />
           <Property Type="String" Name="PayOrderNo" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="PayUserID" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Type="String" Name="PayUserName" MaxLength="200" FixedLength="false" Unicode="false" />
           <Property Type="String" Name="ExpressNumber" MaxLength="200" FixedLength="false" Unicode="false" />
           <NavigationProperty Name="designwork" Relationship="DBModel.orders_ibfk_1" FromRole="order" ToRole="designwork" />
           <NavigationProperty Name="orderdetails" Relationship="DBModel.orderdetails_ibfk_1" FromRole="order" ToRole="orderdetail" />
@@ -974,6 +978,8 @@
             <EntityTypeMapping TypeName="DBModel.order">
               <MappingFragment StoreEntitySet="orders">
                 <ScalarProperty Name="ExpressNumber" ColumnName="ExpressNumber" />
+                <ScalarProperty Name="PayUserName" ColumnName="PayUserName" />
+                <ScalarProperty Name="PayUserID" ColumnName="PayUserID" />
                 <ScalarProperty Name="PayOrderNo" ColumnName="PayOrderNo" />
                 <ScalarProperty Name="PayType" ColumnName="PayType" />
                 <ScalarProperty Name="ShippingMethod" ColumnName="ShippingMethod" />

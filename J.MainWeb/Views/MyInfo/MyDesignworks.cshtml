@@ -71,6 +71,7 @@
 				<td class="stress">
 					{{#stateIs0}}
 					<a href="/Logic/Preview?guid={{GUID}}" target="_blank">发布</a>
+					<a id="btnDelete_{{GUID}}" class="button" href="javascript:void(0);" onclick="return false;">删除</a>
 					{{/stateIs0}}
 					{{^stateIs0}}
 						&nbsp;
@@ -84,18 +85,23 @@
 	<div style="text-align: left;">
 		@if (ViewBag.HasPrev)
   { 
-	  <a href="~/MyInfo/MyDesignworks?pageIndex=@ViewBag.PrevPageIndex" >上一页</a>
+			<a href="~/MyInfo/MyDesignworks?pageIndex=@ViewBag.PrevPageIndex" >上一页</a>
   }
 		@if (ViewBag.HasNext)
   { 
-	  <a href="~/MyInfo/MyDesignworks?pageIndex=@ViewBag.NextPageIndex" >下一页</a>
+			<a href="~/MyInfo/MyDesignworks?pageIndex=@ViewBag.NextPageIndex" >下一页</a>
   }
 	</div>
+</div>
+<div id="DeleteConfirm">
+	您确定要删除该设计？<br />
+	删除后将无法恢复！
 </div>
 
 @section scripts{
 	<script type="text/javascript">
-		var Data =  @Html.Raw(ViewBag.Data) ;
+		var Data = @Html.Raw(ViewBag.Data) ;
+		var DeleteGUID = "";
 
 		$(function ()
 		{
@@ -105,9 +111,10 @@
 				{
 					return this.State == 0;
 				},
-				stateString:function()
+				stateString: function ()
 				{
-					switch (this.State) {
+					switch (this.State)
+					{
 						case -1:
 							return "预售不足";
 						case 0:
@@ -132,21 +139,81 @@
 
 			$("#dataTable").render(Data);
 
-			$( document ).tooltip({
+			$(document).tooltip({
 				items: "img, [data-tooptip], [title]",
-				content: function() {
-					var element = $( this );
-					if ( element.is( "[data-tooptip]" ) ) {
+				content: function ()
+				{
+					var element = $(this);
+					if (element.is("[data-tooptip]"))
+					{
 						var text = element.text();
 						return "<img src='" + element.attr("data-tooptipSrc") + "'>";
 					}
-					if ( element.is( "[title]" ) ) {
-						return element.attr( "title" );
+					if (element.is("[title]"))
+					{
+						return element.attr("title");
 					}
-					if ( element.is( "img" ) ) {
-						return element.attr( "alt" );
+					if (element.is("img"))
+					{
+						return element.attr("alt");
 					}
 				}
+			});
+
+			$("#DeleteConfirm").dialog({
+				autoOpen: false,
+				modal: true,
+				title: "警告",
+				buttons: [{
+					text: "确定", click: function ()
+					{
+						if (DeleteGUID != "")
+						{
+							$.ajax({
+								type: "delete",
+								cache: false,
+								url: "@Url.Action("DeleteDesignwork", "MyInfo")",
+								data: { guid: DeleteGUID },
+								success: function (data)
+								{
+									var dataobj = JSON.parse(data);
+									if (dataobj.code > 0)
+									{
+										$("#MessageDialog_Message").html(dataobj.msg);
+										$("#MessageDialog").dialog("option", { title: "提示", width: 200, buttons: [{ text: "确定", click: function () { location.reload(); } }] });
+										$("#MessageDialog").dialog("open");
+									}
+									else
+									{
+										$("#MessageDialog_Message").html(dataobj.msg);
+										$("#MessageDialog").dialog("option", { title: "错误提示", width: 350 });
+										$("#MessageDialog").dialog("open");
+									}
+								},
+								error: function (XMLHttpRequest, textStatus, errorThrown)
+								{
+									$("#MessageDialog_Message").html("网络错误，请重试！");
+									$("#MessageDialog").dialog("option", { title: "错误提示", width: 200 });
+									$("#MessageDialog").dialog("open");
+								}
+							});
+						}
+					}
+				},
+				{
+					text: "取消", click: function ()
+					{
+						$(this).dialog("close");
+					}
+				}],
+				close: function (event, ui) { DeleteGUID = ""; }
+			});
+
+			$("a[id^='btnDelete_']").click(function ()
+			{
+				DeleteGUID = this.id.substring(10);
+
+				$("#DeleteConfirm").dialog("open");
 			});
 		});
 

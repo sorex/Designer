@@ -52,6 +52,8 @@ namespace J.Entities
         public string ShippingMethod { get; set; }
         public Nullable<int> PayType { get; set; }
         public string PayOrderNo { get; set; }
+        public string PayUserID { get; set; }
+        public string PayUserName { get; set; }
         public string ExpressNumber { get; set; }
     
         public virtual designwork designwork { get; set; }

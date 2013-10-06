@@ -105,25 +105,38 @@ namespace J.MainWeb.Controllers
 				#region 处理图片
 				foreach (var p in material.materialpictures)
 				{
-					Bitmap oldSource = new Bitmap(UserFiles + userID + "\\" + dwGUID + "\\" + p.FileName);
-					Bitmap BaseMap = new Bitmap(Server.MapPath("~/Static/SystemFiles/") + material.TypeID + "\\" + materialGUID + "\\" + colorCode + "\\" + p.FileName);
+					if (System.IO.File.Exists(UserFiles + userID + "\\" + dwGUID + "\\" + p.FileName))
+					{
+						Bitmap oldSource = new Bitmap(UserFiles + userID + "\\" + dwGUID + "\\" + p.FileName);
+						Bitmap BaseMap = new Bitmap(Server.MapPath("~/Static/SystemFiles/") + material.TypeID + "\\" + materialGUID + "\\" + colorCode + "\\" + p.FileName);
 
-					int width = (int)(p.UploadWidth * p.ShowScale);
-					int height = (int)(p.UploadHeight * p.ShowScale);
+						int width = (int)(p.UploadWidth * p.ShowScale);
+						int height = (int)(p.UploadHeight * p.ShowScale);
 
-					//缩小原图
-					Bitmap Source = J.Utility.ImageTool.Basic.Zoom(oldSource, width, height);
+						//缩小原图
+						Bitmap Source = J.Utility.ImageTool.Basic.Zoom(oldSource, width, height);
 
-					//合成图片
-					Bitmap newSource = J.Utility.ImageTool.Basic.Merge(BaseMap, Source, p.Left, p.Top);
+						//合成图片
+						Bitmap newSource = J.Utility.ImageTool.Basic.Merge(BaseMap, Source, p.Left, p.Top);
 
-					//缩小原图
-					Bitmap Source180 = J.Utility.ImageTool.Basic.Zoom(newSource, 180, 180);
-					Bitmap Source50 = J.Utility.ImageTool.Basic.Zoom(newSource, 50, 50);
+						//缩小原图
+						Bitmap Source180 = J.Utility.ImageTool.Basic.Zoom(newSource, 180, 180);
+						Bitmap Source50 = J.Utility.ImageTool.Basic.Zoom(newSource, 50, 50);
 
-					newSource.Save(UserFiles + userID + "\\" + dwGUID + "\\" + "m_" + p.FileName);
-					Source180.Save(UserFiles + userID + "\\" + dwGUID + "\\" + "180_" + p.FileName);
-					Source50.Save(UserFiles + userID + "\\" + dwGUID + "\\" + "50_" + p.FileName);
+						newSource.Save(UserFiles + userID + "\\" + dwGUID + "\\" + "m_" + p.FileName);
+						Source180.Save(UserFiles + userID + "\\" + dwGUID + "\\" + "180_" + p.FileName);
+						Source50.Save(UserFiles + userID + "\\" + dwGUID + "\\" + "50_" + p.FileName);
+					}
+					else
+					{
+						Bitmap newSource = new Bitmap(Server.MapPath("~/Static/SystemFiles/") + material.TypeID + "\\" + materialGUID + "\\" + colorCode + "\\" + p.FileName);
+						Bitmap Source180 = J.Utility.ImageTool.Basic.Zoom(newSource, 180, 180);
+						Bitmap Source50 = J.Utility.ImageTool.Basic.Zoom(newSource, 50, 50);
+
+						newSource.Save(UserFiles + userID + "\\" + dwGUID + "\\" + "m_" + p.FileName);
+						Source180.Save(UserFiles + userID + "\\" + dwGUID + "\\" + "180_" + p.FileName);
+						Source50.Save(UserFiles + userID + "\\" + dwGUID + "\\" + "50_" + p.FileName);
+					}
 				}
 
 				//缩小原图

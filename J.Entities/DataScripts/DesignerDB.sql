@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- 主机: localhost
--- 生成日期: 2013 年 09 月 16 日 14:29
+-- 生成日期: 2013 年 10 月 06 日 09:13
 -- 服务器版本: 5.5.32
 -- PHP 版本: 5.3.25
 
@@ -369,6 +369,8 @@ CREATE TABLE IF NOT EXISTS `orders` (
   `ShippingMethod` varchar(200) DEFAULT NULL COMMENT '配送方式',
   `PayType` int(11) DEFAULT NULL COMMENT '支付平台\r\n1：Alipay',
   `PayOrderNo` varchar(200) DEFAULT NULL COMMENT '支付平台内流水号',
+  `PayUserID` varchar(200) DEFAULT NULL COMMENT '付款账户ID',
+  `PayUserName` varchar(200) DEFAULT NULL COMMENT '付款账户名称',
   `ExpressNumber` varchar(200) DEFAULT NULL COMMENT '快递单号',
   PRIMARY KEY (`GUID`),
   KEY `DesignWorkID` (`DesignWorkID`),

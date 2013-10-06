@@ -108,6 +108,38 @@ a
 		text-decoration: none;
 	}
 
+.baseButton
+{
+}
+
+	.baseButton:link
+	{
+		color: #ffffff;
+		background-color:#ff7a01;
+		border:1px solid #f15c00;
+	}
+
+	.baseButton:visited
+	{
+		color: #ffffff;
+		background-color:#ff7a01;
+		border:1px solid #f15c00;
+	}
+
+	.baseButton:hover
+	{
+		color: #ffffff;
+		background-color:#fe920c;
+		border:1px solid #f4770d;
+	}
+
+	.baseButton:active
+	{
+		color: #ffffff;
+		background-color:#fe920c;
+		border:1px solid #f4770d;
+	}
+
 .body
 {
 	width: 1000px;

@@ -13,10 +13,79 @@ namespace J.MainWeb.Controllers
 {
 	public class MyInfoController : BaseController
 	{
+		#region 我的资料
 		public ActionResult Index()
 		{
+			if (base.CurrentUser != null)
+			{
+				var User = new
+				{
+					Email = base.CurrentUser.Email,
+					RealName = base.CurrentUser.RealName,
+					CreateTime = base.CurrentUser.CreateTime.ToString("yyyy-MM-dd"),
+					StageName = base.CurrentUser.StageName
+				};
+				ViewBag.Data = JsonConvert.SerializeObject(User);
+			}
+			else
+				ViewBag.Data = "null";
+
 			return View();
 		}
+
+		[HttpPost]
+		public ActionResult ChangeEmail(string email)
+		{
+			email = email.Trim();
+			if (base.CurrentUser != null)
+			{
+				var userGUID = base.CurrentUser.GUID;
+				using (DBEntities db = new DBEntities())
+				{
+					var user = db.users.FirstOrDefault(p => p.GUID == userGUID);
+					if (user.Email == String.Empty)
+					{
+						user.Email = email;
+						db.SaveChanges();
+						base.CurrentUser.Email = email;
+						return Content(JsonConvert.SerializeObject(new { code = 1, msg = "保存成功！" }));
+					}
+					else
+						return Content(JsonConvert.SerializeObject(new { code = -1, msg = "不能修改【支付宝账号】。" }));
+				}
+			}
+			else
+				return Content(JsonConvert.SerializeObject(new { code = -1, msg = "请登录后重试。" }));
+		}
+
+		[HttpPost]
+		public ActionResult ChangeStageName(string stagename)
+		{
+			stagename = stagename.Trim();
+			if (base.CurrentUser != null)
+			{
+				var userGUID = base.CurrentUser.GUID;
+				using (DBEntities db = new DBEntities())
+				{
+					var user = db.users.FirstOrDefault(p => p.GUID == userGUID);
+					if (db.users.Count(p => p.StageName == stagename) > 0)
+						return Content(JsonConvert.SerializeObject(new { code = -1, msg = "该名称已被使用。" }));
+					if (user.StageName == String.Empty)
+					{
+						user.StageName = stagename;
+						db.SaveChanges();
+						base.CurrentUser.StageName = stagename;
+
+						return Content(JsonConvert.SerializeObject(new { code = 1, msg = "保存成功！" }));
+					}
+					else
+						return Content(JsonConvert.SerializeObject(new { code = -1, msg = "不能修改【艺名】。" }));
+				}
+			}
+			else
+				return Content(JsonConvert.SerializeObject(new { code = -1, msg = "请登录后重试。" }));
+		}
+		#endregion
 
 		#region 我的订单
 		public ActionResult MyOrders(int pageIndex = 0)
@@ -105,7 +174,7 @@ namespace J.MainWeb.Controllers
 				var designerID = base.CurrentUser.GUID;
 				var alldesignworks = from dw in db.designworks
 									 where dw.DesignerID == designerID
-									 orderby dw.StartTime descending
+									 orderby dw.CreateTime descending
 									 select dw;
 
 				var recordCount = alldesignworks.Count();
@@ -167,6 +236,33 @@ namespace J.MainWeb.Controllers
 				ViewBag.pageIndex = pageIndex;
 			}
 			return View();
+		}
+
+		[HttpDelete]
+		public ActionResult DeleteDesignwork(string guid)
+		{
+			using (DBEntities db = new DBEntities())
+			{
+				var UserID = base.CurrentUser.GUID;
+				var Designwork = (from d in db.designworks
+								  where d.GUID == guid
+								 select d).FirstOrDefault();
+
+				if(Designwork == null)
+					return Content(JsonConvert.SerializeObject(new { code = -1, msg = "该设计不存在！" }));
+				else if(Designwork.DesignerID != UserID)
+					return Content(JsonConvert.SerializeObject(new { code = -1, msg = "您没有权限删除该设计！" }));
+				else if(Designwork.State != 0)
+					return Content(JsonConvert.SerializeObject(new { code = -1, msg = "该设计不处于设计状态，不可删除！" }));
+
+				db.designworks.Remove(Designwork);
+				db.SaveChanges();
+
+				var UserFiles = Server.MapPath("~/Static/UserFiles/");
+				System.IO.Directory.Delete(UserFiles + UserID + "\\" + guid, true);
+
+				return Content(JsonConvert.SerializeObject(new { code = 1, msg = "删除成功！" }));
+			}
 		}
 		#endregion
 

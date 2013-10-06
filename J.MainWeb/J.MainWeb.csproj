@@ -413,13 +413,14 @@
     <Content Include="Static\Resources\site\images\华康娃娃体简W5.ttc" />
     <Content Include="Views\Home\AllDesign.cshtml" />
     <Content Include="Views\Home\UserDesign.cshtml" />
+    <Content Include="Views\MyInfo\Index.cshtml" />
+    <Content Include="Views\Alipay\Alipay_Login_return_url.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
     <Folder Include="Models\" />
     <Folder Include="Static\UserFiles\" />
     <Folder Include="Static\WorkFiles\" />
-    <Folder Include="Views\Alipay\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
