@@ -24,6 +24,7 @@
 	</div>
 	{{/items}}
 	<div class="ui-helper-clearfix"></div>
+	<a href="/MyInfo/MyAddresses" target="_blank">管理收货地址</a>
 	</script>
 </div>
 <div id="OrderInfo" class="template">
@@ -155,7 +156,7 @@ else
 							else if (dataobj.code > 0)
 							{
 								//转到选择地址和支付页面
-								location.href = "@Url.Action("Pay", "Logic")" + "?guid=" + dataobj.msg;
+								location.href = "@Url.Action("Alipay", "Alipay_Pay")" + "?OrderID=" + dataobj.msg;
 							}
 							else
 							{
