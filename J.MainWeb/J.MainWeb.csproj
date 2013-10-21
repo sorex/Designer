@@ -415,6 +415,11 @@
     <Content Include="Views\Home\UserDesign.cshtml" />
     <Content Include="Views\MyInfo\Index.cshtml" />
     <Content Include="Views\Alipay\Alipay_Login_return_url.cshtml" />
+    <Content Include="Views\Admin\RefundGoodsManage.cshtml" />
+    <Content Include="Views\Admin\RefundManage.cshtml" />
+    <Content Include="Views\Admin\SendGoodsTask.cshtml" />
+    <Content Include="Views\Admin\ProductionTask.cshtml" />
+    <Content Include="Views\Admin\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
