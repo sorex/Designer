@@ -4,6 +4,8 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 
+using J.Entities;
+
 namespace J.MainWeb.Controllers
 {
 	public class AdminController : Controller
@@ -19,10 +21,56 @@ namespace J.MainWeb.Controllers
 		/// <summary>
 		/// 生产任务
 		/// </summary>
-		/// <param name="date">当日需要移送到工厂的日期</param>
+		/// <param name="date">当日需要移送到工厂的日期(2013-12-31)</param>
 		/// <returns></returns>
-		public ActionResult ProductionTask(string date)
+		public ActionResult ProductionTask(string date = null)
 		{
+			DateTime StartTime;
+			if (date == null || DateTime.TryParse(date + " 00:00:00", out StartTime))
+			{
+				StartTime = DateTime.Parse(DateTime.Now.AddDays(-1).ToString("yyyy-MM-dd") + " 00:00:00");
+			}
+			DateTime EndTime = StartTime.AddDays(1);
+			
+			using (DBEntities db = new DBEntities())
+			{
+				var EndDesignworks = (from d in db.designworks
+						  where d.EndTime >= StartTime && d.EndTime < EndTime
+						  select d).ToList();
+
+				foreach (var d in EndDesignworks)
+				{
+
+				}
+			}
+			return View();
+		}
+
+		public ActionResult ProductionTaskAccept(string date)
+		{
+			DateTime StartTime = DateTime.Parse(date + " 00:00:00");
+			DateTime EndTime = StartTime.AddDays(1);
+
+			using (DBEntities db = new DBEntities())
+			{
+				var EndDesignworks = (from d in db.designworks
+									  where d.EndTime >= StartTime && d.EndTime < EndTime
+									  select d).ToList();
+
+				foreach (var d in EndDesignworks)
+				{
+					if (d.SalesGoal <= d.SalesVolume)
+					{
+						//预售成功
+					}
+					else
+					{
+						//预售失败，退款中
+					}
+				}
+			}
+
+
 			return View();
 		}
 
