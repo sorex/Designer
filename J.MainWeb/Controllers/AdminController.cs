@@ -31,21 +31,26 @@ namespace J.MainWeb.Controllers
 				StartTime = DateTime.Parse(DateTime.Now.AddDays(-1).ToString("yyyy-MM-dd") + " 00:00:00");
 			}
 			DateTime EndTime = StartTime.AddDays(1);
-			
+
 			using (DBEntities db = new DBEntities())
 			{
 				var EndDesignworks = (from d in db.designworks
-						  where d.EndTime >= StartTime && d.EndTime < EndTime
-						  select d).ToList();
+									  where d.EndTime >= StartTime && d.EndTime < EndTime && d.SalesGoal <= d.SalesVolume
+									  select d).ToList();
 
 				foreach (var d in EndDesignworks)
 				{
-
+					
 				}
 			}
 			return View();
 		}
 
+		/// <summary>
+		/// 确认开始生产
+		/// </summary>
+		/// <param name="date"></param>
+		/// <returns></returns>
 		public ActionResult ProductionTaskAccept(string date)
 		{
 			DateTime StartTime = DateTime.Parse(date + " 00:00:00");
@@ -62,14 +67,33 @@ namespace J.MainWeb.Controllers
 					if (d.SalesGoal <= d.SalesVolume)
 					{
 						//预售成功
+						d.State = 2;// 生产中
+						foreach (var o in d.orders)
+						{
+							if (o.State == 2) // 卖家付款，等待生产
+								o.State = 3; // 开始生产，等待发货
+							else if (o.State == 0 || o.State == 1) // 0：创建订单，等待确认订单 1：确认订单，等待买家付款
+								o.State = -1; // 交易中途关闭(已结束，未成功完成)
+						}
 					}
 					else
 					{
 						//预售失败，退款中
+						d.State = -1; // 预售不足
+						foreach (var o in d.orders)
+						{
+							if (o.State == 2) // 卖家付款，等待生产
+								o.State = 7; // 同意退款，退款中
+							else if (o.State == 0 || o.State == 1) // 0：创建订单，等待确认订单 1：确认订单，等待买家付款
+								o.State = -1; // 交易中途关闭(已结束，未成功完成)
+						}
 					}
 				}
-			}
 
+				db.SaveChanges();
+
+				//拷贝打印文件到D盘指定文件夹并压缩为zip文件
+			}
 
 			return View();
 		}

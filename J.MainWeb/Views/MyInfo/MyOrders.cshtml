@@ -56,6 +56,7 @@
 					<a href="/Logic/Detail?guid={{GUID}}" target="_blank">订单详情</a>
 				</td>
 				<td>
+					{{{refundString}}}
 					<a data-action="" data-guid="{{GUID}}" href="javascript:void(0);" onclick="return false;">退款/退货</a>
 				</td>
 			</tr>
@@ -122,6 +123,21 @@
 						default:
 							return '';
 					}
+				},
+				refundString:function()
+				{
+					switch (this.State)
+					{
+						case 2:
+							return '<a data-action="refund" data-guid="' + this.GUID + '" href="javascript:void(0);" onclick="return false;">申请退款</a>';
+						case 4:
+							return '<a data-action="refundgood" data-guid="' + this.GUID + '" href="javascript:void(0);" onclick="return false;">申请退货</a>';
+						case 8:
+						case 11:
+							return '<span>请联系管理员</span>';
+						default:
+							return '';
+					}
 				}
 			});
 
@@ -143,6 +159,19 @@
 					}
 				}
 			});
+
+			$("a[data-action='refund']", "#dataTable").each(function ()
+			{
+				$(this).click(function ()
+				{
+					Edit($(this).attr("data-guid"));
+				});
+			});
 		});
+
+		function Refund(guid)
+		{
+			
+		}
 	</script>
 }
