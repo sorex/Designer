@@ -75,6 +75,12 @@
   }
 	</div>
 </div>
+<div id="RefundDialog">
+	确定要退款？
+</div>
+<div id="RefundGoodDialog">
+	确定要退货？
+</div>
 
 @section scripts{
 	<script type="text/javascript">
@@ -82,6 +88,22 @@
 
 		$(function ()
 		{
+			$("#RefundDialog").dialog({
+				autoOpen: false,
+				modal: true,
+				title: "提示",
+				buttons: [{ text: "退款", click: function () { $(this).dialog("close"); } },
+					{ text: "取消", click: function () { $(this).dialog("close"); } }]
+			});
+
+			$("#RefundGoodDialog").dialog({
+				autoOpen: false,
+				modal: true,
+				title: "提示",
+				buttons: [{ text: "退货", click: function () { $(this).dialog("close"); } },
+					{ text: "取消", click: function () { $(this).dialog("close"); } }]
+			});
+
 			$.initTemplate();
 			$("#dataTable").data("template_extend", {
 				stateString: function ()
@@ -131,7 +153,7 @@
 						case 2:
 							return '<a data-action="refund" data-guid="' + this.GUID + '" href="javascript:void(0);" onclick="return false;">申请退款</a>';
 						case 4:
-							return '<a data-action="refundgood" data-guid="' + this.GUID + '" href="javascript:void(0);" onclick="return false;">申请退货</a>';
+							return '<a data-action="refundgoods" data-guid="' + this.GUID + '" href="javascript:void(0);" onclick="return false;">申请退货</a>';
 						case 8:
 						case 11:
 							return '<span>请联系管理员</span>';
@@ -164,7 +186,15 @@
 			{
 				$(this).click(function ()
 				{
-					Edit($(this).attr("data-guid"));
+					Refund($(this).attr("data-guid"));
+				});
+			});
+
+			$("a[data-action='refundgoods']", "#dataTable").each(function ()
+			{
+				$(this).click(function ()
+				{
+					RefundGoods($(this).attr("data-guid"));
 				});
 			});
 		});
@@ -173,5 +203,11 @@
 		{
 			
 		}
+
+		function RefundGoods(guid)
+		{
+			
+		}
+
 	</script>
 }
