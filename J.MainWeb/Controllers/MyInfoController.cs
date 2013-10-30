@@ -164,6 +164,30 @@ namespace J.MainWeb.Controllers
 			}
 			return View();
 		}
+
+		#region 退款/退货
+		public ActionResult Refund(string guid)
+		{
+			var GUID = guid.ToLower();
+
+			if (base.CurrentUser == null)
+				return Content(JsonConvert.SerializeObject(new { code = -1, msg = "请登录后重试！" }));
+			var UserID = base.CurrentUser.GUID;
+
+			using (DBEntities db = new DBEntities())
+			{
+				var Order = db.orders.FirstOrDefault(p => p.UserID == UserID && p.GUID == GUID);
+				if (Order == null)
+					return Content(JsonConvert.SerializeObject(new { code = -1, msg = "该订单不存在，请刷新后重试！" }));
+				if (Order.State != 2)
+					return Content(JsonConvert.SerializeObject(new { code = -1, msg = "该订单不可退款！请联系管理员，处理询问详情。" }));
+
+				Order.State = 6;
+				db.SaveChanges();
+				return Content(JsonConvert.SerializeObject(new { code = 1, msg = "退款申请已提交！" }));
+			}
+		}
+		#endregion
 		#endregion
 
 		#region 我的设计

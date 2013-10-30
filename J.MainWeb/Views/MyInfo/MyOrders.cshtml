@@ -22,12 +22,12 @@
 			<script type="text/x-mustache">
 			<tr>
 				<th style="width: 60px;"></th>
-				<th style="width: 370px;">物品</th>
+				<th style="width: 350px;">物品</th>
 				<th style="width: 80px;">单价(元)</th>
 				<th style="width: 80px;">数量</th>
 				<th style="width: 80px;">运费</th>
 				<th style="width: 100px;">总价(元)</th>
-				<th style="width: 100px;">订单状态</th>
+				<th style="width: 120px;">订单状态</th>
 				<th style="width: 100px;">其他操作</th>
 			</tr>
 			{{#items}}
@@ -57,7 +57,6 @@
 				</td>
 				<td>
 					{{{refundString}}}
-					<a data-action="" data-guid="{{GUID}}" href="javascript:void(0);" onclick="return false;">退款/退货</a>
 				</td>
 			</tr>
 			{{/items}}
@@ -78,13 +77,16 @@
 <div id="RefundDialog">
 	确定要退款？
 </div>
-<div id="RefundGoodDialog">
-	确定要退货？
+<div id="RefundGoodsDialog">
+	确定要退货？<br />
+	请联系客服说明原因以处理退货！
 </div>
 
 @section scripts{
 	<script type="text/javascript">
 		var Data = @Html.Raw(ViewBag.Data) ;
+
+		var ActionGUID = "";
 
 		$(function ()
 		{
@@ -92,16 +94,16 @@
 				autoOpen: false,
 				modal: true,
 				title: "提示",
-				buttons: [{ text: "退款", click: function () { $(this).dialog("close"); } },
-					{ text: "取消", click: function () { $(this).dialog("close"); } }]
+				buttons: [{ text: "退款", click: function () { Refund(); } },
+					{ text: "取消", click: function () { ActionGUID = ""; $(this).dialog("close"); } }]
 			});
 
-			$("#RefundGoodDialog").dialog({
+			$("#RefundGoodsDialog").dialog({
 				autoOpen: false,
 				modal: true,
 				title: "提示",
-				buttons: [{ text: "退货", click: function () { $(this).dialog("close"); } },
-					{ text: "取消", click: function () { $(this).dialog("close"); } }]
+				buttons: [{ text: "退货", click: function () { RefundGoods(); } },
+					{ text: "取消", click: function () { ActionGUID = ""; $(this).dialog("close"); } }]
 			});
 
 			$.initTemplate();
@@ -186,7 +188,8 @@
 			{
 				$(this).click(function ()
 				{
-					Refund($(this).attr("data-guid"));
+					ActionGUID = $(this).attr("data-guid");
+					$("#RefundDialog").dialog("open");
 				});
 			});
 
@@ -194,20 +197,42 @@
 			{
 				$(this).click(function ()
 				{
-					RefundGoods($(this).attr("data-guid"));
+					ActionGUID = $(this).attr("data-guid");
+					$("#RefundGoodsDialog").dialog("open");
 				});
 			});
 		});
 
-		function Refund(guid)
+		function Refund()
 		{
-			
+			$.ajax({
+				type: "post",
+				cache: false,
+				url: "@Url.Action("Refund", "MyInfo")",
+				data: {"guid": ActionGUID},
+				success: function (data)
+				{
+					var dataobj = JSON.parse(data);
+					if (dataobj.code > 0)
+					{
+						$("#MessageDialog_Message").html(dataobj.msg);
+						$("#MessageDialog").dialog("option", { title: "提示", width: 200, buttons: [{ text: "确定", click: function () { location.reload(); } }] });
+						$("#MessageDialog").dialog("open");
+					}
+					else
+					{
+						$("#MessageDialog_Message").html(dataobj.msg);
+						$("#MessageDialog").dialog("option", { title: "错误提示", width: 350 });
+						$("#MessageDialog").dialog("open");
+					}
+				},
+				error: function (XMLHttpRequest, textStatus, errorThrown)
+				{
+					$("#MessageDialog_Message").html("网络错误，请重试！");
+					$("#MessageDialog").dialog("option", { title: "错误提示", width: 200 });
+					$("#MessageDialog").dialog("open");
+				}
+			});
 		}
-
-		function RefundGoods(guid)
-		{
-			
-		}
-
 	</script>
 }
