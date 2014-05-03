@@ -190,6 +190,15 @@ namespace J.MainWeb.Controllers
 
 				var MaterialPictureFileName = Order.designwork.material.materialpictures.OrderBy(p => p.Index).FirstOrDefault().FileName;
 
+                var OrderDetails = String.Empty;
+                foreach (var od in Order.orderdetails)
+                {
+                    if (OrderDetails.Length != 0)
+                        OrderDetails += "、";
+                    OrderDetails += od.SizeName + "：" + od.Quantity + "件";
+                }
+                OrderDetails += "。";
+
 				var OrderInfo = new
 				{
 					GUID = Order.GUID,
@@ -208,6 +217,8 @@ namespace J.MainWeb.Controllers
 					DesignerID = Order.designwork.user.GUID,
 					DesignWorkID = Order.DesignWorkID,
 					MaterialPictureFileName = MaterialPictureFileName,
+                    Title = Order.Subject,
+                    OrderDetails = OrderDetails,
 
 					Consignee = Order.Consignee,
 					Address = Order.Address,

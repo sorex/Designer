@@ -52,6 +52,7 @@
 		{
 			border: 1px solid #aaa;
 			margin-top: 20px;
+            margin-bottom: 20px;
 			word-wrap: break-word;
 			word-break: break-all;
 		}
@@ -60,3 +61,91 @@
 			{
 				display: block;
 			}
+
+		.body #OrderInfo #dataTable {
+			width: 1000px;
+		}
+
+			.body #OrderInfo #dataTable th {
+				border-top: 1px solid #000000;
+				border-bottom: 1px solid #000000;
+			}
+
+			.body #OrderInfo #dataTable a, .body #OrderInfo #dataTable span {
+				display: block;
+			}
+
+			.body #OrderInfo #dataTable a {
+				color: #3366cc;
+				font-weight: normal;
+			}
+
+				.body #OrderInfo #dataTable a:link {
+					color: #3366cc;
+					text-decoration: none;
+				}
+
+				.body #OrderInfo #dataTable a:visited {
+					color: #3366cc;
+					text-decoration: underline;
+				}
+
+				.body #OrderInfo #dataTable a:hover {
+					color: #ff6600;
+					text-decoration: underline;
+				}
+
+				.body #OrderInfo #dataTable a:active {
+					color: #ff6600;
+					text-decoration: underline;
+				}
+
+			.body #OrderInfo #dataTable .sep-row {
+				height: 7px;
+			}
+
+			.body #OrderInfo #dataTable .item1 {
+				border: 1px solid #d4e7ff;
+				background-color: #f3f3f3;
+				color: #404040;
+			}
+
+				.body #OrderInfo #dataTable .item1 td {
+					vertical-align: middle;
+					height: 32px;
+				}
+
+			.body #OrderInfo #dataTable .item2 {
+				border: 1px solid #d4e7ff;
+			}
+
+				.body #OrderInfo #dataTable .item2 td {
+					text-align: center;
+					vertical-align: top;
+					padding: 8px 5px 8px 5px;
+				}
+
+					.body #OrderInfo #dataTable .item2 td:first-child {
+						border-left: 1px solid #d4e7ff;
+					}
+
+					.body #OrderInfo #dataTable .item2 td:last-child {
+						border-right: 1px solid #d4e7ff;
+					}
+
+				.body #OrderInfo #dataTable .item2 .rightLine {
+					border-right: 1px solid #d4e7ff;
+				}
+
+				.body #OrderInfo #dataTable .item2 .itemImage {
+					width: 50px;
+					height: 50px;
+				}
+
+				.body #OrderInfo #dataTable .item2 .stress {
+					font-weight: bold;
+				}
+
+				.body #OrderInfo #dataTable .item2 .description {
+					color: #808080;
+				}

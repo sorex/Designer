@@ -38,7 +38,6 @@
 				<th style="width: 100px;">订单状态</th>
 				<th style="width: 100px;">其他操作</th>
 			</tr>
-			{{#items}}
 			<tr class="sep-row">
 				<td colspan="8"></td>
 			</tr>
@@ -49,7 +48,7 @@
 			</tr>
 			<tr class="item2">
 				<td>
-					<img class="itemImage" alt="查看详情" src="/Static/UserFiles/{{DesignerID}}/{{DesignWorkID}}/{{MaterialPictureFileName}}" />
+                    <img class="itemImage" alt="查看详情" src="/Static/UserFiles/{{DesignerID}}/{{DesignWorkID}}/50_{{MaterialPictureFileName}}" data-tooptip="data-tooptip" data-tooptipsrc="/Static/UserFiles/{{DesignerID}}/{{DesignWorkID}}/180_{{MaterialPictureFileName}}" />
 				</td>
 				<td style="text-align: left;">
 					<a href="">{{Title}}</a>
@@ -61,13 +60,11 @@
 				<td class="rightLine stress">{{Total}}</td>
 				<td class="rightLine">
 					{{{stateString}}}
-					<a href="/Logic/Detail?guid={{GUID}}" target="_blank">订单详情</a>
 				</td>
 				<td>
 					<a data-action="" data-guid="{{GUID}}" href="javascript:void(0);" onclick="return false;">退款/退货</a>
 				</td>
 			</tr>
-			{{/items}}
 			</script>
 		</table>
 </div>
@@ -107,6 +104,66 @@
 
 			StateIndex = 0;
 			$("#StateList").render(Data.OrderInfo);
+
+			$("#dataTable").data("template_extend", {
+			    stateString: function ()
+			    {
+			        switch (this.State)
+			        {
+			            case 0:
+			                return '<a href="/Logic/ConfirmOrder?guid=' + this.GUID + '" target="_blank">确认地址</a>';
+			            case 1:
+			                return '<a href="/Alipay/Alipay_Pay?OrderID=' + this.GUID + '" target="_blank">付款</a>';
+			            case 2:
+			                return '<span>等待预售结束</span>';
+			            case 3:
+			                return '<span>生产中</span>';
+			            case 4:
+			                return '<span>已发货</span>';
+			            case 5:
+			                return '<span>确认收货</span>';
+			            case 6:
+			                return '<span>等待退款审核</span>';
+			            case 7:
+			                return '<span>退款中</span>';
+			            case 8:
+			                return '<span>退款被拒绝</span>';
+			            case 9:
+			                return '<span>等待退货审核</span>';
+			            case 10:
+			                return '<span>同意退货，请邮寄货物</span>';
+			            case 11:
+			                return '<span>退货被拒绝</span>';
+			            case 12:
+			                return '<span>退货成功，退款中</span>';
+			            case 13:
+			                return '<span>退款成功</span>';
+			            case 14:
+			                return '<span>退款关闭</span>';
+			            case -1:
+			                return '<span>交易关闭</span>';
+			            default:
+			                return '';
+			        }
+			    },
+			    refundString:function()
+			    {
+			        switch (this.State)
+			        {
+			            case 2:
+			                return '<a data-action="refund" data-guid="' + this.GUID + '" href="javascript:void(0);" onclick="return false;">申请退款</a>';
+			            case 4:
+			                return '<a data-action="refundgoods" data-guid="' + this.GUID + '" href="javascript:void(0);" onclick="return false;">申请退货</a>';
+			            case 8:
+			            case 11:
+			                return '<span>请联系管理员</span>';
+			            default:
+			                return '';
+			        }
+			    }
+			});
+
+			$("#dataTable").render(Data.OrderInfo);
 		});
 	</script>
 }
